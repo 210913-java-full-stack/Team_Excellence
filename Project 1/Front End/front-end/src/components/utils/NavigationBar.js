@@ -59,7 +59,7 @@ export default class NavigationBar extends React.Component {
                             {this.renderSideBar()}
                         </li>
 
-                        <li className="menu-title">
+                        <li >
                             <h1>BRITCON air</h1>
                         </li>
 
@@ -70,8 +70,10 @@ export default class NavigationBar extends React.Component {
                                 </button>
                             </div>
                         </li>
-                        <li className="login">
-                            Login
+                        <li >
+                            <div className="login">
+                                Login
+                            </div>
                         </li>
 
                     </ul>
