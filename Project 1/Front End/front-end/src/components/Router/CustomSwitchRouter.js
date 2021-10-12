@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import CustomerLoginPage from "../Page/CustomerLoginPage";
 import HomePage from "../Page/HomePage";
 
 export default class CustomSwitchRouter extends Component {
@@ -10,9 +11,10 @@ export default class CustomSwitchRouter extends Component {
         return (
             <Router>
                 <Switch>
-                    <Route path='/' component={HomePage} />
+                    <Route exact path='/' component={HomePage} />
+                    <Route path='/login' component={CustomerLoginPage} />
                 </Switch>
             </Router>
-        )
+        );
     }
 }
