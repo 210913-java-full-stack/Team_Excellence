@@ -1,15 +1,13 @@
 
 import './App.css';
-import NavigationBar from './components/utils/NavigationBar';
+
+
+import CustomSwitchRouter from './components/Router/CustomSwitchRouter';
+
 
 function App() {
   return (
-    <div className="App">
-      <NavigationBar />
-      <div className="App-header">
-
-      </div>
-    </div>
+    <CustomSwitchRouter />
   );
 }
 
