@@ -49,7 +49,15 @@ public class CustomerDAO implements GenericDAO<Customer>{
         ResultSet rs = pstm.executeQuery();
 
         if(rs.next()){
-            return new Customer(rs.getInt(1), rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6));
+            Customer c = new Customer();
+            c.setId(rs.getInt(1));
+            c.setUsername(rs.getString(2));
+            c.setPassword(rs.getString(3));
+            c.setEmail(rs.getString(4));
+            c.setFirstName(rs.getString(5));
+            c.setLastName(rs.getString(6));
+
+            return c;
         } else {
             return null;
         }

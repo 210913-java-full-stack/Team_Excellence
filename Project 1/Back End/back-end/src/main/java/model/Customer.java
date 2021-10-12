@@ -8,14 +8,8 @@ public class Customer {
     private String firstName;
     private String lastName;
 
-    public Customer(int id, String username, String password, String email, String firstName, String lastName) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
+
+
 
     public int getId() {
         return id;

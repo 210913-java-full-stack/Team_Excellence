@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import CustomerLoginPage from '../Page/CustomerLoginPage';
+// import CustomerLoginPage from '../Page/CustomerLoginPage';
 import "./NavigationBar.css";
 
 
@@ -48,7 +48,7 @@ function NavigationBar() {
 
                     <li className="menu-button">
                         <div id="menu-btn">
-                            <button type="button" className="menu-button" onClick={menuOpen ? setMenuFalse : setMenuTrue}>
+                            <button type="button" className="menu-btn" onClick={menuOpen ? setMenuFalse : setMenuTrue}>
                                 <img alt="menu" className="menu-button" src="https://img.icons8.com/ios/50/000000/menu--v1.png" />
                             </button>
                         </div>
@@ -56,7 +56,7 @@ function NavigationBar() {
                     <li >
                         <div className="login">
 
-                            <a href="http://localhost:3000/login"> Login</a>
+                            <a href="http://localhost:3000/login" > Login</a>
 
 
 
@@ -65,6 +65,7 @@ function NavigationBar() {
 
                 </ul>
             </nav>
+
         </div >
     );
 
