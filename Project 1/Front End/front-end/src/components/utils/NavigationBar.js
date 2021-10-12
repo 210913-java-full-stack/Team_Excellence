@@ -1,40 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
+import CustomerLoginPage from '../Page/CustomerLoginPage';
 import "./NavigationBar.css";
 
 
-export default class NavigationBar extends React.Component {
 
-    static defaultProps = {
-        menuOpen: false,
-    }
-    constructor(props) {
-        super(props);
-        this.state = {
-            menuOpen: this.props.menuOpen,
-        }
+function NavigationBar() {
+    const [token, setToken] = useState('')
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState("");
 
-        this.renderSideBar = this.renderSideBar.bind(this);
-        this.setMenuFalse = this.setMenuFalse.bind(this);
-        this.setMenuTrue = this.setMenuTrue.bind(this);
-    }
+    const [menuOpen, setMenuOpen] = useState(false)
+    const [loginScreen, setLoginScreen] = useState(false)
 
-    setMenuFalse() {
-        this.setState({ menuOpen: false });
-    }
-
-    setMenuTrue() {
-        this.setState({ menuOpen: true });
-    }
-
-
-
-
-    renderSideBar() {
-        if (this.state.menuOpen) {
+    function renderSideBar() {
+        if (menuOpen) {
             return (
                 <div className="menu" id="menu">
                     <ul>
-                        <li className="menu-item">Login</li>
+                        <li className="menu-item"><button onClick={clickLogin}>Login</button></li>
                         <li className="menu-item">Account</li>
                         <li className="menu-item">Flights</li>
                     </ul>
@@ -44,42 +27,107 @@ export default class NavigationBar extends React.Component {
     }
 
 
-    render() {
 
 
-
-
-
-        return (
-            <div>
-                <nav className="header">
-                    <ul>
-
-                        <li>
-                            {this.renderSideBar()}
-                        </li>
-
-                        <li >
-                            <h1>BRITCON air</h1>
-                        </li>
-
-                        <li className="menu-button">
-                            <div id="menu-btn">
-                                <button type="button" className="menu-button" onClick={this.state.menuOpen ? this.setMenuFalse : this.setMenuTrue}>
-                                    <img alt="menu" className="menu-button" src="https://img.icons8.com/ios/50/000000/menu--v1.png" />
-                                </button>
-                            </div>
-                        </li>
-                        <li >
-                            <div className="login">
-                                Login
-                            </div>
-                        </li>
-
-                    </ul>
-                </nav>
-            </div >
-        );
-
+    function clickLogin() {
+        if (loginScreen) {
+            setLoginScreen(p => p = false)
+        } else {
+            setLoginScreen(p => p = true)
+        }
     }
+
+
+    function clickMenu() {
+        if (menuOpen) {
+            setMenuOpen(p => p = false)
+        } else {
+            setMenuOpen(p => p = true)
+        }
+    }
+
+    if (!token) {
+        if (!loginScreen) {
+            return (
+                <div>
+                    <nav className="header">
+                        <ul>
+
+                            <li>
+                                {renderSideBar()}
+                            </li>
+
+                            <li >
+                                <h1>BRITCON air</h1>
+                            </li>
+
+                            <li className="menu-button">
+                                <div id="menu-btn">
+                                    <button type="button" className="menu-btn" onClick={clickMenu}>
+                                        <img alt="menu" className="menu-button" src="https://img.icons8.com/ios/50/000000/menu--v1.png" />
+                                    </button>
+                                </div>
+                            </li>
+                            <li >
+                                <div className="login">
+
+                                    <button type="button" className="login-btn" onClick={clickLogin} >Login</button>
+
+
+
+                                </div>
+                            </li>
+
+                        </ul>
+                    </nav>
+
+                </div >
+            );
+
+        } else {
+            return (
+                <div id="login-render">
+                    <CustomerLoginPage setToken={setToken} />
+                    <button className="back-to-home" onClick={clickLogin} >back </button>
+                </div>
+            );
+        }
+    } else {
+        <div>
+            <nav className="header">
+                <ul>
+
+                    <li>
+                        {renderSideBar()}
+                    </li>
+
+                    <li >
+                        <h1>BRITCON air</h1>
+                    </li>
+
+                    <li className="menu-button">
+                        <div id="menu-btn">
+                            <button type="button" className="menu-btn" onClick={clickMenu}>
+                                <img alt="menu" className="menu-button" src="https://img.icons8.com/ios/50/000000/menu--v1.png" />
+                            </button>
+                        </div>
+                    </li>
+                    <li >
+                        <div className="login">
+                            {/* need to change the onClick to handle account Screen  */}
+                            <button type="button" className="login-btn" onClick={clickLogin} >{firstName} {lastName}</button>
+
+
+
+                        </div>
+                    </li>
+
+                </ul>
+            </nav>
+
+        </div >
+    }
+
 }
+
+export default NavigationBar;
