@@ -35,7 +35,7 @@ public class LoginServlet extends HttpServlet {
             Connection conn = ConnectionManager.getConnection();
             CustomerDAO dao = new CustomerDAO(conn);
             Customer c = dao.customerLogin(customer.getUsername(),customer.getPassword());
-            customerJsonString = new Gson().toJson(c);
+            customerJsonString = "{ \"token\": test123}";
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

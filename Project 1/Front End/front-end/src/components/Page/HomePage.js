@@ -8,7 +8,7 @@ export default class HomePage extends Component {
         return (
             <div>
                 <NavigationBar className="HomePage" />
-                <h1>HomePage</h1>
+
             </div>
         );
     }
