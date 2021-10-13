@@ -41,6 +41,7 @@
     width:80px;
     left: -45px;
     margin-right: 15px;
+    height: 25px;
 }
 
 #signup {
@@ -84,13 +85,3 @@ width: 100%;
 
 }
 
-.back-to-home {
-    display: block;
-    position: relative;
-    top: 483px;
-    left: 750px;
-    width:80px;
-    
-
-
-}

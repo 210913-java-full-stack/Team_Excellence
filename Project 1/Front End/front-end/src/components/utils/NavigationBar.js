@@ -87,8 +87,10 @@ function NavigationBar() {
         } else {
             return (
                 <div id="login-render">
-                    <CustomerLoginPage setToken={setToken} />
-                    <button className="back-to-home" onClick={clickLogin} >back </button>
+                    <CustomerLoginPage setToken={setToken} onSubmit={clickLogin} />
+                    <div className="back">
+                        <button className="back-to-home" onClick={clickLogin} >back </button>
+                    </div>
                 </div>
             );
         }

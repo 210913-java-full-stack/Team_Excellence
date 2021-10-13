@@ -15,6 +15,7 @@ import javax.servlet.http.*;
 import java.io.*;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class LoginServlet extends HttpServlet {
@@ -35,16 +36,27 @@ public class LoginServlet extends HttpServlet {
             Connection conn = ConnectionManager.getConnection();
             CustomerDAO dao = new CustomerDAO(conn);
             Customer c = dao.customerLogin(customer.getUsername(),customer.getPassword());
-            customerJsonString = "{ \"token\": test123}";
+//            customerJsonString = mapper.writeValueAsString(c);
+//            customerJsonString = "{ \"token\": \"test123\"}";
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+            resp.setStatus(404);
+            resp.setContentType("application/json");
+            resp.setCharacterEncoding("UTF-8");
+            PrintWriter out = resp.getWriter();
+            out.print("User name is incorrect.");
+            return;
+
         }
+
+        final String uuid = UUID.randomUUID().toString().replace("-", "");
 
         PrintWriter out = resp.getWriter();
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
-        out.print(customerJsonString);
-        out.flush();
+        out.print("{ \"token\": \"" + uuid + "\" }");
+
+
 
 
 

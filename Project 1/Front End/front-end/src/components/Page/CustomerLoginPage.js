@@ -5,7 +5,7 @@ import './CustomerLoginPage.css';
 
 
 
-export default function CustomerLoginPage({ setToken }) {
+export default function CustomerLoginPage({ setToken }, updateCallback) {
     const [username, setUserName] = useState();
     const [password, setPassword] = useState();
     const [firstName, setFirstName] = useState('');
@@ -19,6 +19,7 @@ export default function CustomerLoginPage({ setToken }) {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             },
+
             body: JSON.stringify(credentials)
         })
             .then(data => {
@@ -26,28 +27,32 @@ export default function CustomerLoginPage({ setToken }) {
                 console.log(data.json());
             }).catch((error) => {
                 console.log(error);
-            });
+            }).finally()
 
     }
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         const token = await loginUser({
             username: username,
             password: password,
         });
         setToken(prev => prev = token);
+        console.log(token);
+        updateCallback = false;
+
     }
     return (
         <div className="login-wrapper">
             <h1>Please Log In</h1>
-            <form className="login-form" onSubmit={handleSubmit}>
+            <form method="post" action="http://localhost:8080/api/login">
                 <label>
                     <p>Username :</p>
-                    <input type="text" onChange={e => setUserName(e.target.value)} />
+                    <input type="text" name="username" />
                 </label>
                 <label>
                     <p>Password :</p>
-                    <input type="password" onChange={e => setPassword(e.target.value)} />
+                    <input type="password" name="password" />
                 </label>
                 <div>
                     <button id="login-btn" type="submit">Login</button>

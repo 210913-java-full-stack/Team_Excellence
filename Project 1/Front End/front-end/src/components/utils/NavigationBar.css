@@ -96,3 +96,19 @@ fieldset {
     
  
 }
+.back {
+    border: 5px red solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 980px;
+    
+
+}
+
+.back-to-home {
+    border: 6px blue solid;
+    height: 25px;
+    width: 80px;
+    margin-left: 150px;
+}
