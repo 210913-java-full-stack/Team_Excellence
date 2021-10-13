@@ -5,38 +5,45 @@ import './CustomerLoginPage.css';
 
 
 
+
+async function loginUser(credentials) {
+
+
+    return await fetch('http://localhost:8080/api/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+
+        },
+        body: JSON.stringify(credentials)
+    });
+
+
+
+}
+
+
 export default function CustomerLoginPage({ setToken }) {
     const [username, setUserName] = useState();
     const [password, setPassword] = useState();
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState("");
 
 
-    async function loginUser(credentials) {
-        return fetch('http://localhost:8080/api/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify(credentials)
-        })
-            .then(data => {
-
-                console.log(data.json());
-            }).catch((error) => {
-                console.log(error);
-            });
-
-    }
-
-    const handleSubmit = async () => {
-        const token = await loginUser({
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const result = await loginUser({
             username: username,
-            password: password,
+            password: password
         });
+        let t = result.json();
+        let token = JSON.parse(t);
         setToken(prev => prev = token);
+        console.log(t);
     }
+
+
+
+
+
     return (
         <div className="login-wrapper">
             <h1>Please Log In</h1>
@@ -58,5 +65,29 @@ export default function CustomerLoginPage({ setToken }) {
 }
 
 CustomerLoginPage.propTypes = {
-    setToken: PropTypes.func.isRequired
+    setToken: PropTypes.func.isRequired,
+
 }
+
+
+    // async function loginUser(credentials) {
+    //     return fetch('http://localhost:8080/api/login', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             'Accept': 'application/json'
+    //         },
+    //         body: JSON.stringify(credentials)
+    //     })
+    //         .then(response => {
+
+    //             if(response.ok){
+
+    //             }
+
+
+    //         }).catch((error) => {
+    //             console.error(error);
+    //         });
+
+    // }

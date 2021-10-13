@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import CustomerLoginPage from '../Page/CustomerLoginPage';
+import PropTypes from "prop-types";
 import "./NavigationBar.css";
 
 
 
-function NavigationBar() {
-    const [token, setToken] = useState('')
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState("");
+function NavigationBar({ setToken }, token) {
+
+
 
     const [menuOpen, setMenuOpen] = useState(false)
     const [loginScreen, setLoginScreen] = useState(false)
@@ -46,7 +46,7 @@ function NavigationBar() {
         }
     }
 
-    if (!token) {
+    if (token) {
         if (!loginScreen) {
             return (
                 <div>
@@ -87,47 +87,54 @@ function NavigationBar() {
         } else {
             return (
                 <div id="login-render">
-                    <CustomerLoginPage setToken={setToken} />
+                    <CustomerLoginPage setToken={setToken} token={token} />
                     <button className="back-to-home" onClick={clickLogin} >back </button>
                 </div>
             );
         }
     } else {
-        <div>
-            <nav className="header">
-                <ul>
+        return (
+            <div>
+                <nav className="header">
+                    <ul>
 
-                    <li>
-                        {renderSideBar()}
-                    </li>
+                        <li>
+                            {renderSideBar()}
+                        </li>
 
-                    <li >
-                        <h1>BRITCON air</h1>
-                    </li>
+                        <li >
+                            <h1>BRITCON air</h1>
+                        </li>
 
-                    <li className="menu-button">
-                        <div id="menu-btn">
-                            <button type="button" className="menu-btn" onClick={clickMenu}>
-                                <img alt="menu" className="menu-button" src="https://img.icons8.com/ios/50/000000/menu--v1.png" />
-                            </button>
-                        </div>
-                    </li>
-                    <li >
-                        <div className="login">
-                            {/* need to change the onClick to handle account Screen  */}
-                            <button type="button" className="login-btn" onClick={clickLogin} >{firstName} {lastName}</button>
+                        <li className="menu-button">
+                            <div id="menu-btn">
+                                <button type="button" className="menu-btn" onClick={clickMenu}>
+                                    <img alt="menu" className="menu-button" src="https://img.icons8.com/ios/50/000000/menu--v1.png" />
+                                </button>
+                            </div>
+                        </li>
+                        <li >
+                            <div className="login">
+                                {/* need to change the onClick to handle account Screen  */}
+                                <button type="button" className="login-btn" onClick={clickLogin} ></button>
 
 
 
-                        </div>
-                    </li>
+                            </div>
+                        </li>
 
-                </ul>
-            </nav>
+                    </ul>
+                </nav>
 
-        </div >
+            </div >
+        );
     }
 
 }
+
+NavigationBar.propTypes = {
+    setToken: PropTypes.func.isRequired
+}
+
 
 export default NavigationBar;
