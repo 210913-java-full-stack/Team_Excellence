@@ -8,6 +8,9 @@ public class Admin {
     private String firstName;
     private String lastName;
 
+    public Admin() {
+    }
+
     public Admin(int id, String username, String password, String email, String firstName, String lastName) {
         this.id = id;
         this.username = username;

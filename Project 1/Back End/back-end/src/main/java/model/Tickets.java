@@ -9,6 +9,9 @@ public class Tickets {
     private String passengerLastName;
     private int passengerAge;
 
+    public Tickets() {
+    }
+
     public Tickets(int ticketId, int flightId, int customerId, String passengerFirstName, String passengerLastName, int passengerAge) {
         this.ticketId = ticketId;
         this.flightId = flightId;

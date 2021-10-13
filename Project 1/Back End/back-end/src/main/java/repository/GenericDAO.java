@@ -1,4 +1,4 @@
-package dao;
+package repository;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

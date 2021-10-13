@@ -12,6 +12,9 @@ public class Flight {
     private Date arriveDate;
     private int arriveTime;
 
+    public Flight() {
+    }
+
     public Flight(int flightId, int pilotId, String departLocation, String arriveLocation, Date departDate, int departTime, Date arriveDate, int arriveTime) {
         this.flightId = flightId;
         this.pilotId = pilotId;
