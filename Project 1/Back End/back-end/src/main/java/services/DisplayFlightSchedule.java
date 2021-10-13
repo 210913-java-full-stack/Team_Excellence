@@ -7,9 +7,6 @@ import java.util.Date;//TODO: Change date datatype after implementing Hibernate
 
 public class DisplayFlightSchedule {
 
-    public DisplayFlightSchedule() {
-    }
-
     /*
      * The displayFlights method gets row(s) from the flight table in the database and filters the results based on the
      * given parameters.
