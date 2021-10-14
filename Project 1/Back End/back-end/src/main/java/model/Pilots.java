@@ -8,6 +8,9 @@ public class Pilots {
     private String firstName;
     private String lastName;
 
+    public Pilots() {
+    }
+
     public Pilots(int id, String username, String password, String email, String firstName, String lastName) {
         this.id = id;
         this.username = username;

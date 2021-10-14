@@ -1,13 +1,8 @@
 package servlets;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
-import dao.CustomerDAO;
-import jdk.internal.util.xml.impl.Input;
+import repository.CustomerDAO;
 import model.Customer;
-import org.json.HTTP;
-import org.json.JSONException;
-import org.json.JSONObject;
 import utils.ConnectionManager;
 
 import javax.servlet.ServletException;
