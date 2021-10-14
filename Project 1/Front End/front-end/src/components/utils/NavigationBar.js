@@ -14,15 +14,28 @@ function NavigationBar({ setId, setRealUsername, setFirstName, setLastName, setI
 
     function renderSideBar() {
         if (menuOpen) {
-            return (
-                <div className="menu" id="menu">
-                    <ul>
-                        <li className="menu-item"><button onClick={clickLogin}>Login</button></li>
-                        <li className="menu-item">Account</li>
-                        <li className="menu-item">Flights</li>
-                    </ul>
-                </div>
-            );
+
+            if (navLoggedIn) {
+                return (
+                    <div className="menu" id="menu">
+                        <ul>
+
+                            <li className="menu-item">Account</li>
+                            <li className="menu-item">Flights</li>
+                        </ul>
+                    </div>
+                );
+            } else {
+                return (
+                    <div className="menu" id="menu">
+                        <ul>
+                            <li className="menu-item"><button onClick={clickLogin}>Login</button></li>
+                            <li className="menu-item">Account</li>
+                            <li className="menu-item">Flights</li>
+                        </ul>
+                    </div>
+                );
+            }
         }
     }
 
