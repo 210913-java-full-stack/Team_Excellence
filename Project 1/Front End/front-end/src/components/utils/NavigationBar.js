@@ -5,9 +5,9 @@ import "./NavigationBar.css";
 
 
 
-function NavigationBar({ setId, setRealUsername, setFirstName, setLastName, setIsLoggedIn }, isLoggedIn, firstName, lastName) {
+function NavigationBar({ setId, setRealUsername, setFirstName, setLastName, setIsLoggedIn, isLoggedIn, firstName, lastName }) {
 
-    const [navLoggedIn, setNavLoggedIn] = useState(false)
+
 
     const [menuOpen, setMenuOpen] = useState(false)
     const [loginScreen, setLoginScreen] = useState(false)
@@ -17,7 +17,7 @@ function NavigationBar({ setId, setRealUsername, setFirstName, setLastName, setI
             return (
                 <div className="menu" id="menu">
                     <ul>
-                        <li className="menu-item"><button onClick={clickLogin}>Login</button></li>
+
                         <li className="menu-item">Account</li>
                         <li className="menu-item">Flights</li>
                     </ul>
@@ -51,7 +51,13 @@ function NavigationBar({ setId, setRealUsername, setFirstName, setLastName, setI
         if (loginScreen) {
             return (
                 <div id="login-render">
-                    <CustomerLoginPage setId={setId} setRealUsername={setRealUsername} setFirstName={setFirstName} setIsLoggedIn={setIsLoggedIn} setLastName={setLastName} setNavLoggedIn={setNavLoggedIn} clickLogin={clickLogin} />
+                    <CustomerLoginPage
+                        setId={setId}
+                        setRealUsername={setRealUsername}
+                        setFirstName={setFirstName}
+                        setIsLoggedIn={setIsLoggedIn}
+                        setLastName={setLastName}
+                        clickLogin={clickLogin} />
                     <button className="back-to-home" onClick={clickLogin} >back </button>
                 </div>
             );
@@ -134,12 +140,8 @@ function NavigationBar({ setId, setRealUsername, setFirstName, setLastName, setI
         );
     }
 
-    if (navLoggedIn) {
-        // return (
-        //     <div>
-        //         {renderNotLoggedin()}
-        //     </div>
-        // );
+    if (isLoggedIn) {
+
         return (
             <div>
                 {renderLoggedIn()}
@@ -154,11 +156,7 @@ function NavigationBar({ setId, setRealUsername, setFirstName, setLastName, setI
                 <p>good</p>
             </div>
         );
-        // return (
-        //     <div>
-        //         {renderLoggedIn()}
-        //     </div>
-        // );
+
     }
 
 

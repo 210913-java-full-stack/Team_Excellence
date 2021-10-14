@@ -2,9 +2,9 @@
     display: flex;
     position: relative;
     padding-top: 200px;
-    justify-content: center;
+   
     color: red;
- 
+    border: 3px purple solid;
     height: 100%;
 
     
