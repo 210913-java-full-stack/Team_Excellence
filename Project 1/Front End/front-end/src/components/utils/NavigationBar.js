@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import CustomerLoginPage from '../Page/CustomerLoginPage';
+import CustomerLoginPage from '../Page/Customer/CustomerLoginPage';
 
 import "./NavigationBar.css";
 
@@ -146,14 +146,14 @@ function NavigationBar({ setId, setRealUsername, setFirstName, setLastName, setI
             <div>
                 {renderLoggedIn()}
 
-                <p>bad</p>
+
             </div>
         );
     } else {
         return (
             <div>
                 {renderNotLoggedin()}
-                <p>good</p>
+
             </div>
         );
 

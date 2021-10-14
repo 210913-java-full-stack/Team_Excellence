@@ -1,0 +1,42 @@
+.grid-1{
+    position: fixed;
+    top: 65px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    border: 5px brown solid;
+
+    display: grid;
+
+    grid-template-columns: 75% 25%;
+    grid-template-rows: 80% 20%;
+
+}
+
+.flight-board{
+    display: flex;
+    border: 5px limegreen solid;
+    grid-row-start: 1;
+    grid-row-end: 3;
+}
+
+.check-in {
+    border: 5px burlywood solid;
+    display: flex;
+    align-items: center;
+    
+}
+
+.check-in h1 {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+
+.cancel-ticket {
+    border: 5px magenta solid;
+    display: flex;
+    align-content: center;
+}
+
