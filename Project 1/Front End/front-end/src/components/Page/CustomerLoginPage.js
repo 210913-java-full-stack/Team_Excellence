@@ -9,7 +9,7 @@ import './CustomerLoginPage.css';
 
 
 
-export default function CustomerLoginPage({ setToken }) {
+export default function CustomerLoginPage({ setToken, clickLogin }) {
     const [username, setUserName] = useState();
     const [password, setPassword] = useState();
 
@@ -42,6 +42,7 @@ export default function CustomerLoginPage({ setToken }) {
             username: username,
             password: password
         });
+        clickLogin()
 
     }
 

@@ -46,7 +46,7 @@ function NavigationBar({ setToken }, token) {
         }
     }
 
-    if (token) {
+    if (token !== null) {
         if (!loginScreen) {
             return (
                 <div>
@@ -87,7 +87,7 @@ function NavigationBar({ setToken }, token) {
         } else {
             return (
                 <div id="login-render">
-                    <CustomerLoginPage setToken={setToken} token={token} />
+                    <CustomerLoginPage setToken={setToken} clickLogin={clickLogin} />
                     <button className="back-to-home" onClick={clickLogin} >back </button>
                 </div>
             );
@@ -116,7 +116,7 @@ function NavigationBar({ setToken }, token) {
                         <li >
                             <div className="login">
                                 {/* need to change the onClick to handle account Screen  */}
-                                <button type="button" className="login-btn" onClick={clickLogin} ></button>
+                                <button type="button" className="login-btn" onClick={clickLogin} >{token}</button>
 
 
 
