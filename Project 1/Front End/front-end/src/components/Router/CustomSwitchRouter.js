@@ -1,21 +1,21 @@
-import React, { Component } from "react";
+import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import CustomerLoginPage from "../Page/CustomerLoginPage";
 import HomePage from "../Page/HomePage";
 
-export default class CustomSwitchRouter extends Component {
+export default function CustomSwitchRouter() {
 
 
 
-    render() {
-        return (
-            <Router>
-                <Switch>
-                    {/* the home path route needs the exact keyword or all request will get HomePage */}
-                    <Route exact path='/' component={HomePage} />
-                    <Route path='/login' component={CustomerLoginPage} />
-                </Switch>
-            </Router>
-        );
-    }
+
+    return (
+        <Router>
+            <Switch>
+                {/* the home path route needs the exact keyword or all request will get HomePage */}
+                <Route exact path='/' component={HomePage} />
+                <Route path='/login' component={CustomerLoginPage} />
+            </Switch>
+        </Router>
+    );
+
 }

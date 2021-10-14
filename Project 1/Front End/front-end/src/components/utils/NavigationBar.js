@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import CustomerLoginPage from '../Page/CustomerLoginPage';
-import PropTypes from "prop-types";
+
 import "./NavigationBar.css";
 
 
 
-function NavigationBar({ setToken }, token) {
+function NavigationBar({ setId, setRealUsername, setFirstName, setLastName, setIsLoggedIn }, isLoggedIn, firstName, lastName) {
 
 
 
@@ -46,8 +46,17 @@ function NavigationBar({ setToken }, token) {
         }
     }
 
-    if (token !== null) {
-        if (!loginScreen) {
+
+    function renderNotLoggedin() {
+        if (loginScreen) {
+            return (
+                <div id="login-render">
+                    <CustomerLoginPage setId={setId} setRealUsername={setRealUsername} setFirstName={setFirstName} setIsLoggedIn={setIsLoggedIn} setLastName={setLastName} clickLogin={clickLogin} />
+                    <button className="back-to-home" onClick={clickLogin} >back </button>
+                </div>
+            );
+        } else {
+
             return (
                 <div>
                     <nav className="header">
@@ -83,16 +92,11 @@ function NavigationBar({ setToken }, token) {
 
                 </div >
             );
-
-        } else {
-            return (
-                <div id="login-render">
-                    <CustomerLoginPage setToken={setToken} clickLogin={clickLogin} />
-                    <button className="back-to-home" onClick={clickLogin} >back </button>
-                </div>
-            );
         }
-    } else {
+    }
+
+
+    function renderLoggedIn() {
         return (
             <div>
                 <nav className="header">
@@ -116,7 +120,7 @@ function NavigationBar({ setToken }, token) {
                         <li >
                             <div className="login">
                                 {/* need to change the onClick to handle account Screen  */}
-                                <button type="button" className="login-btn" onClick={clickLogin} >{token}</button>
+                                <p>{firstName} {lastName}</p>
 
 
 
@@ -130,11 +134,38 @@ function NavigationBar({ setToken }, token) {
         );
     }
 
+    if (isLoggedIn) {
+        // return (
+        //     <div>
+        //         {renderNotLoggedin()}
+        //     </div>
+        // );
+        return (
+            <div>
+                {renderLoggedIn()}
+            </div>
+        );
+    } else {
+        return (
+            <div>
+                {renderNotLoggedin()}
+            </div>
+        );
+        // return (
+        //     <div>
+        //         {renderLoggedIn()}
+        //     </div>
+        // );
+    }
+
+
+
+
+
 }
 
-NavigationBar.propTypes = {
-    setToken: PropTypes.func.isRequired
-}
+
+
 
 
 export default NavigationBar;

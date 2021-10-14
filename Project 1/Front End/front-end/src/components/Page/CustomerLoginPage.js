@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-// import axios from 'axios';
-import PropTypes from "prop-types";
+
 import './CustomerLoginPage.css';
 
 
@@ -9,7 +8,7 @@ import './CustomerLoginPage.css';
 
 
 
-export default function CustomerLoginPage({ setToken, clickLogin }) {
+export default function CustomerLoginPage({ setId, setRealUsername, setFirstName, setLastName, clickLogin, setIsLoggedIn }) {
     const [username, setUserName] = useState();
     const [password, setPassword] = useState();
 
@@ -24,7 +23,11 @@ export default function CustomerLoginPage({ setToken, clickLogin }) {
             },
             body: JSON.stringify(credentials)
         }).then((response) => response.json()).then(data => {
-            setToken(data["token"])
+            setId(data["id"])
+            setRealUsername(data["username"])
+            setFirstName(data["firstName"])
+            setLastName(data["lastName"])
+            setIsLoggedIn(true)
         }).catch(error => console.log(error));
 
     }
@@ -43,6 +46,7 @@ export default function CustomerLoginPage({ setToken, clickLogin }) {
             password: password
         });
         clickLogin()
+        console.log(result)
 
     }
 
@@ -69,10 +73,7 @@ export default function CustomerLoginPage({ setToken, clickLogin }) {
     )
 }
 
-CustomerLoginPage.propTypes = {
-    setToken: PropTypes.func.isRequired,
 
-}
 
 
     // async function loginUser(credentials) {

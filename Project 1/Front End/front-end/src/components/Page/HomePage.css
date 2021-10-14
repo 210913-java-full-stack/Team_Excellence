@@ -1,5 +1,11 @@
 .token {
-    position: fixed;
-    top: 200px;
+    display: flex;
+    position: relative;
+    padding-top: 200px;
+    justify-content: center;
+    color: red;
+ 
+    height: 100%;
+
     
 }

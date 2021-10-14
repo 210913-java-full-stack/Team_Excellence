@@ -4,19 +4,34 @@ import './HomePage.css';
 
 function HomePage() {
 
-    const [token, setToken] = useState('');
+
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
+    const [id, setId] = useState()
+    const [RealUsername, setRealUsername] = useState()
+    const [firstName, setFirstName] = useState()
+    const [lastName, setLastName] = useState()
+
 
     function tokerView() {
-        if (token !== '') {
-            return <h1 className="token">{token}</h1>;
+        if (isLoggedIn) {
+            return <h1 className="token">{RealUsername} has logged in.</h1>;
         } else {
-            return <h1 className="token">No token is set</h1>;
+            return <h1 className="token">No one is logged in.</h1>;
         }
     }
 
     return (
         <div>
-            <NavigationBar setToken={setToken} token={token} />
+            <NavigationBar
+                setId={setId}
+                setRealUsername={setRealUsername}
+                setFirstName={setFirstName}
+                setLastName={setLastName}
+                setIsLoggedIn={setIsLoggedIn}
+                isLoggedIn={isLoggedIn}
+                firstName={firstName}
+                lastName={lastName} />
+
             {tokerView()}
 
 

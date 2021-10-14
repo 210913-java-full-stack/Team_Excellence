@@ -35,15 +35,14 @@ public class LoginServlet extends HttpServlet {
             CustomerDAO dao = new CustomerDAO(conn);
             Customer c = dao.customerLogin(customer.getUsername(),customer.getPassword());
             customerJsonString = mapper.writeValueAsString(c);
-//            customerJsonString = "{ \"token\": \"test123\"}";
-            final String uuid = UUID.randomUUID().toString().replace("-", "");
+
             if (c != null) {
 
 
                 resp.setContentType("application/json");
                 resp.setCharacterEncoding("UTF-8");
-                String json = "{ \"token\": \"" + uuid + "\" }";
-                resp.getWriter().write(json);
+                System.out.println(customerJsonString);
+                resp.getWriter().write(customerJsonString);
           
             }else {
 
