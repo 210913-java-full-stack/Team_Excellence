@@ -8,7 +8,7 @@ import './CustomerLoginPage.css';
 
 
 
-export default function CustomerLoginPage({ setId, setRealUsername, setFirstName, setLastName, clickLogin, setIsLoggedIn }) {
+export default function CustomerLoginPage({ setId, setRealUsername, setFirstName, setLastName, clickLogin, setIsLoggedIn, setNavLoggedIn }) {
     const [username, setUserName] = useState();
     const [password, setPassword] = useState();
 
@@ -28,6 +28,7 @@ export default function CustomerLoginPage({ setId, setRealUsername, setFirstName
             setFirstName(data["firstName"])
             setLastName(data["lastName"])
             setIsLoggedIn(true)
+            setNavLoggedIn(true)
         }).catch(error => console.log(error));
 
     }
