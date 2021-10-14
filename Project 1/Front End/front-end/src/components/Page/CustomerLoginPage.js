@@ -6,26 +6,34 @@ import './CustomerLoginPage.css';
 
 
 
-async function loginUser(credentials) {
 
-
-    return await fetch('http://localhost:8080/api/login', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-
-        },
-        body: JSON.stringify(credentials)
-    });
-
-
-
-}
 
 
 export default function CustomerLoginPage({ setToken }) {
     const [username, setUserName] = useState();
     const [password, setPassword] = useState();
+
+    async function loginUser(credentials) {
+
+
+        return await fetch('http://localhost:8080/api/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+
+            },
+            body: JSON.stringify(credentials)
+        }).then((response) => response.json()).then(data => {
+            setToken(data["token"])
+        }).catch(error => console.log(error));
+
+    }
+
+
+
+
+
+
 
 
     const handleSubmit = async (e) => {
@@ -34,12 +42,8 @@ export default function CustomerLoginPage({ setToken }) {
             username: username,
             password: password
         });
-        let t = result.json();
-        let token = JSON.parse(t);
-        setToken(prev => prev = token);
-        console.log(t);
-    }
 
+    }
 
 
 
