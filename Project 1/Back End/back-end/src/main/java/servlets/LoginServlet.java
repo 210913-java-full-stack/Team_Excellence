@@ -49,9 +49,7 @@ public class LoginServlet extends HttpServlet {
                 resp.setCharacterEncoding("UTF-8");
                 String json = "{ \"token\": \"" + uuid + "\" }";
                 resp.getWriter().write(json);
-                System.out.println(json);
-                System.out.println("User logged in");
-                System.out.println(uuid.length());
+          
             }else {
 
                 resp.setStatus(404);
