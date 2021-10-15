@@ -1,4 +1,4 @@
-.login{
+.employee-login{
     
     position: fixed;
     top: 0px;
@@ -11,7 +11,7 @@
     
 }
 
-.login  h1 {
+.employee-login  h1 {
     position: fixed;
     display: grid;
     top:50px;
@@ -24,7 +24,7 @@
     align-items: flex-start;  
 }
 
-.login-form {
+.employee-login-form {
    
     position: fixed;
     display: grid;
@@ -42,7 +42,7 @@
     
 }
 
-label {
+.employee-login-form label {
     position: relative;
   
     padding: 10px;
@@ -50,12 +50,12 @@ label {
     
 }
 
-input {
+.employee-login-form input {
     padding: 15px;
     background-color: lightblue;
 }
 
-#login-btn {
+.employee-login-form button{
    
     background-color: blue;
     color:white;

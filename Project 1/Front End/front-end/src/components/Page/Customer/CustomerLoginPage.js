@@ -68,8 +68,35 @@ export default function CustomerLoginPage({ setId, setRealUsername, setFirstName
                     <p>Password :</p>
                     <input type="password" onChange={e => setPassword(e.target.value)} />
                 </label>
-                <button id="login-btn" type="submit">Login</button>
+                <div>
+                    <button id="login-btn" type="submit">Login</button>
+                </div>
             </form>
         </div>
     )
 }
+
+
+
+
+    // async function loginUser(credentials) {
+    //     return fetch('http://localhost:8080/api/login', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             'Accept': 'application/json'
+    //         },
+    //         body: JSON.stringify(credentials)
+    //     })
+    //         .then(response => {
+
+    //             if(response.ok){
+
+    //             }
+
+
+    //         }).catch((error) => {
+    //             console.error(error);
+    //         });
+
+    // }

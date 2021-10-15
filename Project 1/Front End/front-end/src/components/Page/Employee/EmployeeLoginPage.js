@@ -23,9 +23,9 @@ export default function Login() {
 
     //Creating the header and the login form.
     return (
-        <div className="login">
+        <div className="employee-login">
             <h1>Employee Login</h1>
-            <form className="login-form" onSubmit={handleSubmit}>
+            <form className="employee-login-form" onSubmit={handleSubmit}>
                 <label>
                     <p>Username</p>
                     <input type="text" onChange={(e) => setUserName(e.target.value)} />
@@ -34,9 +34,7 @@ export default function Login() {
                 <p>Password</p>
                     <input type="text" onChange={(e) => setPassword(e.target.value)} />
                 </label>
-                <div>
-                <button id="login-btn" type="submit" disabled={!validateForm()}>Login</button>             
-                </div>  
+                <button type="submit" disabled={!validateForm()}>Login</button>             
             </form>
         </div>
     );
