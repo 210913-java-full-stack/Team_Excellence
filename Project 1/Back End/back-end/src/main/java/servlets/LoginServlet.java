@@ -10,7 +10,6 @@ import javax.servlet.http.*;
 import java.io.*;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class LoginServlet extends HttpServlet {
@@ -28,6 +27,7 @@ public class LoginServlet extends HttpServlet {
 
         String customerJsonString;
 
+        System.out.println("You are logged in!");
 
         //create a customer obj while logged in.
         try {

@@ -11,15 +11,13 @@
 }
 
 .login-wrapper  h1 {
+
     position: relative;
     display: flex;
     top: 100px;
-  
- 
+
     justify-content: center;
 }
-
-
 
 
 .login-form {
