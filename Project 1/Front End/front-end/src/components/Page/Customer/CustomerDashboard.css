@@ -4,14 +4,16 @@
     left: 0px;
     right: 0px;
     bottom: 0px;
-    border: 5px brown solid;
-
     display: grid;
-
     grid-template-columns: 75% 25%;
     grid-template-rows: 80% 20%;
 
 }
+
+.grid-2{
+    top: 1000px;
+    position: fixed;
+}   
 
 .flight-board{
     display: flex;

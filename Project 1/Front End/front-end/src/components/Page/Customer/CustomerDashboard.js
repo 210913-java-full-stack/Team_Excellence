@@ -7,7 +7,7 @@ import "./CustomerDashboard.css";
 
 
 
-export default function CustomerDashboard() {
+export default function CustomerDashboard({ db_class }) {
 
     /**
      * 
@@ -17,7 +17,7 @@ export default function CustomerDashboard() {
 
     return (
 
-        <section className="grid-1">
+        <section className={db_class}>
             <div className="flight-board">
                 <div className="container">
                     <h1>Flight Dashboard</h1>
