@@ -9,23 +9,16 @@ function NavigationBar({ setId, setRealUsername, setFirstName, setLastName, setI
 
 
 
-    const [menuOpen, setMenuOpen] = useState(false)
+
     const [loginScreen, setLoginScreen] = useState(false)
 
-    function renderSideBar() {
-        if (menuOpen) {
-            return (
-                <div className="menu" id="menu">
-                    <ul>
-
-                        <li className="menu-item">Account</li>
-                        <li className="menu-item">Flights</li>
-                    </ul>
-                </div>
-            );
-        }
+    function clickLogout() {
+        setId(p => p = null)
+        setRealUsername(p => p = null)
+        setFirstName(p => p = null)
+        setLastName(p => p = null)
+        setIsLoggedIn(p => p = false)
     }
-
 
 
 
@@ -38,15 +31,6 @@ function NavigationBar({ setId, setRealUsername, setFirstName, setLastName, setI
 
         }
         changeDashboard();
-    }
-
-
-    function clickMenu() {
-        if (menuOpen) {
-            setMenuOpen(p => p = false)
-        } else {
-            setMenuOpen(prev => prev = true)
-        }
     }
 
 
@@ -71,21 +55,11 @@ function NavigationBar({ setId, setRealUsername, setFirstName, setLastName, setI
                     <nav className="header">
                         <ul>
 
-                            <li>
-                                {renderSideBar()}
-                            </li>
-
                             <li >
                                 <h1>BRITCON air</h1>
                             </li>
 
-                            <li className="menu-button">
-                                <div id="menu-btn">
-                                    <button type="button" className="menu-btn" onClick={clickMenu}>
-                                        <img alt="menu" className="menu-button" src="https://img.icons8.com/ios/50/000000/menu--v1.png" />
-                                    </button>
-                                </div>
-                            </li>
+
                             <li >
                                 <div className="login">
 
@@ -111,25 +85,18 @@ function NavigationBar({ setId, setRealUsername, setFirstName, setLastName, setI
                 <nav className="header">
                     <ul>
 
-                        <li>
-                            {renderSideBar()}
-                        </li>
+
 
                         <li >
                             <h1>BRITCON air</h1>
                         </li>
 
-                        <li className="menu-button">
-                            <div id="menu-btn">
-                                <button type="button" className="menu-btn" onClick={clickMenu}>
-                                    <img alt="menu" className="menu-button" src="https://img.icons8.com/ios/50/000000/menu--v1.png" />
-                                </button>
-                            </div>
-                        </li>
+
                         <li >
                             <div className="login">
                                 {/* need to change the onClick to handle account Screen  */}
-                                <p>{firstName} {lastName}</p>
+                                <span>{firstName} {lastName}</span>
+                                <button type="button" className="logout-btn" onClick={clickLogout} >Logout</button>
 
 
 

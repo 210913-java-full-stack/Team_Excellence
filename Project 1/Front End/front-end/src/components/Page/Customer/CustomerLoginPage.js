@@ -60,15 +60,19 @@ export default function CustomerLoginPage({ setId, setRealUsername, setFirstName
         <div className="login-wrapper">
             <h1>Please Log In</h1>
             <form className="login-form" onSubmit={handleSubmit}>
-                <label>
-                    <p>Username :</p>
-                    <input type="text" onChange={e => setUserName(e.target.value)} />
-                </label>
-                <label>
-                    <p>Password :</p>
-                    <input type="password" onChange={e => setPassword(e.target.value)} />
-                </label>
-                <div>
+                <div className="login-user">
+                    <label>
+                        <p>Username :</p>
+                        <input type="text" onChange={e => setUserName(e.target.value)} />
+                    </label>
+                </div>
+                <div className="login-pword">
+                    <label>
+                        <p>Password :</p>
+                        <input type="password" onChange={e => setPassword(e.target.value)} />
+                    </label>
+                </div>
+                <div className="login-submit">
                     <button id="login-btn" type="submit">Login</button>
                 </div>
             </form>
