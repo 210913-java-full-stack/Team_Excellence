@@ -22,7 +22,9 @@ export default function CustomerLoginPage({ setId, setRealUsername, setFirstName
 
             },
             body: JSON.stringify(credentials)
-        }).then((response) => response.json()).then(data => {
+        }
+        ).then((response) => response.json()
+        ).then(data => {
             setId(data["id"])
             setRealUsername(data["username"])
             setFirstName(data["firstName"])

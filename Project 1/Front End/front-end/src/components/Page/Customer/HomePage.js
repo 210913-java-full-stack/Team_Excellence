@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import NavigationBar from "../utils/NavigationBar";
+import NavigationBar from "../../utils/NavigationBar";
+import CustomerDashboard from "./CustomerDashboard";
 import './HomePage.css';
 
 function HomePage() {
@@ -12,13 +13,6 @@ function HomePage() {
     const [lastName, setLastName] = useState()
 
 
-    function tokerView() {
-        if (isLoggedIn) {
-            return <h1 className="token">{RealUsername} has logged in.</h1>;
-        } else {
-            return <h1 className="token">No one is logged in.</h1>;
-        }
-    }
 
     return (
         <div>
@@ -32,7 +26,12 @@ function HomePage() {
                 firstName={firstName}
                 lastName={lastName} />
 
-            {tokerView()}
+
+            <CustomerDashboard />
+
+
+
+
 
 
 

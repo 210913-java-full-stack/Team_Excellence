@@ -81,16 +81,18 @@ input {
 
 #login-render {
 width: 100%;
+display: flex;
+flex-direction: flex-end;
+
+border: 8px green solid;
 
 }
 
 .back-to-home {
-    display: block;
-    position: relative;
-    top: 483px;
-    left: 750px;
+   
+ 
     width:80px;
     
-
+border: 6px coral solid;
 
 }
