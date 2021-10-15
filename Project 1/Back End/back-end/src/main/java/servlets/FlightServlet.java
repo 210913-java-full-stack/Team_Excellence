@@ -33,6 +33,30 @@ public class FlightServlet extends HttpServlet {
         list.add(six);
         list.add(seven);
         list.add(eight);
+        list.add(one);
+        list.add(two);
+        list.add(three);
+        list.add(four);
+        list.add(five);
+        list.add(six);
+        list.add(seven);
+        list.add(eight);
+        list.add(one);
+        list.add(two);
+        list.add(three);
+        list.add(four);
+        list.add(five);
+        list.add(six);
+        list.add(seven);
+        list.add(eight);
+        list.add(one);
+        list.add(two);
+        list.add(three);
+        list.add(four);
+        list.add(five);
+        list.add(six);
+        list.add(seven);
+        list.add(eight);
 
         ObjectMapper mapper = new ObjectMapper();
 
