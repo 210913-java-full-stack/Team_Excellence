@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './EmployeeLoginPage.css';
+import PilotHomePage from './PillotHomePage';
 
 function PilotLoginPage() {
     /*Create variables for username and password and initializing them with the useState hook. Provides the current 
@@ -40,12 +41,22 @@ function PilotLoginPage() {
 
     }
 
+    function renderPilotHomePage () {
+        if(isLoggedIn){
+            return(
+                <PilotHomePage />
+            );
+        }
+
+    }
+
     async function handleSubmit(e) {
         e.preventDefault();
         await loginUser({
             username: username,
             password: password
         });
+        renderPilotHomePage();
     }
 
     //Creating the header and the login form. Login button is disabled if an invalid username or password is entered.

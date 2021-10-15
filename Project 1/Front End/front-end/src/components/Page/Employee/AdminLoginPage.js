@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './EmployeeLoginPage.css';
+import AdminHomePage from './AdminHomePage';
+import { render } from '@testing-library/react';
 
 function AdminLoginPage() {
     /*Create variables for username and password and initializing them with the useState hook. Provides the current 
@@ -40,13 +42,24 @@ function AdminLoginPage() {
 
     }
 
+    function renderAdminHomePage () {
+        if(isLoggedIn){
+            return(
+                <AdminHomePage />
+            );
+        }
+
+    }
+
     async function handleSubmit(e) {
         e.preventDefault();
         await loginUser({
             username: username,
             password: password
         });
+        renderAdminHomePage();
     }
+
 
     //Creating the header and the login form. Login button is disabled if an invalid username or password is entered.
     return (

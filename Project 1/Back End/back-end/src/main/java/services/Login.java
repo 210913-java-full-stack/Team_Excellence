@@ -1,7 +1,7 @@
 package services;
 
-public class Login {
 
+public class Login {
     public Login() {
     }
 
@@ -9,11 +9,12 @@ public class Login {
 
     }
 
+
     public void pilotLogin(){
 
     }
 
     public void adminLogin(){
-        
+
     }
 }
