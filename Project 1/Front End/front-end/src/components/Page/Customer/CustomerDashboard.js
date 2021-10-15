@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import "./CustomerDashboard.css";
+import FlightBoard from './FlightBoard';
 
 
 
@@ -20,7 +21,7 @@ export default function CustomerDashboard({ db_class }) {
         <section className={db_class}>
             <div className="flight-board">
                 <div className="container">
-                    <h1>Flight Dashboard</h1>
+                    <FlightBoard></FlightBoard>
                 </div>
             </div>
             <div className="check-in">
