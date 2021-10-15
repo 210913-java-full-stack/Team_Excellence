@@ -5,7 +5,7 @@ import "./NavigationBar.css";
 
 
 
-function NavigationBar({ setId, setRealUsername, setFirstName, setLastName, setIsLoggedIn, isLoggedIn, firstName, lastName }) {
+function NavigationBar({ setId, setRealUsername, setFirstName, setLastName, setIsLoggedIn, isLoggedIn, firstName, lastName, changeDashboard }) {
 
 
 
@@ -31,10 +31,13 @@ function NavigationBar({ setId, setRealUsername, setFirstName, setLastName, setI
 
     function clickLogin() {
         if (loginScreen) {
-            setLoginScreen(p => p = false)
+            setLoginScreen(p => p = false);
+
         } else {
-            setLoginScreen(p => p = true)
+            setLoginScreen(p => p = true);
+
         }
+        changeDashboard();
     }
 
 

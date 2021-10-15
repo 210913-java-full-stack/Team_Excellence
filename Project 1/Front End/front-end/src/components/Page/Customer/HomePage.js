@@ -12,7 +12,13 @@ function HomePage() {
     const [firstName, setFirstName] = useState()
     const [lastName, setLastName] = useState()
 
+    const [dashboardClass, setDashboardClass] = useState(true);
 
+    function changeDashboard() {
+        setDashboardClass(p => p = !p)
+    }
+
+    let db_class = dashboardClass ? "grid-1" : "grid-2";
 
     return (
         <div>
@@ -24,10 +30,11 @@ function HomePage() {
                 setIsLoggedIn={setIsLoggedIn}
                 isLoggedIn={isLoggedIn}
                 firstName={firstName}
-                lastName={lastName} />
+                lastName={lastName}
+                changeDashboard={changeDashboard} />
 
 
-            <CustomerDashboard />
+            <CustomerDashboard db_class={db_class} />
 
 
 
