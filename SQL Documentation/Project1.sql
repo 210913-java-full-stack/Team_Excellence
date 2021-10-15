@@ -83,31 +83,7 @@ CONSTRAINT ticket_to_customer FOREIGN KEY (customer_id) REFERENCES customers (cu
 
 INSERT INTO customers (username, password, email, first_name, last_name) VALUES ("TCON", "password", "tyler.conner@revature.net", "Tyler", "Conner");
 INSERT INTO customers (username, password, email, first_name, last_name) VALUES ("Britt", "password", "brittany.lowell@revature.net", "Brittany", "Lowell");
-
+INSERT INTO admins (username, password, email, first_name, last_name) VALUES ("Britt","password", "brittany.lowell@revature.net", "Brittany", "Lowell");
 SELECT * FROM customers;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+SELECT * FROM admins;
 
