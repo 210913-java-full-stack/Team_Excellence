@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './EmployeeLoginPage.css';
 
-function EmployeeLoginPage() {
+function PilotLoginPage() {
     /*Create variables for username and password and initializing them with the useState hook. Provides the current 
     value of the variable you want to store in the state and gives you a function to set the new value.*/
     const [username, setUserName] = useState ("");
@@ -10,7 +10,6 @@ function EmployeeLoginPage() {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [isLoggedIn, setIsLoggedIn] = useState("");
-    const [employeeRole, setEmployeeRole] = useState("");
     const [id, setId] = useState("");
     const showPassword = false;
 
@@ -52,13 +51,8 @@ function EmployeeLoginPage() {
     //Creating the header and the login form. Login button is disabled if an invalid username or password is entered.
     return (
         <div className="employee-login">
-            <h1>Employee Login</h1>
+            <h1>Pilot Login</h1>
             <form className="employee-login-form" onSubmit={handleSubmit}>
-                <label>
-                    <p>Employee Role</p>
-                    <p>(Please type either Admin or Pilot in all caps!)</p>
-                    <input type="text" onChange={(e) => setEmployeeRole(e.target.value)} />
-                </label>
                 <label>
                     <p>Username</p>
                     <input type="text" onChange={(e) => setUserName(e.target.value)} />
@@ -73,4 +67,4 @@ function EmployeeLoginPage() {
     );
 }
 
-export default EmployeeLoginPage;
+export default PilotLoginPage;
