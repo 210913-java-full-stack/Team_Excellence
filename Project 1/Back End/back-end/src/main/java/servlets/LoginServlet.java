@@ -27,6 +27,7 @@ public class LoginServlet extends HttpServlet {
 
         String customerJsonString;
 
+        System.out.println("You are logged in!");
 
         //create a customer obj while logged in.
         try {
