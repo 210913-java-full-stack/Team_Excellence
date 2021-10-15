@@ -15,17 +15,17 @@ export default function Login() {
     //Used to disable the login button if the user inputs an invalid username or password.
     function handleSubmit(event) {
         event.preventDefault();
-        const result = await loginUser({
-            username: username,
-            password: password
-        });
+        // const result = await loginUser({
+        //     username: username,
+        //     password: password
+        // });
     }
 
-    //Crea
+    //Creating the header and the login form.
     return (
-        <div className="Login">
+        <div className="login">
             <h1>Employee Login</h1>
-            <form onSubmit={handleSubmit}>
+            <form className="login-form" onSubmit={handleSubmit}>
                 <label>
                     <p>Username</p>
                     <input type="text" onChange={(e) => setUserName(e.target.value)} />
@@ -34,7 +34,9 @@ export default function Login() {
                 <p>Password</p>
                     <input type="text" onChange={(e) => setPassword(e.target.value)} />
                 </label>
-                <button id="login-btn" type="submit" disabled={!validateForm()}>Login</button>               
+                <div>
+                <button id="login-btn" type="submit" disabled={!validateForm()}>Login</button>             
+                </div>  
             </form>
         </div>
     );

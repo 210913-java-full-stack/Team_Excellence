@@ -68,9 +68,7 @@ export default function CustomerLoginPage({ setId, setRealUsername, setFirstName
                     <p>Password :</p>
                     <input type="password" onChange={e => setPassword(e.target.value)} />
                 </label>
-                <div>
-                    <button id="login-btn" type="submit">Login</button>
-                </div>
+                <button id="login-btn" type="submit">Login</button>
             </form>
         </div>
     )
