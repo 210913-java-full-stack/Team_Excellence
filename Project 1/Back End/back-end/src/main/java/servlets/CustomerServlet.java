@@ -2,7 +2,7 @@ package servlets;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import model.Customer;
-import tyler.services.CustomerServices;
+import repository.CustomerRepo;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -18,7 +18,7 @@ public class CustomerServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Customer> customerList = CustomerServices.getAllCustomers();
+        List<Customer> customerList = CustomerRepo.getAllCustomers();
         ObjectMapper mapper = new ObjectMapper();
         resp.getWriter().write(mapper.writeValueAsString(customerList));
         resp.setContentType("application/json");
@@ -33,6 +33,6 @@ public class CustomerServlet extends HttpServlet {
         System.out.println(jsonText);
         ObjectMapper mapper = new ObjectMapper();
         Customer payload = mapper.readValue(jsonText, Customer.class);
-        CustomerServices.saveNewCustomer(payload);
+        CustomerRepo.saveNewCustomer(payload);
     }
 }

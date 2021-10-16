@@ -1,10 +1,8 @@
 package servlets;
 
 import model.*;
-import tyler.services.*;
+import repository.*;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import javax.servlet.ServletContextListener;
@@ -23,20 +21,20 @@ public class DependencyLoaderListener  implements ServletContextListener {
             config.addAnnotatedClass(Flight.class);
             config.addAnnotatedClass(Tickets.class);
 
-            CustomerServices.setSessionFactory(config.buildSessionFactory());
-            CustomerServices.setSession(CustomerServices.getSessionFactory().openSession());
+            CustomerRepo.setSessionFactory(config.buildSessionFactory());
+            CustomerRepo.setSession(CustomerRepo.getSessionFactory().openSession());
 
-            PilotServices.setSessionFactory(config.buildSessionFactory());
-            PilotServices.setSession(PilotServices.getSessionFactory().openSession());
+            PilotRepo.setSessionFactory(config.buildSessionFactory());
+            PilotRepo.setSession(PilotRepo.getSessionFactory().openSession());
 
-            AdminServices.setSessionFactory(config.buildSessionFactory());
-            AdminServices.setSession(AdminServices.getSessionFactory().openSession());
+            AdminRepo.setSessionFactory(config.buildSessionFactory());
+            AdminRepo.setSession(AdminRepo.getSessionFactory().openSession());
 
-            FlightServices.setSessionFactory(config.buildSessionFactory());
-            FlightServices.setSession(FlightServices.getSessionFactory().openSession());
+            FlightRepo.setSessionFactory(config.buildSessionFactory());
+            FlightRepo.setSession(FlightRepo.getSessionFactory().openSession());
 
-            TicketServices.setSessionFactory(config.buildSessionFactory());
-            TicketServices.setSession(TicketServices.getSessionFactory().openSession());
+            TicketRepo.setSessionFactory(config.buildSessionFactory());
+            TicketRepo.setSession(TicketRepo.getSessionFactory().openSession());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -45,11 +43,11 @@ public class DependencyLoaderListener  implements ServletContextListener {
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
         try {
-            CustomerServices.getSession().close();
-            PilotServices.getSession().close();
-            AdminServices.getSession().close();
-            FlightServices.getSession().close();
-            TicketServices.getSession().close();
+            CustomerRepo.getSession().close();
+            PilotRepo.getSession().close();
+            AdminRepo.getSession().close();
+            FlightRepo.getSession().close();
+            TicketRepo.getSession().close();
         }catch (Exception e) {
             e.printStackTrace();
         }
