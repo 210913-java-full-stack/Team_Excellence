@@ -8,7 +8,7 @@ public class Tickets {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer ticketId;
+    private int ticketId;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinColumn(nullable = false)
@@ -53,7 +53,7 @@ public class Tickets {
         this.checkedIn = checkedIn;
     }
 
-    public Tickets(Integer ticketId, Flight flightId, Customer customerId, String passengerFirstName, String passengerLastName, Integer passengerAge, Boolean checkedIn) {
+    public Tickets(int ticketId, Flight flightId, Customer customerId, String passengerFirstName, String passengerLastName, Integer passengerAge, Boolean checkedIn) {
         this.ticketId = ticketId;
         this.flightId = flightId;
         this.customerId = customerId;
@@ -63,11 +63,11 @@ public class Tickets {
         this.checkedIn = checkedIn;
     }
 
-    public Integer getTicketId() {
+    public int getTicketId() {
         return ticketId;
     }
 
-    public void setTicketId(Integer ticketId) {
+    public void setTicketId(int ticketId) {
         this.ticketId = ticketId;
     }
 

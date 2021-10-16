@@ -9,7 +9,7 @@ public class Pilots {
     @Id
     @Column(name = "admin_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
 
     @Column
     private String username;
@@ -29,7 +29,7 @@ public class Pilots {
     public Pilots() {
     }
 
-    public Pilots(Integer id, String username, String password, String email, String firstName, String lastName) {
+    public Pilots(int id, String username, String password, String email, String firstName, String lastName) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -39,11 +39,11 @@ public class Pilots {
     }
 
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 

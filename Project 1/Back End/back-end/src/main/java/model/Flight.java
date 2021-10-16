@@ -13,7 +13,7 @@ public class Flight {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer flightId;
+    private int flightId;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(nullable = false)
@@ -44,13 +44,13 @@ public class Flight {
     private List<Tickets> ticketList = new LinkedList<>();
 
     @Column(name = "max_number_of_tickets")
-    private Integer maxNumberOfTickets;
+    private int maxNumberOfTickets;
 
 
     public Flight() {
     }
 
-    public Flight(Integer flightId, Pilots pilots, String departLocation, String arriveLocation, String departDate, Integer departTime, String arriveDate, Integer arriveTime, Boolean takeOff, List<Tickets> ticketList, Integer maxNumberOfTickets) {
+    public Flight(int flightId, Pilots pilots, String departLocation, String arriveLocation, String departDate, Integer departTime, String arriveDate, Integer arriveTime, Boolean takeOff, List<Tickets> ticketList, Integer maxNumberOfTickets) {
         this.flightId = flightId;
         this.pilots = pilots;
         this.departLocation = departLocation;
@@ -64,6 +64,10 @@ public class Flight {
         this.maxNumberOfTickets = maxNumberOfTickets;
     }
 
+    /**Delete after changing flight Servlet*/
+    public Flight(int i, int i1, String mob, String atl, String s, int i2, String s1, int i3) {
+    }
+
     public List<Tickets> getTicketList() {
         return ticketList;
     }
@@ -72,7 +76,7 @@ public class Flight {
         this.ticketList = ticketList;
     }
 
-    public Integer getMaxNumberOfTickets() {
+    public int getMaxNumberOfTickets() {
         return maxNumberOfTickets;
     }
 
