@@ -56,6 +56,8 @@ depart_time TIME,
 depart_date DATE,
 arrive_time TIME,
 arrive_date DATE,
+available BOOLEAN, #True if there are still tickets available and False if the flight has sold out
+gates_closed BOOLEAN, #True if the flight has taken off and False if it has not taken off
 CONSTRAINT PRIMARY KEY (flight_id),
 CONSTRAINT pilot_to_flight FOREIGN KEY (pilot_id) REFERENCES pilots (pilot_id)
 );
@@ -68,6 +70,7 @@ customer_id INT,
 passenger_first_name VARCHAR(50),
 passenger_last_name VARCHAR(50),
 passenger_age INT,
+checked_in BOOLEAN, #True if the passenger has checked in and false if they have not checked in 
 CONSTRAINT pk PRIMARY KEY (ticket_id),
 CONSTRAINT ticket_to_flight FOREIGN KEY (flight_id) REFERENCES flights (flight_id),
 CONSTRAINT ticket_to_customer FOREIGN KEY (customer_id) REFERENCES customers (customer_id)
