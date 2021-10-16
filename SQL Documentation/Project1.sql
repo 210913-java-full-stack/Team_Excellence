@@ -57,7 +57,7 @@ depart_date DATE,
 arrive_time TIME,
 arrive_date DATE,
 available BOOLEAN, #True if there are still tickets available and False if the flight has sold out
-gates_closed BOOLEAN, #True if the flight has taken off and False if it has not taken off
+take_off BOOLEAN, #True if the flight has taken off and False if it has not taken off
 CONSTRAINT PRIMARY KEY (flight_id),
 CONSTRAINT pilot_to_flight FOREIGN KEY (pilot_id) REFERENCES pilots (pilot_id)
 );

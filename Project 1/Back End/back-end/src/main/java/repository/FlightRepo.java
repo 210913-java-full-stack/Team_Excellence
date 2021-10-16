@@ -4,6 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import model.Flight;
 
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -34,6 +35,17 @@ public class FlightRepo {
 
     public static void deleteFlight(Flight flight) {
         session.delete(flight);
+    }
+
+    public static void updateTakeOff( Flight flight) {
+        Query query = getSession().createSQLQuery("UPDATE flights " +
+                "SET take_off = takeOff WHERE flight_id = flightId");
+        query.setParameter("takeOff", flight.getTakeOff());
+        query.setParameter("flightId", flight.getFlightId());
+    }
+
+    public static void updateAvailable(Flight flight) {
+
     }
 
     public static SessionFactory getSessionFactory() {

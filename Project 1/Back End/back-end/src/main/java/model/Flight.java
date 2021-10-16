@@ -40,6 +40,9 @@ public class Flight {
     @Column(name = "take_off")
     private Boolean takeOff;
 
+    @Column(name = "available")
+    private Boolean available;
+
 
 
     @Column(name = "max_number_of_tickets")
@@ -50,7 +53,9 @@ public class Flight {
     }
 
 
-    public Flight(int flightId, Pilots pilots, String departLocation, String arriveLocation, String departDate, Integer departTime, String arriveDate, Integer arriveTime, Boolean takeOff, List<Tickets> ticketList, Integer maxNumberOfTickets) {
+    public Flight(int flightId, Pilots pilots, String departLocation, String arriveLocation, String departDate,
+                  Integer departTime, String arriveDate, Integer arriveTime, Boolean takeOff, List<Tickets> ticketList,
+                  Boolean available, Integer maxNumberOfTickets) {
         this.flightId = flightId;
 
         this.departLocation = departLocation;
@@ -60,8 +65,12 @@ public class Flight {
         this.arriveDate = arriveDate;
         this.arriveTime = arriveTime;
         this.takeOff = takeOff;
-
+        this.available = available;
         this.maxNumberOfTickets = maxNumberOfTickets;
+    }
+
+    /**Delete after fixing flight servlet*/
+    public Flight(int i, String atl, String mob, String s, int i1, String s1, int i2, boolean b, int i3) {
     }
 
 
@@ -151,5 +160,13 @@ public class Flight {
 
     public void setArriveTime(int arriveTime) {
         this.arriveTime = arriveTime;
+    }
+
+    public Boolean getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(Boolean available) {
+        this.available = available;
     }
 }
