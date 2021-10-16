@@ -15,7 +15,8 @@ public class FlightRepo {
     private static SessionFactory sessionFactory;
     private static Session session;
 
-
+    public FlightRepo() {
+    }
 
     public static Flight getFlightbyId(int id) {
         return session.get(Flight.class, id);
