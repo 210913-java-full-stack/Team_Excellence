@@ -40,8 +40,7 @@ public class Flight {
     @Column(name = "take_off")
     private Boolean takeOff;
 
-    @OneToMany(mappedBy="tickets")
-    private List<Tickets> ticketList = new LinkedList<>();
+
 
     @Column(name = "max_number_of_tickets")
     private Integer maxNumberOfTickets;
@@ -50,9 +49,9 @@ public class Flight {
     public Flight() {
     }
 
-    public Flight(Integer flightId, Pilots pilots, String departLocation, String arriveLocation, String departDate, Integer departTime, String arriveDate, Integer arriveTime, Boolean takeOff, List<Tickets> ticketList, Integer maxNumberOfTickets) {
+    public Flight(Integer flightId,  String departLocation, String arriveLocation, String departDate, Integer departTime, String arriveDate, Integer arriveTime, Boolean takeOff,  Integer maxNumberOfTickets) {
         this.flightId = flightId;
-        this.pilots = pilots;
+
         this.departLocation = departLocation;
         this.arriveLocation = arriveLocation;
         this.departDate = departDate;
@@ -60,17 +59,10 @@ public class Flight {
         this.arriveDate = arriveDate;
         this.arriveTime = arriveTime;
         this.takeOff = takeOff;
-        this.ticketList = ticketList;
+
         this.maxNumberOfTickets = maxNumberOfTickets;
     }
 
-    public List<Tickets> getTicketList() {
-        return ticketList;
-    }
-
-    public void setTicketList(List<Tickets> ticketList) {
-        this.ticketList = ticketList;
-    }
 
     public Integer getMaxNumberOfTickets() {
         return maxNumberOfTickets;
