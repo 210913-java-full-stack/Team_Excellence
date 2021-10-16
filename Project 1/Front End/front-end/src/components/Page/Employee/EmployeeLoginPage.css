@@ -6,8 +6,6 @@
     width: 100%;
     left: 0px;
     background-color: skyblue;
-   
-    /*border: 3px red solid;*/
     
 }
 
@@ -19,20 +17,17 @@
     right: 0px;
     left: 0px;
     color: rgb(0, 0, 0);
-    /*border: 3px blue solid;*/
     justify-content: center;
-    align-items: flex-start;  
 }
 
 .employee-login-form {
    
     position: fixed;
     display: grid;
-    top:100px;
+    top:150px;
     bottom: 310px;
     right: 0px;
     left: 0px; 
-    /*border: 5px green solid; */
     justify-content: center;
     
     
@@ -61,4 +56,20 @@
     width:100px;
     justify-self: center;
     border: black;
+}
+
+.Role {
+    position: fixed;
+    display: inline-flex;
+    top: 100px;
+    bottom: 430px;
+    right: 0px;
+    left: 0px;
+    justify-content: center;
+}
+
+.divider {
+    width: 20px;
+    height: auto;
+    display: inline-block;
 }
