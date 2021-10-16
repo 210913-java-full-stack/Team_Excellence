@@ -1,17 +1,35 @@
 package model;
 
+
+import javax.persistence.*;
+
+@Entity
+@Table
 public class Pilots {
-    private int id;
+    @Id
+    @Column(name = "admin_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column
     private String username;
+
+    @Column
     private String password;
+
+    @Column
     private String email;
+
+    @Column(name = "first_name")
     private String firstName;
+
+    @Column(name = "last_name")
     private String lastName;
 
     public Pilots() {
     }
 
-    public Pilots(int id, String username, String password, String email, String firstName, String lastName) {
+    public Pilots(Integer id, String username, String password, String email, String firstName, String lastName) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -21,11 +39,11 @@ public class Pilots {
     }
 
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
