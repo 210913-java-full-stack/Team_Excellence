@@ -43,7 +43,7 @@ public class LoginServlet extends HttpServlet {
                 resp.setCharacterEncoding("UTF-8");
                 System.out.println(customerJsonString);
                 resp.getWriter().write(customerJsonString);
-          
+
             }else {
 
                 resp.setStatus(404);

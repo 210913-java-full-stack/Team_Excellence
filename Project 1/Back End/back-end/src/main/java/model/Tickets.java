@@ -1,5 +1,6 @@
 package model;
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="tickets")
@@ -12,7 +13,7 @@ public class Tickets {
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinColumn(nullable = false)
-    private Flight flightId;
+    private List<Flight> flightId;
 
     @OneToOne
     @JoinColumn(nullable = false)
@@ -30,17 +31,8 @@ public class Tickets {
     @Column(name = "checked_in")
     private Boolean checkedIn;
 
-    @ManyToOne
-    @JoinColumn(name = "tickets_flight_id")
-    private Flight tickets;
 
-    public Flight getTickets() {
-        return tickets;
-    }
 
-    public void setTickets(Flight tickets) {
-        this.tickets = tickets;
-    }
 
     public Tickets() {
     }
@@ -53,7 +45,7 @@ public class Tickets {
         this.checkedIn = checkedIn;
     }
 
-    public Tickets(Integer ticketId, Flight flightId, Customer customerId, String passengerFirstName, String passengerLastName, Integer passengerAge, Boolean checkedIn) {
+    public Tickets(Integer ticketId, List<Flight> flightId, Customer customerId, String passengerFirstName, String passengerLastName, Integer passengerAge, Boolean checkedIn) {
         this.ticketId = ticketId;
         this.flightId = flightId;
         this.customerId = customerId;
@@ -71,11 +63,11 @@ public class Tickets {
         this.ticketId = ticketId;
     }
 
-    public Flight getFlightId() {
+    public List<Flight> getFlightId() {
         return flightId;
     }
 
-    public void setFlightId(Flight flightId) {
+    public void setFlightId(List<Flight> flightId) {
         this.flightId = flightId;
     }
 

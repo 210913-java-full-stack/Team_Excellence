@@ -14,38 +14,44 @@ public class DependencyLoaderListener  implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
 
-        Configuration config = new Configuration();
-        config.addAnnotatedClass(Customer.class);
-        config.addAnnotatedClass(Pilots.class);
-        config.addAnnotatedClass(Admin.class);
-        config.addAnnotatedClass(Flight.class);
-        config.addAnnotatedClass(Tickets.class);
 
-        CustomerServices.setSessionFactory(config.buildSessionFactory());
-        CustomerServices.setSession(CustomerServices.getSessionFactory().openSession());
+        try {
+            Configuration config = new Configuration();
+            config.addAnnotatedClass(Customer.class);
+            config.addAnnotatedClass(Pilots.class);
+            config.addAnnotatedClass(Admin.class);
+            config.addAnnotatedClass(Flight.class);
+            config.addAnnotatedClass(Tickets.class);
 
-        PilotServices.setSessionFactory(config.buildSessionFactory());
-        PilotServices.setSession(PilotServices.getSessionFactory().openSession());
+            CustomerServices.setSessionFactory(config.buildSessionFactory());
+            CustomerServices.setSession(CustomerServices.getSessionFactory().openSession());
 
-        AdminServices.setSessionFactory(config.buildSessionFactory());
-        AdminServices.setSession(AdminServices.getSessionFactory().openSession());
+            PilotServices.setSessionFactory(config.buildSessionFactory());
+            PilotServices.setSession(PilotServices.getSessionFactory().openSession());
 
-        FlightServices.setSessionFactory(config.buildSessionFactory());
-        FlightServices.setSession(FlightServices.getSessionFactory().openSession());
+            AdminServices.setSessionFactory(config.buildSessionFactory());
+            AdminServices.setSession(AdminServices.getSessionFactory().openSession());
 
-        TicketServices.setSessionFactory(config.buildSessionFactory());
-        TicketServices.setSession(TicketServices.getSessionFactory().openSession());
+            FlightServices.setSessionFactory(config.buildSessionFactory());
+            FlightServices.setSession(FlightServices.getSessionFactory().openSession());
 
-
+            TicketServices.setSessionFactory(config.buildSessionFactory());
+            TicketServices.setSession(TicketServices.getSessionFactory().openSession());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-        CustomerServices.getSession().close();
-        PilotServices.getSession().close();
-        AdminServices.getSession().close();
-        FlightServices.getSession().close();
-        TicketServices.getSession().close();
-
+        try {
+            CustomerServices.getSession().close();
+            PilotServices.getSession().close();
+            AdminServices.getSession().close();
+            FlightServices.getSession().close();
+            TicketServices.getSession().close();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
