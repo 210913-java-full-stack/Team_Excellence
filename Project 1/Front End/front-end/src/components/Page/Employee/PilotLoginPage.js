@@ -19,7 +19,7 @@ function PilotLoginPage() {
         return username.length >= 3 && username.length <= 20 && password.length >= 6 && password.length <= 20;
     }
 
-    async function loginUser(credentials) {
+    async function loginPilot(credentials) {
 
 
         return await fetch('http://localhost:8080/api/login', {
@@ -52,7 +52,7 @@ function PilotLoginPage() {
 
     async function handleSubmit(e) {
         e.preventDefault();
-        await loginUser({
+        await loginPilot({
             username: username,
             password: password
         });
