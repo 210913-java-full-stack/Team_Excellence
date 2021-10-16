@@ -13,10 +13,12 @@ import java.util.List;
 
 
 public class FlightRepo {
-    private static Session session;
     private static SessionFactory sessionFactory;
+    private static Session session;
 
-    public static Flight getFlightById(int id) {
+
+
+    public static Flight getFlightbyId(int id) {
         return session.get(Flight.class, id);
     }
 
@@ -32,10 +34,6 @@ public class FlightRepo {
         session.save(flight);
     }
 
-    public static void deleteFlight(Flight flight) {
-        session.delete(flight);
-    }
-
     public static void updateTakeOff( Flight flight) {
         Query query = session.createSQLQuery("UPDATE flights " +
                 "SET take_off = takeOff WHERE flight_id = flightId");
@@ -48,5 +46,25 @@ public class FlightRepo {
                 "SET available = available WHERE flight_id = flightId");
         query.setParameter("available", flight.getTakeOff());
         query.setParameter("flightId", flight.getFlightId());
+    }
+
+    public static void deleteFlight(Flight flight) {
+        session.delete(flight);
+    }
+
+    public static SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
+
+    public static void setSessionFactory(SessionFactory sessionFactory) {
+        FlightRepo.sessionFactory = sessionFactory;
+    }
+
+    public static Session getSession() {
+        return session;
+    }
+
+    public static void setSession(Session session) {
+        FlightRepo.session = session;
     }
 }

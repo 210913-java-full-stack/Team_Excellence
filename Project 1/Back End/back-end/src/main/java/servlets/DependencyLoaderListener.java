@@ -11,23 +11,32 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.ServletContextEvent;
 
 public class DependencyLoaderListener  implements ServletContextListener {
-    private static Session session;
-    private static SessionFactory sessionFactory;
-
     @Override
     public void contextInitialized(ServletContextEvent sce) {
 
 
         try {
-            //Set up the persistence context
-            Configuration config = new Configuration().configure("hibernate.cfg.xml");
+            Configuration config = new Configuration();
             config.addAnnotatedClass(Customer.class);
             config.addAnnotatedClass(Pilots.class);
             config.addAnnotatedClass(Admin.class);
             config.addAnnotatedClass(Flight.class);
             config.addAnnotatedClass(Tickets.class);
-            setSessionFactory(config.buildSessionFactory());
-            setSession(sessionFactory.openSession());
+
+            CustomerRepo.setSessionFactory(config.buildSessionFactory());
+            CustomerRepo.setSession(CustomerRepo.getSessionFactory().openSession());
+
+            PilotRepo.setSessionFactory(config.buildSessionFactory());
+            PilotRepo.setSession(PilotRepo.getSessionFactory().openSession());
+
+            AdminRepo.setSessionFactory(config.buildSessionFactory());
+            AdminRepo.setSession(AdminRepo.getSessionFactory().openSession());
+
+            FlightRepo.setSessionFactory(config.buildSessionFactory());
+            FlightRepo.setSession(FlightRepo.getSessionFactory().openSession());
+
+            TicketRepo.setSessionFactory(config.buildSessionFactory());
+            TicketRepo.setSession(TicketRepo.getSessionFactory().openSession());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -37,27 +46,13 @@ public class DependencyLoaderListener  implements ServletContextListener {
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
         try {
-            getSession().close();
-
+            CustomerRepo.getSession().close();
+            PilotRepo.getSession().close();
+            AdminRepo.getSession().close();
+            FlightRepo.getSession().close();
+            TicketRepo.getSession().close();
         }catch (Exception e) {
             e.printStackTrace();
         }
     }
-
-    public static Session getSession() {
-        return session;
-    }
-
-    public static void setSession(Session session) {
-        DependencyLoaderListener.session = session;
-    }
-
-    public static SessionFactory getSessionFactory() {
-        return sessionFactory;
-    }
-
-    public static void setSessionFactory(SessionFactory sessionFactory) {
-        DependencyLoaderListener.sessionFactory = sessionFactory;
-    }
 }
-

@@ -1,4 +1,5 @@
 import model.*;
+import repository.FlightRepo;
 import services.CancelFlight;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -14,7 +15,7 @@ import java.util.List;
 public class Driver {
     public static void main(String[] args){
 
-        Session session = DependencyLoaderListener.getSession();
+        Session session = FlightRepo.getSession();
 
         Transaction transaction = session.beginTransaction();
         CancelFlight.cancelFlight(1);

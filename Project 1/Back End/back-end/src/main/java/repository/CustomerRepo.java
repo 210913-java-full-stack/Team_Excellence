@@ -2,6 +2,7 @@ package repository;
 
 import org.hibernate.Session;
 import model.Customer;
+import org.hibernate.SessionFactory;
 import servlets.DependencyLoaderListener;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -11,8 +12,13 @@ import java.util.List;
 
 
 public class CustomerRepo {
-    private static Session session = DependencyLoaderListener.getSession();
+    private static SessionFactory sessionFactory;
+    private static Session session;
 
+
+    public static void init() {
+
+    }
 
     public static Customer getCustomerById(Integer id) {
         return session.get(Customer.class, id);
@@ -27,7 +33,7 @@ public class CustomerRepo {
         return session.createQuery(query).getResultList();
     }
 
-    public static void saveNewCustomer(Customer customer) {
+    public static void saveNewCustomer( Customer customer){
         session.save(customer);
     }
 
@@ -35,4 +41,20 @@ public class CustomerRepo {
         session.delete(customer);
     }
 
+
+    public static SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
+
+    public static void setSessionFactory(SessionFactory sessionFactory) {
+        CustomerRepo.sessionFactory = sessionFactory;
+    }
+
+    public static Session getSession() {
+        return session;
+    }
+
+    public static void setSession(Session session) {
+        CustomerRepo.session = session;
+    }
 }
