@@ -18,7 +18,7 @@ public class FlightRepo {
 
 
 
-    public static Flight getFlightbyId(int id) {
+    public static Flight getFlightById(int id) {
         return session.get(Flight.class, id);
     }
 
