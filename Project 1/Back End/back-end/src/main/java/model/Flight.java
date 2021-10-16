@@ -40,8 +40,7 @@ public class Flight {
     @Column(name = "take_off")
     private Boolean takeOff;
 
-    @OneToMany(mappedBy="tickets")
-    private List<Tickets> ticketList = new LinkedList<>();
+
 
     @Column(name = "max_number_of_tickets")
     private int maxNumberOfTickets;
@@ -50,9 +49,10 @@ public class Flight {
     public Flight() {
     }
 
+
     public Flight(int flightId, Pilots pilots, String departLocation, String arriveLocation, String departDate, Integer departTime, String arriveDate, Integer arriveTime, Boolean takeOff, List<Tickets> ticketList, Integer maxNumberOfTickets) {
         this.flightId = flightId;
-        this.pilots = pilots;
+
         this.departLocation = departLocation;
         this.arriveLocation = arriveLocation;
         this.departDate = departDate;
@@ -60,23 +60,12 @@ public class Flight {
         this.arriveDate = arriveDate;
         this.arriveTime = arriveTime;
         this.takeOff = takeOff;
-        this.ticketList = ticketList;
+
         this.maxNumberOfTickets = maxNumberOfTickets;
     }
 
-    /**Delete after changing flight Servlet*/
-    public Flight(int i, int i1, String mob, String atl, String s, int i2, String s1, int i3) {
-    }
 
-    public List<Tickets> getTicketList() {
-        return ticketList;
-    }
-
-    public void setTicketList(List<Tickets> ticketList) {
-        this.ticketList = ticketList;
-    }
-
-    public int getMaxNumberOfTickets() {
+    public Integer getMaxNumberOfTickets() {
         return maxNumberOfTickets;
     }
 
@@ -92,7 +81,7 @@ public class Flight {
         this.takeOff = takeOff;
     }
 
-    public void setFlightId(Integer flightId) {
+    public void setFlightId(int flightId) {
         this.flightId = flightId;
     }
 
@@ -106,10 +95,6 @@ public class Flight {
 
     public int getFlightId() {
         return flightId;
-    }
-
-    public void setFlightId(int flightId) {
-        this.flightId = flightId;
     }
 
     public Pilots getPilots() {

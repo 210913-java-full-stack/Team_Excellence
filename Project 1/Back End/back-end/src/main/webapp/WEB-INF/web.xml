@@ -11,9 +11,27 @@
         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
         version="2.5">
 
+
+
+
+
+
     <listener>
         <listener-class>servlets.DependencyLoaderListener</listener-class>
     </listener>
+
+
+    <filter>
+        <filter-name>CorsFilter</filter-name>
+        <filter-class>servlets.CORSFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>CorsFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
+
 
     <servlet>
         <servlet-name>loginServlet</servlet-name>
@@ -33,20 +51,18 @@
         <url-pattern>/flights</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>customerServlet</servlet-name>
+        <servlet-class>servlets.CustomerServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>customerServlet</servlet-name>
+        <url-pattern>/customer</url-pattern>
+    </servlet-mapping>
 
-    
-    <filter>
-        <filter-name>CorsFilter</filter-name>
-        <filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
-        <init-param>
-            <param-name>cors.allowed.origins</param-name>
-            <param-value>*</param-value>
-        </init-param>
-    </filter>
-    <filter-mapping>
-        <filter-name>CorsFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
+
+
+
 
 
 </web-app>
