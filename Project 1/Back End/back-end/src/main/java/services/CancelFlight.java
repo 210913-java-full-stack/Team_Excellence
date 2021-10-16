@@ -12,8 +12,8 @@ public class CancelFlight {
         FlightRepo.deleteFlight(flight);
     }
 
-    public static Flight findFlight(int flightID){
-        flight = FlightRepo.getFlightbyId(flightID);
+    private static Flight findFlight(int flightID){
+        flight = FlightRepo.getFlightById(flightID);
         return flight;
     }
 }

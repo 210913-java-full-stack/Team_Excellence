@@ -1,23 +1,17 @@
 package repository;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import model.Tickets;
+import servlets.DependencyLoaderListener;
 
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
-import java.util.Queue;
 
 public class TicketRepo {
-    private static SessionFactory sessionFactory;
-    private static Session session;
-
-    public static void init(){
-
-    }
+    private static Session session = DependencyLoaderListener.getSession();
 
     public static Tickets getTicketById(int id){
         return session.get(Tickets.class, id);
@@ -37,14 +31,14 @@ public class TicketRepo {
     }
 
     public static void updateCheckInStatusUsingCustomerId(Tickets tickets){
-        Query query = getSession().createSQLQuery("UPDATE tickets " +
+        Query query = session.createSQLQuery("UPDATE tickets " +
                 "SET checked_in = checkedIn WHERE customer_id = customerId");
         query.setParameter("checkedIn", tickets.getCheckedIn());
         query.setParameter("customerId", tickets.getCustomerId());
     }
 
     public static void updateCheckInStatusUsingTicketId(Tickets tickets) {
-        Query query = getSession().createSQLQuery("UPDATE tickets " +
+        Query query = session.createSQLQuery("UPDATE tickets " +
                 "SET checked_in = checkedIn WHERE ticket_id = ticketId");
         query.setParameter("checkedIn", tickets.getCheckedIn());
         query.setParameter("ticketId", tickets.getTicketId());
@@ -54,19 +48,4 @@ public class TicketRepo {
         session.delete(ticket);
     }
 
-    public static SessionFactory getSessionFactory() {
-        return sessionFactory;
-    }
-
-    public static void setSessionFactory(SessionFactory sessionFactory) {
-        TicketRepo.sessionFactory = sessionFactory;
-    }
-
-    public static Session getSession() {
-        return session;
-    }
-
-    public static void setSession(Session session) {
-        TicketRepo.session = session;
-    }
 }
