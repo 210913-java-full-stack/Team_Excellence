@@ -1,47 +1,89 @@
 package model;
+import javax.persistence.*;
 
+@Entity
+@Table(name="tickets")
 public class Tickets {
 
-    private int ticketId;
-    private int flightId;
-    private int customerId;
+    @Id
+    @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer ticketId;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinColumn(nullable = false)
+    private Flight flightId;
+
+    @OneToOne
+    @JoinColumn(nullable = false)
+    private Customer customerId;
+
+    @Column(name = "passenger_first_name")
     private String passengerFirstName;
+
+    @Column(name = "passenger_last_name")
     private String passengerLastName;
-    private int passengerAge;
+
+    @Column(name = "passenger_age")
+    private Integer passengerAge;
+
+    @Column(name = "checked_in")
+    private Boolean checkedIn;
+
+    @ManyToOne
+    @JoinColumn(name = "tickets_flight_id")
+    private Flight tickets;
+
+    public Flight getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(Flight tickets) {
+        this.tickets = tickets;
+    }
 
     public Tickets() {
     }
 
-    public Tickets(int ticketId, int flightId, int customerId, String passengerFirstName, String passengerLastName, int passengerAge) {
+    public Boolean getCheckedIn() {
+        return checkedIn;
+    }
+
+    public void setCheckedIn(Boolean checkedIn) {
+        this.checkedIn = checkedIn;
+    }
+
+    public Tickets(Integer ticketId, Flight flightId, Customer customerId, String passengerFirstName, String passengerLastName, Integer passengerAge, Boolean checkedIn) {
         this.ticketId = ticketId;
         this.flightId = flightId;
         this.customerId = customerId;
         this.passengerFirstName = passengerFirstName;
         this.passengerLastName = passengerLastName;
         this.passengerAge = passengerAge;
+        this.checkedIn = checkedIn;
     }
 
-    public int getTicketId() {
+    public Integer getTicketId() {
         return ticketId;
     }
 
-    public void setTicketId(int ticketId) {
+    public void setTicketId(Integer ticketId) {
         this.ticketId = ticketId;
     }
 
-    public int getFlightId() {
+    public Flight getFlightId() {
         return flightId;
     }
 
-    public void setFlightId(int flightId) {
+    public void setFlightId(Flight flightId) {
         this.flightId = flightId;
     }
 
-    public int getCustomerId() {
+    public Customer getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(int customerId) {
+    public void setCustomerId(Customer customerId) {
         this.customerId = customerId;
     }
 
@@ -61,11 +103,11 @@ public class Tickets {
         this.passengerLastName = passengerLastName;
     }
 
-    public int getPassengerAge() {
+    public Integer getPassengerAge() {
         return passengerAge;
     }
 
-    public void setPassengerAge(int passengerAge) {
+    public void setPassengerAge(Integer passengerAge) {
         this.passengerAge = passengerAge;
     }
 }

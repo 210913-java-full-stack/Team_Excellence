@@ -1,17 +1,35 @@
 package model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="admins")
 public class Admin {
-    private int id;
+
+    @Id
+    @Column(name = "admin_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column
     private String username;
+
+    @Column
     private String password;
+
+    @Column
     private String email;
+
+    @Column(name = "first_name")
     private String firstName;
+
+    @Column(name = "last_name")
     private String lastName;
 
     public Admin() {
     }
 
-    public Admin(int id, String username, String password, String email, String firstName, String lastName) {
+    public Admin(Integer id, String username, String password, String email, String firstName, String lastName) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -20,11 +38,11 @@ public class Admin {
         this.lastName = lastName;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
