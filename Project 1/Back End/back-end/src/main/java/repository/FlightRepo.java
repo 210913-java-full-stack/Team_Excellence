@@ -1,4 +1,4 @@
 package repository;
 
-public class FlightRepo {
+public class FlightRepo implements GenericRepo{
 }

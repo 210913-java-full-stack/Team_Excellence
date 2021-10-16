@@ -1,4 +1,4 @@
 package repository;
 
-public class AdminRepo {
+public class AdminRepo implements GenericRepo{
 }

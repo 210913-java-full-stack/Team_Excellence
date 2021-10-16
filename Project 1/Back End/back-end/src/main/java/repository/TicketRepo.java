@@ -1,4 +1,4 @@
 package repository;
 
-public class TicketRepo {
+public class TicketRepo implements GenericRepo{
 }

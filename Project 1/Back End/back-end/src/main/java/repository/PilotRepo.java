@@ -1,4 +1,4 @@
 package repository;
 
-public class PilotRepo {
+public class PilotRepo implements GenericRepo{
 }

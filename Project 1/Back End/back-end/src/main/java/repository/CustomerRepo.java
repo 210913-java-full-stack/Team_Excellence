@@ -1,4 +1,4 @@
 package repository;
 
-public class CustomerRepo {
+public class CustomerRepo implements GenericRepo{
 }
