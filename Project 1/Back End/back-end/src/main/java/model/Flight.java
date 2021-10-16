@@ -7,15 +7,15 @@ public class Flight {
     private int pilotId;
     private String departLocation;
     private String arriveLocation;
-    private Date departDate;
+    private String departDate;
     private int departTime;
-    private Date arriveDate;
+    private String arriveDate;
     private int arriveTime;
 
     public Flight() {
     }
 
-    public Flight(int flightId, int pilotId, String departLocation, String arriveLocation, Date departDate, int departTime, Date arriveDate, int arriveTime) {
+    public Flight(int flightId, int pilotId, String departLocation, String arriveLocation, String departDate, int departTime, String arriveDate, int arriveTime) {
         this.flightId = flightId;
         this.pilotId = pilotId;
         this.departLocation = departLocation;
@@ -58,11 +58,11 @@ public class Flight {
         this.arriveLocation = arriveLocation;
     }
 
-    public Date getDepartDate() {
+    public String getDepartDate() {
         return departDate;
     }
 
-    public void setDepartDate(Date departDate) {
+    public void setDepartDate(String departDate) {
         this.departDate = departDate;
     }
 
@@ -74,11 +74,11 @@ public class Flight {
         this.departTime = departTime;
     }
 
-    public Date getArriveDate() {
+    public String getArriveDate() {
         return arriveDate;
     }
 
-    public void setArriveDate(Date arriveDate) {
+    public void setArriveDate(String arriveDate) {
         this.arriveDate = arriveDate;
     }
 
