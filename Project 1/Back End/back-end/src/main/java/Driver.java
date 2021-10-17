@@ -16,8 +16,9 @@ import java.util.List;
 public class Driver {
     public static void main(String[] args){
 
-
-        CancelFlight.cancelFlight(1);
+        FlightRepo flightRepo = new FlightRepo();
+        Flight flight = flightRepo.getFlightById(1);
+        //flightRepo.deleteFlight(flight);
 
         
     }

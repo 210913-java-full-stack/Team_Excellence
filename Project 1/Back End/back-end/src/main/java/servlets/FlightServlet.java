@@ -15,9 +15,10 @@ import java.util.Date;
 import java.util.List;
 
 public class FlightServlet extends HttpServlet {
+    FlightRepo flightRepo = new FlightRepo();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        List<Flight> list = FlightRepo.getAllFlights();
+        List<Flight> list = flightRepo.getAllFlights();
         ObjectMapper mapper = new ObjectMapper();
         resp.getWriter().write(mapper.writeValueAsString(list));
 
