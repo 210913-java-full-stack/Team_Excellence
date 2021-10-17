@@ -50,7 +50,7 @@ public class Flight {
     }
 
 
-    public Flight(int flightId, Pilots pilots, String departLocation, String arriveLocation, String departDate, Integer departTime, String arriveDate, Integer arriveTime, Boolean takeOff, List<Tickets> ticketList, Integer maxNumberOfTickets) {
+    public Flight(int flightId, Pilots pilots, String departLocation, String arriveLocation, String departDate, Integer departTime, String arriveDate, Integer arriveTime, Boolean takeOff,  Integer maxNumberOfTickets) {
         this.flightId = flightId;
 
         this.departLocation = departLocation;
