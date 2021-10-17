@@ -8,12 +8,7 @@ public class CancelFlight {
 
     //Allows admin to cancel a flight. Requires a flight ID.
     public static void cancelFlight(int flightID){
-        flight = findFlight(flightID);
-        FlightRepo.deleteFlight(flight);
-    }
-
-    private static Flight findFlight(int flightID){
         flight = FlightRepo.getFlightById(flightID);
-        return flight;
+        FlightRepo.deleteFlight(flight);
     }
 }

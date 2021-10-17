@@ -11,20 +11,24 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.ServletContextEvent;
 
 public class DependencyLoaderListener  implements ServletContextListener {
+
     @Override
     public void contextInitialized(ServletContextEvent sce) {
 
 
         try {
-            Configuration config = new Configuration();
+            Session session;
+            Configuration config = new Configuration().configure("hibernate.cfg.xml");
             config.addAnnotatedClass(Customer.class);
             config.addAnnotatedClass(Pilots.class);
             config.addAnnotatedClass(Admin.class);
             config.addAnnotatedClass(Flight.class);
             config.addAnnotatedClass(Tickets.class);
 
-            CustomerRepo.setSessionFactory(config.buildSessionFactory());
-            CustomerRepo.setSession(CustomerRepo.getSessionFactory().openSession());
+            SessionFactory sessionFactory = config.buildSessionFactory();
+
+            CustomerRepo.setSessionFactory(sessionFactory);
+            CustomerRepo.setSession(CustomerRepo.getSession());
 
             PilotRepo.setSessionFactory(config.buildSessionFactory());
             PilotRepo.setSession(PilotRepo.getSessionFactory().openSession());
@@ -32,8 +36,8 @@ public class DependencyLoaderListener  implements ServletContextListener {
             AdminRepo.setSessionFactory(config.buildSessionFactory());
             AdminRepo.setSession(AdminRepo.getSessionFactory().openSession());
 
-            FlightRepo.setSessionFactory(config.buildSessionFactory());
-            FlightRepo.setSession(FlightRepo.getSessionFactory().openSession());
+            FlightRepo.setSessionFactory(sessionFactory);
+            FlightRepo.setSession(FlightRepo.getSession());
 
             TicketRepo.setSessionFactory(config.buildSessionFactory());
             TicketRepo.setSession(TicketRepo.getSessionFactory().openSession());
@@ -42,6 +46,13 @@ public class DependencyLoaderListener  implements ServletContextListener {
             e.printStackTrace();
         }
     }
+
+//    public static Session getSession() {
+//        Session session;
+//        if(session == null) {
+//            session = sessionFactory.open
+//        }
+//    }
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {

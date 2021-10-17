@@ -25,25 +25,23 @@ public class Flight {
     @Column(name = "arrive")
     private String arriveLocation;
 
-    @Column(name= "depart_date")
-    private String departDate;
-
     @Column(name = "depart_time")
     private Integer departTime;
 
-    @Column(name = "arrive_date")
-    private String arriveDate;
+    @Column(name= "depart_date")
+    private String departDate;
 
     @Column(name = "arrive_time")
     private Integer arriveTime;
+
+    @Column(name = "arrive_date")
+    private String arriveDate;
 
     @Column(name = "take_off")
     private Boolean takeOff;
 
     @Column(name = "available")
     private Boolean available;
-
-
 
     @Column(name = "max_number_of_tickets")
     private int maxNumberOfTickets;

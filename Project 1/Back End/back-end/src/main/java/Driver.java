@@ -1,5 +1,5 @@
 import model.*;
-import repository.FlightRepo;
+import repository.*;
 import services.CancelFlight;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

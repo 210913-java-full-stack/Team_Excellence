@@ -3,7 +3,7 @@ package repository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import model.Flight;
-import servlets.DependencyLoaderListener;
+import utils.HibernateUtil;
 
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -13,10 +13,8 @@ import java.util.List;
 
 
 public class FlightRepo {
-    private static SessionFactory sessionFactory;
-    private static Session session;
-
-
+    private static HibernateUtil hibernateUtil = new HibernateUtil();
+    private static Session session = hibernateUtil.getSession();
 
     public static Flight getFlightById(int id) {
         return session.get(Flight.class, id);
@@ -50,21 +48,5 @@ public class FlightRepo {
 
     public static void deleteFlight(Flight flight) {
         session.delete(flight);
-    }
-
-    public static SessionFactory getSessionFactory() {
-        return sessionFactory;
-    }
-
-    public static void setSessionFactory(SessionFactory sessionFactory) {
-        FlightRepo.sessionFactory = sessionFactory;
-    }
-
-    public static Session getSession() {
-        return session;
-    }
-
-    public static void setSession(Session session) {
-        FlightRepo.session = session;
     }
 }
