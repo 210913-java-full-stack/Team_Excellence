@@ -11,12 +11,12 @@ import javax.persistence.criteria.CriteriaBuilder;
 public class Flight {
 
     @Id
-    @Column
+    @Column(name = "flight_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int flightId;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(nullable = false)
+    @JoinColumn(nullable = false, name = "pilot_id")
     private Pilots pilots;
 
     @Column(name = "depart")
@@ -26,13 +26,13 @@ public class Flight {
     private String arriveLocation;
 
     @Column(name = "depart_time")
-    private Integer departTime;
+    private String departTime;
 
     @Column(name= "depart_date")
     private String departDate;
 
     @Column(name = "arrive_time")
-    private Integer arriveTime;
+    private String arriveTime;
 
     @Column(name = "arrive_date")
     private String arriveDate;
@@ -52,7 +52,7 @@ public class Flight {
 
 
     public Flight(int flightId, Pilots pilots, String departLocation, String arriveLocation, String departDate,
-                  Integer departTime, String arriveDate, Integer arriveTime, Boolean takeOff, List<Tickets> ticketList,
+                  String departTime, String arriveDate, String arriveTime, Boolean takeOff, List<Tickets> ticketList,
                   Boolean available, Integer maxNumberOfTickets) {
         this.flightId = flightId;
 
@@ -67,7 +67,9 @@ public class Flight {
         this.maxNumberOfTickets = maxNumberOfTickets;
     }
 
-    /**Delete after fixing flight servlet*/
+    /**
+     * Delete after fixing flight servlet
+     */
     public Flight(int i, String atl, String mob, String s, int i1, String s1, int i2, boolean b, int i3) {
     }
 
@@ -92,11 +94,11 @@ public class Flight {
         this.flightId = flightId;
     }
 
-    public void setDepartTime(Integer departTime) {
+    public void setDepartTime(String departTime) {
         this.departTime = departTime;
     }
 
-    public void setArriveTime(Integer arriveTime) {
+    public void setArriveTime(String arriveTime) {
         this.arriveTime = arriveTime;
     }
 
@@ -136,13 +138,10 @@ public class Flight {
         this.departDate = departDate;
     }
 
-    public int getDepartTime() {
+    public String getDepartTime() {
         return departTime;
     }
 
-    public void setDepartTime(int departTime) {
-        this.departTime = departTime;
-    }
 
     public String getArriveDate() {
         return arriveDate;
@@ -152,12 +151,8 @@ public class Flight {
         this.arriveDate = arriveDate;
     }
 
-    public int getArriveTime() {
+    public String getArriveTime() {
         return arriveTime;
-    }
-
-    public void setArriveTime(int arriveTime) {
-        this.arriveTime = arriveTime;
     }
 
     public Boolean getAvailable() {

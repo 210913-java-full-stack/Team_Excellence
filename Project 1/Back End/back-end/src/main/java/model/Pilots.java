@@ -4,10 +4,10 @@ package model;
 import javax.persistence.*;
 
 @Entity
-@Table
+@Table(name = "pilots")
 public class Pilots {
     @Id
-    @Column(name = "admin_id")
+    @Column(name = "pilot_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 

@@ -25,10 +25,6 @@ export default function FlightBoard() {
     }, []);
 
 
-    // return fetch("http://localhost:8080/api/flights")
-    //     .then(response => response.json())
-    //     .then(data => setFlights(p => p = data[8]))
-    //     .catch(error => console.log(error));
 
 
 
@@ -60,7 +56,8 @@ export default function FlightBoard() {
                     {
                         flights.map(el => {
                             return (
-                                <tr>
+
+                                <tr key={el.flightId}>
                                     <td>{el.flightId}</td>
                                     <td>{el.departLocation}</td>
                                     <td>{el.departDate}</td>
@@ -68,7 +65,9 @@ export default function FlightBoard() {
                                     <td>{el.arriveLocation}</td>
                                     <td>{el.arriveDate}</td>
                                     <td>{el.arriveTime}</td>
+                                    <button>Veiw Flight Details</button>
                                 </tr>
+
                             )
                         })
                     }
