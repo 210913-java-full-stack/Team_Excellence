@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import './CustomerLoginPage.css';
+import CustomerSignUpPage from './CustomerSignUpPage';
 
 
 
@@ -11,6 +12,7 @@ import './CustomerLoginPage.css';
 export default function CustomerLoginPage({ setId, setRealUsername, setFirstName, setLastName, clickLogin, setIsLoggedIn, setNavLoggedIn }) {
     const [username, setUserName] = useState();
     const [password, setPassword] = useState();
+    const [signUpScreen, setSignUpScreen] = useState(false);
 
     async function loginUser(credentials) {
 
@@ -36,12 +38,6 @@ export default function CustomerLoginPage({ setId, setRealUsername, setFirstName
     }
 
 
-
-
-
-
-
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         const result = await loginUser({
@@ -53,54 +49,70 @@ export default function CustomerLoginPage({ setId, setRealUsername, setFirstName
 
     }
 
+    function clickSignUp() {
+        setSignUpScreen(p => p = !p)
+    }
 
 
 
-    return (
-        <div className="login-wrapper">
-            <h1>Please Log In</h1>
-            <form className="login-form" onSubmit={handleSubmit}>
-                <div className="login-user">
-                    <label>
-                        <p>Username :</p>
-                        <input type="text" onChange={e => setUserName(e.target.value)} />
-                    </label>
-                </div>
-                <div className="login-pword">
-                    <label>
-                        <p>Password :</p>
-                        <input type="password" onChange={e => setPassword(e.target.value)} />
-                    </label>
-                </div>
-                <div className="login-submit">
-                    <button id="login-btn" type="submit">Login</button>
-                </div>
-            </form>
-        </div>
-    )
+
+    function renderLoginScreen() {
+        return (
+            <div className="login-wrapper">
+                <h1>Please Log In</h1>
+                <form className="login-form" onSubmit={handleSubmit}>
+                    <div className="login-user">
+                        <label>
+                            <p>Username :</p>
+                            <input type="text" onChange={e => setUserName(e.target.value)} />
+                        </label>
+                    </div>
+                    <div className="login-pword">
+                        <label>
+                            <p>Password :</p>
+                            <input type="password" onChange={e => setPassword(e.target.value)} />
+                        </label>
+                    </div>
+                    <div className="login-submit">
+                        <button id="login-btn" type="submit">Login</button>
+                        <button id="sign-up-btn" type="button" onClick={clickSignUp}>SignUp</button>
+                    </div>
+                </form>
+            </div>
+        );
+    }
+
+    function renderSignUpScreen() {
+        return (
+            <CustomerSignUpPage clickSignUp={clickSignUp} />
+        )
+    }
+
+
+
+
+
+
+
+
+
+
+    if (signUpScreen) {
+        return (
+            <div>
+                {renderSignUpScreen()}
+            </div>
+        );
+
+    } else {
+        return (
+            <div>
+                {renderLoginScreen()}
+            </div>
+        )
+    }
 }
 
 
 
 
-    // async function loginUser(credentials) {
-    //     return fetch('http://localhost:8080/api/login', {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //             'Accept': 'application/json'
-    //         },
-    //         body: JSON.stringify(credentials)
-    //     })
-    //         .then(response => {
-
-    //             if(response.ok){
-
-    //             }
-
-
-    //         }).catch((error) => {
-    //             console.error(error);
-    //         });
-
-    // }

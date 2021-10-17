@@ -3,6 +3,7 @@ package repository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import model.Customer;
+import org.hibernate.Transaction;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -23,6 +24,38 @@ public class CustomerRepo {
     public static Customer getCustomerById(Integer id) {
         return session.get(Customer.class, id);
     }
+
+    public static Customer login(String username, String password) {
+
+
+        Customer user = null;
+
+        try{
+
+
+
+
+        user = (Customer) session.createQuery("FROM Customer c WHERE c.username = :userName").setParameter("userName", username).uniqueResult();
+
+        if (user != null && user.getPassword().equals(password)){
+
+            return user;
+        }
+
+
+
+
+        } catch (Exception e){
+
+            user = null;
+            e.printStackTrace();
+        }
+
+
+        return user;
+    }
+
+
 
 
     public static List<Customer> getAllCustomers() {
