@@ -1,10 +1,7 @@
 package model;
 
-import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder;
 
 @Entity
 @Table(name="flights")
@@ -52,7 +49,7 @@ public class Flight {
 
 
     public Flight(int flightId, Pilots pilots, String departLocation, String arriveLocation, String departDate,
-                  String departTime, String arriveDate, String arriveTime, Boolean takeOff, List<Tickets> ticketList,
+                  String departTime, String arriveDate, String arriveTime, Boolean takeOff, List<Ticket> ticketList,
                   Boolean available, Integer maxNumberOfTickets) {
         this.flightId = flightId;
 

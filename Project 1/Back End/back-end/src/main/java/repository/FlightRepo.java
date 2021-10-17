@@ -13,8 +13,7 @@ import java.util.List;
 
 
 public class FlightRepo {
-    private static HibernateUtil hibernateUtil = new HibernateUtil();
-    private static Session session = hibernateUtil.getSession();
+    private static Session session = HibernateUtil.getSession();
 
     public static Flight getFlightById(int id) {
         return session.get(Flight.class, id);

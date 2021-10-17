@@ -1,9 +1,8 @@
 package repository;
 
 import org.hibernate.Session;
-import model.Tickets;
-import org.hibernate.SessionFactory;
-import servlets.DependencyLoaderListener;
+import model.Ticket;
+import org.hibernate.Transaction;
 import utils.HibernateUtil;
 
 import javax.persistence.Query;
@@ -13,46 +12,50 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 public class TicketRepo {
-    private static HibernateUtil hibernateUtil = new HibernateUtil();
-    private static Session session = hibernateUtil.getSession();
+    private static Session session = HibernateUtil.getSession();
+    private static Transaction transaction = session.beginTransaction();
 
     public static void init(){
 
     }
 
-    public static Tickets getTicketById(int id){
-        return session.get(Tickets.class, id);
-
+    public static Ticket getTicketById(int id){
+        return session.get(Ticket.class, id);
     }
 
-    public static List<Tickets> getAllTickets(){
+    public static List<Ticket> getAllTickets(){
         CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<Tickets> query = builder.createQuery(Tickets.class);
-        Root<Tickets> root = query.from(Tickets.class);
+        CriteriaQuery<Ticket> query = builder.createQuery(Ticket.class);
+        Root<Ticket> root = query.from(Ticket.class);
         query.select(root);
         return session.createQuery(query).getResultList();
     }
 
-    public static void saveNewTicket(Tickets ticket){
+    //This method inserts a new row into the ticket
+    public static void saveNewTicket(Ticket ticket){
         session.save(ticket);
+        transaction.commit();
     }
 
-    public static void updateCheckInStatusUsingCustomerId(Tickets tickets){
-        Query query = session.createSQLQuery("UPDATE tickets " +
-                "SET checked_in = checkedIn WHERE customer_id = customerId");
-        query.setParameter("checkedIn", tickets.getCheckedIn());
-        query.setParameter("customerId", tickets.getCustomerId());
+    public static void updateCheckInStatusUsingCustomerId(int customerId){
+        //Retrieving specific ticket from database with the specified customer ID
+        Ticket ticket = (Ticket) session.get(Ticket.class, customerId);
+        //Update checked in column
+        ticket.setCheckedIn(true); //Changes value of the checkedIn object
+        transaction.commit();//Has database update the checked in column to match the above change
     }
 
-    public static void updateCheckInStatusUsingTicketId(Tickets tickets) {
-        Query query = session.createSQLQuery("UPDATE tickets " +
-                "SET checked_in = checkedIn WHERE ticket_id = ticketId");
-        query.setParameter("checkedIn", tickets.getCheckedIn());
-        query.setParameter("ticketId", tickets.getTicketId());
+    public static void updateCheckInStatusUsingTicketId(int ticketId) {
+        //Retrieving specific ticket from database with the specified customer ID
+        Ticket ticket = (Ticket) session.get(Ticket.class, ticketId);
+        //Update checked in column
+        ticket.setCheckedIn(true); //Changes value of the checkedIn object
+        transaction.commit();//Has database update the checked in column to match the above change
     }
 
-    public static void deleteTicket(Tickets ticket){
+    public static void deleteTicket(Ticket ticket){
         session.delete(ticket);
+        transaction.commit();
     }
 
 //    public static SessionFactory getSessionFactory() {

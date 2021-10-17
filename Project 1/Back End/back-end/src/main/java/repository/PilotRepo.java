@@ -14,8 +14,7 @@ import java.util.List;
 
 
 public class PilotRepo {
-    private static HibernateUtil hibernateUtil = new HibernateUtil();
-    private static Session session = hibernateUtil.getSession();
+    private static Session session = HibernateUtil.getSession();
 
     public static Pilots getPilotById(int id) {
         return session.get(Pilots.class, id);

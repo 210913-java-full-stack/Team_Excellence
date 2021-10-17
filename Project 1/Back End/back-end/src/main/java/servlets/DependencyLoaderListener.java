@@ -1,9 +1,6 @@
 package servlets;
 
 import model.*;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import repository.*;
 
 import org.hibernate.cfg.Configuration;
 import utils.HibernateUtil;
@@ -18,26 +15,19 @@ public class DependencyLoaderListener  implements ServletContextListener {
 
 
         try {
-            Session session;
             Configuration config = new Configuration().configure("hibernate.cfg.xml");
+            HibernateUtil.setSessionFactory(HibernateUtil.getSessionFactory());
             config.addAnnotatedClass(Customer.class);
             config.addAnnotatedClass(Pilots.class);
             config.addAnnotatedClass(Admin.class);
             config.addAnnotatedClass(Flight.class);
-            config.addAnnotatedClass(Tickets.class);
+            config.addAnnotatedClass(Ticket.class);
 
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
-//    public static Session getSession() {
-//        Session session;
-//        if(session == null) {
-//            session = sessionFactory.open
-//        }
-//    }
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {

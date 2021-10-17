@@ -12,8 +12,7 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 public class AdminRepo {
-    private static HibernateUtil hibernateUtil = new HibernateUtil();
-    private static Session session = hibernateUtil.getSession();
+    private static Session session = HibernateUtil.getSession();
 
 
     public static Admin getAdminById(int id) {

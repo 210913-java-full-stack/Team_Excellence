@@ -6,6 +6,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import servlets.DependencyLoaderListener;
+import utils.HibernateUtil;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -15,11 +16,9 @@ import java.util.List;
 public class Driver {
     public static void main(String[] args){
 
-        Session session = FlightRepo.getSession();
 
-        Transaction transaction = session.beginTransaction();
         CancelFlight.cancelFlight(1);
-        transaction.commit();
+
         
     }
 }

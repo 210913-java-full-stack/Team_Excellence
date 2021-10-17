@@ -2,31 +2,32 @@ package utils;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import repository.FlightRepo;
+import org.hibernate.cfg.Configuration;
 
 public class HibernateUtil {
-    private SessionFactory sessionFactory;
-    private Session session;
+    private static SessionFactory sessionFactory;
+    private static Session session;
+    private static Configuration configuration = new Configuration().configure("hibernate.cfg.xml");
 
-    public HibernateUtil() {
-    }
-
-    public SessionFactory getSessionFactory() {
+    public static SessionFactory getSessionFactory() {
+        if (sessionFactory == null) {
+            sessionFactory = configuration.buildSessionFactory();
+        }
         return sessionFactory;
     }
 
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
+    public static void setSessionFactory(SessionFactory sessionFactory) {
+        HibernateUtil.sessionFactory = sessionFactory;
     }
 
-    public Session getSession() {
+    public static Session getSession() {
         if(session == null){
             session = sessionFactory.openSession();
         }
         return session;
     }
 
-    public void setSession(Session session) {
-        this.session = session;
+    public static void setSession(Session session) {
+        HibernateUtil.session = session;
     }
 }
