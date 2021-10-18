@@ -32,13 +32,6 @@ public class FlightServlet extends HttpServlet {
 
 
 
-    @Override
-    public void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        InputStream input = request.getInputStream();
-        Scanner sc = new Scanner(input, StandardCharsets.UTF_8.name());
-        String jsonText = sc.useDelimiter("\\A").next();
-        ObjectMapper mapper = new ObjectMapper();
-        Flight payload = mapper.readValue(jsonText, Flight.class);
-        FlightRepo.updateFlight(payload);
-    }
+
+
 }

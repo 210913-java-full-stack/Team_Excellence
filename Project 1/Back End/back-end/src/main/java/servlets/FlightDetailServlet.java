@@ -9,8 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+import java.util.Scanner;
 
-public class FlightDetailServlet extends HttpServlet {
+public class FlightDetailServlet extends MyServlet {
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         int id = Integer.parseInt(req.getParameter("id"));
@@ -18,6 +21,19 @@ public class FlightDetailServlet extends HttpServlet {
         ObjectMapper mapper = new ObjectMapper();
         resp.getWriter().write(mapper.writeValueAsString(flight));
 
+    }
+
+    public void doPatch(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            InputStream input = request.getInputStream();
+            Scanner sc = new Scanner(input, StandardCharsets.UTF_8.name());
+            String jsonText = sc.useDelimiter("\\A").next();
+            ObjectMapper mapper = new ObjectMapper();
+            Flight payload = mapper.readValue(jsonText, Flight.class);
+            FlightRepo.updateFlight(payload);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
 }

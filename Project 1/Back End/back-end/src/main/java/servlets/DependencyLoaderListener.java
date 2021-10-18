@@ -31,7 +31,7 @@ public class DependencyLoaderListener  implements ServletContextListener {
             AdminRepo.setSession(AdminRepo.getSessionFactory().openSession());
 
             FlightRepo.setSessionFactory(config.buildSessionFactory());
-            FlightRepo.setSession(FlightRepo.getSessionFactory().openSession());
+
 
             TicketRepo.setSessionFactory(config.buildSessionFactory());
             TicketRepo.setSession(TicketRepo.getSessionFactory().openSession());

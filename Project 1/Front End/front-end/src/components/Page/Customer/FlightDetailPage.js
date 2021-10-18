@@ -14,6 +14,7 @@ export default function FlightDetailPage({ id }) {
 
     useEffect(() => {
         async function getFlightDetails() {
+            document.title = `Flight details for BCON${id}`;
             try {
                 let res = await axios.get(`http://localhost:8080/api/flight?id=${id}`)
                 setDepartLocation(res.data["departLocation"])

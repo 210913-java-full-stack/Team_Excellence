@@ -3,6 +3,7 @@ package repository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import model.Flight;
+import org.hibernate.Transaction;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -21,22 +22,76 @@ public class FlightRepo {
     }
 
     public static List<Flight> getAllFlights() {
+        FlightRepo.setSession(FlightRepo.getSessionFactory().openSession());
+        Transaction t = session.beginTransaction();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Flight> query = builder.createQuery(Flight.class);
         Root<Flight> root = query.from(Flight.class);
         query.select(root);
-        return session.createQuery(query).getResultList();
+        List<Flight> list =  session.createQuery(query).getResultList();
+        t.commit();
+        session.d
+        return list;
     }
 
     public static void saveNewFlight(Flight flight) {
-        session.save(flight);
+        Transaction t = null;
+        Session session = null;
+        try {
+            FlightRepo.setSession(FlightRepo.getSessionFactory().openSession());
+            session = FlightRepo.getSession();
+            t = session.beginTransaction();
+            System.out.println(t.getStatus());
+
+            session.save(flight);
+            t.commit();
+        } catch(Exception e){
+            e.printStackTrace();
+
+            t.rollback();
+        }finally {
+            session.close();
+        }
+
     }
 
     public static void deleteFlight(Flight flight) {
-        session.delete(flight);
+        Transaction t = null;
+        Session session = null;
+        try {
+            FlightRepo.setSession(FlightRepo.getSessionFactory().openSession());
+            session = FlightRepo.getSession();
+            t = session.beginTransaction();
+            System.out.println(t.getStatus());
+
+            session.delete(flight);
+            t.commit();
+        } catch(Exception e){
+            e.printStackTrace();
+            t.rollback();
+        }finally {
+            session.close();
+        }
     }
 
-    public static void updateFlight(Flight flight) {session.update(flight);}
+    public static void updateFlight(Flight flight) {
+        Transaction t = null;
+        Session session = null;
+        try {
+            FlightRepo.setSession(FlightRepo.getSessionFactory().openSession());
+            session = FlightRepo.getSession();
+            t = session.beginTransaction();
+            System.out.println(t.getStatus());
+
+            session.update(flight);
+            t.commit();
+        } catch(Exception e){
+            e.printStackTrace();
+            t.rollback();
+        }finally {
+            session.close();
+        }
+    }
 
     public static SessionFactory getSessionFactory() {
         return sessionFactory;

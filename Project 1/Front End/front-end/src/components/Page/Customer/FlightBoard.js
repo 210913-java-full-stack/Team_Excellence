@@ -15,6 +15,7 @@ export default function FlightBoard() {
     const [flightDetails, setFlightDetails] = useState(false);
 
     useEffect(() => {
+        document.title = `Welcome Screen`;
         async function getFlights() {
             try {
                 const res = await axios.get("http://localhost:8080/api/flights");
@@ -24,7 +25,7 @@ export default function FlightBoard() {
             }
         }
         getFlights();
-    }, []);
+    });
 
 
 
@@ -66,6 +67,7 @@ export default function FlightBoard() {
                                 return (
 
                                     <tr key={el.flightId}>
+
                                         <td>BCON{el.flightId}</td>
                                         <td>{el.departLocation}</td>
                                         <td>{el.departDate}</td>
@@ -73,7 +75,8 @@ export default function FlightBoard() {
                                         <td>{el.arriveLocation}</td>
                                         <td>{el.arriveDate}</td>
                                         <td>{el.arriveTime}</td>
-                                        <td><button onClick={e => clickDetailButton(e.target.value)} value={el.flightId}>{el.flightId}</button></td>
+                                        <td><button onClick={e => clickDetailButton(e.target.value)} value={el.flightId}>View Flight details</button></td>
+
                                     </tr>
 
                                 )
