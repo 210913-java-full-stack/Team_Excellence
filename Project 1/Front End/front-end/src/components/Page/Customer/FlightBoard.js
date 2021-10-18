@@ -65,7 +65,7 @@ export default function FlightBoard() {
                                     <td>{el.arriveLocation}</td>
                                     <td>{el.arriveDate}</td>
                                     <td>{el.arriveTime}</td>
-                                    <button>Veiw Flight Details</button>
+                                    <button>Veiw Flight {el.flightId} Details</button>
                                 </tr>
 
                             )
