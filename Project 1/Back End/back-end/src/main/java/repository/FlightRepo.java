@@ -22,15 +22,31 @@ public class FlightRepo {
     }
 
     public static List<Flight> getAllFlights() {
-        FlightRepo.setSession(FlightRepo.getSessionFactory().openSession());
-        Transaction t = session.beginTransaction();
-        CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<Flight> query = builder.createQuery(Flight.class);
-        Root<Flight> root = query.from(Flight.class);
-        query.select(root);
-        List<Flight> list =  session.createQuery(query).getResultList();
-        t.commit();
-        session.close();
+        Transaction t = null;
+        Session session = null;
+        List<Flight> list = null;
+        try {
+            FlightRepo.setSession(FlightRepo.getSessionFactory().openSession());
+            session = FlightRepo.getSession();
+            t = session.beginTransaction();
+//            CriteriaBuilder builder = session.getCriteriaBuilder();
+//            CriteriaQuery<Flight> query = builder.createQuery(Flight.class);
+//            Root<Flight> root = query.from(Flight.class);
+//            query.select(root);
+            list = session.createQuery("FROM Flight WHERE take_off = false").getResultList();
+            t.commit();
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+            if (t!=null) {
+                t.rollback();
+            }
+        }finally {
+            if (session!= null) {
+                session.close();
+            }
+        }
         return list;
     }
 

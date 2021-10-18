@@ -36,4 +36,18 @@ public class FlightDetailServlet extends MyServlet {
         }
     }
 
+    @Override
+    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        try {
+            InputStream input = req.getInputStream();
+            Scanner sc = new Scanner(input, StandardCharsets.UTF_8.name());
+            String jsonText = sc.useDelimiter("\\A").next();
+            ObjectMapper mapper = new ObjectMapper();
+            Flight payload = mapper.readValue(jsonText, Flight.class);
+            FlightRepo.saveNewFlight(payload);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
 }
