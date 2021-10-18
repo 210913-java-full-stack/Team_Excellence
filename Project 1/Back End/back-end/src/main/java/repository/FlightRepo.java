@@ -36,6 +36,8 @@ public class FlightRepo {
         session.delete(flight);
     }
 
+    public static void updateFlight(Flight flight) {session.update(flight);}
+
     public static SessionFactory getSessionFactory() {
         return sessionFactory;
     }
