@@ -23,7 +23,7 @@ public class FlightRepo {
         Transaction t = null;
         Session session = null;
         try{
-            FlightRepo.setSession(FlightRepo.getSessionFactory().openSession());
+            setSession(getSessionFactory().openSession());
             session = FlightRepo.getSession();
             t = session.beginTransaction();
             flight = session.get(Flight.class, id);

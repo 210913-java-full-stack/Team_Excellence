@@ -4,6 +4,7 @@ import model.*;
 import repository.*;
 
 import org.hibernate.cfg.Configuration;
+import services.CancelFlight;
 
 import javax.servlet.ServletContextListener;
 import javax.servlet.ServletContextEvent;
@@ -35,6 +36,10 @@ public class DependencyLoaderListener  implements ServletContextListener {
 
             TicketRepo.setSessionFactory(config.buildSessionFactory());
             TicketRepo.setSession(TicketRepo.getSessionFactory().openSession());
+
+            CancelFlight cancelFlight = new CancelFlight();
+            cancelFlight.cancelFlight(846754);
+
         } catch (Exception e) {
             e.printStackTrace();
         }

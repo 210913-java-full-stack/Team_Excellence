@@ -1,11 +1,20 @@
 package services;
 
-import model.Admin;
+import model.Flight;
+import repository.FlightRepo;
 
 public class CancelFlight {
+    Flight flight;
 
-    //Allows admin to cancel a flight. Requires an admin Id.
-    public static void cancelFlight(Admin admin){
-        //TODO: Write code after implementing Hibernate
+    public CancelFlight() {
+    }
+
+    //Allows admin to cancel a flight. Requires a flight ID.
+    public void cancelFlight(int flightID){
+
+
+        flight = FlightRepo.getFlightbyId(flightID);
+        FlightRepo.deleteFlight(flight);
+
     }
 }
