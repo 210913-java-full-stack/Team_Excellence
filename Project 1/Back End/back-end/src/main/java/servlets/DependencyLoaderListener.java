@@ -15,7 +15,7 @@ public class DependencyLoaderListener  implements ServletContextListener {
 
 
         try {
-            Configuration config = new Configuration().configure("hibernate.cfg.xml");
+            Configuration config = new Configuration();
             HibernateUtil.setSessionFactory(HibernateUtil.getSessionFactory());
             config.addAnnotatedClass(Customer.class);
             config.addAnnotatedClass(Pilots.class);
