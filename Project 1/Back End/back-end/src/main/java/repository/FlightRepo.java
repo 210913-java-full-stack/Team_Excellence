@@ -3,6 +3,8 @@ package repository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import model.Flight;
+import org.hibernate.Transaction;
+import utils.HibernateUtil;
 
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -12,18 +14,18 @@ import java.util.List;
 
 
 public class FlightRepo {
-    private static SessionFactory sessionFactory;
-    private static Session session;
+        /*
+    Create a new session and transaction objects in each method because there is no guarantee that there will
+    be an active session or transaction everytime the method is called.
+     */
 
-    public FlightRepo() {
-    }
-
-    public static Flight getFlightbyId(int id) {
+    public Flight getFlightById(int id) {
+        Session session = HibernateUtil.getSession();
         return session.get(Flight.class, id);
     }
 
-    public static List<Flight> getAllFlights() {
-        session = getSession();
+    public List<Flight> getAllFlights() {
+        Session session = HibernateUtil.getSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Flight> query = builder.createQuery(Flight.class);
         Root<Flight> root = query.from(Flight.class);
@@ -31,41 +33,35 @@ public class FlightRepo {
         return session.createQuery(query).getResultList();
     }
 
-    public static void saveNewFlight(Flight flight) {
+    public void saveNewFlight(Flight flight) {
+        Session session = HibernateUtil.getSession();
+        Transaction transaction = session.beginTransaction();
+
         session.save(flight);
+        transaction.commit();
     }
 
-    public static void deleteFlight(Flight flight) {
+    public void updateTakeOff(int flightId) {
+        Session session = HibernateUtil.getSession();
+        Transaction transaction = session.beginTransaction();
+
+        Flight flight = (Flight) session.get(Flight.class, flightId);
+        //Update the take_off column
+        flight.setTakeOff(true); //
+        transaction.commit();//Has database update the take_off column to match the above change
+    }
+
+    public void updateAvailable(int flightId) {
+        Session session = HibernateUtil.getSession();
+        Transaction transaction = session.beginTransaction();
+        Flight flight = (Flight) session.get(Flight.class, flightId);
+        //Update the available column
+        flight.setAvailable(true); //
+        transaction.commit();//Has database update the available column to match the above change
+    }
+
+    public void deleteFlight(Flight flight) {
+        Session session = HibernateUtil.getSession();
         session.delete(flight);
-    }
-
-    public static void updateTakeOff( Flight flight) {
-        Query query = getSession().createSQLQuery("UPDATE flights " +
-                "SET take_off = takeOff WHERE flight_id = flightId");
-        query.setParameter("takeOff", flight.getTakeOff());
-        query.setParameter("flightId", flight.getFlightId());
-    }
-
-    public static void updateAvailable(Flight flight) {
-
-    }
-
-    public static SessionFactory getSessionFactory() {
-        return sessionFactory;
-    }
-
-    public static void setSessionFactory(SessionFactory sessionFactory) {
-        FlightRepo.sessionFactory = sessionFactory;
-    }
-
-    public static Session getSession() {
-        if(session == null){
-            session = sessionFactory.openSession();
-        }
-        return session;
-    }
-
-    public static void setSession(Session session) {
-        FlightRepo.session = session;
     }
 }

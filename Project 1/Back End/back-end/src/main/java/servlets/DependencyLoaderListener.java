@@ -1,40 +1,29 @@
 package servlets;
 
 import model.*;
-import repository.*;
 
 import org.hibernate.cfg.Configuration;
+import utils.HibernateUtil;
 
 import javax.servlet.ServletContextListener;
 import javax.servlet.ServletContextEvent;
 
 public class DependencyLoaderListener  implements ServletContextListener {
+
     @Override
     public void contextInitialized(ServletContextEvent sce) {
 
 
         try {
-            Configuration config = new Configuration();
+            Configuration config = new Configuration().configure("hibernate.cfg.xml");
+            HibernateUtil.setSessionFactory(HibernateUtil.getSessionFactory());
             config.addAnnotatedClass(Customer.class);
             config.addAnnotatedClass(Pilots.class);
             config.addAnnotatedClass(Admin.class);
             config.addAnnotatedClass(Flight.class);
-            config.addAnnotatedClass(Tickets.class);
+            config.addAnnotatedClass(Ticket.class);
 
-            CustomerRepo.setSessionFactory(config.buildSessionFactory());
-            CustomerRepo.setSession(CustomerRepo.getSessionFactory().openSession());
 
-            PilotRepo.setSessionFactory(config.buildSessionFactory());
-            PilotRepo.setSession(PilotRepo.getSessionFactory().openSession());
-
-            AdminRepo.setSessionFactory(config.buildSessionFactory());
-            AdminRepo.setSession(AdminRepo.getSessionFactory().openSession());
-
-            FlightRepo.setSessionFactory(config.buildSessionFactory());
-            FlightRepo.setSession(FlightRepo.getSessionFactory().openSession());
-
-            TicketRepo.setSessionFactory(config.buildSessionFactory());
-            TicketRepo.setSession(TicketRepo.getSessionFactory().openSession());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -42,12 +31,10 @@ public class DependencyLoaderListener  implements ServletContextListener {
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
+        HibernateUtil hibernateUtil = new HibernateUtil();
+
         try {
-            CustomerRepo.getSession().close();
-            PilotRepo.getSession().close();
-            AdminRepo.getSession().close();
-            FlightRepo.getSession().close();
-            TicketRepo.getSession().close();
+            hibernateUtil.getSession().close();
         }catch (Exception e) {
             e.printStackTrace();
         }

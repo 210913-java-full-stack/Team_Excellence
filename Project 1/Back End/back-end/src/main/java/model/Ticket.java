@@ -4,7 +4,7 @@ import java.util.List;
 
 @Entity
 @Table(name="tickets")
-public class Tickets {
+public class Ticket {
 
     @Id
     @Column
@@ -34,18 +34,10 @@ public class Tickets {
 
 
 
-    public Tickets() {
+    public Ticket() {
     }
 
-    public Boolean getCheckedIn() {
-        return checkedIn;
-    }
-
-    public void setCheckedIn(Boolean checkedIn) {
-        this.checkedIn = checkedIn;
-    }
-
-    public Tickets(int ticketId, List<Flight> flightId, Customer customerId, String passengerFirstName, String passengerLastName, Integer passengerAge, Boolean checkedIn) {
+    public Ticket(int ticketId, List<Flight> flightId, Customer customerId, String passengerFirstName, String passengerLastName, Integer passengerAge, Boolean checkedIn) {
         this.ticketId = ticketId;
         this.flightId = flightId;
         this.customerId = customerId;
@@ -102,4 +94,13 @@ public class Tickets {
     public void setPassengerAge(Integer passengerAge) {
         this.passengerAge = passengerAge;
     }
+
+    public Boolean getCheckedIn() {
+        return checkedIn;
+    }
+
+    public void setCheckedIn(Boolean checkedIn) {
+        this.checkedIn = checkedIn;
+    }
+
 }
