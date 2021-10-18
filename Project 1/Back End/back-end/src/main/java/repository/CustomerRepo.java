@@ -67,11 +67,30 @@ public class CustomerRepo {
     }
 
     public static void saveNewCustomer( Customer customer){
-        session.save(customer);
+        try {
+            Transaction t = session.beginTransaction();
+            System.out.println(t.getStatus());
+
+            session.save(customer);
+            t.commit();
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+
     }
 
     public static void deleteCustomer(Customer customer) {
-        session.delete(customer);
+        try {
+            Transaction t = session.beginTransaction();
+            System.out.println(t.getStatus());
+
+            session.delete(customer);
+            t.commit();
+
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+
     }
 
 

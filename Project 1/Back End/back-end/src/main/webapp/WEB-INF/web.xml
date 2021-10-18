@@ -52,6 +52,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>flightDetailServlet</servlet-name>
+        <servlet-class>servlets.FlightDetailServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>flightDetailServlet</servlet-name>
+        <url-pattern>/flight</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>customerServlet</servlet-name>
         <servlet-class>servlets.CustomerServlet</servlet-class>
     </servlet>

@@ -31,10 +31,9 @@ public class DependencyLoaderListener  implements ServletContextListener {
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-        HibernateUtil hibernateUtil = new HibernateUtil();
 
         try {
-            hibernateUtil.getSession().close();
+            HibernateUtil.getSession().close();
         }catch (Exception e) {
             e.printStackTrace();
         }
