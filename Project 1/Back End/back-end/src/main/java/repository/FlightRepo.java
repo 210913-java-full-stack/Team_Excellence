@@ -47,21 +47,28 @@ public class FlightRepo {
 
         Flight flight = (Flight) session.get(Flight.class, flightId);
         //Update the take_off column
-        flight.setTakeOff(true); //
+        flight.setTakeOff(true); //We wouldn't need to set take off to false. Default is false.
         transaction.commit();//Has database update the take_off column to match the above change
     }
 
-    public void updateAvailable(int flightId) {
+    public void updateAvailable(int flightId, boolean ticketsLeft) {
         Session session = HibernateUtil.getSession();
         Transaction transaction = session.beginTransaction();
         Flight flight = (Flight) session.get(Flight.class, flightId);
         //Update the available column
-        flight.setAvailable(true); //
+        if(ticketsLeft) {
+            flight.setAvailable(true); //If there are tickets left, then the flight is still available.
+        } else {
+            flight.setAvailable(false);//If there aren't tickets left, then the flight is unavailable.
+        }
         transaction.commit();//Has database update the available column to match the above change
     }
 
     public void deleteFlight(Flight flight) {
         Session session = HibernateUtil.getSession();
+        Transaction transaction = session.beginTransaction();
         session.delete(flight);
+        transaction.commit();//Has database update the available column to match the above change
     }
+
 }
