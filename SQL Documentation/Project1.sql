@@ -1,10 +1,10 @@
 ###########################################################
 ################## CREATE FRESH DATABASE ##################
 ###########################################################
-DROP DATABASE IF EXISTS projectOne;
-CREATE DATABASE projectOne;
+DROP DATABASE IF EXISTS Brittany_DB;
+CREATE DATABASE Brittany_DB;
 
-USE projectOne;
+USE Brittany_DB;
 
 
 DROP TABLE IF EXISTS customers;
@@ -52,12 +52,12 @@ flight_id INT AUTO_INCREMENT,
 pilot_id INT,
 depart VARCHAR(50),
 arrive VARCHAR(50),
-depart_time VARCHAR(50),
-depart_date VARCHAR(50),
-arrive_time VARCHAR(50),
-arrive_date VARCHAR(50),
-take_off BOOL,
-max_number_of_tickets INT,
+depart_time TIME,
+depart_date DATE,
+arrive_time TIME,
+arrive_date DATE,
+available BOOLEAN, #True if there are still tickets available and False if the flight has sold out
+gates_closed BOOLEAN, #True if the flight has taken off and False if it has not taken off
 CONSTRAINT PRIMARY KEY (flight_id),
 CONSTRAINT pilot_to_flight FOREIGN KEY (pilot_id) REFERENCES pilots (pilot_id)
 );
@@ -70,7 +70,7 @@ customer_id INT,
 passenger_first_name VARCHAR(50),
 passenger_last_name VARCHAR(50),
 passenger_age INT,
-checked_in BOOL,
+checked_in BOOLEAN, #True if the passenger has checked in and false if they have not checked in 
 CONSTRAINT pk PRIMARY KEY (ticket_id),
 CONSTRAINT ticket_to_flight FOREIGN KEY (flight_id) REFERENCES flights (flight_id),
 CONSTRAINT ticket_to_customer FOREIGN KEY (customer_id) REFERENCES customers (customer_id)
@@ -85,32 +85,8 @@ CONSTRAINT ticket_to_customer FOREIGN KEY (customer_id) REFERENCES customers (cu
 ###########################################################
 
 INSERT INTO customers (username, password, email, first_name, last_name) VALUES ("TCON", "password", "tyler.conner@revature.net", "Tyler", "Conner");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+INSERT INTO customers (username, password, email, first_name, last_name) VALUES ("Britt", "password", "brittany.lowell@revature.net", "Brittany", "Lowell");
+INSERT INTO admins (username, password, email, first_name, last_name) VALUES ("Britt","password", "brittany.lowell@revature.net", "Brittany", "Lowell");
+SELECT * FROM customers;
+SELECT * FROM admins;
 

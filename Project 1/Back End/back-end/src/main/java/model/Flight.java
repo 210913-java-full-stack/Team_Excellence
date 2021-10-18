@@ -1,28 +1,95 @@
 package model;
 
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
+import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
 
+@Entity
+@Table(name="flights")
 public class Flight {
+
+    @Id
+    @Column(name = "flight_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int flightId;
-    private int pilotId;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(nullable = false, name = "pilot_id")
+    private Pilots pilots;
+
+    @Column(name = "depart")
     private String departLocation;
+
+    @Column(name = "arrive")
     private String arriveLocation;
-    private Date departDate;
-    private int departTime;
-    private Date arriveDate;
-    private int arriveTime;
+
+    @Column(name= "depart_date")
+    private String departDate;
+
+    @Column(name = "depart_time")
+    private String departTime;
+
+    @Column(name = "arrive_date")
+    private String arriveDate;
+
+    @Column(name = "arrive_time")
+    private String arriveTime;
+
+    @Column(name = "take_off")
+    private Boolean takeOff;
+
+
+
+    @Column(name = "max_number_of_tickets")
+    private int maxNumberOfTickets;
+
 
     public Flight() {
     }
 
-    public Flight(int flightId, int pilotId, String departLocation, String arriveLocation, Date departDate, int departTime, Date arriveDate, int arriveTime) {
+
+    public Flight(int flightId, Pilots pilots, String departLocation, String arriveLocation, String departDate, String departTime, String arriveDate, String arriveTime, Boolean takeOff,  Integer maxNumberOfTickets) {
         this.flightId = flightId;
-        this.pilotId = pilotId;
+
         this.departLocation = departLocation;
         this.arriveLocation = arriveLocation;
         this.departDate = departDate;
         this.departTime = departTime;
         this.arriveDate = arriveDate;
+        this.arriveTime = arriveTime;
+        this.takeOff = takeOff;
+
+        this.maxNumberOfTickets = maxNumberOfTickets;
+    }
+
+
+    public Integer getMaxNumberOfTickets() {
+        return maxNumberOfTickets;
+    }
+
+    public void setMaxNumberOfTickets(Integer maxNumberOfTickets) {
+        this.maxNumberOfTickets = maxNumberOfTickets;
+    }
+
+    public Boolean getTakeOff() {
+        return takeOff;
+    }
+
+    public void setTakeOff(Boolean takeOff) {
+        this.takeOff = takeOff;
+    }
+
+    public void setFlightId(int flightId) {
+        this.flightId = flightId;
+    }
+
+    public void setDepartTime(String departTime) {
+        this.departTime = departTime;
+    }
+
+    public void setArriveTime(String arriveTime) {
         this.arriveTime = arriveTime;
     }
 
@@ -30,16 +97,12 @@ public class Flight {
         return flightId;
     }
 
-    public void setFlightId(int flightId) {
-        this.flightId = flightId;
+    public Pilots getPilots() {
+        return pilots;
     }
 
-    public int getPilotId() {
-        return pilotId;
-    }
-
-    public void setPilotId(int pilotId) {
-        this.pilotId = pilotId;
+    public void setPilots(Pilots pilots) {
+        this.pilots = pilots;
     }
 
     public String getDepartLocation() {
@@ -58,35 +121,31 @@ public class Flight {
         this.arriveLocation = arriveLocation;
     }
 
-    public Date getDepartDate() {
+    public String getDepartDate() {
         return departDate;
     }
 
-    public void setDepartDate(Date departDate) {
+    public void setDepartDate(String departDate) {
         this.departDate = departDate;
     }
 
-    public int getDepartTime() {
+    public String getDepartTime() {
         return departTime;
     }
 
-    public void setDepartTime(int departTime) {
-        this.departTime = departTime;
-    }
 
-    public Date getArriveDate() {
+
+    public String getArriveDate() {
         return arriveDate;
     }
 
-    public void setArriveDate(Date arriveDate) {
+    public void setArriveDate(String arriveDate) {
         this.arriveDate = arriveDate;
     }
 
-    public int getArriveTime() {
+    public String getArriveTime() {
         return arriveTime;
     }
 
-    public void setArriveTime(int arriveTime) {
-        this.arriveTime = arriveTime;
-    }
+
 }

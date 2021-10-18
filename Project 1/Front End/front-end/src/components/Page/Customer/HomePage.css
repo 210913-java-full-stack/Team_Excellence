@@ -1,10 +1,10 @@
 .token {
     display: flex;
     position: relative;
-    padding-top: 200px;
-    justify-content: center;
+    padding-top: 50px;
+   
     color: red;
- 
+    border: 3px purple solid;
     height: 100%;
 
     

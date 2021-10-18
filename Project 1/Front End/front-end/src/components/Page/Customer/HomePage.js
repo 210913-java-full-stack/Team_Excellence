@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import NavigationBar from "../utils/NavigationBar";
+import NavigationBar from "../../utils/NavigationBar";
+import CustomerDashboard from "./CustomerDashboard";
 import './HomePage.css';
 
 function HomePage() {
@@ -11,14 +12,13 @@ function HomePage() {
     const [firstName, setFirstName] = useState()
     const [lastName, setLastName] = useState()
 
+    const [dashboardClass, setDashboardClass] = useState(true);
 
-    function tokerView() {
-        if (isLoggedIn) {
-            return <h1 className="token">{RealUsername} has logged in.</h1>;
-        } else {
-            return <h1 className="token">No one is logged in.</h1>;
-        }
+    function changeDashboard() {
+        setDashboardClass(p => p = !p)
     }
+
+    let db_class = dashboardClass ? "grid-1" : "grid-2";
 
     return (
         <div>
@@ -30,9 +30,15 @@ function HomePage() {
                 setIsLoggedIn={setIsLoggedIn}
                 isLoggedIn={isLoggedIn}
                 firstName={firstName}
-                lastName={lastName} />
+                lastName={lastName}
+                changeDashboard={changeDashboard} />
 
-            {tokerView()}
+
+            <CustomerDashboard db_class={db_class} />
+
+
+
+
 
 
 

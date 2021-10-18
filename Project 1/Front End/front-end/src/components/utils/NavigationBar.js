@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
-import CustomerLoginPage from '../Page/CustomerLoginPage';
+import CustomerLoginPage from '../Page/Customer/CustomerLoginPage';
 
 import "./NavigationBar.css";
 
 
 
-function NavigationBar({ setId, setRealUsername, setFirstName, setLastName, setIsLoggedIn }, isLoggedIn, firstName, lastName) {
+function NavigationBar({ setId, setRealUsername, setFirstName, setLastName, setIsLoggedIn, isLoggedIn, firstName, lastName, changeDashboard }) {
 
-    const [navLoggedIn, setNavLoggedIn] = useState(false)
 
-    const [menuOpen, setMenuOpen] = useState(false)
+
+
     const [loginScreen, setLoginScreen] = useState(false)
 
+<<<<<<< HEAD
     function renderSideBar() {
         if (menuOpen) {
 
@@ -37,26 +38,27 @@ function NavigationBar({ setId, setRealUsername, setFirstName, setLastName, setI
                 );
             }
         }
+=======
+    function clickLogout() {
+        setId(p => p = null)
+        setRealUsername(p => p = null)
+        setFirstName(p => p = null)
+        setLastName(p => p = null)
+        setIsLoggedIn(p => p = false)
+>>>>>>> 7fa589ba8c7d2d7d02cff22bac1442448594c533
     }
-
 
 
 
     function clickLogin() {
         if (loginScreen) {
-            setLoginScreen(p => p = false)
-        } else {
-            setLoginScreen(p => p = true)
-        }
-    }
+            setLoginScreen(p => p = false);
 
-
-    function clickMenu() {
-        if (menuOpen) {
-            setMenuOpen(p => p = false)
         } else {
-            setMenuOpen(prev => prev = true)
+            setLoginScreen(p => p = true);
+
         }
+        changeDashboard();
     }
 
 
@@ -64,7 +66,13 @@ function NavigationBar({ setId, setRealUsername, setFirstName, setLastName, setI
         if (loginScreen) {
             return (
                 <div id="login-render">
-                    <CustomerLoginPage setId={setId} setRealUsername={setRealUsername} setFirstName={setFirstName} setIsLoggedIn={setIsLoggedIn} setLastName={setLastName} setNavLoggedIn={setNavLoggedIn} clickLogin={clickLogin} />
+                    <CustomerLoginPage
+                        setId={setId}
+                        setRealUsername={setRealUsername}
+                        setFirstName={setFirstName}
+                        setIsLoggedIn={setIsLoggedIn}
+                        setLastName={setLastName}
+                        clickLogin={clickLogin} />
                     <button className="back-to-home" onClick={clickLogin} >back </button>
                 </div>
             );
@@ -75,21 +83,11 @@ function NavigationBar({ setId, setRealUsername, setFirstName, setLastName, setI
                     <nav className="header">
                         <ul>
 
-                            <li>
-                                {renderSideBar()}
-                            </li>
-
                             <li >
                                 <h1>BRITCON air</h1>
                             </li>
 
-                            <li className="menu-button">
-                                <div id="menu-btn">
-                                    <button type="button" className="menu-btn" onClick={clickMenu}>
-                                        <img alt="menu" className="menu-button" src="https://img.icons8.com/ios/50/000000/menu--v1.png" />
-                                    </button>
-                                </div>
-                            </li>
+
                             <li >
                                 <div className="login">
 
@@ -115,25 +113,18 @@ function NavigationBar({ setId, setRealUsername, setFirstName, setLastName, setI
                 <nav className="header">
                     <ul>
 
-                        <li>
-                            {renderSideBar()}
-                        </li>
+
 
                         <li >
                             <h1>BRITCON air</h1>
                         </li>
 
-                        <li className="menu-button">
-                            <div id="menu-btn">
-                                <button type="button" className="menu-btn" onClick={clickMenu}>
-                                    <img alt="menu" className="menu-button" src="https://img.icons8.com/ios/50/000000/menu--v1.png" />
-                                </button>
-                            </div>
-                        </li>
+
                         <li >
                             <div className="login">
                                 {/* need to change the onClick to handle account Screen  */}
-                                <p>{firstName} {lastName}</p>
+                                <span>{firstName} {lastName}</span>
+                                <button type="button" className="logout-btn" onClick={clickLogout} >Logout</button>
 
 
 
@@ -147,31 +138,23 @@ function NavigationBar({ setId, setRealUsername, setFirstName, setLastName, setI
         );
     }
 
-    if (navLoggedIn) {
-        // return (
-        //     <div>
-        //         {renderNotLoggedin()}
-        //     </div>
-        // );
+    if (isLoggedIn) {
+
         return (
             <div>
                 {renderLoggedIn()}
 
-                <p>bad</p>
+
             </div>
         );
     } else {
         return (
             <div>
                 {renderNotLoggedin()}
-                <p>good</p>
+
             </div>
         );
-        // return (
-        //     <div>
-        //         {renderLoggedIn()}
-        //     </div>
-        // );
+
     }
 
 
