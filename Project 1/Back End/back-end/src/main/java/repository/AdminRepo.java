@@ -27,27 +27,11 @@ public class AdminRepo {
         return session.createQuery(query).getResultList();
     }
 
-    public static void saveAdmin(Admin admin){
+    public static void saveAdmin(Admin admin) {
         session.save(admin);
     }
 
-    public static void deleteAdmin(Admin admin){
+    public static void deleteAdmin(Admin admin) {
         session.delete(admin);
     }
-
-//    public static SessionFactory getSessionFactory() {
-//        return sessionFactory;
-//    }
-//
-//    public static void setSessionFactory(SessionFactory sessionFactory) {
-//        AdminRepo.sessionFactory = sessionFactory;
-//    }
-//
-//    public static Session getSession() {
-//        return session;
-//    }
-//
-//    public static void setSession(Session session) {
-//        AdminRepo.session = session;
-//    }
 }

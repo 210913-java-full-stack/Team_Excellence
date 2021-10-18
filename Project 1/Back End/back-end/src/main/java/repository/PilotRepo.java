@@ -36,19 +36,4 @@ public class PilotRepo {
         session.delete(pilot);
     }
 
-//    public static SessionFactory getSessionFactory() {
-//        return sessionFactory;
-//    }
-//
-//    public static void setSessionFactory(SessionFactory sessionFactory) {
-//        PilotRepo.sessionFactory = sessionFactory;
-//    }
-//
-//    public static Session getSession() {
-//        return session;
-//    }
-//
-//    public static void setSession(Session session) {
-//        PilotRepo.session = session;
-//    }
 }

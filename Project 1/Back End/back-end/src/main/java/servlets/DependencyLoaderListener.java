@@ -3,6 +3,8 @@ package servlets;
 import model.*;
 
 import org.hibernate.cfg.Configuration;
+import org.hibernate.engine.spi.CachedNaturalIdValueSource;
+import services.CancelFlight;
 import utils.HibernateUtil;
 
 import javax.servlet.ServletContextListener;
@@ -23,6 +25,8 @@ public class DependencyLoaderListener  implements ServletContextListener {
             config.addAnnotatedClass(Flight.class);
             config.addAnnotatedClass(Ticket.class);
 
+            CancelFlight cf = new CancelFlight();
+            cf.cancelFlight(846754);
 
         } catch (Exception e) {
             e.printStackTrace();

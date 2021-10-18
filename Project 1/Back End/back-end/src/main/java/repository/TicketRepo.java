@@ -71,19 +71,4 @@ public class TicketRepo {
         transaction.commit();
     }
 
-//    public static SessionFactory getSessionFactory() {
-//        return sessionFactory;
-//    }
-//
-//    public static void setSessionFactory(SessionFactory sessionFactory) {
-//        TicketRepo.sessionFactory = sessionFactory;
-//    }
-//
-//    public static Session getSession() {
-//        return session;
-//    }
-//
-//    public static void setSession(Session session) {
-//        TicketRepo.session = session;
-//    }
 }

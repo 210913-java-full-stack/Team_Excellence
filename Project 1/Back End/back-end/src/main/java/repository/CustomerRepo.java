@@ -92,24 +92,4 @@ public class CustomerRepo {
         }
 
     }
-
-
-//    public static SessionFactory getSessionFactory() {
-//        return sessionFactory;
-//    }
-//
-//    public static void setSessionFactory(SessionFactory sessionFactory) {
-//        CustomerRepo.sessionFactory = sessionFactory;
-//    }
-//
-//    public static Session getSession() {
-//        if(session == null){
-//            session = sessionFactory.openSession();
-//        }
-//        return session;
-//    }
-//
-//    public static void setSession(Session session) {
-//        CustomerRepo.session = session;
-//    }
 }
