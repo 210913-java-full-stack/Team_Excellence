@@ -15,6 +15,8 @@ import java.util.List;
 
 
 public class FlightRepo {
+//    private static SessionFactory sessionFactory;
+//    private static Session session;
         /*
     Create a new session and transaction objects in each method because there is no guarantee that there will
     be an active session or transaction everytime the method is called.
@@ -158,6 +160,21 @@ public class FlightRepo {
 //        }finally {
 //            session.close();
 //        }
+//    }
+//    public static SessionFactory getSessionFactory() {
+//        return sessionFactory;
+//    }
+//
+//    public static void setSessionFactory(SessionFactory sessionFactory) {
+//        AdminRepo.sessionFactory = sessionFactory;
+//    }
+//
+//    public static Session getSession() {
+//        return session;
+//    }
+//
+//    public static void setSession(Session session) {
+//        AdminRepo.session = session;
 //    }
 
 
