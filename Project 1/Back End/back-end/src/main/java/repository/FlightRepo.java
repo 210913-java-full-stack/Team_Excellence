@@ -30,7 +30,7 @@ public class FlightRepo {
         query.select(root);
         List<Flight> list =  session.createQuery(query).getResultList();
         t.commit();
-        session.d
+        session.close();
         return list;
     }
 
