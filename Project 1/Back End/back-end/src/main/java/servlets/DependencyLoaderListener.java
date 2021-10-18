@@ -15,7 +15,7 @@ public class DependencyLoaderListener  implements ServletContextListener {
 
 
         try {
-            Configuration config = new Configuration().configure("hibernate.cfg.xml");
+            Configuration config = new Configuration();
             HibernateUtil.setSessionFactory(HibernateUtil.getSessionFactory());
             config.addAnnotatedClass(Customer.class);
             config.addAnnotatedClass(Pilots.class);
@@ -31,12 +31,13 @@ public class DependencyLoaderListener  implements ServletContextListener {
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-        HibernateUtil hibernateUtil = new HibernateUtil();
 
         try {
-            hibernateUtil.getSession().close();
+            HibernateUtil.getSession().close();
         }catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+    
 }

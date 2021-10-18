@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
+import FlightDetailPage from "./FlightDetailPage";
 
 
 
@@ -9,10 +10,12 @@ import axios from 'axios';
 
 
 export default function FlightBoard() {
-
+    const [id, setId] = useState()
     const [flights, setFlights] = useState([]);
+    const [flightDetails, setFlightDetails] = useState(false);
 
     useEffect(() => {
+        document.title = `Welcome Screen`;
         async function getFlights() {
             try {
                 const res = await axios.get("http://localhost:8080/api/flights");
@@ -22,63 +25,93 @@ export default function FlightBoard() {
             }
         }
         getFlights();
-    }, []);
+    });
+
+
+
+    function controlFlightDetails() {
+        setFlightDetails(p => p = !p)
+    }
+
+    function clickDetailButton(id) {
+
+
+        setId(id);
+        controlFlightDetails();
+    }
+
+
+
+
+    function renderFlightList() {
+        return (
+            <section>
+
+                <h1>Checkout our Flights</h1>
+                <table>
+
+                    <tbody>
+                        <tr>
+                            <th>
+                                Flight Id
+                            </th>
+                            <th>Departure</th>
+                            <th>Departur Date</th>
+                            <th>Departure Time</th>
+                            <th>Arrival</th>
+                            <th>Arrival Date</th>
+                            <th>Arrival Time</th>
+                        </tr>
+                        {
+                            flights.map(el => {
+                                return (
+
+                                    <tr key={el.flightId}>
+
+                                        <td>BCON{el.flightId}</td>
+                                        <td>{el.departLocation}</td>
+                                        <td>{el.departDate}</td>
+                                        <td>{el.departTime}</td>
+                                        <td>{el.arriveLocation}</td>
+                                        <td>{el.arriveDate}</td>
+                                        <td>{el.arriveTime}</td>
+                                        <td><button onClick={e => clickDetailButton(e.target.value)} value={el.flightId}>View Flight details</button></td>
+
+                                    </tr>
+
+                                )
+                            })
+                        }
+
+                    </tbody>
+
+
+
+
+                </table>
+            </section>
+        );
+    }
 
 
 
 
 
+    if (flightDetails) {
+        return (
+            <div>
+                <button onClick={controlFlightDetails}>back</button>
+                <FlightDetailPage id={id} />
 
-
-
-
-
-
+            </div>
+        );
+    }
 
     return (
-        <section>
+        <div>
+            {renderFlightList()}
+        </div>
 
-            <h1>Checkout our Flights</h1>
-            <table>
-
-                <tbody>
-                    <tr>
-                        <th>
-                            Flight Id
-                        </th>
-                        <th>Departure</th>
-                        <th>Departur Date</th>
-                        <th>Departure Time</th>
-                        <th>Arrival</th>
-                        <th>Arrival Date</th>
-                        <th>Arrival Time</th>
-                    </tr>
-                    {
-                        flights.map(el => {
-                            return (
-
-                                <tr key={el.flightId}>
-                                    <td>{el.flightId}</td>
-                                    <td>{el.departLocation}</td>
-                                    <td>{el.departDate}</td>
-                                    <td>{el.departTime}</td>
-                                    <td>{el.arriveLocation}</td>
-                                    <td>{el.arriveDate}</td>
-                                    <td>{el.arriveTime}</td>
-                                    <button>Veiw Flight {el.flightId} Details</button>
-                                </tr>
-
-                            )
-                        })
-                    }
-
-                </tbody>
-
-
-
-
-            </table>
-        </section>
 
     );
 

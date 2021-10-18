@@ -12,6 +12,7 @@ function NavigationBar({ setId, setRealUsername, setFirstName, setLastName, setI
 
     const [loginScreen, setLoginScreen] = useState(false)
 
+
     function clickLogout() {
         setId(p => p = null)
         setRealUsername(p => p = null)
