@@ -10,11 +10,11 @@ public class Flight {
     @Id
     @Column(name = "flight_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int flightId;
+    private Integer flightId;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "pilot_id", referencedColumnName = "pilot_id")
-    private Pilots pilots;
+    private Pilot pilot;
 
     @Column(name = "depart")
     private String departLocation;
@@ -48,7 +48,7 @@ public class Flight {
     }
 
 
-    public Flight(int flightId, Pilots pilots, String departLocation, String arriveLocation, String departDate,
+    public Flight(Integer flightId, Pilot pilot, String departLocation, String arriveLocation, String departDate,
                   String departTime, String arriveDate, String arriveTime, Boolean takeOff, List<Ticket> ticketList,
                   Boolean available, Integer maxNumberOfTickets) {
         this.flightId = flightId;
@@ -103,12 +103,12 @@ public class Flight {
         return flightId;
     }
 
-    public Pilots getPilots() {
-        return pilots;
+    public Pilot getPilots() {
+        return pilot;
     }
 
-    public void setPilots(Pilots pilots) {
-        this.pilots = pilots;
+    public void setPilots(Pilot pilot) {
+        this.pilot = pilot;
     }
 
     public String getDepartLocation() {

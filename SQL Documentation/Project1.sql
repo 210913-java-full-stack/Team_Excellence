@@ -52,12 +52,13 @@ flight_id INT AUTO_INCREMENT,
 pilot_id INT,
 depart VARCHAR(50),
 arrive VARCHAR(50),
-depart_time TIME,
-depart_date DATE,
-arrive_time TIME,
-arrive_date DATE,
+depart_time VARCHAR(50),
+depart_date VARCHAR(50),
+arrive_time VARCHAR(50),
+arrive_date VARCHAR(50),
 available BOOLEAN, #True if there are still tickets available and False if the flight has sold out
 take_off BOOLEAN, #True if the flight has taken off and False if it has not taken off
+max_number_of_tickets INT,
 CONSTRAINT PRIMARY KEY (flight_id),
 CONSTRAINT pilot_to_flight FOREIGN KEY (pilot_id) REFERENCES pilots (pilot_id)
 );
@@ -84,13 +85,23 @@ CONSTRAINT ticket_to_customer FOREIGN KEY (customer_id) REFERENCES customers (cu
 ################## TEST CREATING A USER ##################
 ###########################################################
 
-INSERT INTO pilots(username, password, email, first_name, last_name) VALUES ("Britt","password","brittany.lowell@revature.net", "Brittany", "Lowell");
-INSERT INTO flights(pilot_id,depart,arrive,depart_time,depart_date,arrive_time,arrive_date,available,take_off) VALUES (1, "DIA", "LAX","12:30","2021-10-20","11:30","2021-10-20",true,false);
 INSERT INTO customers(customer_id,username, password, email, first_name, last_name) VALUES (1,"TCON", "password", "tyler.conner@revature.net", "Tyler", "Conner");
 INSERT INTO customers(customer_id,username, password, email, first_name, last_name) VALUES (2,"Britt", "password", "brittany.lowell@revature.net", "Brittany", "Lowell");
 INSERT INTO admins(admin_id,username, password, email, first_name, last_name) VALUES (1,"Britt","password", "brittany.lowell@revature.net", "Brittany", "Lowell");
 INSERT INTO tickets(flight_id,customer_id,passenger_first_name,passenger_last_name,passenger_age,checked_in) VALUES (1, 1, "Tyler", "Conner", 30, true);
 INSERT INTO tickets(flight_id,customer_id,passenger_first_name,passenger_last_name,passenger_age,checked_in) VALUES (1, 2, "Brittany", "Lowell", 26, false);
+
+
+INSERT INTO flights (flight_id, pilot_id, depart, arrive, depart_time, depart_date, arrive_time, arrive_date, take_off, max_number_of_tickets) VALUES (846754,1,"ATL","LAX","8:00AM", "10/27/2021", "10:00AM", "10/27/2021", false, 155);
+INSERT INTO flights (flight_id, pilot_id, depart, arrive, depart_time, depart_date, arrive_time, arrive_date, take_off, max_number_of_tickets) VALUES (846755,2,"DEN","NYY","8:00AM", "10/27/2021", "12:00PM", "10/27/2021", false, 155);
+INSERT INTO flights (flight_id, pilot_id, depart, arrive, depart_time, depart_date, arrive_time, arrive_date, take_off, max_number_of_tickets) VALUES (846756,3,"ATL","LAX","8:00AM", "10/27/2021", "11:00AM", "10/27/2021", false, 155);
+INSERT INTO flights (flight_id, pilot_id, depart, arrive, depart_time, depart_date, arrive_time, arrive_date, take_off, max_number_of_tickets) VALUES (846757,4,"ATL","DEN","8:00AM", "10/27/2021", "9:00AM", "10/27/2021", false, 155);
+INSERT INTO flights (flight_id, pilot_id, depart, arrive, depart_time, depart_date, arrive_time, arrive_date, take_off, max_number_of_tickets) VALUES (846758,5,"ATL","LAX","12:00PM", "10/27/2021", "3:00PM", "10/27/2021", false, 155);
+INSERT INTO flights (flight_id, pilot_id, depart, arrive, depart_time, depart_date, arrive_time, arrive_date, take_off, max_number_of_tickets) VALUES (846759,6,"ATL","DEN","8:00AM", "10/27/2021", "10:00AM", "10/27/2021", false, 155);
+INSERT INTO flights (flight_id, pilot_id, depart, arrive, depart_time, depart_date, arrive_time, arrive_date, take_off, max_number_of_tickets) VALUES (846760,7,"NYY","LAX","11:00AM", "10/27/2021", "1:00PM", "10/27/2021", false, 155);
+INSERT INTO flights (flight_id, pilot_id, depart, arrive, depart_time, depart_date, arrive_time, arrive_date, take_off, max_number_of_tickets) VALUES (846761,8,"ATL","LAX","8:00AM", "10/27/2021", "10:00AM", "10/27/2021", false, 155);
+INSERT INTO flights (flight_id, pilot_id, depart, arrive, depart_time, depart_date, arrive_time, arrive_date, take_off, max_number_of_tickets) VALUES (846765,9,"MOB","LAX","8:00AM", "10/27/2021", "1:00PM", "10/27/2021", false, 155);
+INSERT INTO flights (flight_id, pilot_id, depart, arrive, depart_time, depart_date, arrive_time, arrive_date, take_off, max_number_of_tickets) VALUES (846764,10,"LAX","MOB","10:00AM", "10/27/2021", "10:00AM", "10/27/2021", false, 155);
 
 SELECT * FROM customers;
 SELECT * FROM admins;

@@ -1,9 +1,7 @@
 package repository;
 
 import org.hibernate.Session;
-import model.Pilots;
-import org.hibernate.SessionFactory;
-import servlets.DependencyLoaderListener;
+import model.Pilot;
 import utils.HibernateUtil;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -16,23 +14,23 @@ import java.util.List;
 public class PilotRepo {
     private static Session session = HibernateUtil.getSession();
 
-    public static Pilots getPilotById(int id) {
-        return session.get(Pilots.class, id);
+    public static Pilot getPilotById(int id) {
+        return session.get(Pilot.class, id);
     }
 
-    public static List<Pilots> getAllPilots() {
+    public static List<Pilot> getAllPilots() {
         CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<Pilots> query = builder.createQuery(Pilots.class);
-        Root<Pilots> root = query.from(Pilots.class);
+        CriteriaQuery<Pilot> query = builder.createQuery(Pilot.class);
+        Root<Pilot> root = query.from(Pilot.class);
         query.select(root);
         return session.createQuery(query).getResultList();
     }
 
-    public static void saveNewPilot(Pilots pilot) {
+    public static void saveNewPilot(Pilot pilot) {
         session.save(pilot);
     }
 
-    public static void deletePilot(Pilots pilot) {
+    public static void deletePilot(Pilot pilot) {
         session.delete(pilot);
     }
 
