@@ -12,12 +12,40 @@ function NavigationBar({ setId, setRealUsername, setFirstName, setLastName, setI
 
     const [loginScreen, setLoginScreen] = useState(false)
 
+<<<<<<< HEAD
+    function renderSideBar() {
+        if (menuOpen) {
+
+            if (navLoggedIn) {
+                return (
+                    <div className="menu" id="menu">
+                        <ul>
+
+                            <li className="menu-item">Account</li>
+                            <li className="menu-item">Flights</li>
+                        </ul>
+                    </div>
+                );
+            } else {
+                return (
+                    <div className="menu" id="menu">
+                        <ul>
+                            <li className="menu-item"><button onClick={clickLogin}>Login</button></li>
+                            <li className="menu-item">Account</li>
+                            <li className="menu-item">Flights</li>
+                        </ul>
+                    </div>
+                );
+            }
+        }
+=======
     function clickLogout() {
         setId(p => p = null)
         setRealUsername(p => p = null)
         setFirstName(p => p = null)
         setLastName(p => p = null)
         setIsLoggedIn(p => p = false)
+>>>>>>> 7fa589ba8c7d2d7d02cff22bac1442448594c533
     }
 
 
