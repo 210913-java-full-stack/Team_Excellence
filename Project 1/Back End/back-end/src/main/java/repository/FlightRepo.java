@@ -23,6 +23,7 @@ public class FlightRepo {
     }
 
     public static List<Flight> getAllFlights() {
+        session = getSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Flight> query = builder.createQuery(Flight.class);
         Root<Flight> root = query.from(Flight.class);
@@ -58,6 +59,9 @@ public class FlightRepo {
     }
 
     public static Session getSession() {
+        if(session == null){
+            session = sessionFactory.openSession();
+        }
         return session;
     }
 

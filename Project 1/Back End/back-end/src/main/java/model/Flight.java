@@ -15,8 +15,8 @@ public class Flight {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int flightId;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(nullable = false, name = "pilot_id")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "pilot_id", referencedColumnName = "pilot_id")
     private Pilots pilots;
 
     @Column(name = "depart")
