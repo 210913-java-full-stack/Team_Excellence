@@ -21,15 +21,14 @@ public class DependencyLoaderListener  implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sce) {
        session = HibernateUtil.getSession();
 
-        try {
-            Configuration configuration = HibernateUtil.getConfiguration();
-
-            FlightRepo.setSessionFactory(configuration.buildSessionFactory());
-            FlightRepo.setSession(FlightRepo.getSessionFactory().openSession());
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Configuration configuration = HibernateUtil.getConfiguration();
+//
+//            FlightRepo.setSessionFactory(configuration.buildSessionFactory());
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
 
 //        Pilot pilot = new Pilot("Conner", "password", "tyler.conner@revature.net", "Tyler", "Conner");
 //

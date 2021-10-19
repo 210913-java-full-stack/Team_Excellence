@@ -44,24 +44,9 @@ public class TicketRepo {
         transaction.commit();
     }
 
-    public static void updateCheckInStatusUsingCustomerId(int customerId){
-        Session session = HibernateUtil.getSession();
-        Transaction transaction = session.beginTransaction();
-        //Retrieving specific ticket from database with the specified customer ID
-        Ticket ticket = (Ticket) session.get(Ticket.class, customerId);
-        //Update checked in column
-        ticket.setCheckedIn(true); //Sets checkIn to true indicating that the customer has checked in.
-        transaction.commit();//Has database update the checked in column to match the above change
-    }
+    //This method updates the ticket table
+    public static void updateTicket(Ticket ticket){
 
-    public static void updateCheckInStatusUsingTicketId(int ticketId) {
-        Session session = HibernateUtil.getSession();
-        Transaction transaction = session.beginTransaction();
-        //Retrieving specific ticket from database with the specified customer ID
-        Ticket ticket = (Ticket) session.get(Ticket.class, ticketId);
-        //Update checked in column
-        ticket.setCheckedIn(true); //Changes value of the checkedIn object
-        transaction.commit();//Has database update the checked in column to match the above change
     }
 
     public static void deleteTicket(Ticket ticket){
