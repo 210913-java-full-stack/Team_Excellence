@@ -22,19 +22,19 @@ public class DependencyLoaderListener  implements ServletContextListener {
             config.addAnnotatedClass(Ticket.class);
 
             CustomerRepo.setSessionFactory(config.buildSessionFactory());
-            CustomerRepo.setSession(CustomerRepo.getSessionFactory().openSession());
+
 
             PilotRepo.setSessionFactory(config.buildSessionFactory());
-            PilotRepo.setSession(PilotRepo.getSessionFactory().openSession());
+
 
             AdminRepo.setSessionFactory(config.buildSessionFactory());
-            AdminRepo.setSession(AdminRepo.getSessionFactory().openSession());
+
 
             FlightRepo.setSessionFactory(config.buildSessionFactory());
 
 
             TicketRepo.setSessionFactory(config.buildSessionFactory());
-            TicketRepo.setSession(TicketRepo.getSessionFactory().openSession());
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -42,14 +42,6 @@ public class DependencyLoaderListener  implements ServletContextListener {
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-        try {
-            CustomerRepo.getSession().close();
-            PilotRepo.getSession().close();
-            AdminRepo.getSession().close();
-            FlightRepo.getSession().close();
-            TicketRepo.getSession().close();
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
+
     }
 }
