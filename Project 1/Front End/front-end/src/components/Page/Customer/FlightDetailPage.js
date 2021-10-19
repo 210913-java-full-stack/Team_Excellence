@@ -30,7 +30,7 @@ export default function FlightDetailPage({ id }) {
         }
 
         getFlightDetails();
-    }, [])
+    })
 
 
     return (

@@ -11,9 +11,9 @@ public class Flight {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int flightId;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(nullable = false, name = "pilot_id")
-    private Pilot pilots;
+    private Pilot pilot;
 
     @Column(name = "depart")
     private String departLocation;
@@ -42,13 +42,13 @@ public class Flight {
     private int maxNumberOfTickets;
 
 
-    public Flight() {
+    public Flight(){
+
     }
 
-
-    public Flight(int flightId, Pilot pilots, String departLocation, String arriveLocation, String departDate, String departTime, String arriveDate, String arriveTime, Boolean takeOff, Integer maxNumberOfTickets) {
+    public Flight(int flightId, Pilot pilot, String departLocation, String arriveLocation, String departDate, String departTime, String arriveDate, String arriveTime, Boolean takeOff, int maxNumberOfTickets) {
         this.flightId = flightId;
-
+        this.pilot = pilot;
         this.departLocation = departLocation;
         this.arriveLocation = arriveLocation;
         this.departDate = departDate;
@@ -56,10 +56,8 @@ public class Flight {
         this.arriveDate = arriveDate;
         this.arriveTime = arriveTime;
         this.takeOff = takeOff;
-
         this.maxNumberOfTickets = maxNumberOfTickets;
     }
-
 
     public Integer getMaxNumberOfTickets() {
         return maxNumberOfTickets;
@@ -94,11 +92,11 @@ public class Flight {
     }
 
     public Pilot getPilots() {
-        return pilots;
+        return pilot;
     }
 
-    public void setPilots(Pilot pilots) {
-        this.pilots = pilots;
+    public void setPilots(Pilot pilot) {
+        this.pilot = pilot;
     }
 
     public String getDepartLocation() {
