@@ -1,5 +1,6 @@
 package repository;
 
+import model.Flight;
 import org.hibernate.Session;
 import model.Ticket;
 import org.hibernate.Transaction;
@@ -28,6 +29,7 @@ public class TicketRepo {
 
     public static List<Ticket> getAllTickets(){
         Session session = HibernateUtil.getSession();
+
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Ticket> query = builder.createQuery(Ticket.class);
         Root<Ticket> root = query.from(Ticket.class);
@@ -41,18 +43,26 @@ public class TicketRepo {
         Transaction transaction = session.beginTransaction();
 
         session.save(ticket);
-        transaction.commit();
+
+        transaction.commit();//Has database update the available column to match the above change
     }
 
     //This method updates the ticket table
     public static void updateTicket(Ticket ticket){
+        Session session = HibernateUtil.getSession();
+        Transaction transaction = session.beginTransaction();
 
+        session.update(ticket);
+
+        transaction.commit();//Has database update the available column to match the above change
     }
 
     public static void deleteTicket(Ticket ticket){
         Session session = HibernateUtil.getSession();
         Transaction transaction = session.beginTransaction();
+
         session.delete(ticket);
+
         transaction.commit();
     }
 

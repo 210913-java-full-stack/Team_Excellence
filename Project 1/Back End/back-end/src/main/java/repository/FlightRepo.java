@@ -33,7 +33,9 @@ public class FlightRepo {
                 t.rollback();
             }
         } finally {
-            session.close();
+            if (session!= null) {
+                session.close();
+            }
         }
 
         return flight;
@@ -76,7 +78,7 @@ public class FlightRepo {
             FlightRepo.setSession(FlightRepo.getSessionFactory().openSession());
             session = FlightRepo.getSession();
             t = session.beginTransaction();
-            System.out.println(t.getStatus());
+
 
             session.save(flight);
             t.commit();

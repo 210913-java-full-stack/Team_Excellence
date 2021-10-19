@@ -35,6 +35,7 @@ public class DisplayFlightSchedule {
 
     //Displays pilot's schedule for the day. Needs pilot ID and "today's date" ie the date that the pilot is logging in.
     //TODO: Consider changing the return type after implementing Hibernate
+
     public static void displayPilotSchedule(Pilot pilot){
         //TODO: Write code after implementing Hibernate
     }

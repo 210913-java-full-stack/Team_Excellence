@@ -24,6 +24,7 @@ public class DependencyLoaderListener  implements ServletContextListener {
        session = HibernateUtil.getSession();
 
         try {
+
             Configuration configuration = HibernateUtil.getConfiguration();
 
             FlightRepo.setSessionFactory(configuration.buildSessionFactory());
@@ -56,7 +57,6 @@ public class DependencyLoaderListener  implements ServletContextListener {
 //        Transaction tx2 = session.beginTransaction();
 //        scheduleFlight.createNewFlight(flight);
 //        tx2.commit();
-
 
 //        CancelFlight cf = new CancelFlight();
 //        cf.cancelFlight(846754);

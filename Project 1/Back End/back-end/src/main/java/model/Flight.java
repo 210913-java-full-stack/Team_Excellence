@@ -47,12 +47,13 @@ public class Flight {
     @JsonIgnore
     private List<Ticket> ticketList;
 
-    public Flight() {
-    }
+    public Flight(){
 
+    }
 
     public Flight(Integer flightId, Pilot pilot, String departLocation, String arriveLocation, String departDate,
                   String departTime, String arriveDate, String arriveTime, Boolean takeOff, Integer maxNumberOfTickets) {
+
         this.flightId = flightId;
         this.pilot = pilot;
         this.departLocation = departLocation;
@@ -62,7 +63,6 @@ public class Flight {
         this.arriveDate = arriveDate;
         this.arriveTime = arriveTime;
         this.takeOff = takeOff;
-        this.maxNumberOfTickets = maxNumberOfTickets;
     }
 
     public Integer getFlightId() {

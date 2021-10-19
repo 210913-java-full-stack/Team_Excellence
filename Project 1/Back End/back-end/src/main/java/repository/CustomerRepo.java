@@ -1,5 +1,6 @@
 package repository;
 
+import model.Flight;
 import org.hibernate.Session;
 import model.Customer;
 import org.hibernate.SessionFactory;
@@ -16,42 +17,30 @@ import java.util.List;
 public class CustomerRepo {
     private static Session session = HibernateUtil.getSession();
 
-
-    public static void init() {
-
-    }
-
     public static Customer getCustomerById(Integer id) {
-        return session.get(Customer.class, id);
+        Session session = HibernateUtil.getSession();
+        Transaction transaction = session.beginTransaction();
+
+        Customer customer = session.get(Customer.class, id);
+
+        transaction.commit();//Has database update the available column to match the above change
+        return customer;
     }
 
     public static Customer login(String username, String password) {
+        Session session = HibernateUtil.getSession();
+        Transaction transaction = session.beginTransaction();
 
+        transaction.commit();//Has database update the available column to match the above change
 
-        Customer user = null;
-
-        try{
-
-
-
-
-        user = (Customer) session.createQuery("FROM Customer c WHERE c.username = :userName").setParameter("userName", username).uniqueResult();
+        Customer user = (Customer) session.createQuery("FROM Customer c WHERE c.username = :userName").setParameter("userName", username).uniqueResult();
+        //I'm going to test if the below code does the same thing as the line above
+        //Customer customer = session.get(Customer.class, username);
 
         if (user != null && user.getPassword().equals(password)){
 
             return user;
         }
-
-
-
-
-        } catch (Exception e){
-
-            user = null;
-            e.printStackTrace();
-        }
-
-
         return user;
     }
 
@@ -59,37 +48,35 @@ public class CustomerRepo {
 
 
     public static List<Customer> getAllCustomers() {
+        Session session = HibernateUtil.getSession();
+        Transaction transaction = session.beginTransaction();
+
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Customer> query = builder.createQuery(Customer.class);
         Root<Customer> root = query.from(Customer.class);
         query.select(root);
-        return session.createQuery(query).getResultList();
+        List list = session.createQuery(query).getResultList();
+
+        transaction.commit();//Has database update the available column to match the above change
+
+        return list;
     }
 
     public static void saveNewCustomer( Customer customer){
-        try {
-            Transaction t = session.beginTransaction();
-            System.out.println(t.getStatus());
+        Session session = HibernateUtil.getSession();
+        Transaction transaction = session.beginTransaction();
 
-            session.save(customer);
-            t.commit();
-        } catch(Exception e){
-            e.printStackTrace();
-        }
+        session.save(customer);
 
+        transaction.commit();//Has database update the available column to match the above change
     }
 
     public static void deleteCustomer(Customer customer) {
-        try {
-            Transaction t = session.beginTransaction();
-            System.out.println(t.getStatus());
+        Session session = HibernateUtil.getSession();
+        Transaction transaction = session.beginTransaction();
 
-            session.delete(customer);
-            t.commit();
+        session.delete(customer);
 
-        } catch(Exception e){
-            e.printStackTrace();
-        }
-
+        transaction.commit();//Has database update the available column to match the above change
     }
 }

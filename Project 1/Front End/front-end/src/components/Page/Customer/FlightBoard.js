@@ -16,16 +16,22 @@ export default function FlightBoard() {
 
     useEffect(() => {
         document.title = `Welcome Screen`;
-        async function getFlights() {
+        (async function getFlights() {
             try {
                 const res = await axios.get("http://localhost:8080/api/flights");
                 setFlights(res.data);
             } catch (err) {
                 console.log(err)
             }
+<<<<<<< HEAD
         }
         getFlights();
     },[]);
+=======
+        })();
+
+    });
+>>>>>>> 94fa3c1434d5f30a59314a39e55b5ab4b9ef67e9
 
 
 
