@@ -18,19 +18,28 @@ public class FlightRepoWHibernateUtil {
 
     public static Flight getFlightById(int id) {
         Session session = HibernateUtil.getSession();
-        return session.get(Flight.class, id);
+
+        Flight flight = session.get(Flight.class,id);
+
+        return flight;
+
     }
 
     public static List<Flight> getAllFlights() {
         Session session = HibernateUtil.getSession();
+
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Flight> query = builder.createQuery(Flight.class);
         Root<Flight> root = query.from(Flight.class);
         query.select(root);
-        return session.createQuery(query).getResultList();
+        List<Flight> list = session.createQuery(query).getResultList();
+
+
+        return list;
     }
 
     public static void saveNewFlight(Flight flight) {
+
         Session session = HibernateUtil.getSession();
         Transaction transaction = session.beginTransaction();
 
@@ -59,6 +68,7 @@ public class FlightRepoWHibernateUtil {
     public static void updateFlight(Flight flight) {
         Session session = HibernateUtil.getSession();
         Transaction transaction = session.beginTransaction();
-        session.update(flight);
+        session.merge(flight);
+        transaction.commit();
     }
 }
