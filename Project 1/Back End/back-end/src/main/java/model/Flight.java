@@ -1,5 +1,7 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
@@ -42,7 +44,8 @@ public class Flight {
     private int maxNumberOfTickets;
 
     @OneToMany(mappedBy = "flight", fetch = FetchType.LAZY)
-    private List<Ticket> ticketList = new ArrayList<>();
+    @JsonIgnore
+    private List<Ticket> ticketList;
 
     public Flight() {
     }

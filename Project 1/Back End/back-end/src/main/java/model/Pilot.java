@@ -1,6 +1,8 @@
 package model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,8 +30,9 @@ public class Pilot {
     @Column(name = "last_name")
     private String lastName;
 
-    @OneToMany(mappedBy = "pilot", fetch = FetchType.LAZY)
-    private List<Flight> flightList = new ArrayList<>();
+    @OneToMany(mappedBy = "pilot")
+    @JsonIgnore
+    private List<Flight> flightList;
 
     public Pilot() {
     }

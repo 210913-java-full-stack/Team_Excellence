@@ -15,6 +15,7 @@ import utils.HibernateUtil;
 
 import javax.servlet.ServletContextListener;
 import javax.servlet.ServletContextEvent;
+import java.util.List;
 
 public class DependencyLoaderListener  implements ServletContextListener {
     Session session;
@@ -22,14 +23,17 @@ public class DependencyLoaderListener  implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sce) {
        session = HibernateUtil.getSession();
 
-//        try {
-//            Configuration configuration = HibernateUtil.getConfiguration();
+        try {
+            Configuration configuration = HibernateUtil.getConfiguration();
+
+            FlightRepo.setSessionFactory(configuration.buildSessionFactory());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 //
-//            FlightRepo.setSessionFactory(configuration.buildSessionFactory());
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+//        List<Flight> list = FlightRepo.getAllFlights();
+//        System.out.println(list);
 
 //        Pilot pilot = new Pilot("Conner", "password", "tyler.conner@revature.net", "Tyler", "Conner");
 //

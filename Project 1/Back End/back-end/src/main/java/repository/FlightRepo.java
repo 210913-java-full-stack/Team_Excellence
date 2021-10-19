@@ -1,5 +1,6 @@
 package repository;
 
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import model.Flight;
@@ -51,6 +52,7 @@ public class FlightRepo {
             Root<Flight> root = query.from(Flight.class);
             query.select(root).where(builder.equal(root.get("takeOff"), false));
             list = session.createQuery(query).getResultList();
+            //Hibernate.initialize(list);
             t.commit();
 
 
