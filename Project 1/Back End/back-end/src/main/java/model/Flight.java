@@ -14,7 +14,7 @@ public class Flight {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "pilot_id", referencedColumnName = "pilot_id")
-    private Pilot pilot;
+    private int pilotId;
 
     @Column(name = "depart")
     private String departLocation;
@@ -48,11 +48,11 @@ public class Flight {
     }
 
 
-    public Flight(Integer flightId, Pilot pilot, String departLocation, String arriveLocation, String departDate,
-                  String departTime, String arriveDate, String arriveTime, Boolean takeOff, List<Ticket> ticketList,
+    public Flight(Integer flightId, Integer pilotId, String departLocation, String arriveLocation, String departDate,
+                  String departTime, String arriveDate, String arriveTime, Boolean takeOff,
                   Boolean available, Integer maxNumberOfTickets) {
         this.flightId = flightId;
-
+        this.pilotId = pilotId;
         this.departLocation = departLocation;
         this.arriveLocation = arriveLocation;
         this.departDate = departDate;
@@ -64,12 +64,20 @@ public class Flight {
         this.maxNumberOfTickets = maxNumberOfTickets;
     }
 
-    /**
-     * Delete after fixing flight servlet
-     */
-    public Flight(int i, String atl, String mob, String s, int i1, String s1, int i2, boolean b, int i3) {
+    public Flight(Integer pilotId, String departLocation, String arriveLocation, String departDate,
+                  String departTime, String arriveDate, String arriveTime, Boolean takeOff,
+                  Boolean available, Integer maxNumberOfTickets) {
+        this.pilotId = pilotId;
+        this.departLocation = departLocation;
+        this.arriveLocation = arriveLocation;
+        this.departDate = departDate;
+        this.departTime = departTime;
+        this.arriveDate = arriveDate;
+        this.arriveTime = arriveTime;
+        this.takeOff = takeOff;
+        this.available = available;
+        this.maxNumberOfTickets = maxNumberOfTickets;
     }
-
 
     public Integer getMaxNumberOfTickets() {
         return maxNumberOfTickets;
@@ -87,7 +95,7 @@ public class Flight {
         this.takeOff = takeOff;
     }
 
-    public void setFlightId(int flightId) {
+    public void setFlightId(Integer flightId) {
         this.flightId = flightId;
     }
 
@@ -103,12 +111,12 @@ public class Flight {
         return flightId;
     }
 
-    public Pilot getPilots() {
-        return pilot;
+    public int getPilotId() {
+        return pilotId;
     }
 
-    public void setPilots(Pilot pilot) {
-        this.pilot = pilot;
+    public void setPilotId(int pilotId) {
+        this.pilotId = pilotId;
     }
 
     public String getDepartLocation() {
@@ -159,4 +167,5 @@ public class Flight {
     public void setAvailable(Boolean available) {
         this.available = available;
     }
+
 }

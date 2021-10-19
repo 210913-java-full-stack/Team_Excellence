@@ -2,6 +2,7 @@ package repository;
 
 import org.hibernate.Session;
 import model.Pilot;
+import org.hibernate.Transaction;
 import utils.HibernateUtil;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -12,13 +13,13 @@ import java.util.List;
 
 
 public class PilotRepo {
-    private static Session session = HibernateUtil.getSession();
+    private Session session = HibernateUtil.getSession();
 
-    public static Pilot getPilotById(int id) {
+    public Pilot getPilotById(int id) {
         return session.get(Pilot.class, id);
     }
 
-    public static List<Pilot> getAllPilots() {
+    public List<Pilot> getAllPilots() {
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Pilot> query = builder.createQuery(Pilot.class);
         Root<Pilot> root = query.from(Pilot.class);
@@ -26,12 +27,18 @@ public class PilotRepo {
         return session.createQuery(query).getResultList();
     }
 
-    public static void saveNewPilot(Pilot pilot) {
+    public void saveNewPilot(Pilot pilot) {
+        Session session = HibernateUtil.getSession();
+        Transaction transaction = session.beginTransaction();
         session.save(pilot);
+        transaction.commit();
     }
 
-    public static void deletePilot(Pilot pilot) {
+    public void deletePilot(Pilot pilot) {
+        Session session = HibernateUtil.getSession();
+        Transaction transaction = session.beginTransaction();
         session.delete(pilot);
+        transaction.commit();
     }
 
 }

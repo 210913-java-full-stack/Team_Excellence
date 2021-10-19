@@ -9,15 +9,15 @@ public class Ticket {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int ticketId;
+    private Integer ticketId;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinColumn(nullable = false)
-    private List<Flight> flightId;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="flight_id", referencedColumnName="flight_id")
+    private int flightId;
 
-    @OneToOne
-    @JoinColumn(nullable = false)
-    private Customer customerId;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="customer_id", referencedColumnName="customer_id")
+    private int customerId;
 
     @Column(name = "passenger_first_name")
     private String passengerFirstName;
@@ -37,7 +37,7 @@ public class Ticket {
     public Ticket() {
     }
 
-    public Ticket(int ticketId, List<Flight> flightId, Customer customerId, String passengerFirstName, String passengerLastName, Integer passengerAge, Boolean checkedIn) {
+    public Ticket(Integer ticketId, int flightId, int customerId, String passengerFirstName, String passengerLastName, Integer passengerAge, Boolean checkedIn) {
         this.ticketId = ticketId;
         this.flightId = flightId;
         this.customerId = customerId;
@@ -51,23 +51,23 @@ public class Ticket {
         return ticketId;
     }
 
-    public void setTicketId(int ticketId) {
+    public void setTicketId(Integer ticketId) {
         this.ticketId = ticketId;
     }
 
-    public List<Flight> getFlightId() {
+    public int getFlightId() {
         return flightId;
     }
 
-    public void setFlightId(List<Flight> flightId) {
+    public void setFlightId(int flightId) {
         this.flightId = flightId;
     }
 
-    public Customer getCustomerId() {
+    public int getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(Customer customerId) {
+    public void setCustomerId(int customerId) {
         this.customerId = customerId;
     }
 

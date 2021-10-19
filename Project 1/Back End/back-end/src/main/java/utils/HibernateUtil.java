@@ -18,7 +18,7 @@ public class HibernateUtil {
         configuration.addAnnotatedClass(Ticket.class);
 
         //this is a test entity for test purposes
-        configuration.addAnnotatedClass(TestEntity.class);
+        //configuration.addAnnotatedClass(TestEntity.class);
     }
 
     public static SessionFactory getSessionFactory() {

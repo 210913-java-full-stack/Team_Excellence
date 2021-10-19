@@ -38,6 +38,14 @@ public class Pilot {
         this.lastName = lastName;
     }
 
+    public Pilot(String username, String password, String email, String firstName, String lastName) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
 
     public int getId() {
         return id;
