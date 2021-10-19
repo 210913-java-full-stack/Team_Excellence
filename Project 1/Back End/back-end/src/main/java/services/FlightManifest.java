@@ -1,6 +1,6 @@
 package services;
 
-public class FlightInformation {
+public class FlightManifest {
 
     //Allows admin to view all customers on a specific flight
     public static void customersOnFlight(){

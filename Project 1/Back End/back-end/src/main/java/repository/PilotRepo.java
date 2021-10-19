@@ -1,8 +1,9 @@
 package repository;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import model.Pilots;
+import model.Pilot;
+import org.hibernate.Transaction;
+import utils.HibernateUtil;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -12,42 +13,32 @@ import java.util.List;
 
 
 public class PilotRepo {
-    private static SessionFactory sessionFactory;
-    private static Session session;
+    private Session session = HibernateUtil.getSession();
 
-    public static Pilots getPilotById(int id) {
-        return session.get(Pilots.class, id);
+    public Pilot getPilotById(int id) {
+        return session.get(Pilot.class, id);
     }
 
-    public static List<Pilots> getAllPilots() {
+    public List<Pilot> getAllPilots() {
         CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<Pilots> query = builder.createQuery(Pilots.class);
-        Root<Pilots> root = query.from(Pilots.class);
+        CriteriaQuery<Pilot> query = builder.createQuery(Pilot.class);
+        Root<Pilot> root = query.from(Pilot.class);
         query.select(root);
         return session.createQuery(query).getResultList();
     }
 
-    public static void saveNewPilot(Pilots pilot) {
+    public void saveNewPilot(Pilot pilot) {
+        Session session = HibernateUtil.getSession();
+        Transaction transaction = session.beginTransaction();
         session.save(pilot);
+        transaction.commit();
     }
 
-    public static void deletePilot(Pilots pilot) {
+    public void deletePilot(Pilot pilot) {
+        Session session = HibernateUtil.getSession();
+        Transaction transaction = session.beginTransaction();
         session.delete(pilot);
+        transaction.commit();
     }
 
-    public static SessionFactory getSessionFactory() {
-        return sessionFactory;
-    }
-
-    public static void setSessionFactory(SessionFactory sessionFactory) {
-        PilotRepo.sessionFactory = sessionFactory;
-    }
-
-    public static Session getSession() {
-        return session;
-    }
-
-    public static void setSession(Session session) {
-        PilotRepo.session = session;
-    }
 }

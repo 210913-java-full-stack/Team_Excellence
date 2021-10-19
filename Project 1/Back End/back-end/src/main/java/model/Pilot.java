@@ -2,14 +2,16 @@ package model;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "pilots")
-public class Pilots {
+public class Pilot {
     @Id
     @Column(name = "pilot_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column
     private String username;
@@ -26,10 +28,13 @@ public class Pilots {
     @Column(name = "last_name")
     private String lastName;
 
-    public Pilots() {
+    @OneToMany(mappedBy = "pilot", fetch = FetchType.LAZY)
+    private List<Flight> flightList = new ArrayList<>();
+
+    public Pilot() {
     }
 
-    public Pilots(int id, String username, String password, String email, String firstName, String lastName) {
+    public Pilot(Integer id, String username, String password, String email, String firstName, String lastName) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -38,12 +43,19 @@ public class Pilots {
         this.lastName = lastName;
     }
 
+    public Pilot(String username, String password, String email, String firstName, String lastName) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -85,5 +97,13 @@ public class Pilots {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public List<Flight> getFlightList() {
+        return flightList;
+    }
+
+    public void setFlightList(List<Flight> flightList) {
+        this.flightList = flightList;
     }
 }

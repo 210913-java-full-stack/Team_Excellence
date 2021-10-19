@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 repository\AdminRepo.class
 utils\FlightAvailability.class
 repository\GenericDAO.class
@@ -15,6 +16,27 @@ model\Customer.class
 servlets\CustomerServlet.class
 Driver.class
 servlets\CORSFilter.class
+=======
+utils\FileLogger.class
+repository\AdminRepo.class
+utils\FlightAvailability.class
+services\CancelFlight.class
+servlets\PilotServlet.class
+servlets\SupportsPatch.class
+servlets\FlightDetailServlet.class
+utils\ConnectionManager.class
+repository\FlightRepoWHibernateUtil.class
+services\Login.class
+repository\PilotRepo.class
+utils\HibernateUtil.class
+model\Ticket.class
+model\Pilot.class
+model\Customer.class
+servlets\CustomerServlet.class
+servlets\CORSFilter.class
+services\FlightManifest.class
+model\TestEntity.class
+>>>>>>> Britt
 repository\TicketRepo.class
 servlets\DependencyLoaderListener.class
 servlets\AdminServlet.class
@@ -22,10 +44,15 @@ servlets\LoginServlet.class
 services\TakeOff.class
 repository\CustomerRepo.class
 repository\FlightRepo.class
+<<<<<<< HEAD
 services\EditFlight.class
 services\CheckIn.class
 utils\NumberOfTicketsAvailable.class
 model\Pilots.class
+=======
+services\CheckIn.class
+utils\NumberOfTicketsAvailable.class
+>>>>>>> Britt
 model\Flight.class
 services\PurchaseTicket.class
 services\ScheduleFlight.class

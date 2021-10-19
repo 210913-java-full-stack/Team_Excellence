@@ -1,8 +1,10 @@
 package repository;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import model.Customer;
+import org.hibernate.SessionFactory;
+import servlets.DependencyLoaderListener;
+import utils.HibernateUtil;
 import org.hibernate.Transaction;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -12,9 +14,7 @@ import java.util.List;
 
 
 public class CustomerRepo {
-
-    private static SessionFactory sessionFactory;
-    private static Session session;
+    private static Session session = HibernateUtil.getSession();
 
 
     public static void init() {
@@ -91,22 +91,5 @@ public class CustomerRepo {
             e.printStackTrace();
         }
 
-    }
-
-
-    public static SessionFactory getSessionFactory() {
-        return sessionFactory;
-    }
-
-    public static void setSessionFactory(SessionFactory sessionFactory) {
-        CustomerRepo.sessionFactory = sessionFactory;
-    }
-
-    public static Session getSession() {
-        return session;
-    }
-
-    public static void setSession(Session session) {
-        CustomerRepo.session = session;
     }
 }

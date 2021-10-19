@@ -1,6 +1,8 @@
 package model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="customers")
@@ -9,7 +11,7 @@ public class Customer {
     @Id
     @Column(name = "customer_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column
     private String username;
@@ -26,10 +28,13 @@ public class Customer {
     @Column(name = "last_name")
     private String lastName;
 
+    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
+    private List<Ticket> ticketList = new ArrayList<>();
+
     public Customer() {
     }
 
-    public Customer(int id, String username, String password, String email, String firstName, String lastName) {
+    public Customer(Integer id, String username, String password, String email, String firstName, String lastName) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -42,7 +47,7 @@ public class Customer {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -84,5 +89,13 @@ public class Customer {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public List<Ticket> getTicketList() {
+        return ticketList;
+    }
+
+    public void setTicketList(List<Ticket> ticketList) {
+        this.ticketList = ticketList;
     }
 }

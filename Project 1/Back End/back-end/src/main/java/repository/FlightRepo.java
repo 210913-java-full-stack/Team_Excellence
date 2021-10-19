@@ -16,9 +16,7 @@ public class FlightRepo {
     private static Session session;
 
 
-
-    public static Flight getFlightbyId(int id) {
-
+    public static Flight getFlightById(int id) {
         Flight flight = null;
         Transaction t = null;
         Session session = null;
@@ -36,7 +34,6 @@ public class FlightRepo {
         } finally {
             session.close();
         }
-
 
         return flight;
     }

@@ -1,8 +1,9 @@
 package repository;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import model.Admin;
+import org.hibernate.SessionFactory;
+import utils.HibernateUtil;
 
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -11,8 +12,7 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 public class AdminRepo {
-    private static SessionFactory sessionFactory;
-    private static Session session;
+    private static Session session = HibernateUtil.getSession();
 
 
     public static Admin getAdminById(int id) {
@@ -27,27 +27,11 @@ public class AdminRepo {
         return session.createQuery(query).getResultList();
     }
 
-    public static void saveAdmin(Admin admin){
+    public static void saveAdmin(Admin admin) {
         session.save(admin);
     }
 
-    public static void deleteAdmin(Admin admin){
+    public static void deleteAdmin(Admin admin) {
         session.delete(admin);
-    }
-
-    public static SessionFactory getSessionFactory() {
-        return sessionFactory;
-    }
-
-    public static void setSessionFactory(SessionFactory sessionFactory) {
-        AdminRepo.sessionFactory = sessionFactory;
-    }
-
-    public static Session getSession() {
-        return session;
-    }
-
-    public static void setSession(Session session) {
-        AdminRepo.session = session;
     }
 }
