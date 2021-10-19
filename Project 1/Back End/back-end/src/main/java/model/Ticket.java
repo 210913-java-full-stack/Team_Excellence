@@ -1,5 +1,6 @@
 package model;
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -11,13 +12,13 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer ticketId;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="flight_id", referencedColumnName="flight_id")
-    private int flightId;
+    @ManyToOne
+    @JoinColumn(name="flight_id", referencedColumnName="flight_id", nullable = false)
+    private Flight flight;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="customer_id", referencedColumnName="customer_id")
-    private int customerId;
+    @ManyToOne
+    @JoinColumn(name="customer_id", referencedColumnName="customer_id", nullable = false)
+    private Customer customer;
 
     @Column(name = "passenger_first_name")
     private String passengerFirstName;
@@ -31,16 +32,11 @@ public class Ticket {
     @Column(name = "checked_in")
     private Boolean checkedIn;
 
-
-
-
     public Ticket() {
     }
 
-    public Ticket(Integer ticketId, int flightId, int customerId, String passengerFirstName, String passengerLastName, Integer passengerAge, Boolean checkedIn) {
+    public Ticket(Integer ticketId, Flight flight, Customer customer, String passengerFirstName, String passengerLastName, Integer passengerAge, Boolean checkedIn) {
         this.ticketId = ticketId;
-        this.flightId = flightId;
-        this.customerId = customerId;
         this.passengerFirstName = passengerFirstName;
         this.passengerLastName = passengerLastName;
         this.passengerAge = passengerAge;
@@ -55,20 +51,20 @@ public class Ticket {
         this.ticketId = ticketId;
     }
 
-    public int getFlightId() {
-        return flightId;
+    public Flight getFlight() {
+        return flight;
     }
 
-    public void setFlightId(int flightId) {
-        this.flightId = flightId;
+    public void setFlight(Flight flight) {
+        this.flight = flight;
     }
 
-    public int getCustomerId() {
-        return customerId;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     public String getPassengerFirstName() {

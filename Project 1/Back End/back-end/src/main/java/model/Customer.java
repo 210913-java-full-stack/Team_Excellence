@@ -1,6 +1,8 @@
 package model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="customers")
@@ -25,6 +27,9 @@ public class Customer {
 
     @Column(name = "last_name")
     private String lastName;
+
+    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
+    private List<Ticket> ticketList = new ArrayList<>();
 
     public Customer() {
     }
@@ -84,5 +89,13 @@ public class Customer {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public List<Ticket> getTicketList() {
+        return ticketList;
+    }
+
+    public void setTicketList(List<Ticket> ticketList) {
+        this.ticketList = ticketList;
     }
 }

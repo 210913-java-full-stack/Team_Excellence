@@ -18,6 +18,10 @@ public class ScheduleFlight {
             FlightRepo.updateFlight(flight);
         }
 
+        /*
+        TODO: first check if the given pilot id matches a pilot in the pilot table
+        TODO: save that pilot to flight.setPilot and then
+         */
     }
 
 

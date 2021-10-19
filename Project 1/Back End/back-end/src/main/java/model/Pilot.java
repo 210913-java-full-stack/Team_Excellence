@@ -2,6 +2,8 @@ package model;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "pilots")
@@ -26,6 +28,9 @@ public class Pilot {
     @Column(name = "last_name")
     private String lastName;
 
+    @OneToMany(mappedBy = "pilot", fetch = FetchType.LAZY)
+    private List<Flight> flightList = new ArrayList<>();
+
     public Pilot() {
     }
 
@@ -46,12 +51,11 @@ public class Pilot {
         this.lastName = lastName;
     }
 
-
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -93,5 +97,13 @@ public class Pilot {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public List<Flight> getFlightList() {
+        return flightList;
+    }
+
+    public void setFlightList(List<Flight> flightList) {
+        this.flightList = flightList;
     }
 }
