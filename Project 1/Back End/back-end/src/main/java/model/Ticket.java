@@ -12,11 +12,11 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer ticketId;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="flight_id", referencedColumnName="flight_id", nullable = false)
     private Flight flight;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="customer_id", referencedColumnName="customer_id", nullable = false)
     private Customer customer;
 

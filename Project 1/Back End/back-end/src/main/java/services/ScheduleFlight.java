@@ -10,8 +10,14 @@ public class ScheduleFlight {
 
     //Allows the admin to create new flights
     public void createNewFlight(Flight flight){
+        //Associate flight row with a pilot
+
+
+        //Check if flight id already exists
         int flightId = flight.getFlightId();
         Flight flightDatabase = FlightRepo.getFlightById(flightId);
+
+        //If the flight id exists in the database, update that row else insert a new row
         if(flightDatabase == null){
             FlightRepo.saveNewFlight(flight);
         } else{
