@@ -19,7 +19,17 @@ public class DependencyLoaderListener  implements ServletContextListener {
     Session session;
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        session = HibernateUtil.getSession();
+       session = HibernateUtil.getSession();
+
+        try {
+            Configuration configuration = HibernateUtil.getConfiguration();
+
+            FlightRepo.setSessionFactory(configuration.buildSessionFactory());
+            FlightRepo.setSession(FlightRepo.getSessionFactory().openSession());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 //        Pilot pilot = new Pilot("Conner", "password", "tyler.conner@revature.net", "Tyler", "Conner");
 //
@@ -72,6 +82,7 @@ public class DependencyLoaderListener  implements ServletContextListener {
 
         try {
             HibernateUtil.getSession().close();
+            FlightRepo.getSession().close();
         } catch (Exception e) {
             e.printStackTrace();
         }

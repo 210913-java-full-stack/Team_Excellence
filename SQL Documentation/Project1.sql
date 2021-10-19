@@ -6,12 +6,12 @@ CREATE DATABASE Brittany_DB;
 
 USE Brittany_DB;
 
-DROP TABLE IF EXISTS tickets_flights;
-DROP TABLE IF EXISTS admins;
-DROP TABLE IF EXISTS tickets;
-DROP TABLE IF EXISTS customers;
-DROP TABLE IF EXISTS flights;
-DROP TABLE IF EXISTS pilots;
+-- DROP TABLE IF EXISTS tickets_flights;
+-- DROP TABLE IF EXISTS admins;
+-- DROP TABLE IF EXISTS tickets;
+-- DROP TABLE IF EXISTS customers;
+-- DROP TABLE IF EXISTS flights;
+-- DROP TABLE IF EXISTS pilots;
 
 
 CREATE TABLE customers 
@@ -90,7 +90,7 @@ INSERT INTO customers(customer_id,username, password, email, first_name, last_na
 INSERT INTO customers(customer_id,username, password, email, first_name, last_name) VALUES (2,"Britt", "password", "brittany.lowell@revature.net", "Brittany", "Lowell");
 INSERT INTO admins(admin_id,username, password, email, first_name, last_name) VALUES (1,"Britt","password", "brittany.lowell@revature.net", "Brittany", "Lowell");
 
-INSERT INTO pilots VALUES (11,"Pilot1","password","e","Joe","Neman");
+INSERT INTO pilots VALUES (1,"Pilot1","password","e","Joe","Neman");
 INSERT INTO pilots VALUES (2,"P2","p","e","Tyler","Neman");
 INSERT INTO pilots VALUES (3,"P3","p","e","Ron","Neman");
 INSERT INTO pilots VALUES (4,"P4","p","e","Jane","Neman");

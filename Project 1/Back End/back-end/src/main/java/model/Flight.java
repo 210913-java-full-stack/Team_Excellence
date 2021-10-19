@@ -38,9 +38,6 @@ public class Flight {
     @Column(name = "take_off")
     private Boolean takeOff;
 
-    @Column(name = "available")
-    private Boolean available;
-
     @Column(name = "max_number_of_tickets")
     private int maxNumberOfTickets;
 
@@ -52,8 +49,7 @@ public class Flight {
 
 
     public Flight(Integer flightId, Pilot pilot, String departLocation, String arriveLocation, String departDate,
-                  String departTime, String arriveDate, String arriveTime, Boolean takeOff,
-                  Boolean available, Integer maxNumberOfTickets) {
+                  String departTime, String arriveDate, String arriveTime, Boolean takeOff, Integer maxNumberOfTickets) {
         this.flightId = flightId;
         this.pilot = pilot;
         this.departLocation = departLocation;
@@ -63,7 +59,6 @@ public class Flight {
         this.arriveDate = arriveDate;
         this.arriveTime = arriveTime;
         this.takeOff = takeOff;
-        this.available = available;
         this.maxNumberOfTickets = maxNumberOfTickets;
     }
 
@@ -137,14 +132,6 @@ public class Flight {
 
     public void setTakeOff(Boolean takeOff) {
         this.takeOff = takeOff;
-    }
-
-    public Boolean getAvailable() {
-        return available;
-    }
-
-    public void setAvailable(Boolean available) {
-        this.available = available;
     }
 
     public int getMaxNumberOfTickets() {

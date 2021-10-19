@@ -48,19 +48,6 @@ public class FlightRepoWHibernateUtil {
         transaction.commit();//Has database update the take_off column to match the above change
     }
 
-    public static void updateAvailable(int flightId, boolean ticketsLeft) {
-        Session session = HibernateUtil.getSession();
-        Transaction transaction = session.beginTransaction();
-        Flight flight = (Flight) session.get(Flight.class, flightId);
-        //Update the available column
-        if (ticketsLeft) {
-            flight.setAvailable(true); //If there are tickets left, then the flight is still available.
-        } else {
-            flight.setAvailable(false);//If there aren't tickets left, then the flight is unavailable.
-        }
-        transaction.commit();//Has database update the available column to match the above change
-    }
-
 
     public static void deleteFlight(Flight flight) {
         Session session = HibernateUtil.getSession();

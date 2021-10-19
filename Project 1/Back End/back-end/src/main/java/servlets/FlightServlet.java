@@ -12,12 +12,14 @@ import java.io.IOException;
 import java.util.List;
 
 public class FlightServlet extends HttpServlet {
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         List<Flight> list = FlightRepo.getAllFlights();
         ObjectMapper mapper = new ObjectMapper();
         resp.getWriter().write(mapper.writeValueAsString(list));
+
+
+
     }
 
 }

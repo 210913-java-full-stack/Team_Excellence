@@ -11,6 +11,7 @@ public class HibernateUtil {
     private static Configuration configuration = new Configuration();
 
     public static void configureClasses(){
+        setConfiguration(configuration);
         configuration.addAnnotatedClass(Customer.class);
         configuration.addAnnotatedClass(Pilot.class);
         configuration.addAnnotatedClass(Admin.class);
