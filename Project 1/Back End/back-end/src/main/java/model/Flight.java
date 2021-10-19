@@ -1,10 +1,6 @@
 package model;
 
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
 import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder;
 
 @Entity
 @Table(name="flights")
@@ -17,7 +13,7 @@ public class Flight {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(nullable = false, name = "pilot_id")
-    private Pilots pilots;
+    private Pilot pilots;
 
     @Column(name = "depart")
     private String departLocation;
@@ -50,7 +46,7 @@ public class Flight {
     }
 
 
-    public Flight(int flightId, Pilots pilots, String departLocation, String arriveLocation, String departDate, String departTime, String arriveDate, String arriveTime, Boolean takeOff,  Integer maxNumberOfTickets) {
+    public Flight(int flightId, Pilot pilots, String departLocation, String arriveLocation, String departDate, String departTime, String arriveDate, String arriveTime, Boolean takeOff, Integer maxNumberOfTickets) {
         this.flightId = flightId;
 
         this.departLocation = departLocation;
@@ -97,11 +93,11 @@ public class Flight {
         return flightId;
     }
 
-    public Pilots getPilots() {
+    public Pilot getPilots() {
         return pilots;
     }
 
-    public void setPilots(Pilots pilots) {
+    public void setPilots(Pilot pilots) {
         this.pilots = pilots;
     }
 

@@ -1,5 +1,6 @@
 package repository;
 
+import model.Flight;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import model.Customer;
@@ -22,17 +23,42 @@ public class CustomerRepo {
     }
 
     public static Customer getCustomerById(Integer id) {
-        return session.get(Customer.class, id);
+        Customer customer = null;
+        Transaction t = null;
+        Session session = null;
+        try{
+            CustomerRepo.setSession(CustomerRepo.getSessionFactory().openSession());
+            session = CustomerRepo.getSession();
+            t = session.beginTransaction();
+            customer = session.get(Customer.class, id);
+            t.commit();
+        }catch(Exception e){
+            e.printStackTrace();
+            if (t!=null) {
+                t.rollback();
+            }
+        } finally {
+            if (session!= null) {
+                session.close();
+            }
+        }
+
+
+
+        return customer;
     }
 
     public static Customer login(String username, String password) {
 
 
         Customer user = null;
+        Transaction t = null;
+        Session session = null;
 
         try{
 
-
+            CustomerRepo.setSession(CustomerRepo.getSessionFactory().openSession());
+            session = CustomerRepo.getSession();
 
 
         user = (Customer) session.createQuery("FROM Customer c WHERE c.username = :userName").setParameter("userName", username).uniqueResult();
@@ -59,36 +85,74 @@ public class CustomerRepo {
 
 
     public static List<Customer> getAllCustomers() {
-        CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<Customer> query = builder.createQuery(Customer.class);
-        Root<Customer> root = query.from(Customer.class);
-        query.select(root);
-        return session.createQuery(query).getResultList();
+        Transaction t = null;
+        Session session = null;
+        List<Customer> list = null;
+        try{
+            CustomerRepo.setSession(CustomerRepo.getSessionFactory().openSession());
+            session = CustomerRepo.getSession();
+            t = session.beginTransaction();
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Customer> query = builder.createQuery(Customer.class);
+            Root<Customer> root = query.from(Customer.class);
+            query.select(root);
+            list = session.createQuery(query).getResultList();
+            t.commit();
+
+
+        } catch (Exception e){
+            e.printStackTrace();
+            if (t!=null) {
+                t.rollback();
+            }
+        }finally {
+            if (session!= null) {
+                session.close();
+            }
+        }
+
+
+        return list;
     }
 
     public static void saveNewCustomer( Customer customer){
+        Transaction t = null;
+        Session session = null;
+
         try {
-            Transaction t = session.beginTransaction();
-            System.out.println(t.getStatus());
+            CustomerRepo.setSession(CustomerRepo.getSessionFactory().openSession());
+            session = CustomerRepo.getSession();
+            t = session.beginTransaction();
 
             session.save(customer);
             t.commit();
         } catch(Exception e){
             e.printStackTrace();
+
+            t.rollback();
+        }finally {
+            session.close();
         }
 
     }
 
     public static void deleteCustomer(Customer customer) {
+        Transaction t = null;
+        Session session = null;
         try {
-            Transaction t = session.beginTransaction();
-            System.out.println(t.getStatus());
+            CustomerRepo.setSession(CustomerRepo.getSessionFactory().openSession());
+            session = CustomerRepo.getSession();
+            t = session.beginTransaction();
 
             session.delete(customer);
             t.commit();
 
         } catch(Exception e){
             e.printStackTrace();
+
+            t.rollback();
+        }finally {
+            session.close();
         }
 
     }

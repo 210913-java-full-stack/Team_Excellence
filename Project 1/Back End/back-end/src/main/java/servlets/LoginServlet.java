@@ -1,16 +1,12 @@
 package servlets;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import repository.CustomerDAO;
 import model.Customer;
 import services.Login;
-import utils.ConnectionManager;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import java.io.*;
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.stream.Collectors;
 
 public class LoginServlet extends HttpServlet {

@@ -34,7 +34,9 @@ public class FlightRepo {
                 t.rollback();
             }
         } finally {
-            session.close();
+            if (session!= null) {
+                session.close();
+            }
         }
 
 

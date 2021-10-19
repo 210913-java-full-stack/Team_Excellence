@@ -16,10 +16,10 @@ public class DependencyLoaderListener  implements ServletContextListener {
         try {
             Configuration config = new Configuration();
             config.addAnnotatedClass(Customer.class);
-            config.addAnnotatedClass(Pilots.class);
+            config.addAnnotatedClass(Pilot.class);
             config.addAnnotatedClass(Admin.class);
             config.addAnnotatedClass(Flight.class);
-            config.addAnnotatedClass(Tickets.class);
+            config.addAnnotatedClass(Ticket.class);
 
             CustomerRepo.setSessionFactory(config.buildSessionFactory());
             CustomerRepo.setSession(CustomerRepo.getSessionFactory().openSession());

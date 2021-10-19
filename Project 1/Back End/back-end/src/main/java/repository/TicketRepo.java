@@ -1,15 +1,16 @@
 package repository;
 
+import model.Flight;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import model.Tickets;
+import model.Ticket;
+import org.hibernate.Transaction;
 
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
-import java.util.Queue;
 
 public class TicketRepo {
     private static SessionFactory sessionFactory;
@@ -19,39 +20,126 @@ public class TicketRepo {
 
     }
 
-    public static Tickets getTicketById(int id){
-        return session.get(Tickets.class, id);
+    public static Ticket getTicketById(int id){
+        Ticket ticket = null;
+        Transaction t = null;
+        Session session = null;
+        try{
+            TicketRepo.setSession(TicketRepo.getSessionFactory().openSession());
+            session = TicketRepo.getSession();
+            t = session.beginTransaction();
+            ticket = session.get(Ticket.class, id);
+            t.commit();
+        }catch (Exception e){
+            e.printStackTrace();
+            if (t!=null) {
+                t.rollback();
+            }
+        } finally {
+            if (session!= null) {
+                session.close();
+            }
+        }
+
+
+        return ticket;
 
     }
 
-    public static List<Tickets> getAllTickets(){
-        CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<Tickets> query = builder.createQuery(Tickets.class);
-        Root<Tickets> root = query.from(Tickets.class);
-        query.select(root);
-        return session.createQuery(query).getResultList();
+    public static List<Ticket> getAllTickets(){
+        Transaction t = null;
+        Session session = null;
+        List<Ticket> list = null;
+
+        try{
+            TicketRepo.setSession(TicketRepo.getSessionFactory().openSession());
+            session = TicketRepo.getSession();
+            t = session.beginTransaction();
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Ticket> query = builder.createQuery(Ticket.class);
+            Root<Ticket> root = query.from(Ticket.class);
+            query.select(root);
+            list = session.createQuery(query).getResultList();
+            t.commit();
+        }catch (Exception e){
+            e.printStackTrace();
+            if (t!=null) {
+                t.rollback();
+            }
+        }finally {
+            if (session!= null) {
+                session.close();
+            }
+        }
+
+
+        return list;
     }
 
-    public static void saveNewTicket(Tickets ticket){
+    public static void saveNewTicket(Ticket ticket){
+        Transaction t = null;
+        Session session = null;
+        try{
+            TicketRepo.setSession(TicketRepo.getSessionFactory().openSession());
+            session = TicketRepo.getSession();
+            t = session.beginTransaction();
         session.save(ticket);
+            t.commit();
+        }catch (Exception e){
+            e.printStackTrace();
+            if (t!=null) {
+                t.rollback();
+            }
+        }finally {
+            if (session!= null) {
+                session.close();
+            }
+        }
     }
 
-    public static void updateCheckInStatusUsingCustomerId(Tickets tickets){
-        Query query = getSession().createSQLQuery("UPDATE tickets " +
-                "SET checked_in = checkedIn WHERE customer_id = customerId");
-        query.setParameter("checkedIn", tickets.getCheckedIn());
-        query.setParameter("customerId", tickets.getCustomerId());
+
+
+    public static void updateTicket(Ticket ticket) {
+        Transaction t = null;
+        Session session = null;
+        try{
+            TicketRepo.setSession(TicketRepo.getSessionFactory().openSession());
+            session = TicketRepo.getSession();
+            t = session.beginTransaction();
+            session.update(ticket);
+            t.commit();
+        }catch (Exception e){
+            e.printStackTrace();
+            if (t!=null) {
+                t.rollback();
+            }
+        }finally {
+            if (session!= null) {
+                session.close();
+            }
+        }
     }
 
-    public static void updateCheckInStatusUsingTicketId(Tickets tickets) {
-        Query query = getSession().createSQLQuery("UPDATE tickets " +
-                "SET checked_in = checkedIn WHERE ticket_id = ticketId");
-        query.setParameter("checkedIn", tickets.getCheckedIn());
-        query.setParameter("ticketId", tickets.getTicketId());
-    }
+    public static void deleteTicket(Ticket ticket){
+        Transaction t = null;
+        Session session = null;
+        try{
+            TicketRepo.setSession(TicketRepo.getSessionFactory().openSession());
+            session = TicketRepo.getSession();
+            t = session.beginTransaction();
+            session.delete(ticket);
+            t.commit();
+        }catch (Exception e){
+            e.printStackTrace();
+            if (t!=null) {
+                t.rollback();
+            }
+        }finally {
+            if (session!= null) {
+                session.close();
+            }
+        }
 
-    public static void deleteTicket(Tickets ticket){
-        session.delete(ticket);
     }
 
     public static SessionFactory getSessionFactory() {

@@ -1,7 +1,6 @@
 package services;
 
-import model.Flight;
-import model.Pilots;
+import model.Pilot;
 
 import java.util.Date;//TODO: Change date datatype after implementing Hibernate
 
@@ -36,7 +35,7 @@ public class DisplayFlightSchedule {
 
     //Displays pilot's schedule for the day. Needs pilot ID and "today's date" ie the date that the pilot is logging in.
     //TODO: Consider changing the return type after implementing Hibernate
-    public static void displayPilotSchedule(Pilots pilots){
+    public static void displayPilotSchedule(Pilot pilots){
         //TODO: Write code after implementing Hibernate
     }
 }

@@ -3,6 +3,7 @@ package repository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import model.Admin;
+import org.hibernate.Transaction;
 
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -16,23 +17,100 @@ public class AdminRepo {
 
 
     public static Admin getAdminById(int id) {
-        return session.get(Admin.class, id);
+        Admin admin = null;
+        Transaction t = null;
+        Session session = null;
+        try{
+            AdminRepo.setSession(AdminRepo.getSessionFactory().openSession());
+            session = AdminRepo.getSession();
+            t = session.beginTransaction();
+            admin = session.get(Admin.class,id);
+            t.commit();
+        }catch(Exception e){
+            e.printStackTrace();
+            if (t!=null){
+                t.rollback();
+            }
+        } finally {
+            if (session!= null) {
+                session.close();
+            }
+        }
+
+
+
+        return admin;
     }
 
     public static List<Admin> getAllAdmins() {
-        CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<Admin> query = builder.createQuery(Admin.class);
-        Root<Admin> root = query.from(Admin.class);
-        query.select(root);
-        return session.createQuery(query).getResultList();
+
+        Transaction t = null;
+        Session session = null;
+        List<Admin> list = null;
+        try{
+            AdminRepo.setSession(AdminRepo.getSessionFactory().openSession());
+            session = AdminRepo.getSession();
+            t = session.beginTransaction();
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Admin> query = builder.createQuery(Admin.class);
+            Root<Admin> root = query.from(Admin.class);
+            query.select(root);
+            list = session.createQuery(query).getResultList();
+            t.commit();
+        } catch (Exception e){
+            if (t!=null) {
+                t.rollback();
+            }
+        }finally {
+            if (session!= null) {
+                session.close();
+            }
+        }
+
+        return list;
     }
 
     public static void saveAdmin(Admin admin){
-        session.save(admin);
+        Transaction t = null;
+        Session session = null;
+        try{
+            AdminRepo.setSession(AdminRepo.getSessionFactory().openSession());
+            session = AdminRepo.getSession();
+            t = session.beginTransaction();
+            session.save(admin);
+            t.commit();
+        } catch (Exception e){
+            if (t!=null) {
+                t.rollback();
+            }
+        }finally {
+            if (session!= null) {
+                session.close();
+            }
+        }
+
+
     }
 
     public static void deleteAdmin(Admin admin){
-        session.delete(admin);
+        Transaction t = null;
+        Session session = null;
+        try{
+            AdminRepo.setSession(AdminRepo.getSessionFactory().openSession());
+            session = AdminRepo.getSession();
+            t = session.beginTransaction();
+            session.delete(admin);
+            t.commit();
+        } catch (Exception e){
+            if (t!=null) {
+                t.rollback();
+            }
+        }finally {
+            if (session!= null) {
+                session.close();
+            }
+        }
+
     }
 
     public static SessionFactory getSessionFactory() {

@@ -2,7 +2,8 @@ package repository;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import model.Pilots;
+import model.Pilot;
+import org.hibernate.Transaction;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -15,24 +16,103 @@ public class PilotRepo {
     private static SessionFactory sessionFactory;
     private static Session session;
 
-    public static Pilots getPilotById(int id) {
-        return session.get(Pilots.class, id);
+    public static Pilot getPilotById(int id) {
+        Pilot pilot = null;
+        Transaction t = null;
+        Session session = null;
+        try{
+            PilotRepo.setSession(PilotRepo.getSessionFactory().openSession());
+            session = PilotRepo.getSession();
+            t = session.beginTransaction();
+            pilot = session.get(Pilot.class, id);
+            t.commit();
+        }catch (Exception e){
+            e.printStackTrace();
+            if (t!=null) {
+                t.rollback();
+            }
+        } finally {
+            if (session!= null) {
+                session.close();
+            }
+        }
+
+
+        return pilot;
     }
 
-    public static List<Pilots> getAllPilots() {
-        CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<Pilots> query = builder.createQuery(Pilots.class);
-        Root<Pilots> root = query.from(Pilots.class);
-        query.select(root);
-        return session.createQuery(query).getResultList();
+    public static List<Pilot> getAllPilots() {
+
+        Transaction t = null;
+        Session session = null;
+        List<Pilot> list = null;
+
+        try{
+            PilotRepo.setSession(PilotRepo.getSessionFactory().openSession());
+            session = PilotRepo.getSession();
+            t = session.beginTransaction();
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Pilot> query = builder.createQuery(Pilot.class);
+            Root<Pilot> root = query.from(Pilot.class);
+            query.select(root);
+            list = session.createQuery(query).getResultList();
+            t.commit();
+        }catch (Exception e){
+            e.printStackTrace();
+            if (t!=null) {
+                t.rollback();
+            }
+        }finally {
+            if (session!= null) {
+                session.close();
+            }
+        }
+
+
+        return list;
     }
 
-    public static void saveNewPilot(Pilots pilot) {
+    public static void saveNewPilot(Pilot pilot) {
+        Transaction t = null;
+        Session session = null;
+        try{
+            PilotRepo.setSession(PilotRepo.getSessionFactory().openSession());
+            session = PilotRepo.getSession();
+            t = session.beginTransaction();
         session.save(pilot);
+        t.commit();
+        }catch (Exception e){
+            e.printStackTrace();
+            if (t!=null) {
+                t.rollback();
+            }
+        }finally {
+            if (session!= null) {
+                session.close();
+            }
+        }
     }
 
-    public static void deletePilot(Pilots pilot) {
-        session.delete(pilot);
+    public static void deletePilot(Pilot pilot) {
+        Transaction t = null;
+        Session session = null;
+        try{
+            PilotRepo.setSession(PilotRepo.getSessionFactory().openSession());
+            session = PilotRepo.getSession();
+            t = session.beginTransaction();
+            session.delete(pilot);
+            t.commit();
+        }catch (Exception e){
+            e.printStackTrace();
+            if (t!=null) {
+                t.rollback();
+            }
+        }finally {
+            if (session!= null) {
+                session.close();
+            }
+        }
+
     }
 
     public static SessionFactory getSessionFactory() {
