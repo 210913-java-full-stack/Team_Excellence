@@ -9,7 +9,7 @@ import PurchaseTicket from './PurchaseTicket';
 
 
 
-export default function CustomerDashboard({ db_class }) {
+export default function CustomerDashboard({ id, db_class }) {
 
 
     const [ticketScreen, setTicketScreen] = useState(false)
@@ -23,11 +23,14 @@ export default function CustomerDashboard({ db_class }) {
 
 
 
+
+
+
     function renderFlightBoard() {
         if (ticketScreen) {
             return (
                 <div>
-                    <PurchaseTicket setTicketScreen={setTicketScreen} flightId={flightId} />
+                    <PurchaseTicket setTicketScreen={setTicketScreen} flightId={flightId} id={id} />
                 </div>
             );
         } else {

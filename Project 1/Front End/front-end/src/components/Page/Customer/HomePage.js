@@ -34,7 +34,7 @@ function HomePage() {
                 changeDashboard={changeDashboard} />
 
 
-            <CustomerDashboard db_class={db_class} />
+            <CustomerDashboard db_class={db_class} id={id} />
 
 
 

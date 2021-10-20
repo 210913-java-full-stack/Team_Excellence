@@ -11,9 +11,9 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int ticketId;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(nullable = false)
-    private List<Flight> flightId;
+    private Flight flightId;
 
     @OneToOne
     @JoinColumn(nullable = false)
@@ -37,6 +37,16 @@ public class Ticket {
     public Ticket() {
     }
 
+    public Ticket(Flight flight, Customer customer, String fname, String lname, Integer age) {
+        flightId = flight;
+        customerId = customer;
+        passengerFirstName = fname;
+        passengerLastName = lname;
+        passengerAge = age;
+
+
+    }
+
     public Boolean getCheckedIn() {
         return checkedIn;
     }
@@ -45,7 +55,7 @@ public class Ticket {
         this.checkedIn = checkedIn;
     }
 
-    public Ticket(int ticketId, List<Flight> flightId, Customer customerId, String passengerFirstName, String passengerLastName, Integer passengerAge, Boolean checkedIn) {
+    public Ticket(int ticketId, Flight flightId, Customer customerId, String passengerFirstName, String passengerLastName, Integer passengerAge, Boolean checkedIn) {
         this.ticketId = ticketId;
         this.flightId = flightId;
         this.customerId = customerId;
@@ -63,11 +73,11 @@ public class Ticket {
         this.ticketId = ticketId;
     }
 
-    public List<Flight> getFlightId() {
+    public Flight getFlightId() {
         return flightId;
     }
 
-    public void setFlightId(List<Flight> flightId) {
+    public void setFlightId(Flight flightId) {
         this.flightId = flightId;
     }
 

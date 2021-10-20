@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./PurchaseTicket.css";
 
-function PurchaseTicket({ setTicketScreen, flightId }) {
+function PurchaseTicket({ setTicketScreen, flightId, id }) {
     const [departLocation, setDepartLocation] = useState()
     const [departTime, setDepartTime] = useState()
     const [departDate, setDepartDate] = useState()
@@ -36,7 +36,7 @@ function PurchaseTicket({ setTicketScreen, flightId }) {
 
     useEffect(() => {
         renderPassengerInfo();
-        console.log(passengers)
+        console.log(id)
     }, [amountTickets])
 
 
@@ -82,16 +82,7 @@ function PurchaseTicket({ setTicketScreen, flightId }) {
     }
 
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
 
-        let result = await axios.post(`http://localhost:8080/api/ticket?numOfTickets=${amountTickets}`);
-
-
-
-
-
-    }
 
 
 
@@ -102,11 +93,11 @@ function PurchaseTicket({ setTicketScreen, flightId }) {
 
             <h1>Ticket Screen for flight BCON{flightId} from {departLocation} to {arriveLocation}</h1>
             <h3>Ticket price is $150</h3>
-            <form method="post" onSubmit={handleSubmit} action="http://localhost8080/api/tickets" >
-                <label>
-                    How many tickets do you want?
-                </label>
-                <input name="numOfTickets" type="number" placeholder="1" min="1" max="10" onChange={e => setAmountTickets(e.target.value)}></input>
+            <form method="post" action={`http://localhost:8080/api/ticket?userId=${id}&flightId=${flightId}&numOfTicket=${amountTickets}`}  >
+                <label >
+                    How many tickets do you want? love
+                </label >
+                <input type="number" placeholder="1" min="1" max="10" onChange={e => setAmountTickets(e.target.value)}></input>
                 {renderPassengerInfo()}
                 <button type="submit">Purchse Tickets</button>
             </form>
