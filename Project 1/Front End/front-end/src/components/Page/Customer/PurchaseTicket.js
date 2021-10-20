@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./PurchaseTicket.css";
 
-
-
 function PurchaseTicket({ setTicketScreen, flightId }) {
     const [departLocation, setDepartLocation] = useState()
     const [departTime, setDepartTime] = useState()
@@ -11,10 +9,11 @@ function PurchaseTicket({ setTicketScreen, flightId }) {
     const [arriveLocation, setArriveLocation] = useState()
     const [arriveTime, setArriveTime] = useState()
     const [arriveDate, setArriveDate] = useState()
-
-
-
     const [amountTickets, setAmountTickets] = useState(1)
+    const [firstName, setFirstName] = useState();
+    const [lastName, setLastName] = useState();
+    const [age, setAge] = useState();
+    let passengers = [];
 
 
     useEffect(() => {
@@ -28,22 +27,16 @@ function PurchaseTicket({ setTicketScreen, flightId }) {
                 setArriveLocation(res.data["arriveLocation"])
                 setArriveTime(res.data["arriveTime"])
                 setArriveDate(res.data["arriveDate"])
-
             } catch (error) {
                 console.log(error)
             }
         }
-
         getFlightDetails();
     }, [])
 
-
     useEffect(() => {
-
-
-
         renderPassengerInfo();
-
+        console.log(passengers)
     }, [amountTickets])
 
 
@@ -51,40 +44,33 @@ function PurchaseTicket({ setTicketScreen, flightId }) {
         setTicketScreen(p => p = !p)
     }
 
-
     function renderPassengerInfo() {
         let row = []
         for (var i = 0; i < amountTickets; i++) {
             row.push(row.length + 1)
         }
-
-
-
-
-
         return (
-
-
-
-
-
             <div >
                 {row.map(el => {
+
+
+
+
                     return (
                         <div key={el}>
                             <h2>Passenger {el}</h2>
                             <label>
                                 First Name
                             </label>
-                            <input type="text"></input>
+                            <input id={`${el}_fname`} name={`${el}_fname`} type="text"></input>
                             <label>
                                 Last Name
                             </label>
-                            <input type="text"></input>
+                            <input id={`${el}_lname`} name={`${el}_lname`} type="text"></input>
                             <label>
                                 Age
                             </label>
-                            <input type="number" placeholder="18"></input>
+                            <input id={`${el}_age`} name={`${el}_age`} type="number" placeholder="18" ></input>
 
 
                         </div>
@@ -96,7 +82,16 @@ function PurchaseTicket({ setTicketScreen, flightId }) {
     }
 
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
+        let result = await axios.post(`http://localhost:8080/api/ticket?numOfTickets=${amountTickets}`);
+
+
+
+
+
+    }
 
 
 
@@ -107,12 +102,13 @@ function PurchaseTicket({ setTicketScreen, flightId }) {
 
             <h1>Ticket Screen for flight BCON{flightId} from {departLocation} to {arriveLocation}</h1>
             <h3>Ticket price is $150</h3>
-            <form>
+            <form method="post" onSubmit={handleSubmit} action="http://localhost8080/api/tickets" >
                 <label>
                     How many tickets do you want?
                 </label>
-                <input type="number" placeholder="1" min="1" max="10" onChange={e => setAmountTickets(e.target.value)}></input>
+                <input name="numOfTickets" type="number" placeholder="1" min="1" max="10" onChange={e => setAmountTickets(e.target.value)}></input>
                 {renderPassengerInfo()}
+                <button type="submit">Purchse Tickets</button>
             </form>
 
 
