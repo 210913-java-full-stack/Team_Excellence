@@ -3,6 +3,7 @@ package services;
 import model.Flight;
 import model.Pilot;
 import repository.FlightRepo;
+import repository.PilotRepo;
 
 /**
  * This class contains all methods for managing flights including scheduling a flight, updating a flight,
@@ -10,27 +11,16 @@ import repository.FlightRepo;
 public class ScheduleFlight {
 
     //Allows the admin to create new flights
-    public void createNewFlight(Flight flight, int PilotId){
-        //Associate flight row with a pilot
-        //TODO: Pilot pilot =
-
-
-        //Check if flight id already exists
-        int flightId = flight.getFlightId();
-        Flight flightDatabase = FlightRepo.getFlightById(flightId);
-
-        //If the flight id exists in the database, update that row else insert a new row
-        if(flightDatabase == null){
-            FlightRepo.saveNewFlight(flight);
-        } else{
-            FlightRepo.updateFlight(flight);
+    public void createFlight(Flight flight, int pilotId){
+        //Create the pilot object
+        Pilot pilot = PilotRepo.getPilotById(pilotId);
+        //Make sure there is a pilot with the given id
+        if(pilot == null){
+            return;
         }
-
-        /*
-        TODO: first check if the given pilot id matches a pilot in the pilot table
-        TODO: save that pilot to flight.setPilot and then
-         */
+        //Associate flight row with a pilot
+        flight.setPilot(pilot);
+        //Save the new flight to the database
+        FlightRepo.saveNewFlight(flight);
     }
-
-
 }

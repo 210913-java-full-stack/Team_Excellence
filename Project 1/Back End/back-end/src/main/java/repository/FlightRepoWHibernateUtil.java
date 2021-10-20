@@ -18,7 +18,9 @@ public class FlightRepoWHibernateUtil {
 
     public static Flight getFlightById(int id) {
         Session session = HibernateUtil.getSession();
-        return session.get(Flight.class, id);
+        Flight flight = session.get(Flight.class, id);
+
+        return flight;
     }
 
     public static List<Flight> getAllFlights() {
@@ -42,7 +44,7 @@ public class FlightRepoWHibernateUtil {
         Session session = HibernateUtil.getSession();
         Transaction transaction = session.beginTransaction();
 
-        Flight flight = (Flight) session.get(Flight.class, flightId);
+        Flight flight = session.get(Flight.class, flightId);
         //Update the take_off column
         flight.setTakeOff(true); //We wouldn't need to set take off to false. Default is false.
         transaction.commit();//Has database update the take_off column to match the above change

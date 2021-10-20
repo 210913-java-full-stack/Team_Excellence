@@ -15,7 +15,7 @@ import java.util.List;
 public class FlightServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
-        List<Flight> list = FlightRepo.getAllFlights();
+        List<Flight> list = FlightRepoWHibernateUtil.getAllFlights();
         ObjectMapper mapper = new ObjectMapper();
         try {
             resp.getWriter().write(mapper.writeValueAsString(list));

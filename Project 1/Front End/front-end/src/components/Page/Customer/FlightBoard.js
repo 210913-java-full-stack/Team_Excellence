@@ -9,29 +9,23 @@ import FlightDetailPage from "./FlightDetailPage";
 
 
 
-export default function FlightBoard() {
+export default function FlightBoard({ setTicketScreen, setFlightId }) {
     const [id, setId] = useState()
     const [flights, setFlights] = useState([]);
     const [flightDetails, setFlightDetails] = useState(false);
 
     useEffect(() => {
         document.title = `Welcome Screen`;
-        (async function getFlights() {
+        async function getFlights() {
             try {
                 const res = await axios.get("http://localhost:8080/api/flights");
                 setFlights(res.data);
             } catch (err) {
                 console.log(err)
             }
-<<<<<<< HEAD
         }
         getFlights();
-    },[]);
-=======
-        })();
-
     });
->>>>>>> 94fa3c1434d5f30a59314a39e55b5ab4b9ef67e9
 
 
 
@@ -43,6 +37,7 @@ export default function FlightBoard() {
 
 
         setId(id);
+        setFlightId(id);
         controlFlightDetails();
     }
 
@@ -107,7 +102,7 @@ export default function FlightBoard() {
         return (
             <div>
                 <button onClick={controlFlightDetails}>back</button>
-                <FlightDetailPage id={id} />
+                <FlightDetailPage id={id} setTicketScreen={setTicketScreen} />
 
             </div>
         );
