@@ -59,6 +59,7 @@ public class CustomerRepo {
 
             CustomerRepo.setSession(CustomerRepo.getSessionFactory().openSession());
             session = CustomerRepo.getSession();
+            t = session.beginTransaction();
 
 
         user = (Customer) session.createQuery("FROM Customer c WHERE c.username = :userName").setParameter("userName", username).uniqueResult();
@@ -75,6 +76,14 @@ public class CustomerRepo {
 
             user = null;
             e.printStackTrace();
+
+            if (t!=null) {
+                t.rollback();
+            }
+        }finally {
+            if (session!= null) {
+                session.close();
+            }
         }
 
 
