@@ -25,6 +25,9 @@ public class FlightDetailServlet extends MyServlet {
 
     public void doPatch(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
+
+            //adding commit to commit to github
+            
             InputStream input = request.getInputStream();
             Scanner sc = new Scanner(input, StandardCharsets.UTF_8.name());
             String jsonText = sc.useDelimiter("\\A").next();
