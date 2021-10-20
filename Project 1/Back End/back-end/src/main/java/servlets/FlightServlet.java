@@ -15,7 +15,7 @@ import java.util.List;
 public class FlightServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
-        List<Flight> list = FlightRepo.getAllFlights();
+        List<Flight> list = FlightRepoWHibernateUtil.getAllFlights();
         System.out.println("DEBUG: " + list.get(0).getFlightId());
         System.out.println("This this the contents of the list");
         for(int i = 0; i < list.size(); i++){

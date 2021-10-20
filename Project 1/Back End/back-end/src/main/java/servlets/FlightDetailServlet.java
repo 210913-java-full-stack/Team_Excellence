@@ -18,7 +18,7 @@ public class FlightDetailServlet extends MyServlet {
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         int id = Integer.parseInt(req.getParameter("id"));
-        Flight flight = FlightRepo.getFlightById(id);
+        Flight flight = FlightRepoWHibernateUtil.getFlightById(id);
         ObjectMapper mapper = new ObjectMapper();
         resp.getWriter().write(mapper.writeValueAsString(flight));
 
@@ -31,7 +31,7 @@ public class FlightDetailServlet extends MyServlet {
             String jsonText = sc.useDelimiter("\\A").next();
             ObjectMapper mapper = new ObjectMapper();
             Flight payload = mapper.readValue(jsonText, Flight.class);
-            FlightRepo.updateFlight(payload);
+            FlightRepoWHibernateUtil.updateFlight(payload);
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -45,7 +45,7 @@ public class FlightDetailServlet extends MyServlet {
             String jsonText = sc.useDelimiter("\\A").next();
             ObjectMapper mapper = new ObjectMapper();
             Flight payload = mapper.readValue(jsonText, Flight.class);
-            FlightRepo.saveNewFlight(payload);
+            FlightRepoWHibernateUtil.saveNewFlight(payload);
         }catch(Exception e){
             e.printStackTrace();
         }
