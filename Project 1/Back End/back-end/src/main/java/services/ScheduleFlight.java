@@ -1,6 +1,7 @@
 package services;
 
 import model.Flight;
+import model.Pilot;
 import repository.FlightRepo;
 
 /**
@@ -9,8 +10,9 @@ import repository.FlightRepo;
 public class ScheduleFlight {
 
     //Allows the admin to create new flights
-    public void createNewFlight(Flight flight){
+    public void createNewFlight(Flight flight, int PilotId){
         //Associate flight row with a pilot
+        //TODO: Pilot pilot =
 
 
         //Check if flight id already exists

@@ -14,12 +14,12 @@ import java.util.List;
 
 public class PilotRepo {
 
-    public Pilot getPilotById(int id) {
+    public static Pilot getPilotById(int id) {
         Session session = HibernateUtil.getSession();
         return session.get(Pilot.class, id);
     }
 
-    public List<Pilot> getAllPilots() {
+    public static List<Pilot> getAllPilots() {
         Session session = HibernateUtil.getSession();
         Transaction transaction = session.beginTransaction();
 
@@ -32,7 +32,7 @@ public class PilotRepo {
         return session.createQuery(query).getResultList();
     }
 
-    public void saveNewPilot(Pilot pilot) {
+    public static void saveNewPilot(Pilot pilot) {
         Session session = HibernateUtil.getSession();
         Transaction transaction = session.beginTransaction();
 
@@ -41,7 +41,7 @@ public class PilotRepo {
         transaction.commit();//Has database update the available column to match the above change
     }
 
-    public void deletePilot(Pilot pilot) {
+    public static void deletePilot(Pilot pilot) {
         Session session = HibernateUtil.getSession();
         Transaction transaction = session.beginTransaction();
 
