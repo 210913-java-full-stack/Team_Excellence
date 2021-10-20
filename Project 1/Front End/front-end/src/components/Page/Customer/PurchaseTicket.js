@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./PurchaseTicket.css";
 
-function PurchaseTicket({ setTicketScreen, flightId, id }) {
+function PurchaseTicket({ setTicketScreen, flightId, id, isLoggedIn }) {
     const [departLocation, setDepartLocation] = useState()
     const [departTime, setDepartTime] = useState()
     const [departDate, setDepartDate] = useState()
@@ -82,7 +82,13 @@ function PurchaseTicket({ setTicketScreen, flightId, id }) {
     }
 
 
-
+    function renderButton() {
+        if (isLoggedIn) {
+            return <button type="submit">Purchse Tickets</button>;
+        } else {
+            return <h5>You have to be logged in to buy a ticket</h5>
+        }
+    }
 
 
 
@@ -95,11 +101,11 @@ function PurchaseTicket({ setTicketScreen, flightId, id }) {
             <h3>Ticket price is $150</h3>
             <form method="post" action={`http://localhost:8080/api/ticket?userId=${id}&flightId=${flightId}&numOfTicket=${amountTickets}`}  >
                 <label >
-                    How many tickets do you want? love
+                    How many tickets do you want?
                 </label >
-                <input type="number" placeholder="1" min="1" max="10" onChange={e => setAmountTickets(e.target.value)}></input>
+                <input type="number" placeholder="1" min="1" max="4" onChange={e => setAmountTickets(e.target.value)}></input>
                 {renderPassengerInfo()}
-                <button type="submit">Purchse Tickets</button>
+                {renderButton()}
             </form>
 
 

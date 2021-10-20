@@ -9,7 +9,7 @@ import PurchaseTicket from './PurchaseTicket';
 
 
 
-export default function CustomerDashboard({ id, db_class }) {
+export default function CustomerDashboard({ id, db_class, isLoggedIn }) {
 
 
     const [ticketScreen, setTicketScreen] = useState(false)
@@ -30,7 +30,7 @@ export default function CustomerDashboard({ id, db_class }) {
         if (ticketScreen) {
             return (
                 <div>
-                    <PurchaseTicket setTicketScreen={setTicketScreen} flightId={flightId} id={id} />
+                    <PurchaseTicket setTicketScreen={setTicketScreen} flightId={flightId} id={id} isLoggedIn={isLoggedIn} />
                 </div>
             );
         } else {

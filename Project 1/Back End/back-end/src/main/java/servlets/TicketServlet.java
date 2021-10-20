@@ -32,20 +32,30 @@ public class TicketServlet extends HttpServlet {
              System.out.println(lnameOne);
              Integer ageOne = Integer.parseInt(req.getParameter("1_age"));
              System.out.println(ageOne);
-             Ticket one = new Ticket(flight,customer,fnameOne,lnameOne,ageOne);
+             Ticket one = new Ticket(FlightRepo.getFlightbyId(flightId),CustomerRepo.getCustomerById(userId),fnameOne,lnameOne,ageOne);
              TicketRepo.saveNewTicket(one);
 
          }else if(numOfTickets==2){
              String fnameOne = req.getParameter("1_fname");
+             System.out.println(fnameOne);
              String lnameOne = req.getParameter("1_lname");
+             System.out.println(lnameOne);
              Integer ageOne = Integer.parseInt(req.getParameter("1_age"));
-             Ticket one = new Ticket(flight,customer,fnameOne,lnameOne,ageOne);
-             TicketRepo.saveNewTicket(one);
+             System.out.println(ageOne);
+
              String fnameTwo = req.getParameter("2_fname");
              String lnameTwo = req.getParameter("2_lname");
+
+
              Integer ageTwo = Integer.parseInt(req.getParameter("2_age"));
-             Ticket two = new Ticket(flight,customer,fnameTwo,lnameTwo,ageTwo);
+
+             System.out.println(fnameTwo);
+             System.out.println(lnameTwo);
+             System.out.println(ageTwo);
+             Ticket two = new Ticket(FlightRepo.getFlightbyId(flightId),CustomerRepo.getCustomerById(userId),fnameTwo,lnameTwo,ageTwo);
              TicketRepo.saveNewTicket(two);
+             Ticket one = new Ticket(FlightRepo.getFlightbyId(flightId),CustomerRepo.getCustomerById(userId),fnameOne,lnameOne,ageOne);
+             TicketRepo.saveNewTicket(one);
 
          }else if(numOfTickets==3){
 
