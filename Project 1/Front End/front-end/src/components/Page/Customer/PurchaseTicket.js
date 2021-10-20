@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "./PurchaseTicket.css";
 
 
 
@@ -10,7 +11,8 @@ function PurchaseTicket({ setTicketScreen, flightId }) {
     const [arriveLocation, setArriveLocation] = useState()
     const [arriveTime, setArriveTime] = useState()
     const [arriveDate, setArriveDate] = useState()
-    const [rows, setRows] = useState([])
+
+
 
     const [amountTickets, setAmountTickets] = useState(1)
 
@@ -53,11 +55,7 @@ function PurchaseTicket({ setTicketScreen, flightId }) {
     function renderPassengerInfo() {
         let row = []
         for (var i = 0; i < amountTickets; i++) {
-
             row.push(row.length + 1)
-
-
-
         }
 
 
@@ -74,16 +72,17 @@ function PurchaseTicket({ setTicketScreen, flightId }) {
                 {row.map(el => {
                     return (
                         <div key={el}>
+                            <h2>Passenger {el}</h2>
                             <label>
-                                Passenger {el} First Name
+                                First Name
                             </label>
                             <input type="text"></input>
                             <label>
-                                Passenger {el} Last Name
+                                Last Name
                             </label>
                             <input type="text"></input>
                             <label>
-                                Passenger {el} Age
+                                Age
                             </label>
                             <input type="number" placeholder="18"></input>
 
@@ -102,7 +101,7 @@ function PurchaseTicket({ setTicketScreen, flightId }) {
 
 
     return (
-        <div>
+        <div className="buy-ticket">
             <button onClick={clickBackButton}>back</button>
             <h3>{departDate}</h3>
 
