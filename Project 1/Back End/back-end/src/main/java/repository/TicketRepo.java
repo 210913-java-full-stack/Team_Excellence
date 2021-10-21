@@ -18,10 +18,6 @@ public class TicketRepo {
     be an active session or transaction everytime the method is called.
      */
 
-    public static void init(){
-
-    }
-
     public static Ticket getTicketById(int id){
         Session session = HibernateUtil.getSession();
         return session.get(Ticket.class, id);
@@ -48,13 +44,14 @@ public class TicketRepo {
     }
 
     //This method updates the ticket table
-    public static void updateTicket(Ticket ticket){
+    public static void updateCheckIn(int ticketId, boolean checkIn){
         Session session = HibernateUtil.getSession();
         Transaction transaction = session.beginTransaction();
 
-        session.update(ticket);
-
-        transaction.commit();//Has database update the available column to match the above change
+        Ticket ticket = session.get(Ticket.class, ticketId);
+        //Update the checkIn column
+        ticket.setCheckedIn(checkIn); //Updates just the ticket column
+        transaction.commit();//Has database update the take_off column to match the above change
     }
 
     public static void deleteTicket(Ticket ticket){

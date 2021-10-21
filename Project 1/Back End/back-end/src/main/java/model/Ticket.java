@@ -12,7 +12,7 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer ticketId;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name="flight_id", referencedColumnName="flight_id", nullable = false)
     private Flight flight;
 

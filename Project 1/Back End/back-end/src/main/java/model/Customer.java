@@ -13,7 +13,7 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column
+    @Column(unique = true)
     private String username;
 
     @Column
@@ -28,7 +28,7 @@ public class Customer {
     @Column(name = "last_name")
     private String lastName;
 
-    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "customer")
     private List<Ticket> ticketList = new ArrayList<>();
 
     public Customer() {

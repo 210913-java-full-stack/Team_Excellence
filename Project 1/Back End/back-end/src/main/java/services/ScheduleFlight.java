@@ -3,6 +3,7 @@ package services;
 import model.Flight;
 import model.Pilot;
 import repository.FlightRepo;
+import repository.FlightRepoWHibernateUtil;
 import repository.PilotRepo;
 
 /**
@@ -14,13 +15,10 @@ public class ScheduleFlight {
     public void createFlight(Flight flight, int pilotId){
         //Create the pilot object
         Pilot pilot = PilotRepo.getPilotById(pilotId);
-        //Make sure there is a pilot with the given id
-        if(pilot == null){
-            return;
-        }
+
         //Associate flight row with a pilot
         flight.setPilot(pilot);
         //Save the new flight to the database
-        FlightRepo.saveNewFlight(flight);
+        FlightRepoWHibernateUtil.saveNewFlight(flight);
     }
 }

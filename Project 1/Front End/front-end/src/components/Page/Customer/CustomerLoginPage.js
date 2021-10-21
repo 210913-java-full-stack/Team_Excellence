@@ -9,7 +9,7 @@ import CustomerSignUpPage from './CustomerSignUpPage';
 
 
 
-export default function CustomerLoginPage({ setId, setRealUsername, setFirstName, setLastName, clickLogin, setIsLoggedIn}) {
+export default function CustomerLoginPage({ setId, setRealUsername, setFirstName, setLastName, clickLogin, setIsLoggedIn }) {
     const [username, setUserName] = useState();
     const [password, setPassword] = useState();
     const [signUpScreen, setSignUpScreen] = useState(false);
@@ -32,6 +32,7 @@ export default function CustomerLoginPage({ setId, setRealUsername, setFirstName
             setFirstName(data["firstName"])
             setLastName(data["lastName"])
             setIsLoggedIn(true)
+
         }).catch(error => console.log(error));
 
     }
@@ -111,7 +112,3 @@ export default function CustomerLoginPage({ setId, setRealUsername, setFirstName
         )
     }
 }
-
-
-
-

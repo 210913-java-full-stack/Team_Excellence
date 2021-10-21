@@ -37,7 +37,7 @@ export default function FlightBoard({ setTicketScreen, setFlightId }) {
 
 
         setId(id);
-        setFlightId(id);
+        setFlightId(id)
         controlFlightDetails();
     }
 

@@ -43,7 +43,7 @@ public class Flight {
     @Column(name = "max_number_of_tickets")
     private int maxNumberOfTickets;
 
-    @OneToMany(mappedBy = "flight", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "flight")
     @JsonIgnore
     private List<Ticket> ticketList;
 

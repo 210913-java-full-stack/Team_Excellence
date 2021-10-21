@@ -15,33 +15,24 @@ import java.util.List;
 
 
 public class CustomerRepo {
-    private static Session session = HibernateUtil.getSession();
 
     public static Customer getCustomerById(Integer id) {
         Session session = HibernateUtil.getSession();
-        Transaction transaction = session.beginTransaction();
-
-        Customer customer = session.get(Customer.class, id);
-
-        transaction.commit();//Has database update the available column to match the above change
-        return customer;
+        return session.get(Customer.class, id);
     }
 
     public static Customer login(String username, String password) {
         Session session = HibernateUtil.getSession();
         Transaction transaction = session.beginTransaction();
 
-        transaction.commit();//Has database update the available column to match the above change
-
         Customer user = (Customer) session.createQuery("FROM Customer c WHERE c.username = :userName").setParameter("userName", username).uniqueResult();
-        //I'm going to test if the below code does the same thing as the line above
-        //Customer customer = session.get(Customer.class, username);
+
 
         if (user != null && user.getPassword().equals(password)){
-
             return user;
         }
-        return user;
+        transaction.commit();//Has database update the available column to match the above change
+        return null;
     }
 
 
