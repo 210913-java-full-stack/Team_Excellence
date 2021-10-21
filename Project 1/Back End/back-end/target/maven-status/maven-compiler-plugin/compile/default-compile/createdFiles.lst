@@ -1,3 +1,4 @@
+services\ManageFlight.class
 utils\FileLogger.class
 repository\AdminRepo.class
 utils\FlightAvailability.class
@@ -6,15 +7,11 @@ servlets\PilotServlet.class
 servlets\SupportsPatch.class
 servlets\FlightDetailServlet.class
 utils\ConnectionManager.class
-repository\FlightRepoWHibernateUtil.class
 services\Login.class
-repository\PilotRepo.class
 utils\HibernateUtil.class
 model\Ticket.class
-model\Pilot.class
 model\Customer.class
 servlets\CustomerServlet.class
-Driver.class
 servlets\CORSFilter.class
 services\FlightManifest.class
 model\TestEntity.class
@@ -29,7 +26,6 @@ services\CheckIn.class
 utils\NumberOfTicketsAvailable.class
 model\Flight.class
 services\PurchaseTicket.class
-services\ScheduleFlight.class
 services\CancelTicket.class
 servlets\FlightServlet.class
 model\Admin.class

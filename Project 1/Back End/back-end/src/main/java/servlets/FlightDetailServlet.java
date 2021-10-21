@@ -49,8 +49,9 @@ public class FlightDetailServlet extends MyServlet {
             Scanner sc = new Scanner(input, StandardCharsets.UTF_8.name());
             String jsonText = sc.useDelimiter("\\A").next();
             ObjectMapper mapper = new ObjectMapper();
-            Flight payload = mapper.readValue(jsonText, Flight.class);
-            FlightRepo.saveNewFlight(payload);
+            Flight flight = mapper.readValue(jsonText, Flight.class);
+            FlightRepo.saveNewFlight(flight);
+
         }catch(Exception e){
             e.printStackTrace();
         }

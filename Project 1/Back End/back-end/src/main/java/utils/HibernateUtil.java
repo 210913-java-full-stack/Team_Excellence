@@ -11,9 +11,7 @@ public class HibernateUtil {
     private static Configuration configuration = new Configuration();
 
     public static void configureClasses(){
-        setConfiguration(configuration);
         configuration.addAnnotatedClass(Customer.class);
-        configuration.addAnnotatedClass(Pilot.class);
         configuration.addAnnotatedClass(Admin.class);
         configuration.addAnnotatedClass(Flight.class);
         configuration.addAnnotatedClass(Ticket.class);
@@ -30,10 +28,6 @@ public class HibernateUtil {
         return sessionFactory;
     }
 
-    public static void setSessionFactory(SessionFactory sessionFactory) {
-        HibernateUtil.sessionFactory = sessionFactory;
-    }
-
     public static Session getSession() {
         if(session == null){
             session = getSessionFactory().openSession();
@@ -45,11 +39,9 @@ public class HibernateUtil {
         HibernateUtil.session = session;
     }
 
-    public static Configuration getConfiguration() {
-        return configuration;
+    public static void closeSession(){
+        session.close();
+        session = null;
     }
 
-    public static void setConfiguration(Configuration configuration) {
-        HibernateUtil.configuration = configuration;
-    }
 }

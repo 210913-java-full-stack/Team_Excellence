@@ -23,6 +23,7 @@ public class CustomerRepo {
         return session.get(Customer.class, id);
     }
 
+
     public static Customer getByUsername(String username/*, String password*/) {
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Customer> criteria = builder.createQuery(Customer.class);
