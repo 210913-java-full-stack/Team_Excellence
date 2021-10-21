@@ -13,19 +13,14 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 public class TicketRepo {
-    /*
-    Create a new session and transaction objects in each method because there is no guarantee that there will
-    be an active session or transaction everytime the method is called.
-     */
+    private static Session session = HibernateUtil.getSession();
+    private static Transaction transaction;
 
     public static Ticket getTicketById(int id){
-        Session session = HibernateUtil.getSession();
         return session.get(Ticket.class, id);
     }
 
     public static List<Ticket> getAllTickets(){
-        Session session = HibernateUtil.getSession();
-
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Ticket> query = builder.createQuery(Ticket.class);
         Root<Ticket> root = query.from(Ticket.class);
@@ -35,8 +30,7 @@ public class TicketRepo {
 
     //This method inserts a new row into the ticket
     public static void saveNewTicket(Ticket ticket){
-        Session session = HibernateUtil.getSession();
-        Transaction transaction = session.beginTransaction();
+        transaction = session.beginTransaction();
 
         session.save(ticket);
 
@@ -45,8 +39,7 @@ public class TicketRepo {
 
     //This method updates the ticket table
     public static void updateCheckIn(int ticketId, boolean checkIn){
-        Session session = HibernateUtil.getSession();
-        Transaction transaction = session.beginTransaction();
+        transaction = session.beginTransaction();
 
         Ticket ticket = session.get(Ticket.class, ticketId);
         //Update the checkIn column
@@ -55,12 +48,10 @@ public class TicketRepo {
     }
 
     public static void deleteTicket(Ticket ticket){
-        Session session = HibernateUtil.getSession();
-        Transaction transaction = session.beginTransaction();
+        transaction = session.beginTransaction();
 
         session.delete(ticket);
 
         transaction.commit();
     }
-
 }

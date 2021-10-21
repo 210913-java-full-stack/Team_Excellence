@@ -4,16 +4,12 @@ C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\utils\HibernateUtil.java
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\repository\CustomerRepo.java
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\services\PurchaseTicket.java
-C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\services\ScheduleFlight.java
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\servlets\DependencyLoaderListener.java
-C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\repository\FlightRepoWHibernateUtil.java
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\servlets\FlightDetailServlet.java
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\servlets\FlightServlet.java
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\utils\FileLogger.java
-C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\repository\PilotRepo.java
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\services\TakeOff.java
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\utils\ConnectionManager.java
-C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\model\Pilot.java
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\services\Login.java
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\repository\TicketRepo.java
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\model\Ticket.java
@@ -29,9 +25,9 @@ C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\utils\NumberOfTicketsAvailable.java
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\servlets\LoginServlet.java
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\services\CancelFlight.java
+C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\services\ManageFlight.java
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\servlets\MyServlet.java
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\model\Flight.java
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\repository\AdminRepo.java
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\services\CancelTicket.java
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\servlets\SupportsPatch.java
-C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\Driver.java

@@ -15,10 +15,6 @@ public class Flight {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer flightId;
 
-    @ManyToOne
-    @JoinColumn(name = "pilot_id", referencedColumnName = "pilot_id", nullable = false)
-    private Pilot pilot;
-
     @Column(name = "depart")
     private String departLocation;
 
@@ -40,9 +36,6 @@ public class Flight {
     @Column(name = "take_off")
     private Boolean takeOff;
 
-    @Column(name = "max_number_of_tickets")
-    private int maxNumberOfTickets;
-
     @OneToMany(mappedBy = "flight")
     @JsonIgnore
     private List<Ticket> ticketList;
@@ -51,11 +44,10 @@ public class Flight {
 
     }
 
-    public Flight(Integer flightId, Pilot pilot, String departLocation, String arriveLocation, String departDate,
-                  String departTime, String arriveDate, String arriveTime, Boolean takeOff, Integer maxNumberOfTickets) {
+    public Flight(Integer flightId, String departLocation, String arriveLocation, String departDate,
+                  String departTime, String arriveDate, String arriveTime, Boolean takeOff) {
 
         this.flightId = flightId;
-        this.pilot = pilot;
         this.departLocation = departLocation;
         this.arriveLocation = arriveLocation;
         this.departDate = departDate;
@@ -71,14 +63,6 @@ public class Flight {
 
     public void setFlightId(Integer flightId) {
         this.flightId = flightId;
-    }
-
-    public Pilot getPilot() {
-        return pilot;
-    }
-
-    public void setPilot(Pilot pilot) {
-        this.pilot = pilot;
     }
 
     public String getDepartLocation() {
@@ -135,14 +119,6 @@ public class Flight {
 
     public void setTakeOff(Boolean takeOff) {
         this.takeOff = takeOff;
-    }
-
-    public int getMaxNumberOfTickets() {
-        return maxNumberOfTickets;
-    }
-
-    public void setMaxNumberOfTickets(int maxNumberOfTickets) {
-        this.maxNumberOfTickets = maxNumberOfTickets;
     }
 
     public List<Ticket> getTicketList() {

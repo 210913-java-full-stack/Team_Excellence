@@ -13,12 +13,12 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 public class AdminRepo {
+    private static Session session = HibernateUtil.getSession();
+    private static Transaction transaction;
 
     public static Admin getAdminById(int id) {
-        //Create session
-        Session session = HibernateUtil.getSession();
         //Begin transaction
-        Transaction transaction = session.beginTransaction();
+        transaction = session.beginTransaction();
         //Get data from database using the admin id
         Admin admin = session.get(Admin.class,id);
         transaction.commit();//Has database update the available column to match the above change
@@ -26,8 +26,7 @@ public class AdminRepo {
     }
 
     public static List<Admin> getAllAdmins() {
-        Session session = HibernateUtil.getSession();
-        Transaction transaction = session.beginTransaction();
+        transaction = session.beginTransaction();
 
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Admin> query = builder.createQuery(Admin.class);
@@ -40,16 +39,14 @@ public class AdminRepo {
     }
 
     public static void saveAdmin(Admin admin) {
-        Session session = HibernateUtil.getSession();
-        Transaction transaction = session.beginTransaction();
+        transaction = session.beginTransaction();
         session.save(admin);
         transaction.commit();//Has database update the available column to match the above change
 
     }
 
     public static void deleteAdmin(Admin admin) {
-        Session session = HibernateUtil.getSession();
-        Transaction transaction = session.beginTransaction();
+        transaction = session.beginTransaction();
         session.delete(admin);
         transaction.commit();//Has database update the available column to match the above change
 

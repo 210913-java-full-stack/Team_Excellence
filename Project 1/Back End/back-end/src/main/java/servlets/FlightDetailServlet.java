@@ -3,10 +3,7 @@ package servlets;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import model.Flight;
 import repository.FlightRepo;
-import repository.FlightRepoWHibernateUtil;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -18,7 +15,7 @@ public class FlightDetailServlet extends MyServlet {
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp)  {
         int id = Integer.parseInt(req.getParameter("id"));
-        Flight flight = FlightRepoWHibernateUtil.getFlightById(id);
+        Flight flight = FlightRepo.getFlightById(id);
         ObjectMapper mapper = new ObjectMapper();
 
         try {
@@ -38,7 +35,7 @@ public class FlightDetailServlet extends MyServlet {
             Flight payload = mapper.readValue(jsonText, Flight.class);
             int flightId = payload.getFlightId();
             System.out.println("Debug: I can get here 1");
-            FlightRepoWHibernateUtil.updateTakeOff(flightId, true);
+            FlightRepo.updateTakeOff(flightId, true);
             //FlightRepoWHibernateUtil.updateFlight(payload);
         }catch(Exception e){
             e.printStackTrace();
@@ -52,8 +49,8 @@ public class FlightDetailServlet extends MyServlet {
             Scanner sc = new Scanner(input, StandardCharsets.UTF_8.name());
             String jsonText = sc.useDelimiter("\\A").next();
             ObjectMapper mapper = new ObjectMapper();
-            Flight payload = mapper.readValue(jsonText, Flight.class);
-            FlightRepoWHibernateUtil.saveNewFlight(payload);
+            Flight flight = mapper.readValue(jsonText, Flight.class);
+            FlightRepo.saveNewFlight(flight);
         }catch(Exception e){
             e.printStackTrace();
         }

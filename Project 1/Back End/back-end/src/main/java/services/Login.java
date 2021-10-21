@@ -14,11 +14,6 @@ public class Login {
 
     }
 
-
-    public void pilotLogin(){
-
-    }
-
     public void adminLogin(){
 
     }

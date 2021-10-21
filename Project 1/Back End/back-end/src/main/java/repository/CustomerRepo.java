@@ -15,15 +15,15 @@ import java.util.List;
 
 
 public class CustomerRepo {
+    private static Session session = HibernateUtil.getSession();
+    private static Transaction transaction;
 
     public static Customer getCustomerById(Integer id) {
-        Session session = HibernateUtil.getSession();
         return session.get(Customer.class, id);
     }
 
     public static Customer login(String username, String password) {
-        Session session = HibernateUtil.getSession();
-        Transaction transaction = session.beginTransaction();
+        transaction = session.beginTransaction();
 
         Customer user = (Customer) session.createQuery("FROM Customer c WHERE c.username = :userName").setParameter("userName", username).uniqueResult();
 
@@ -39,8 +39,7 @@ public class CustomerRepo {
 
 
     public static List<Customer> getAllCustomers() {
-        Session session = HibernateUtil.getSession();
-        Transaction transaction = session.beginTransaction();
+        transaction = session.beginTransaction();
 
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Customer> query = builder.createQuery(Customer.class);
@@ -54,8 +53,7 @@ public class CustomerRepo {
     }
 
     public static void saveNewCustomer( Customer customer){
-        Session session = HibernateUtil.getSession();
-        Transaction transaction = session.beginTransaction();
+        transaction = session.beginTransaction();
 
         session.save(customer);
 
@@ -63,11 +61,11 @@ public class CustomerRepo {
     }
 
     public static void deleteCustomer(Customer customer) {
-        Session session = HibernateUtil.getSession();
-        Transaction transaction = session.beginTransaction();
+        transaction = session.beginTransaction();
 
         session.delete(customer);
 
         transaction.commit();//Has database update the available column to match the above change
     }
+
 }
