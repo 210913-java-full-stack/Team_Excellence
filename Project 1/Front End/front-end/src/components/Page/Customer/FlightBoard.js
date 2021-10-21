@@ -27,11 +27,6 @@ export default function FlightBoard() {
         }
         getFlights();
     },[]);
-=======
-        })();
-
-    });
->>>>>>> 94fa3c1434d5f30a59314a39e55b5ab4b9ef67e9
 
 
 
