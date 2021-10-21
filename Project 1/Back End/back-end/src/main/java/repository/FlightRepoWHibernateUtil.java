@@ -26,7 +26,7 @@ public class FlightRepoWHibernateUtil {
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Flight> query = builder.createQuery(Flight.class);
         Root<Flight> root = query.from(Flight.class);
-        query.select(root);
+        query.select(root).where(builder.equal(root.get("takeOff"), false));
         return session.createQuery(query).getResultList();
     }
 
@@ -41,11 +41,12 @@ public class FlightRepoWHibernateUtil {
     public static void updateTakeOff(int flightId, boolean takeOff) {
         Session session = HibernateUtil.getSession();
         Transaction transaction = session.beginTransaction();
-
+        System.out.println("Debug: I can get here 2");
         Flight flight = session.get(Flight.class, flightId);
         //Update the take_off column
         flight.setTakeOff(takeOff); //We wouldn't need to set take off to false. Default is false.
         transaction.commit();//Has database update the take_off column to match the above change
+        System.out.println("Debug: I can get here 5");
     }
 
 
@@ -60,6 +61,7 @@ public class FlightRepoWHibernateUtil {
         Session session = HibernateUtil.getSession();
         Transaction transaction = session.beginTransaction();
         session.update(flight);
-        transaction.commit();
+        transaction.commit();//Has database update the available column to match the above change
+
     }
 }
