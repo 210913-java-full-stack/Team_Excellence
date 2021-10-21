@@ -38,7 +38,7 @@ public class FlightDetailServlet extends MyServlet {
             Flight payload = mapper.readValue(jsonText, Flight.class);
             int flightId = payload.getFlightId();
             System.out.println("Debug: I can get here 1");
-            FlightRepoWHibernateUtil.updateTakeOff(flightId);
+            FlightRepoWHibernateUtil.updateTakeOff(flightId, true);
             //FlightRepoWHibernateUtil.updateFlight(payload);
         }catch(Exception e){
             e.printStackTrace();
