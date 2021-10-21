@@ -120,7 +120,7 @@ public class FlightRepo {
             t = session.beginTransaction();
             System.out.println(t.getStatus());
 
-            session.update(flight);
+            session.merge(flight);
             t.commit();
         } catch(Exception e){
             e.printStackTrace();
