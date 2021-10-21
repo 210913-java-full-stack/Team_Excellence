@@ -9,7 +9,7 @@ public class Login {
     }
 
     public Customer customerLogin(Customer customer){
-        Customer user = CustomerRepo.login(customer.getUsername(),customer.getPassword());
+        Customer user = CustomerRepo.getByUsername(customer.getUsername()/*,customer.getPassword()*/);
         return user;
 
     }

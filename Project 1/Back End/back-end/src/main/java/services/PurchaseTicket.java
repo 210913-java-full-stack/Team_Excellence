@@ -2,7 +2,6 @@ package services;
 
 import model.Customer;
 import model.Flight;
-import model.Pilot;
 import model.Ticket;
 import repository.*;
 
@@ -20,7 +19,7 @@ public class PurchaseTicket {
     //Allows the customer to purchase tickets.
     public void ticketEach(Ticket ticket, int flightId, int customerId){
         //Create the flight and customer objects and associate the flight to the ticket
-        Flight flight = FlightRepoWHibernateUtil.getFlightById(flightId);
+        Flight flight = FlightRepo.getFlightById(flightId);
         Customer customer = CustomerRepo.getCustomerById(customerId);
         //Associate ticket with the flight and customer
         ticket.setFlight(flight);
