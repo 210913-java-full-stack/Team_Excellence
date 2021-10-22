@@ -61,7 +61,6 @@ public class FlightRepo {
 
 
     public static void deleteFlight(Flight flight) {
-
         list.remove(flight);
         session.flush();
     }
