@@ -1,5 +1,7 @@
 package repository;
 
+import model.Flight;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import model.Customer;
 import org.hibernate.SessionFactory;
@@ -15,44 +17,26 @@ import java.util.List;
 
 public class CustomerRepo {
     private static Session session = HibernateUtil.getSession();
-
-
-    public static void init() {
-
-    }
+    private static Transaction transaction;
 
     public static Customer getCustomerById(Integer id) {
         return session.get(Customer.class, id);
     }
 
-    public static Customer login(String username, String password) {
+
+    public static Customer getByUsername(String username/*, String password*/) {
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<Customer> criteria = builder.createQuery(Customer.class);
+        Root<Customer> root = criteria.from(Customer.class);
+        //criteria.select(root).where(builder.equal(root.get()))
 
 
-        Customer user = null;
-
-        try{
-
-
-
-
-        user = (Customer) session.createQuery("FROM Customer c WHERE c.username = :userName").setParameter("userName", username).uniqueResult();
-
-        if (user != null && user.getPassword().equals(password)){
-
-            return user;
-        }
-
-
-
-
-        } catch (Exception e){
-
-            user = null;
-            e.printStackTrace();
-        }
-
-
-        return user;
+//        TODO: Transfer this check to a service class
+//        if (user != null && user.getPassword().equals(password)){
+//            return user;
+//        }
+        transaction.commit();//Has database update the available column to match the above change
+        return null;
     }
 
 
@@ -67,29 +51,19 @@ public class CustomerRepo {
     }
 
     public static void saveNewCustomer( Customer customer){
-        try {
-            Transaction t = session.beginTransaction();
-            System.out.println(t.getStatus());
+        transaction = session.beginTransaction();
 
-            session.save(customer);
-            t.commit();
-        } catch(Exception e){
-            e.printStackTrace();
-        }
+        session.save(customer);
 
+        transaction.commit();//Has database update the available column to match the above change
     }
 
     public static void deleteCustomer(Customer customer) {
-        try {
-            Transaction t = session.beginTransaction();
-            System.out.println(t.getStatus());
+        transaction = session.beginTransaction();
 
-            session.delete(customer);
-            t.commit();
+        session.delete(customer);
 
-        } catch(Exception e){
-            e.printStackTrace();
-        }
-
+        transaction.commit();//Has database update the available column to match the above change
     }
+
 }

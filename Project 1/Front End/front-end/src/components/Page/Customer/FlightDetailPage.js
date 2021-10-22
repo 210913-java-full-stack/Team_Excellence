@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 
 
-export default function FlightDetailPage({ id }) {
+export default function FlightDetailPage({ id, setTicketScreen }) {
 
     const [departLocation, setDepartLocation] = useState()
     const [departTime, setDepartTime] = useState()
@@ -23,7 +23,7 @@ export default function FlightDetailPage({ id }) {
                 setArriveLocation(res.data["arriveLocation"])
                 setArriveTime(res.data["arriveTime"])
                 setArriveDate(res.data["arriveDate"])
-                console.log(res.data)
+
             } catch (error) {
                 console.log(error)
             }
@@ -31,6 +31,12 @@ export default function FlightDetailPage({ id }) {
 
         getFlightDetails();
     }, [])
+
+
+    function clickBuyTicket() {
+
+        setTicketScreen(true)
+    }
 
 
     return (
@@ -49,7 +55,7 @@ export default function FlightDetailPage({ id }) {
 
             </div>
             <div>
-                <button>Buy a ticket!</button>
+                <button onClick={clickBuyTicket}>Buy a ticket!</button>
             </div>
 
         </div>

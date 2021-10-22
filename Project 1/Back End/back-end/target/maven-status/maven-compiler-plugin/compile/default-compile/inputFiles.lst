@@ -1,40 +1,18 @@
-<<<<<<< HEAD
-C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\servlets\CORSFilter.java
-=======
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\model\TestEntity.java
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\services\FlightManifest.java
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\servlets\CORSFilter.java
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\utils\HibernateUtil.java
->>>>>>> Britt
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\repository\CustomerRepo.java
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\services\PurchaseTicket.java
-C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\services\ScheduleFlight.java
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\servlets\DependencyLoaderListener.java
-<<<<<<< HEAD
-C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\servlets\FlightDetailServlet.java
-C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\servlets\FlightServlet.java
-C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\repository\GenericDAO.java
-C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\model\Tickets.java
-C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\repository\PilotRepo.java
-C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\model\Pilots.java
-C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\services\TakeOff.java
-C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\utils\ConnectionManager.java
-C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\services\Login.java
-C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\services\FlightInformation.java
-C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\repository\TicketRepo.java
-=======
-C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\repository\FlightRepoWHibernateUtil.java
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\servlets\FlightDetailServlet.java
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\servlets\FlightServlet.java
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\utils\FileLogger.java
-C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\repository\PilotRepo.java
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\services\TakeOff.java
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\utils\ConnectionManager.java
-C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\model\Pilot.java
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\services\Login.java
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\repository\TicketRepo.java
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\model\Ticket.java
->>>>>>> Britt
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\model\Customer.java
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\services\CheckIn.java
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\model\Admin.java
@@ -42,25 +20,14 @@ C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\servlets\AdminServlet.java
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\servlets\CustomerServlet.java
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\servlets\PilotServlet.java
-<<<<<<< HEAD
-C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\repository\CustomerDAO.java
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\utils\FlightAvailability.java
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\repository\FlightRepo.java
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\utils\NumberOfTicketsAvailable.java
-C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\services\EditFlight.java
-=======
-C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\utils\FlightAvailability.java
-C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\repository\FlightRepo.java
-C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\utils\NumberOfTicketsAvailable.java
->>>>>>> Britt
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\servlets\LoginServlet.java
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\services\CancelFlight.java
+C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\services\ManageFlight.java
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\servlets\MyServlet.java
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\model\Flight.java
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\repository\AdminRepo.java
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\services\CancelTicket.java
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\servlets\SupportsPatch.java
-<<<<<<< HEAD
-C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\Driver.java
-=======
->>>>>>> Britt

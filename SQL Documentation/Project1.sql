@@ -57,11 +57,6 @@ depart_time VARCHAR(50),
 depart_date VARCHAR(50),
 arrive_time VARCHAR(50),
 arrive_date VARCHAR(50),
-<<<<<<< HEAD
-#available BOOLEAN, #True if there are still tickets available and False if the flight has sold out
-=======
-available BOOLEAN, #True if there are still tickets available and False if the flight has sold out
->>>>>>> Britt
 take_off BOOLEAN, #True if the flight has taken off and False if it has not taken off
 max_number_of_tickets INT,
 CONSTRAINT PRIMARY KEY (flight_id),
@@ -90,19 +85,15 @@ CONSTRAINT ticket_to_customer FOREIGN KEY (customer_id) REFERENCES customers (cu
 ################## TEST CREATING A USER ##################
 ###########################################################
 
-<<<<<<< HEAD
 INSERT INTO customers (username, password, email, first_name, last_name) VALUES ("TCON", "password", "tyler.conner@revature.net", "Tyler", "Conner");
 INSERT INTO customers (username, password, email, first_name, last_name) VALUES ("Britt", "password", "brittany.lowell@revature.net", "Brittany", "Lowell");
 INSERT INTO admins (username, password, email, first_name, last_name) VALUES ("Britt","password", "brittany.lowell@revature.net", "Brittany", "Lowell");
 
-INSERT INTO pilots VALUES (11,"Pilot1","password","e","Joe","Neman");
-=======
 INSERT INTO customers(customer_id,username, password, email, first_name, last_name) VALUES (1,"TCON", "password", "tyler.conner@revature.net", "Tyler", "Conner");
 INSERT INTO customers(customer_id,username, password, email, first_name, last_name) VALUES (2,"Britt", "password", "brittany.lowell@revature.net", "Brittany", "Lowell");
 INSERT INTO admins(admin_id,username, password, email, first_name, last_name) VALUES (1,"Britt","password", "brittany.lowell@revature.net", "Brittany", "Lowell");
 
 INSERT INTO pilots VALUES (1,"Pilot1","password","e","Joe","Neman");
->>>>>>> Britt
 INSERT INTO pilots VALUES (2,"P2","p","e","Tyler","Neman");
 INSERT INTO pilots VALUES (3,"P3","p","e","Ron","Neman");
 INSERT INTO pilots VALUES (4,"P4","p","e","Jane","Neman");
@@ -112,12 +103,9 @@ INSERT INTO pilots VALUES (7,"P7","p","e","Joe","Neman");
 INSERT INTO pilots VALUES (8,"P8","p","e","Joe","Neman");
 INSERT INTO pilots VALUES (9,"P9","p","e","Joe","Neman");
 INSERT INTO pilots VALUES (10,"P10","p","e","Joe","Neman");
-<<<<<<< HEAD
-INSERT INTO flights (flight_id, pilot_id, depart, arrive, depart_time, depart_date, arrive_time, arrive_date, take_off, max_number_of_tickets) VALUES (846754,11,"ATL","LAX","8:00AM", "10/27/2021", "10:00AM", "10/27/2021", false, 155);
-=======
+
 
 INSERT INTO flights (flight_id, pilot_id, depart, arrive, depart_time, depart_date, arrive_time, arrive_date, take_off, max_number_of_tickets) VALUES (846754,1,"ATL","LAX","8:00AM", "10/27/2021", "10:00AM", "10/27/2021", false, 155);
->>>>>>> Britt
 INSERT INTO flights (flight_id, pilot_id, depart, arrive, depart_time, depart_date, arrive_time, arrive_date, take_off, max_number_of_tickets) VALUES (846755,2,"DEN","NYY","8:00AM", "10/27/2021", "12:00PM", "10/27/2021", false, 155);
 INSERT INTO flights (flight_id, pilot_id, depart, arrive, depart_time, depart_date, arrive_time, arrive_date, take_off, max_number_of_tickets) VALUES (846756,3,"ATL","LAX","8:00AM", "10/27/2021", "11:00AM", "10/27/2021", false, 155);
 INSERT INTO flights (flight_id, pilot_id, depart, arrive, depart_time, depart_date, arrive_time, arrive_date, take_off, max_number_of_tickets) VALUES (846757,4,"ATL","DEN","8:00AM", "10/27/2021", "9:00AM", "10/27/2021", false, 155);
@@ -128,16 +116,4 @@ INSERT INTO flights (flight_id, pilot_id, depart, arrive, depart_time, depart_da
 INSERT INTO flights (flight_id, pilot_id, depart, arrive, depart_time, depart_date, arrive_time, arrive_date, take_off, max_number_of_tickets) VALUES (846765,9,"MOB","LAX","8:00AM", "10/27/2021", "1:00PM", "10/27/2021", false, 155);
 INSERT INTO flights (flight_id, pilot_id, depart, arrive, depart_time, depart_date, arrive_time, arrive_date, take_off, max_number_of_tickets) VALUES (846764,10,"LAX","MOB","10:00AM", "10/27/2021", "10:00AM", "10/27/2021", false, 155);
 
-<<<<<<< HEAD
-
-=======
->>>>>>> Britt
-SELECT * FROM customers;
-SELECT * FROM admins;
-SELECT * FROM pilots;
-SELECT * FROM flights;
-<<<<<<< HEAD
-=======
-SELECT * FROM tickets;
->>>>>>> Britt
 

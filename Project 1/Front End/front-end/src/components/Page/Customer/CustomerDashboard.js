@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "./CustomerDashboard.css";
 import FlightBoard from './FlightBoard';
 
@@ -9,7 +9,7 @@ import FlightBoard from './FlightBoard';
 
 
 export default function CustomerDashboard({ db_class }) {
-
+    const [flightId, setFlightId] = useState()
     /**
      * 
      * 
@@ -21,7 +21,7 @@ export default function CustomerDashboard({ db_class }) {
         <section className={db_class}>
             <div className="flight-board">
                 <div className="container">
-                    <FlightBoard></FlightBoard>
+                    <FlightBoard setFlightId={setFlightId}></FlightBoard>
                 </div>
             </div>
             <div className="check-in">
