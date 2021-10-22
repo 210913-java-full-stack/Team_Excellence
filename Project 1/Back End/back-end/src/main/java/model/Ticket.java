@@ -35,13 +35,10 @@ public class Ticket {
     public Ticket() {
     }
 
-<<<<<<< HEAD
-    public Ticket( Flight flight, Customer customer, String passengerFirstName, String passengerLastName, Integer passengerAge, Boolean checkedIn) {
 
-=======
-    public Ticket(Integer ticketId, Flight flight, Customer customer, String passengerFirstName, String passengerLastName, Integer passengerAge, Boolean checkedIn) {
+    public Ticket( Flight flight, Customer customer, String passengerFirstName, String passengerLastName, Integer passengerAge, Boolean checkedIn) {
         this.ticketId = ticketId;
->>>>>>> 39550dca6f31a06ca1a6f002b4f6c06ed8c933f9
+
         this.passengerFirstName = passengerFirstName;
         this.passengerLastName = passengerLastName;
         this.passengerAge = passengerAge;
@@ -104,8 +101,4 @@ public class Ticket {
         this.checkedIn = checkedIn;
     }
 
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 39550dca6f31a06ca1a6f002b4f6c06ed8c933f9

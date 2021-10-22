@@ -25,50 +25,18 @@ public class CustomerRepo {
     public static Customer login(String username, String password) {
         transaction = session.beginTransaction();
 
-<<<<<<< HEAD
 
-        Customer user = null;
-        Transaction t = null;
-        Session session = null;
-
-        try{
-
-            CustomerRepo.setSession(CustomerRepo.getSessionFactory().openSession());
-            session = CustomerRepo.getSession();
-            t = session.beginTransaction();
-=======
         Customer user = (Customer) session.createQuery("FROM Customer c WHERE c.username = :userName").setParameter("userName", username).uniqueResult();
->>>>>>> 39550dca6f31a06ca1a6f002b4f6c06ed8c933f9
+
 
 
         if (user != null && user.getPassword().equals(password)){
             return user;
         }
-<<<<<<< HEAD
 
-
-
-
-        } catch (Exception e){
-
-            user = null;
-            e.printStackTrace();
-
-            if (t!=null) {
-                t.rollback();
-            }
-        }finally {
-            if (session!= null) {
-                session.close();
-            }
-        }
-
-
-        return user;
-=======
         transaction.commit();//Has database update the available column to match the above change
         return null;
->>>>>>> 39550dca6f31a06ca1a6f002b4f6c06ed8c933f9
+
     }
 
 

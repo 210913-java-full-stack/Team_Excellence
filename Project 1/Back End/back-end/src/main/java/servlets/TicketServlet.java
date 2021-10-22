@@ -19,7 +19,7 @@ public class TicketServlet extends HttpServlet {
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         int flightId = Integer.parseInt(req.getParameter("flightId"));
         System.out.println(flightId);
-        Flight flight = FlightRepo.getFlightbyId(flightId);
+        Flight flight = FlightRepo.getFlightById(flightId);
         int userId = Integer.parseInt(req.getParameter("userId"));
         System.out.println(userId);
         Customer customer = CustomerRepo.getCustomerById(userId);
@@ -32,7 +32,7 @@ public class TicketServlet extends HttpServlet {
              System.out.println(lnameOne);
              Integer ageOne = Integer.parseInt(req.getParameter("1_age"));
              System.out.println(ageOne);
-             Ticket one = new Ticket(FlightRepo.getFlightbyId(flightId),CustomerRepo.getCustomerById(userId),fnameOne,lnameOne,ageOne, true);
+             Ticket one = new Ticket(FlightRepo.getFlightById(flightId),CustomerRepo.getCustomerById(userId),fnameOne,lnameOne,ageOne, true);
              TicketRepo.saveNewTicket(one);
 
          }else if(numOfTickets==2){

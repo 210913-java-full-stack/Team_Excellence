@@ -29,11 +29,8 @@ public class Customer {
     private String lastName;
 
     @OneToMany(mappedBy = "customer")
-<<<<<<< HEAD
-    private List<Ticket> ticketList;
-=======
     private List<Ticket> ticketList = new ArrayList<>();
->>>>>>> 39550dca6f31a06ca1a6f002b4f6c06ed8c933f9
+
 
     public Customer() {
     }
