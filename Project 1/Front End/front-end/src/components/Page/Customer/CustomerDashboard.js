@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import "./CustomerDashboard.css";
 import FlightBoard from './FlightBoard';
+import PurchaseTicket from './PurchaseTicket';
 
 
 
@@ -8,22 +9,48 @@ import FlightBoard from './FlightBoard';
 
 
 
-export default function CustomerDashboard({ db_class }) {
+export default function CustomerDashboard({ id, db_class, isLoggedIn }) {
+
+
+    const [ticketScreen, setTicketScreen] = useState(false)
     const [flightId, setFlightId] = useState()
+
     /**
      * 
      * 
      * 
      */
 
+
+
+
+
+
+    function renderFlightBoard() {
+        if (ticketScreen) {
+            return (
+                <div>
+                    <PurchaseTicket setTicketScreen={setTicketScreen} flightId={flightId} id={id} isLoggedIn={isLoggedIn} />
+                </div>
+            );
+        } else {
+            return (
+                <div className="container">
+                    <FlightBoard setTicketScreen={setTicketScreen} setFlightId={setFlightId}></FlightBoard>
+                </div>
+            );
+        }
+    }
+
+
+
+
     return (
 
         <section className={db_class}>
             <div className="flight-board">
-                <div className="container">
-                    <FlightBoard setFlightId={setFlightId}></FlightBoard>
-                </div>
-            </div>
+                {renderFlightBoard()}
+            </div >
             <div className="check-in">
                 <div className="container">
                     <h1>Check In</h1>
@@ -37,7 +64,7 @@ export default function CustomerDashboard({ db_class }) {
 
 
 
-        </section>
+        </section >
 
     );
 

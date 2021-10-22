@@ -125,4 +125,6 @@ public class Flight {
     public void setTicketList(List<Ticket> ticketList) {
         this.ticketList = ticketList;
     }
+
 }
+

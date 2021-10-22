@@ -31,6 +31,7 @@ public class Customer {
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Ticket> ticketList = new ArrayList<>();
 
+
     public Customer() {
     }
 

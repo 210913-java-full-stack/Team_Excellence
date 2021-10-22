@@ -24,12 +24,14 @@ public class CustomerRepo {
     }
 
 
+
     public static Customer getByUsername(String username) {
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Customer> criteria = builder.createQuery(Customer.class);
         Root<Customer> root = criteria.from(Customer.class);
         criteria.select(root).where(builder.equal(root.get("username"), username));
         return session.createQuery(criteria).getSingleResult();
+
     }
 
     public static List<Customer> getAllCustomers() {

@@ -35,8 +35,10 @@ public class Ticket {
     public Ticket() {
     }
 
-    public Ticket(Integer ticketId, Flight flight, Customer customer, String passengerFirstName, String passengerLastName, Integer passengerAge, Boolean checkedIn) {
+
+    public Ticket( Flight flight, Customer customer, String passengerFirstName, String passengerLastName, Integer passengerAge, Boolean checkedIn) {
         this.ticketId = ticketId;
+
         this.passengerFirstName = passengerFirstName;
         this.passengerLastName = passengerLastName;
         this.passengerAge = passengerAge;
