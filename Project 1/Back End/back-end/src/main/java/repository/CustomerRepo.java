@@ -24,23 +24,13 @@ public class CustomerRepo {
     }
 
 
-    public static Customer getByUsername(String username/*, String password*/) {
+    public static Customer getByUsername(String username) {
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Customer> criteria = builder.createQuery(Customer.class);
         Root<Customer> root = criteria.from(Customer.class);
-        //criteria.select(root).where(builder.equal(root.get()))
-
-
-//        TODO: Transfer this check to a service class
-//        if (user != null && user.getPassword().equals(password)){
-//            return user;
-//        }
-        transaction.commit();//Has database update the available column to match the above change
-        return null;
+        criteria.select(root).where(builder.equal(root.get("username"), username));
+        return session.createQuery(criteria).getSingleResult();
     }
-
-
-
 
     public static List<Customer> getAllCustomers() {
         CriteriaBuilder builder = session.getCriteriaBuilder();
