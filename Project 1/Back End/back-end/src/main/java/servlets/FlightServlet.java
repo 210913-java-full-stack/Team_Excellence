@@ -13,13 +13,11 @@ import java.util.List;
 public class FlightServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
-<<<<<<< HEAD
+
 
         List<Flight> list = FlightRepo.getAllFlights();
 
-=======
-        List<Flight> list = FlightRepo.getAllAvailableFlights();
->>>>>>> 287c91782fe3208bec0b5b7a3b5fda60604353a2
+
         ObjectMapper mapper = new ObjectMapper();
         try {
             resp.getWriter().write(mapper.writeValueAsString(list));
