@@ -34,11 +34,9 @@ public class FlightDetailServlet extends MyServlet {
             String jsonText = sc.useDelimiter("\\A").next();
             ObjectMapper mapper = new ObjectMapper();
             Flight flight = mapper.readValue(jsonText, Flight.class);
-            //int flightId = payload.getFlightId();
-            ManageFlight manageFlight = new ManageFlight();
-            manageFlight.rescheduleFlight(flight);
+            int flightId = flight.getFlightId();
             //Keep this line until we can verify that the bug in the patch method is fixed
-            //FlightRepo.updateTakeOff(flightId, true);
+            FlightRepo.updateFlight(flight);
         }catch(Exception e){
             e.printStackTrace();
         }

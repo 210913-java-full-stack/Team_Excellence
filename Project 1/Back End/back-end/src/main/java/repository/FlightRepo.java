@@ -11,14 +11,14 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 public class FlightRepo {
-    private static Session session = HibernateUtil.getSession();
-    private static Transaction transaction;
 
     public static Flight getFlightById(int id) {
+        Session session = HibernateUtil.getSession();
         return session.get(Flight.class, id);
     }
 
     public static List<Flight> getAllAvailableFlights() {
+        Session session = HibernateUtil.getSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Flight> query = builder.createQuery(Flight.class);
         Root<Flight> root = query.from(Flight.class);
@@ -26,24 +26,26 @@ public class FlightRepo {
         return session.createQuery(query).getResultList();
     }
 
-    public static List<Flight> getAllFlights(){
+    public static List<Flight> getAllFlights() {
+        Session session = HibernateUtil.getSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Flight> query = builder.createQuery(Flight.class);
         Root<Flight> root = query.from(Flight.class);
         query.select(root);
-
         return session.createQuery(query).getResultList();
     }
 
     public static void saveNewFlight(Flight flight) {
-        transaction = session.beginTransaction();
+        Session session = HibernateUtil.getSession();
+        Transaction transaction = session.beginTransaction();
 
         session.save(flight);
         transaction.commit();
     }
 
     public static void updateTakeOff(int flightId, boolean takeOff) {
-        transaction = session.beginTransaction();
+        Session session = HibernateUtil.getSession();
+        Transaction transaction = session.beginTransaction();
         System.out.println("Debug: I can get here 2");
         Flight flight = session.get(Flight.class, flightId);
         //Update the take_off column
@@ -52,16 +54,17 @@ public class FlightRepo {
         System.out.println("Debug: I can get here 5");
     }
 
-
-    public static void deleteFlight(Flight flight) {
-        transaction = session.beginTransaction();
-        session.delete(flight);
-        transaction.commit();//Has database update the available column to match the above change
+    public static void updateFlight(Flight flight) {
+        Session session = HibernateUtil.getSession();
+        Transaction transaction = session.beginTransaction();
+        session.merge(flight);
+        transaction.commit();
     }
 
-    public static void updateFlight(Flight flight) {
-        transaction = session.beginTransaction();
-        session.update(flight);
-        transaction.commit();
+    public static void deleteFlight(Flight flight) {
+        Session session = HibernateUtil.getSession();
+        Transaction transaction = session.beginTransaction();
+        session.delete(flight);
+        transaction.commit();//Has database update the available column to match the above change
     }
 }

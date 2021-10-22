@@ -39,45 +39,6 @@ public class ManageFlight {
     }
 
     /**
-     * This method allows the admin to update parts of the flight row.
-     * @param flight This method requires a flight object. The flight object must always contain the flight id
-     */
-    public void rescheduleFlight(Flight flight){
-        /*
-        just pull the flight from the database. check what information is missing from the data you send me.
-        replace the missing data with the data from the database. delete flight and then create new flight.
-         */
-        //Get the flight from the database
-        Flight currentFlight = FlightRepo.getFlightById(flight.getFlightId());
-        //Check each parameter and if null, then that parameter remains the same and does not change
-        if(flight.getDepartLocation() == null){
-            flight.setDepartLocation(currentFlight.getDepartLocation());
-        }
-        if(flight.getArriveLocation() == null){
-            flight.setArriveLocation(currentFlight.getArriveLocation());
-        }
-        if(flight.getDepartTime() == null){
-            flight.setDepartTime(currentFlight.getDepartTime());
-        }
-        if(flight.getDepartDate() == null){
-            flight.setDepartDate(currentFlight.getDepartDate());
-        }
-        if(flight.getArriveTime() == null){
-            flight.setArriveTime(currentFlight.getArriveTime());
-        }
-        if(flight.getArriveDate() == null){
-            flight.setArriveDate(currentFlight.getArriveDate());
-        }
-        if(flight.getTakeOff() == null){
-            flight.setTakeOff(currentFlight.getTakeOff());
-        }
-        //Delete the flight currently in the database
-        FlightRepo.deleteFlight(currentFlight);
-        //Save the updated flight to the database
-        FlightRepo.saveNewFlight(flight);
-    }
-
-    /**
      * Closes ticket purchases and cancellations. Does this by changing the takeOff column in the flight table
      * to true.
      */

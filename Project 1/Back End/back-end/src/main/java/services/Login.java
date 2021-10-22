@@ -11,9 +11,8 @@ public class Login {
     }
 
     public Customer customerLogin(Customer customer){
-        String username = customer.getUsername();
         String password = customer.getPassword();
-        Customer user = CustomerRepo.getByUsername(username);
+        Customer user = CustomerRepo.getByUsername(customer.getUsername());
         if (user != null && user.getPassword().equals(password)){
             return user;
         } else{

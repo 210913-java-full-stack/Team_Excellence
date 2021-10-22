@@ -32,9 +32,6 @@ public class CustomerRepo {
         return session.createQuery(criteria).getSingleResult();
     }
 
-
-
-
     public static List<Customer> getAllCustomers() {
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Customer> query = builder.createQuery(Customer.class);
