@@ -31,11 +31,12 @@ public class ManageFlight {
 
     /**
      * This method allows the admin to update the entire flight
-     * @param flight This method requires a flight object that contains the changes to be made to the flight
+     * @param newFlight This method requires a flight object that contains the changes to be made to the flight
      *               as well as the current flight id
      */
-    public void updateFlight(Flight flight){
-        FlightRepo.updateFlight(flight);
+    public void updateFlight(Flight newFlight){
+        Flight oldFlight = FlightRepo.getFlightById(newFlight.getFlightId());
+        FlightRepo.updateFlight(oldFlight,newFlight);
     }
 
     /**

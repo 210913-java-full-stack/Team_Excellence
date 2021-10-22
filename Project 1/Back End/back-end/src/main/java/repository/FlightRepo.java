@@ -73,5 +73,11 @@ public class FlightRepo {
         session.flush();
     }
 
+    public static List<Flight> getList() {
+        return list;
+    }
 
+    public static void setList(List<Flight> list) {
+        FlightRepo.list = list;
+    }
 }
