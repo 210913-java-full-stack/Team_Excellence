@@ -13,26 +13,40 @@ import java.util.List;
 public class FlightRepo {
     private static Session session = HibernateUtil.getSession();
     private static Transaction transaction;
+    private static List<Flight> list;
 
     public static Flight getFlightById(int id) {
         return session.get(Flight.class, id);
     }
 
     public static List<Flight> getAllFlights() {
-        CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<Flight> query = builder.createQuery(Flight.class);
-        Root<Flight> root = query.from(Flight.class);
-        query.select(root).where(builder.equal(root.get("takeOff"), false));
-        return session.createQuery(query).getResultList();
+        if (list == null) {
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Flight> query = builder.createQuery(Flight.class);
+            Root<Flight> root = query.from(Flight.class);
+            query.select(root);
+            list = session.createQuery(query).getResultList();
+        } else {
+         session.flush();
+        }
+        return list;
+
+    }
+
+    public static List<Flight> getList() {
+        return list;
+    }
+
+    public static void setList(List<Flight> list) {
+        FlightRepo.list = list;
     }
 
     public static void saveNewFlight(Flight flight) {
 
-        transaction = session.beginTransaction();
-
-        session.save(flight);
-        transaction.commit();
+        list.add(flight);
+        session.flush();
     }
+
 
     public static void updateTakeOff(int flightId, boolean takeOff) {
         transaction = session.beginTransaction();
@@ -46,15 +60,12 @@ public class FlightRepo {
 
 
     public static void deleteFlight(Flight flight) {
-        transaction = session.beginTransaction();
-        session.delete(flight);
-        transaction.commit();//Has database update the available column to match the above change
+        list.remove(flight);
+        session.flush();
     }
 
     public static void updateFlight(Flight flight) {
-        transaction = session.beginTransaction();
-        session.update(flight);
-        transaction.commit();//Has database update the available column to match the above change
+        list.
 
     }
 }
