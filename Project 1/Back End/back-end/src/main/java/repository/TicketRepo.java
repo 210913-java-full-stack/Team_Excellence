@@ -2,9 +2,9 @@ package repository;
 
 import model.Flight;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import model.Ticket;
 import org.hibernate.Transaction;
+import utils.HibernateUtil;
 
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -13,148 +13,45 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 public class TicketRepo {
-    private static SessionFactory sessionFactory;
-    private static Session session;
-
-    public static void init(){
-
-    }
+    private static Session session = HibernateUtil.getSession();
+    private static Transaction transaction;
 
     public static Ticket getTicketById(int id){
-        Ticket ticket = null;
-        Transaction t = null;
-        Session session = null;
-        try{
-            TicketRepo.setSession(TicketRepo.getSessionFactory().openSession());
-            session = TicketRepo.getSession();
-            t = session.beginTransaction();
-            ticket = session.get(Ticket.class, id);
-            t.commit();
-        }catch (Exception e){
-            e.printStackTrace();
-            if (t!=null) {
-                t.rollback();
-            }
-        } finally {
-            if (session!= null) {
-                session.close();
-            }
-        }
-
-
-        return ticket;
-
+        return session.get(Ticket.class, id);
     }
 
     public static List<Ticket> getAllTickets(){
-        Transaction t = null;
-        Session session = null;
-        List<Ticket> list = null;
-
-        try{
-            TicketRepo.setSession(TicketRepo.getSessionFactory().openSession());
-            session = TicketRepo.getSession();
-            t = session.beginTransaction();
-            CriteriaBuilder builder = session.getCriteriaBuilder();
-            CriteriaQuery<Ticket> query = builder.createQuery(Ticket.class);
-            Root<Ticket> root = query.from(Ticket.class);
-            query.select(root);
-            list = session.createQuery(query).getResultList();
-            t.commit();
-        }catch (Exception e){
-            e.printStackTrace();
-            if (t!=null) {
-                t.rollback();
-            }
-        }finally {
-            if (session!= null) {
-                session.close();
-            }
-        }
-
-
-        return list;
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<Ticket> query = builder.createQuery(Ticket.class);
+        Root<Ticket> root = query.from(Ticket.class);
+        query.select(root);
+        return session.createQuery(query).getResultList();
     }
 
+    //This method inserts a new row into the ticket
     public static void saveNewTicket(Ticket ticket){
-        Transaction t = null;
-        Session session = null;
-        try{
-            TicketRepo.setSession(TicketRepo.getSessionFactory().openSession());
-            session = TicketRepo.getSession();
-            t = session.beginTransaction();
+        transaction = session.beginTransaction();
+
         session.save(ticket);
-            t.commit();
-        }catch (Exception e){
-            e.printStackTrace();
-            if (t!=null) {
-                t.rollback();
-            }
-        }finally {
-            if (session!= null) {
-                session.close();
-            }
-        }
+
+        transaction.commit();//Has database update the available column to match the above change
     }
 
+    //This method updates the ticket table
+    public static void updateCheckIn(int ticketId, boolean checkIn){
+        transaction = session.beginTransaction();
 
-
-    public static void updateTicket(Ticket ticket) {
-        Transaction t = null;
-        Session session = null;
-        try{
-            TicketRepo.setSession(TicketRepo.getSessionFactory().openSession());
-            session = TicketRepo.getSession();
-            t = session.beginTransaction();
-            session.update(ticket);
-            t.commit();
-        }catch (Exception e){
-            e.printStackTrace();
-            if (t!=null) {
-                t.rollback();
-            }
-        }finally {
-            if (session!= null) {
-                session.close();
-            }
-        }
+        Ticket ticket = session.get(Ticket.class, ticketId);
+        //Update the checkIn column
+        ticket.setCheckedIn(checkIn); //Updates just the ticket column
+        transaction.commit();//Has database update the take_off column to match the above change
     }
 
     public static void deleteTicket(Ticket ticket){
-        Transaction t = null;
-        Session session = null;
-        try{
-            TicketRepo.setSession(TicketRepo.getSessionFactory().openSession());
-            session = TicketRepo.getSession();
-            t = session.beginTransaction();
-            session.delete(ticket);
-            t.commit();
-        }catch (Exception e){
-            e.printStackTrace();
-            if (t!=null) {
-                t.rollback();
-            }
-        }finally {
-            if (session!= null) {
-                session.close();
-            }
-        }
+        transaction = session.beginTransaction();
 
-    }
+        session.delete(ticket);
 
-    public static SessionFactory getSessionFactory() {
-        return sessionFactory;
-    }
-
-    public static void setSessionFactory(SessionFactory sessionFactory) {
-        TicketRepo.sessionFactory = sessionFactory;
-    }
-
-    public static Session getSession() {
-        return session;
-    }
-
-    public static void setSession(Session session) {
-        TicketRepo.session = session;
+        transaction.commit();
     }
 }

@@ -2,8 +2,10 @@ package repository;
 
 import model.Flight;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import model.Customer;
+import org.hibernate.SessionFactory;
+import servlets.DependencyLoaderListener;
+import utils.HibernateUtil;
 import org.hibernate.Transaction;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -13,43 +15,17 @@ import java.util.List;
 
 
 public class CustomerRepo {
-
-    private static SessionFactory sessionFactory;
-    private static Session session;
-
-
-    public static void init() {
-
-    }
+    private static Session session = HibernateUtil.getSession();
+    private static Transaction transaction;
 
     public static Customer getCustomerById(Integer id) {
-        Customer customer = null;
-        Transaction t = null;
-        Session session = null;
-        try{
-            CustomerRepo.setSession(CustomerRepo.getSessionFactory().openSession());
-            session = CustomerRepo.getSession();
-            t = session.beginTransaction();
-            customer = session.get(Customer.class, id);
-            t.commit();
-        }catch(Exception e){
-            e.printStackTrace();
-            if (t!=null) {
-                t.rollback();
-            }
-        } finally {
-            if (session!= null) {
-                session.close();
-            }
-        }
-
-
-
-        return customer;
+        return session.get(Customer.class, id);
     }
 
     public static Customer login(String username, String password) {
+        transaction = session.beginTransaction();
 
+<<<<<<< HEAD
 
         Customer user = null;
         Transaction t = null;
@@ -60,14 +36,15 @@ public class CustomerRepo {
             CustomerRepo.setSession(CustomerRepo.getSessionFactory().openSession());
             session = CustomerRepo.getSession();
             t = session.beginTransaction();
+=======
+        Customer user = (Customer) session.createQuery("FROM Customer c WHERE c.username = :userName").setParameter("userName", username).uniqueResult();
+>>>>>>> 39550dca6f31a06ca1a6f002b4f6c06ed8c933f9
 
-
-        user = (Customer) session.createQuery("FROM Customer c WHERE c.username = :userName").setParameter("userName", username).uniqueResult();
 
         if (user != null && user.getPassword().equals(password)){
-
             return user;
         }
+<<<<<<< HEAD
 
 
 
@@ -88,98 +65,43 @@ public class CustomerRepo {
 
 
         return user;
+=======
+        transaction.commit();//Has database update the available column to match the above change
+        return null;
+>>>>>>> 39550dca6f31a06ca1a6f002b4f6c06ed8c933f9
     }
 
 
 
 
     public static List<Customer> getAllCustomers() {
-        Transaction t = null;
-        Session session = null;
-        List<Customer> list = null;
-        try{
-            CustomerRepo.setSession(CustomerRepo.getSessionFactory().openSession());
-            session = CustomerRepo.getSession();
-            t = session.beginTransaction();
-            CriteriaBuilder builder = session.getCriteriaBuilder();
-            CriteriaQuery<Customer> query = builder.createQuery(Customer.class);
-            Root<Customer> root = query.from(Customer.class);
-            query.select(root);
-            list = session.createQuery(query).getResultList();
-            t.commit();
+        transaction = session.beginTransaction();
 
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<Customer> query = builder.createQuery(Customer.class);
+        Root<Customer> root = query.from(Customer.class);
+        query.select(root);
+        List list = session.createQuery(query).getResultList();
 
-        } catch (Exception e){
-            e.printStackTrace();
-            if (t!=null) {
-                t.rollback();
-            }
-        }finally {
-            if (session!= null) {
-                session.close();
-            }
-        }
-
+        transaction.commit();//Has database update the available column to match the above change
 
         return list;
     }
 
     public static void saveNewCustomer( Customer customer){
-        Transaction t = null;
-        Session session = null;
+        transaction = session.beginTransaction();
 
-        try {
-            CustomerRepo.setSession(CustomerRepo.getSessionFactory().openSession());
-            session = CustomerRepo.getSession();
-            t = session.beginTransaction();
+        session.save(customer);
 
-            session.save(customer);
-            t.commit();
-        } catch(Exception e){
-            e.printStackTrace();
-
-            t.rollback();
-        }finally {
-            session.close();
-        }
-
+        transaction.commit();//Has database update the available column to match the above change
     }
 
     public static void deleteCustomer(Customer customer) {
-        Transaction t = null;
-        Session session = null;
-        try {
-            CustomerRepo.setSession(CustomerRepo.getSessionFactory().openSession());
-            session = CustomerRepo.getSession();
-            t = session.beginTransaction();
+        transaction = session.beginTransaction();
 
-            session.delete(customer);
-            t.commit();
+        session.delete(customer);
 
-        } catch(Exception e){
-            e.printStackTrace();
-
-            t.rollback();
-        }finally {
-            session.close();
-        }
-
+        transaction.commit();//Has database update the available column to match the above change
     }
 
-
-    public static SessionFactory getSessionFactory() {
-        return sessionFactory;
-    }
-
-    public static void setSessionFactory(SessionFactory sessionFactory) {
-        CustomerRepo.sessionFactory = sessionFactory;
-    }
-
-    public static Session getSession() {
-        return session;
-    }
-
-    public static void setSession(Session session) {
-        CustomerRepo.session = session;
-    }
 }

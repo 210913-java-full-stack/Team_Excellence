@@ -1,9 +1,13 @@
 package services;
 
-public class CheckIn {
+import repository.TicketRepo;
 
-    //Allows the customer to check in for their flight. Requires customer ID
-    public static void checkInForFlight(){
-        //TODO: Write code after implementing Hibernate
+public class CheckIn {
+    /**
+     * Allows the customer to check in for their flight.
+     * @param ticketId This method requires the id associated with the ticket
+     */
+    public static void checkInForFlight(int ticketId){
+        TicketRepo.updateCheckIn(ticketId,true);
     }
 }

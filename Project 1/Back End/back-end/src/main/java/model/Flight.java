@@ -128,4 +128,8 @@ public class Flight {
     public void setTicketList(List<Ticket> ticketList) {
         this.ticketList = ticketList;
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 39550dca6f31a06ca1a6f002b4f6c06ed8c933f9

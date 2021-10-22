@@ -1,9 +1,5 @@
 package services;
 
-import model.Pilot;
-
-import java.util.Date;//TODO: Change date datatype after implementing Hibernate
-
 public class DisplayFlightSchedule {
 
     /*
@@ -12,30 +8,18 @@ public class DisplayFlightSchedule {
      * TODO: Consider changing the return type(s) for the displayFlights method after implementing Hibernate
      */
 
-    //Displays all flights
-    public static void displayFlights(){
+    /**
+     * Displays all flights regardless of availability. Used to display flights to the admin.
+     */
+    public static void displayFlightsAdmin(){
         //TODO: Write code after implementing Hibernate
     }
 
-    //Filter flights based on date
-    //TODO: Change date datatype after implementing Hibernate
-    public static void displayFlights(Date date){
+    /**
+     * Filter flights based on availability. Used to display flights to the customer.
+     */
+    public static void displayFlightsCustomer(){
         //TODO: Write code after implementing Hibernate
     }
 
-    //Filter flights based on departure/destination city
-    public static void displayFlights(String city){
-        //TODO: Write code after implementing Hibernate
-    }
-
-    //Filter flights based on availability
-    public static void displayFlights(boolean isAvailable){
-        //TODO: Write code after implementing Hibernate
-    }
-
-    //Displays pilot's schedule for the day. Needs pilot ID and "today's date" ie the date that the pilot is logging in.
-    //TODO: Consider changing the return type after implementing Hibernate
-    public static void displayPilotSchedule(Pilot pilots){
-        //TODO: Write code after implementing Hibernate
-    }
 }

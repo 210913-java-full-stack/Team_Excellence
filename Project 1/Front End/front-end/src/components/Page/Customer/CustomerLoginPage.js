@@ -112,7 +112,3 @@ export default function CustomerLoginPage({ setId, setRealUsername, setFirstName
         )
     }
 }
-
-
-
-
