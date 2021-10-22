@@ -1,5 +1,6 @@
 package model;
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -9,15 +10,15 @@ public class Ticket {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int ticketId;
+    private Integer ticketId;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(nullable = false)
-    private Flight flightId;
+    @ManyToOne
+    @JoinColumn(name="flight_id", referencedColumnName="flight_id", nullable = false)
+    private Flight flight;
 
-    @OneToOne
-    @JoinColumn(nullable = false)
-    private Customer customerId;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="customer_id", referencedColumnName="customer_id", nullable = false)
+    private Customer customer;
 
     @Column(name = "passenger_first_name")
     private String passengerFirstName;
@@ -31,34 +32,11 @@ public class Ticket {
     @Column(name = "checked_in")
     private Boolean checkedIn;
 
-
-
-
     public Ticket() {
     }
 
-    public Ticket(Flight flight, Customer customer, String fname, String lname, Integer age) {
-        flightId = flight;
-        customerId = customer;
-        passengerFirstName = fname;
-        passengerLastName = lname;
-        passengerAge = age;
+    public Ticket( Flight flight, Customer customer, String passengerFirstName, String passengerLastName, Integer passengerAge, Boolean checkedIn) {
 
-
-    }
-
-    public Boolean getCheckedIn() {
-        return checkedIn;
-    }
-
-    public void setCheckedIn(Boolean checkedIn) {
-        this.checkedIn = checkedIn;
-    }
-
-    public Ticket(int ticketId, Flight flightId, Customer customerId, String passengerFirstName, String passengerLastName, Integer passengerAge, Boolean checkedIn) {
-        this.ticketId = ticketId;
-        this.flightId = flightId;
-        this.customerId = customerId;
         this.passengerFirstName = passengerFirstName;
         this.passengerLastName = passengerLastName;
         this.passengerAge = passengerAge;
@@ -69,24 +47,24 @@ public class Ticket {
         return ticketId;
     }
 
-    public void setTicketId(int ticketId) {
+    public void setTicketId(Integer ticketId) {
         this.ticketId = ticketId;
     }
 
-    public Flight getFlightId() {
-        return flightId;
+    public Flight getFlight() {
+        return flight;
     }
 
-    public void setFlightId(Flight flightId) {
-        this.flightId = flightId;
+    public void setFlight(Flight flight) {
+        this.flight = flight;
     }
 
-    public Customer getCustomerId() {
-        return customerId;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setCustomerId(Customer customerId) {
-        this.customerId = customerId;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     public String getPassengerFirstName() {
@@ -112,4 +90,13 @@ public class Ticket {
     public void setPassengerAge(Integer passengerAge) {
         this.passengerAge = passengerAge;
     }
+
+    public Boolean getCheckedIn() {
+        return checkedIn;
+    }
+
+    public void setCheckedIn(Boolean checkedIn) {
+        this.checkedIn = checkedIn;
+    }
+
 }

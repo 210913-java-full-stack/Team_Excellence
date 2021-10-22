@@ -32,7 +32,7 @@ public class TicketServlet extends HttpServlet {
              System.out.println(lnameOne);
              Integer ageOne = Integer.parseInt(req.getParameter("1_age"));
              System.out.println(ageOne);
-             Ticket one = new Ticket(FlightRepo.getFlightbyId(flightId),CustomerRepo.getCustomerById(userId),fnameOne,lnameOne,ageOne);
+             Ticket one = new Ticket(FlightRepo.getFlightbyId(flightId),CustomerRepo.getCustomerById(userId),fnameOne,lnameOne,ageOne, true);
              TicketRepo.saveNewTicket(one);
 
          }else if(numOfTickets==2){
@@ -52,9 +52,9 @@ public class TicketServlet extends HttpServlet {
              System.out.println(fnameTwo);
              System.out.println(lnameTwo);
              System.out.println(ageTwo);
-             Ticket two = new Ticket(FlightRepo.getFlightbyId(flightId),CustomerRepo.getCustomerById(userId),fnameTwo,lnameTwo,ageTwo);
+             Ticket two = new Ticket(flight, customer,fnameTwo,lnameTwo,ageTwo,true);
              TicketRepo.saveNewTicket(two);
-             Ticket one = new Ticket(FlightRepo.getFlightbyId(flightId),CustomerRepo.getCustomerById(userId),fnameOne,lnameOne,ageOne);
+             Ticket one = new Ticket(flight,customer,fnameOne,lnameOne,ageOne, true);
              TicketRepo.saveNewTicket(one);
 
          }else if(numOfTickets==3){
@@ -63,22 +63,22 @@ public class TicketServlet extends HttpServlet {
              String fnameOne = req.getParameter("1_fname");
              String lnameOne = req.getParameter("1_lname");
              Integer ageOne = Integer.parseInt(req.getParameter("1_age"));
-             Ticket one = new Ticket(flight,customer,fnameOne,lnameOne,ageOne);
+             Ticket one = new Ticket(flight,customer,fnameOne,lnameOne,ageOne, true);
              TicketRepo.saveNewTicket(one);
              String fnameTwo = req.getParameter("2_fname");
              String lnameTwo = req.getParameter("2_lname");
              Integer ageTwo = Integer.parseInt(req.getParameter("2_age"));
-             Ticket two = new Ticket(flight,customer,fnameTwo,lnameTwo,ageTwo);
+             Ticket two = new Ticket(flight,customer,fnameTwo,lnameTwo,ageTwo, true);
              TicketRepo.saveNewTicket(two);
              String fnameThree = req.getParameter("3_fname");
              String lnameThree = req.getParameter("3_lname");
              Integer ageThree = Integer.parseInt(req.getParameter("3_age"));
-             Ticket three = new Ticket(flight,customer,fnameThree,lnameThree,ageThree);
+             Ticket three = new Ticket(flight,customer,fnameThree,lnameThree,ageThree, true);
              TicketRepo.saveNewTicket(three);
              String fnameFour = req.getParameter("4_fname");
              String lnameFour = req.getParameter("4_lname");
              Integer ageFour = Integer.parseInt(req.getParameter("4_age"));
-             Ticket four = new Ticket(flight,customer,fnameFour,lnameFour,ageFour);
+             Ticket four = new Ticket(flight,customer,fnameFour,lnameFour,ageFour, true);
              TicketRepo.saveNewTicket(four);
          }
 
