@@ -11,19 +11,18 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 public class FlightRepo {
-<<<<<<< HEAD
+
     private static Session session = HibernateUtil.getSession();
-    private static Transaction transaction;
+
     private static List<Flight> list;
-=======
->>>>>>> 287c91782fe3208bec0b5b7a3b5fda60604353a2
+
 
     public static Flight getFlightById(int id) {
         Session session = HibernateUtil.getSession();
         return session.get(Flight.class, id);
     }
 
-<<<<<<< HEAD
+
     public static List<Flight> getAllFlights() {
         if (list == null) {
             CriteriaBuilder builder = session.getCriteriaBuilder();
@@ -38,36 +37,8 @@ public class FlightRepo {
 
     }
 
-    public static List<Flight> getList() {
-        return list;
-    }
 
-    public static void setList(List<Flight> list) {
-        FlightRepo.list = list;
-    }
-=======
-    public static List<Flight> getAllAvailableFlights() {
-        Session session = HibernateUtil.getSession();
-        CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<Flight> query = builder.createQuery(Flight.class);
-        Root<Flight> root = query.from(Flight.class);
-        query.select(root).where(builder.equal(root.get("takeOff"), false));
-        return session.createQuery(query).getResultList();
-    }
 
-    public static List<Flight> getAllFlights() {
-        Session session = HibernateUtil.getSession();
-        CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<Flight> query = builder.createQuery(Flight.class);
-        Root<Flight> root = query.from(Flight.class);
-        query.select(root);
-        return session.createQuery(query).getResultList();
-    }
-
-    public static void saveNewFlight(Flight flight) {
-        Session session = HibernateUtil.getSession();
-        Transaction transaction = session.beginTransaction();
->>>>>>> 287c91782fe3208bec0b5b7a3b5fda60604353a2
 
     public static void saveNewFlight(Flight flight) {
 
@@ -87,28 +58,20 @@ public class FlightRepo {
         System.out.println("Debug: I can get here 5");
     }
 
-    public static void updateFlight(Flight flight) {
-        Session session = HibernateUtil.getSession();
-        Transaction transaction = session.beginTransaction();
-        session.merge(flight);
-        transaction.commit();
-    }
+
 
     public static void deleteFlight(Flight flight) {
-<<<<<<< HEAD
+
         list.remove(flight);
         session.flush();
     }
 
-    public static void updateFlight(Flight flight) {
-        list.
+    public static void updateFlight(Flight flight, Flight newflight) {
 
+        list.remove(flight);
+        list.add(newflight);
+        session.flush();
     }
-=======
-        Session session = HibernateUtil.getSession();
-        Transaction transaction = session.beginTransaction();
-        session.delete(flight);
-        transaction.commit();//Has database update the available column to match the above change
-    }
->>>>>>> 287c91782fe3208bec0b5b7a3b5fda60604353a2
+
+
 }
