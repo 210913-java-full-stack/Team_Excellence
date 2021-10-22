@@ -1,5 +1,6 @@
 package repository;
 
+import model.Customer;
 import org.hibernate.Session;
 import model.Admin;
 import org.hibernate.SessionFactory;
@@ -16,26 +17,33 @@ public class AdminRepo {
     private static Session session = HibernateUtil.getSession();
     private static Transaction transaction;
 
+    //****** session.get does not require starting and committing a transaction *****
+
     public static Admin getAdminById(int id) {
-        //Begin transaction
-        transaction = session.beginTransaction();
         //Get data from database using the admin id
-        Admin admin = session.get(Admin.class,id);
-        transaction.commit();//Has database update the available column to match the above change
-        return admin;
+        return session.get(Admin.class,id);
+    }
+
+    /**
+     * This method
+     * @param username
+     * @return
+     */
+    public static Admin getByUsername(String username) {
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<Admin> criteria = builder.createQuery(Admin.class);
+        Root<Admin> root = criteria.from(Admin.class);
+        criteria.select(root).where(builder.equal(root.get("username"), username));
+        return session.createQuery(criteria).getSingleResult();
     }
 
     public static List<Admin> getAllAdmins() {
-        transaction = session.beginTransaction();
-
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Admin> query = builder.createQuery(Admin.class);
         Root<Admin> root = query.from(Admin.class);
         query.select(root);
-        List<Admin> list = session.createQuery(query).getResultList();
 
-        transaction.commit();//Has database update the available column to match the above change
-        return list;
+        return session.createQuery(query).getResultList();
     }
 
     public static void saveAdmin(Admin admin) {

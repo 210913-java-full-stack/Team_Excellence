@@ -3,6 +3,7 @@ package servlets;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import model.Flight;
 import repository.FlightRepo;
+import services.ManageFlight;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -32,11 +33,12 @@ public class FlightDetailServlet extends MyServlet {
             Scanner sc = new Scanner(input, StandardCharsets.UTF_8.name());
             String jsonText = sc.useDelimiter("\\A").next();
             ObjectMapper mapper = new ObjectMapper();
-            Flight payload = mapper.readValue(jsonText, Flight.class);
-            int flightId = payload.getFlightId();
-            System.out.println("Debug: I can get here 1");
-            FlightRepo.updateTakeOff(flightId, true);
-            //FlightRepoWHibernateUtil.updateFlight(payload);
+            Flight flight = mapper.readValue(jsonText, Flight.class);
+            //int flightId = payload.getFlightId();
+            ManageFlight manageFlight = new ManageFlight();
+            manageFlight.rescheduleFlight(flight);
+            //Keep this line until we can verify that the bug in the patch method is fixed
+            //FlightRepo.updateTakeOff(flightId, true);
         }catch(Exception e){
             e.printStackTrace();
         }

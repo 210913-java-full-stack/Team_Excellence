@@ -18,7 +18,7 @@ public class FlightRepo {
         return session.get(Flight.class, id);
     }
 
-    public static List<Flight> getAllFlights() {
+    public static List<Flight> getAllAvailableFlights() {
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Flight> query = builder.createQuery(Flight.class);
         Root<Flight> root = query.from(Flight.class);
@@ -26,8 +26,16 @@ public class FlightRepo {
         return session.createQuery(query).getResultList();
     }
 
-    public static void saveNewFlight(Flight flight) {
+    public static List<Flight> getAllFlights(){
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<Flight> query = builder.createQuery(Flight.class);
+        Root<Flight> root = query.from(Flight.class);
+        query.select(root);
 
+        return session.createQuery(query).getResultList();
+    }
+
+    public static void saveNewFlight(Flight flight) {
         transaction = session.beginTransaction();
 
         session.save(flight);
@@ -39,7 +47,7 @@ public class FlightRepo {
         System.out.println("Debug: I can get here 2");
         Flight flight = session.get(Flight.class, flightId);
         //Update the take_off column
-        flight.setTakeOff(takeOff); //We wouldn't need to set take off to false. Default is false.
+        flight.setTakeOff(takeOff);
         transaction.commit();//Has database update the take_off column to match the above change
         System.out.println("Debug: I can get here 5");
     }
@@ -54,7 +62,6 @@ public class FlightRepo {
     public static void updateFlight(Flight flight) {
         transaction = session.beginTransaction();
         session.update(flight);
-        transaction.commit();//Has database update the available column to match the above change
-
+        transaction.commit();
     }
 }

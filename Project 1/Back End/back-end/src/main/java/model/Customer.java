@@ -28,7 +28,7 @@ public class Customer {
     @Column(name = "last_name")
     private String lastName;
 
-    @OneToMany(mappedBy = "customer")
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Ticket> ticketList = new ArrayList<>();
 
     public Customer() {

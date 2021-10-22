@@ -36,7 +36,7 @@ public class Flight {
     @Column(name = "take_off")
     private Boolean takeOff;
 
-    @OneToMany(mappedBy = "flight")
+    @OneToMany(mappedBy = "flight", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Ticket> ticketList;
 
@@ -44,16 +44,15 @@ public class Flight {
 
     }
 
-    public Flight(Integer flightId, String departLocation, String arriveLocation, String departDate,
-                  String departTime, String arriveDate, String arriveTime, Boolean takeOff) {
-
+    public Flight(Integer flightId, String departLocation, String arriveLocation, String departTime,
+                  String departDate, String arriveTime, String arriveDate, Boolean takeOff) {
         this.flightId = flightId;
         this.departLocation = departLocation;
         this.arriveLocation = arriveLocation;
-        this.departDate = departDate;
         this.departTime = departTime;
-        this.arriveDate = arriveDate;
+        this.departDate = departDate;
         this.arriveTime = arriveTime;
+        this.arriveDate = arriveDate;
         this.takeOff = takeOff;
     }
 
