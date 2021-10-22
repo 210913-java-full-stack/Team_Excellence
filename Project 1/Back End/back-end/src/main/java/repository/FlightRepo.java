@@ -39,10 +39,18 @@ public class FlightRepo {
 
 
 
-
+// delete later
     public static void saveNewFlight(Flight flight) {
 
         list.add(flight);
+        session.flush();
+    }
+
+    public static void saveFlight(Flight flight){
+        list.add(flight);
+        Transaction tx = session.beginTransaction();
+        session.save(flight);
+        tx.commit();
         session.flush();
     }
 
@@ -58,16 +66,20 @@ public class FlightRepo {
         System.out.println("Debug: I can get here 5");
     }
 
-
-
     public static void deleteFlight(Flight flight) {
-        list.remove(flight);
+        int index = list.indexOf(flight);
+        System.out.println(index);
+        list.remove(index);
+//        Transaction tx = session.beginTransaction();
+//        session.delete(flight);
+//        tx.commit();
         session.flush();
     }
 
-    public static void updateFlight(Flight flight, Flight newflight) {
 
-        list.remove(flight);
+    public static void updateFlight(Flight flight, Flight newflight) {
+        int oldFlight = list.indexOf(flight);
+        list.remove(oldFlight);
         list.add(newflight);
         session.flush();
     }

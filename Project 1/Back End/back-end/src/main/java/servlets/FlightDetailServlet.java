@@ -55,9 +55,24 @@ public class FlightDetailServlet extends MyServlet {
             ObjectMapper mapper = new ObjectMapper();
 
             Flight flight = mapper.readValue(jsonText, Flight.class);
-            FlightRepo.saveNewFlight(flight);
+            FlightRepo.saveFlight(flight);
 
         }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void doDelete(HttpServletRequest request, HttpServletResponse response) {
+        try{
+            InputStream input = request.getInputStream();
+            Scanner sc = new Scanner(input, StandardCharsets.UTF_8.name());
+            String jsonText = sc.useDelimiter("\\A").next();
+            ObjectMapper mapper = new ObjectMapper();
+
+            Flight flight = mapper.readValue(jsonText, Flight.class);
+            FlightRepo.deleteFlight(flight);
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
