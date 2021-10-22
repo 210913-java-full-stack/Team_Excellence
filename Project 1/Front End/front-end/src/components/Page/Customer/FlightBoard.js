@@ -15,34 +15,23 @@ export default function FlightBoard({ setTicketScreen, setFlightId }) {
     const [flightDetails, setFlightDetails] = useState(false);
 
     useEffect(() => {
-<<<<<<< HEAD
-        setTimeout(() => {
-            async function getFlights() {
-=======
 
 
         setTimeout(() => {
 
             (async function getFlights() {
->>>>>>> 96942ef7769eb47451febf07db01742137e939f0
                 try {
                     const res = await axios.get("http://localhost:8080/api/flights");
                     setFlights(res.data);
                 } catch (err) {
                     console.log(err)
                 }
-<<<<<<< HEAD
-            }
-            getFlights();
-        }, 5000)
-=======
             })();
 
 
         }, 5000);
 
 
->>>>>>> 96942ef7769eb47451febf07db01742137e939f0
 
     });
 

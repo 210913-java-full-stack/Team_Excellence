@@ -23,23 +23,7 @@ public class CustomerRepo {
         return session.get(Customer.class, id);
     }
 
-<<<<<<< HEAD
-    public static Customer login(String username, String password) {
-        transaction = session.beginTransaction();
 
-
-        Customer user = (Customer) session.createQuery("FROM Customer c WHERE c.username = :userName").setParameter("userName", username).uniqueResult();
-
-
-
-        if (user != null && user.getPassword().equals(password)){
-            return user;
-        }
-
-        transaction.commit();//Has database update the available column to match the above change
-        return null;
-
-=======
 
     public static Customer getByUsername(String username) {
         CriteriaBuilder builder = session.getCriteriaBuilder();
@@ -47,7 +31,7 @@ public class CustomerRepo {
         Root<Customer> root = criteria.from(Customer.class);
         criteria.select(root).where(builder.equal(root.get("username"), username));
         return session.createQuery(criteria).getSingleResult();
->>>>>>> 96942ef7769eb47451febf07db01742137e939f0
+
     }
 
     public static List<Customer> getAllCustomers() {
