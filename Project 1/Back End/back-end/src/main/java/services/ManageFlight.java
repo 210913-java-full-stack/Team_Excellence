@@ -30,29 +30,21 @@ public class ManageFlight {
     }
 
     /**
-     * This method allows the admin to update the entire flight using the flight ID
-     * @param flightId
+     * This method allows the admin to update the entire flight
+     * @param newFlight This method requires a flight object that contains the changes to be made to the flight
+     *               as well as the current flight id
      */
-    public void updateFlight(int flightId){
-        //TODO: Finish this method
-    }
-
-    /**
-     * This method allows the admin to update parts of the flight row
-     * @param flight This method requires a flight object
-     */
-    public void updateFlightColumns(Flight flight){
-        /*
-        just pull the flight from the database. check what information is missing from the data you send me.
-        replace the missing data with the data from the database. delete flight and then create new flight.
-         */
+    public void updateFlight(Flight newFlight){
+        Flight oldFlight = FlightRepo.getFlightById(newFlight.getFlightId());
+        FlightRepo.updateFlight(oldFlight,newFlight);
     }
 
     /**
      * Closes ticket purchases and cancellations. Does this by changing the takeOff column in the flight table
      * to true.
      */
-    public static void initiateTakeOff(){
-
+    public static void initiateTakeOff(int flightId){
+        //We wouldn't need to set take off to false since it is false by default.
+        FlightRepo.updateTakeOff(flightId, true);
     }
 }

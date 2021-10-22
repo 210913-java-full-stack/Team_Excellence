@@ -16,7 +16,7 @@ public class Ticket {
     @JoinColumn(name="flight_id", referencedColumnName="flight_id", nullable = false)
     private Flight flight;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name="customer_id", referencedColumnName="customer_id", nullable = false)
     private Customer customer;
 

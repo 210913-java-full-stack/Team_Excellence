@@ -31,10 +31,9 @@ public class CustomerServlet extends HttpServlet {
         InputStream requestBody = req.getInputStream();
         Scanner sc = new Scanner(requestBody, StandardCharsets.UTF_8.name());
         String jsonText = sc.useDelimiter("\\A").next();
-        System.out.println(jsonText);
         ObjectMapper mapper = new ObjectMapper();
         Customer payload = mapper.readValue(jsonText, Customer.class);
-        //Need to remove this from servlet and put it in the service layer
+        //Need to replace this with register class
         CustomerRepo.saveNewCustomer(payload);
     }
 }

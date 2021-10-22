@@ -9,12 +9,16 @@ import java.time.format.DateTimeFormatter;
 public class FileLogger {
 
     private static FileLogger fileLogger;
+    private static int threshold;
     private static boolean printToConsole;
     private static boolean printToConsoleTemp;
 
     private FileLogger() {
         printToConsole = false;
+        printToConsoleTemp = false;
+        threshold = 3;
     }
+
     public static FileLogger getFileLogger(){
         if(fileLogger == null){
             fileLogger = new FileLogger();
@@ -22,12 +26,13 @@ public class FileLogger {
         return fileLogger;
     }
 
-    public void writeLog(String message, String level) {
+    public void writeLog(String message, int level) {
         try(FileWriter fileWriter = new FileWriter(getLogFileName(), true)){
             String logEntry = formatLogEntry(message);
-            //TODO: Write logic for different levels of logging?
 
-            fileWriter.write((logEntry));
+            if(level >= threshold) {
+                fileWriter.write(logEntry);
+            }
 
             if(printToConsole || printToConsoleTemp){
                 System.out.println(logEntry);
@@ -61,6 +66,11 @@ public class FileLogger {
 
     public FileLogger console() {
         printToConsoleTemp = true;
+        return fileLogger;
+    }
+
+    public FileLogger threshold(int th) {
+        threshold = th;
         return fileLogger;
     }
 }

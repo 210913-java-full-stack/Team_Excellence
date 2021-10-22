@@ -4,6 +4,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import model.Flight;
 import repository.FlightRepo;
 
+import services.ManageFlight;
+
+
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -33,10 +37,10 @@ public class FlightDetailServlet extends MyServlet {
             String jsonText = sc.useDelimiter("\\A").next();
             ObjectMapper mapper = new ObjectMapper();
             Flight payload = mapper.readValue(jsonText, Flight.class);
-            int flightId = payload.getFlightId();
-            System.out.println("Debug: I can get here 1");
-            FlightRepo.updateTakeOff(flightId, true);
-            //FlightRepoWHibernateUtil.updateFlight(payload);
+            ManageFlight mf = new ManageFlight();
+
+            mf.updateFlight(payload);
+
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -49,9 +53,26 @@ public class FlightDetailServlet extends MyServlet {
             Scanner sc = new Scanner(input, StandardCharsets.UTF_8.name());
             String jsonText = sc.useDelimiter("\\A").next();
             ObjectMapper mapper = new ObjectMapper();
+
             Flight flight = mapper.readValue(jsonText, Flight.class);
-            FlightRepo.saveNewFlight(flight);
+            FlightRepo.saveFlight(flight);
+
         }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void doDelete(HttpServletRequest request, HttpServletResponse response) {
+        try{
+            InputStream input = request.getInputStream();
+            Scanner sc = new Scanner(input, StandardCharsets.UTF_8.name());
+            String jsonText = sc.useDelimiter("\\A").next();
+            ObjectMapper mapper = new ObjectMapper();
+
+            Flight flight = mapper.readValue(jsonText, Flight.class);
+            FlightRepo.deleteFlight(flight);
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

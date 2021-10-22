@@ -1,6 +1,7 @@
 package repository;
 
 import model.Flight;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import model.Customer;
 import org.hibernate.SessionFactory;
@@ -22,6 +23,7 @@ public class CustomerRepo {
         return session.get(Customer.class, id);
     }
 
+<<<<<<< HEAD
     public static Customer login(String username, String password) {
         transaction = session.beginTransaction();
 
@@ -37,23 +39,23 @@ public class CustomerRepo {
         transaction.commit();//Has database update the available column to match the above change
         return null;
 
+=======
+
+    public static Customer getByUsername(String username) {
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<Customer> criteria = builder.createQuery(Customer.class);
+        Root<Customer> root = criteria.from(Customer.class);
+        criteria.select(root).where(builder.equal(root.get("username"), username));
+        return session.createQuery(criteria).getSingleResult();
+>>>>>>> 96942ef7769eb47451febf07db01742137e939f0
     }
 
-
-
-
     public static List<Customer> getAllCustomers() {
-        transaction = session.beginTransaction();
-
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Customer> query = builder.createQuery(Customer.class);
         Root<Customer> root = query.from(Customer.class);
         query.select(root);
-        List list = session.createQuery(query).getResultList();
-
-        transaction.commit();//Has database update the available column to match the above change
-
-        return list;
+        return session.createQuery(query).getResultList();
     }
 
     public static void saveNewCustomer( Customer customer){
