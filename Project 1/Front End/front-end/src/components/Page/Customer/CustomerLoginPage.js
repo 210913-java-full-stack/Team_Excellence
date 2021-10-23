@@ -33,7 +33,9 @@ export default function CustomerLoginPage({ setId, setRealUsername, setFirstName
             setLastName(data["lastName"])
             setIsLoggedIn(true)
 
-        }).catch(error => console.log(error));
+        }).catch(error =>
+
+            alert("Invalid username or password!"));
 
     }
 
@@ -64,13 +66,13 @@ export default function CustomerLoginPage({ setId, setRealUsername, setFirstName
                     <div className="login-user">
                         <label>
                             <p>Username :</p>
-                            <input type="text" onChange={e => setUserName(e.target.value)} />
+                            <input type="text" onChange={e => setUserName(e.target.value)} required />
                         </label>
                     </div>
                     <div className="login-pword">
                         <label>
                             <p>Password :</p>
-                            <input type="password" onChange={e => setPassword(e.target.value)} />
+                            <input type="password" onChange={e => setPassword(e.target.value)} required />
                         </label>
                     </div>
                     <div className="login-submit">

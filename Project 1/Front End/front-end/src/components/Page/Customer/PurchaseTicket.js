@@ -62,15 +62,15 @@ function PurchaseTicket({ setTicketScreen, flightId, id, isLoggedIn }) {
                             <label>
                                 First Name
                             </label>
-                            <input id={`${el}_fname`} name={`${el}_fname`} type="text"></input>
+                            <input id={`${el}_fname`} name={`${el}_fname`} type="text" required></input>
                             <label>
                                 Last Name
                             </label>
-                            <input id={`${el}_lname`} name={`${el}_lname`} type="text"></input>
+                            <input id={`${el}_lname`} name={`${el}_lname`} type="text" required></input>
                             <label>
                                 Age
                             </label>
-                            <input id={`${el}_age`} name={`${el}_age`} type="number" placeholder="18" ></input>
+                            <input id={`${el}_age`} name={`${el}_age`} type="number" placeholder="18" required></input>
 
 
                         </div>
@@ -86,7 +86,7 @@ function PurchaseTicket({ setTicketScreen, flightId, id, isLoggedIn }) {
         if (isLoggedIn) {
             return <button type="submit">Purchse Tickets</button>;
         } else {
-            return <h5>You have to be logged in to buy a ticket</h5>
+            return <h3>You have to be logged in to buy a ticket</h3>
         }
     }
 

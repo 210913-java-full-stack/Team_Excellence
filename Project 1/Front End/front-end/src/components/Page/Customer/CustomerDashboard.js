@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import "./CustomerDashboard.css";
 import FlightBoard from './FlightBoard';
 import PurchaseTicket from './PurchaseTicket';
+import CheckIn from './CheckIn';
+import CancelTicket from './CancelTicket';
 
 
 
@@ -53,12 +55,12 @@ export default function CustomerDashboard({ id, db_class, isLoggedIn }) {
             </div >
             <div className="check-in">
                 <div className="container">
-                    <h1>Check In</h1>
+                    <CheckIn />
                 </div>
             </div>
             <div className="cancel-ticket">
                 <div className="container">
-                    <h1>Cancel a Ticket</h1>
+                    <CancelTicket isLoggedIn={isLoggedIn} />
                 </div>
             </div>
 
