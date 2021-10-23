@@ -28,12 +28,4 @@ public class PurchaseTicket {
         TicketRepo.saveNewTicket(ticket);
     }
 
-//    //Create the pilot object
-//    Pilot pilot = PilotRepo.getPilotById(pilotId);
-//
-//    //Associate flight row with a pilot
-//        flight.setPilot(pilot);
-//    //Save the new flight to the database
-//        FlightRepoWHibernateUtil.saveNewFlight(flight);
-
 }

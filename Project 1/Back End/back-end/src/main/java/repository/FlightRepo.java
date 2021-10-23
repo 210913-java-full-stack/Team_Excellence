@@ -18,7 +18,6 @@ public class FlightRepo {
 
 
     public static Flight getFlightById(int id) {
-        Session session = HibernateUtil.getSession();
         return session.get(Flight.class, id);
     }
 
@@ -37,51 +36,37 @@ public class FlightRepo {
 
     }
 
-
-
-// delete later
-    public static void saveNewFlight(Flight flight) {
-
-        list.add(flight);
-        session.flush();
-    }
+    static int n = 0;
 
     public static void saveFlight(Flight flight){
-        list.add(flight);
-        Transaction tx = session.beginTransaction();
-        session.save(flight);
-        tx.commit();
-        session.flush();
-    }
-
-
-    public static void updateTakeOff(int flightId, boolean takeOff) {
-        Session session = HibernateUtil.getSession();
         Transaction transaction = session.beginTransaction();
-        System.out.println("Debug: I can get here 2");
-        Flight flight = session.get(Flight.class, flightId);
-        //Update the take_off column
-        flight.setTakeOff(takeOff);
-        transaction.commit();//Has database update the take_off column to match the above change
-        System.out.println("Debug: I can get here 5");
+        session.save(flight);
+        transaction.commit();
+        if(list == null){
+            getAllFlights();
+        } else{
+            list.add(flight);
+        }
+        n++;
     }
 
     public static void deleteFlight(Flight flight) {
-        int index = list.indexOf(flight);
-        System.out.println(index);
-        list.remove(index);
-//        Transaction tx = session.beginTransaction();
-//        session.delete(flight);
-//        tx.commit();
-        session.flush();
+        Transaction transaction = session.beginTransaction();
+        session.delete(flight);
+        transaction.commit();
+        list.remove(flight);
     }
 
 
-    public static void updateFlight(Flight flight, Flight newflight) {
-        int oldFlight = list.indexOf(flight);
+    public static void updateFlight(Flight oldFlight, Flight newFlight) {
+        Transaction transaction = session.beginTransaction();
+        session.merge(newFlight);
+        transaction.commit();
+        if(list == null){
+            getAllFlights();
+        }
         list.remove(oldFlight);
-        list.add(newflight);
-        session.flush();
+        list.add(newFlight);
     }
 
     public static List<Flight> getList() {

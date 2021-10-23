@@ -69,10 +69,11 @@ public class FlightDetailServlet extends MyServlet {
             Scanner sc = new Scanner(input, StandardCharsets.UTF_8.name());
             String jsonText = sc.useDelimiter("\\A").next();
             ObjectMapper mapper = new ObjectMapper();
-
             Flight flight = mapper.readValue(jsonText, Flight.class);
-            FlightRepo.deleteFlight(flight);
-        } catch (IOException e) {
+            ManageFlight manageFlight = new ManageFlight();
+            manageFlight.cancelFlight(flight);
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

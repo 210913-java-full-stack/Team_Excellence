@@ -21,9 +21,6 @@ public class LoginServlet extends HttpServlet {
             ObjectMapper mapper = new ObjectMapper();
             String requestData = req.getReader().lines().collect(Collectors.joining());
             Login login = new Login();
-            //Figure out how to separate out request info after Tyler tells me what he is sending
-            //Create if else loop where I would collect the int or boolean that indicates whether a customer
-            //or admin is logging in.
             Customer customer = mapper.readValue(requestData, Customer.class);
             Customer user = login.customerLogin(customer);
             String json = mapper.writeValueAsString(user);

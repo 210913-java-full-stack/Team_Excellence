@@ -2,11 +2,11 @@ services\ManageFlight.class
 utils\FileLogger.class
 repository\AdminRepo.class
 utils\FlightAvailability.class
-services\CancelFlight.class
-servlets\PilotServlet.class
+utils\availableFlightsCache.class
 servlets\SupportsPatch.class
 servlets\FlightDetailServlet.class
 utils\ConnectionManager.class
+repository\FlightRepoWHibernateUtil.class
 services\Login.class
 utils\HibernateUtil.class
 model\Ticket.class
@@ -24,6 +24,7 @@ repository\CustomerRepo.class
 repository\FlightRepo.class
 services\CheckIn.class
 utils\NumberOfTicketsAvailable.class
+servlets\TicketServlet.class
 model\Flight.class
 services\PurchaseTicket.class
 services\CancelTicket.class

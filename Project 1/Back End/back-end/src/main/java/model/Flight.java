@@ -42,6 +42,17 @@ public class Flight {
 
     }
 
+    public Flight(String departLocation, String arriveLocation, String departTime, String departDate,
+                  String arriveTime, String arriveDate, Boolean takeOff) {
+        this.departLocation = departLocation;
+        this.arriveLocation = arriveLocation;
+        this.departTime = departTime;
+        this.departDate = departDate;
+        this.arriveTime = arriveTime;
+        this.arriveDate = arriveDate;
+        this.takeOff = takeOff;
+    }
+
     public Flight(Integer flightId, String departLocation, String arriveLocation, String departTime,
                   String departDate, String arriveTime, String arriveDate, Boolean takeOff) {
         this.flightId = flightId;

@@ -15,17 +15,16 @@ public class ManageFlight {
      */
     public void createFlight(Flight flight){
         //Save the new flight to the database
-        FlightRepo.saveNewFlight(flight);
+        FlightRepo.saveFlight(flight);
     }
 
     /**
      * Allows admin to cancel a flight using the flight ID.
-     * @param flightId Requires the id associate with the selected flight
+     * @param flight Requires the id associate with the selected flight
      */
-    public void cancelFlight(int flightId){
-        Flight flight;
-        flight = FlightRepo.getFlightById(flightId);
-        FlightRepo.deleteFlight(flight);
+    public void cancelFlight(Flight flight){
+        FlightRepo.getAllFlights();//Need to call this method for the FlightRepo.deleteFlight method to work
+        FlightRepo.deleteFlight(FlightRepo.getFlightById(flight.getFlightId()));
 
     }
 
@@ -35,16 +34,8 @@ public class ManageFlight {
      *               as well as the current flight id
      */
     public void updateFlight(Flight newFlight){
+//        FlightRepo.getAllFlights();//Need to call this method for the FlightRepo.deleteFlight method to work
         Flight oldFlight = FlightRepo.getFlightById(newFlight.getFlightId());
         FlightRepo.updateFlight(oldFlight,newFlight);
-    }
-
-    /**
-     * Closes ticket purchases and cancellations. Does this by changing the takeOff column in the flight table
-     * to true.
-     */
-    public static void initiateTakeOff(int flightId){
-        //We wouldn't need to set take off to false since it is false by default.
-        FlightRepo.updateTakeOff(flightId, true);
     }
 }
