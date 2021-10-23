@@ -10,16 +10,28 @@ import repository.AdminRepo;
 import repository.CustomerRepo;
 import repository.FlightRepo;
 import repository.TicketRepo;
+import services.DisplayFlightSchedule;
+import services.Login;
+import services.Register;
 import utils.HibernateUtil;
 
 import javax.servlet.ServletContextListener;
 import javax.servlet.ServletContextEvent;
+import java.util.List;
 
 public class DependencyLoaderListener  implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        Session session = HibernateUtil.getSession();
-        HibernateUtil.setSession(session);
+        DisplayFlightSchedule displayFlightSchedule = new DisplayFlightSchedule();
+
+        //Debug this method
+        List<Flight> customerFlightList = displayFlightSchedule.displayFlightsCustomer();
+        for (Flight flight: customerFlightList) {
+            System.out.println("Available Flight Id: " + flight.getFlightId());
+        }
+        Flight flightDetail = displayFlightSchedule.displayFlightDetails(4);
+        System.out.println("Arrive: " + flightDetail.getArriveLocation());
+
 
     }
 

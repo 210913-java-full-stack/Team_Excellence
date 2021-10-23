@@ -25,16 +25,13 @@ public class ManageFlight {
     public void cancelFlight(Flight flight){
         FlightRepo.getAllFlights();//Need to call this method for the FlightRepo.deleteFlight method to work
         FlightRepo.deleteFlight(FlightRepo.getFlightById(flight.getFlightId()));
-
     }
 
     /**
-     * This method allows the admin to update the entire flight
-     * @param newFlight This method requires a flight object that contains the changes to be made to the flight
-     *               as well as the current flight id
+     * This method allows the admin to update a specific flight
+     * @param newFlight This method requires the updates to the current flight
      */
     public void updateFlight(Flight newFlight){
-//        FlightRepo.getAllFlights();//Need to call this method for the FlightRepo.deleteFlight method to work
         Flight oldFlight = FlightRepo.getFlightById(newFlight.getFlightId());
         FlightRepo.updateFlight(oldFlight,newFlight);
     }
