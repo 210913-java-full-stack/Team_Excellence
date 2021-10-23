@@ -6,7 +6,7 @@
     bottom: 0px;
     display: grid;
     grid-template-columns: 75% 25%;
-    grid-template-rows: 80% 20%;
+    grid-template-rows: 75% 25%;
 
 }
 
@@ -23,9 +23,11 @@
 }
 
 .check-in {
-    border: 5px burlywood solid;
+    
     display: flex;
     align-items: center;
+    justify-content: center;
+    background-color: yellow;
     
 }
 
@@ -37,7 +39,10 @@
 
 
 .cancel-ticket {
-    border: 5px magenta solid;
+
     display: flex;
     align-content: center;
+    justify-content: center;
+    background-color: red;
+    color: white;
 }

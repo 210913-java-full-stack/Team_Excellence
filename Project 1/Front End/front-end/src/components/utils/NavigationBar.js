@@ -57,7 +57,7 @@ function NavigationBar({ setId, setRealUsername, setFirstName, setLastName, setI
                         <ul>
 
                             <li >
-                                <h1>BRITCON air</h1>
+                                <h1>GAUTIER AIRLINES</h1>
                             </li>
 
 

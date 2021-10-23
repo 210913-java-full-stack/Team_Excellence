@@ -14,6 +14,8 @@ export default function FlightBoard({ setTicketScreen, setFlightId }) {
     const [flights, setFlights] = useState([]);
     const [flightDetails, setFlightDetails] = useState(false);
 
+
+
     useEffect(() => {
 
 
@@ -29,7 +31,7 @@ export default function FlightBoard({ setTicketScreen, setFlightId }) {
             })();
 
 
-        }, 5000);
+        }, 2500);
 
 
 

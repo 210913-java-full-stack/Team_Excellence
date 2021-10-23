@@ -8,6 +8,7 @@ import utils.HibernateUtil;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import java.util.Arrays;
 import java.util.List;
 
 public class FlightRepo {
@@ -18,8 +19,12 @@ public class FlightRepo {
 
 
     public static Flight getFlightById(int id) {
-        Session session = HibernateUtil.getSession();
-        return session.get(Flight.class, id);
+        for(Flight flight : list){
+            if (flight.getFlightId().equals(id)){
+                return flight;
+            }
+        }
+        return null;
     }
 
 
@@ -68,11 +73,7 @@ public class FlightRepo {
 
     public static void deleteFlight(Flight flight) {
         int index = list.indexOf(flight);
-        System.out.println(index);
         list.remove(index);
-//        Transaction tx = session.beginTransaction();
-//        session.delete(flight);
-//        tx.commit();
         session.flush();
     }
 
@@ -81,6 +82,7 @@ public class FlightRepo {
         int oldFlight = list.indexOf(flight);
         list.remove(oldFlight);
         list.add(newflight);
+
         session.flush();
     }
 

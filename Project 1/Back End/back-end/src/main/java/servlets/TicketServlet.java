@@ -58,7 +58,21 @@ public class TicketServlet extends HttpServlet {
              TicketRepo.saveNewTicket(one);
 
          }else if(numOfTickets==3){
-
+             String fnameOne = req.getParameter("1_fname");
+             String lnameOne = req.getParameter("1_lname");
+             Integer ageOne = Integer.parseInt(req.getParameter("1_age"));
+             Ticket one = new Ticket(flight,customer,fnameOne,lnameOne,ageOne, true);
+             TicketRepo.saveNewTicket(one);
+             String fnameTwo = req.getParameter("2_fname");
+             String lnameTwo = req.getParameter("2_lname");
+             Integer ageTwo = Integer.parseInt(req.getParameter("2_age"));
+             Ticket two = new Ticket(flight,customer,fnameTwo,lnameTwo,ageTwo, true);
+             TicketRepo.saveNewTicket(two);
+             String fnameThree = req.getParameter("3_fname");
+             String lnameThree = req.getParameter("3_lname");
+             Integer ageThree = Integer.parseInt(req.getParameter("3_age"));
+             Ticket three = new Ticket(flight,customer,fnameThree,lnameThree,ageThree, true);
+             TicketRepo.saveNewTicket(three);
          }else if(numOfTickets==4){
              String fnameOne = req.getParameter("1_fname");
              String lnameOne = req.getParameter("1_lname");

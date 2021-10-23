@@ -1,0 +1,10 @@
+.enter-ticket {
+    display: flex;
+    margin-left: 25px;
+
+    
+}
+
+.enter-ticket  label {
+    padding-bottom: 15px;
+}
