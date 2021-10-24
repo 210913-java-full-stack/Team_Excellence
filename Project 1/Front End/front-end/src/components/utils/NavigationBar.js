@@ -64,7 +64,7 @@ function NavigationBar({ setId, setRealUsername, setFirstName, setLastName, setI
                             <li >
                                 <div className="login">
 
-                                    <button type="button" className="login-btn" onClick={clickLogin} >Login</button>
+                                    <button type="button" className="login-button" onClick={clickLogin} >Login</button>
 
 
 
@@ -95,9 +95,9 @@ function NavigationBar({ setId, setRealUsername, setFirstName, setLastName, setI
 
                         <li >
                             <div className="login">
-                                {/* need to change the onClick to handle account Screen  */}
+
                                 <span>{firstName} {lastName}</span>
-                                <button type="button" className="logout-btn" onClick={clickLogout} >Logout</button>
+                                <button className="login-button" type="button" onClick={clickLogout} >Logout</button>
 
 
 

@@ -31,7 +31,7 @@ function CheckIn() {
                     <div>
                         <input type="text" onChange={e => setTicketId(e.target.value)}></input>
                     </div>
-                    <button onClick={handleSubmit}>Check In</button>
+                    <button className="ticket-button" onClick={handleSubmit}>Check In</button>
                 </form>
 
             </div>

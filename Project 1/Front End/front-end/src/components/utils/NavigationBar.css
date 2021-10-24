@@ -101,3 +101,8 @@ fieldset {
 span {
     margin-right: 25px;
 }
+
+.login-button {
+    background-color: blue;
+    color: white;
+}

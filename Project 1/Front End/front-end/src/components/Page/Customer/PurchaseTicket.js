@@ -91,7 +91,7 @@ function PurchaseTicket({ setTicketScreen, flightId, id, isLoggedIn }) {
 
     return (
         <div className="buy-ticket">
-            <button onClick={clickBackButton}>back</button>
+            <button className="back-button-flights" onClick={clickBackButton}>back</button>
             <h3>{departDate}</h3>
 
             <h1>Ticket Screen for flight BCON{flightId} from {departLocation} to {arriveLocation}</h1>

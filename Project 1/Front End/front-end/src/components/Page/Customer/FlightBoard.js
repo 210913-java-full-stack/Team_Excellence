@@ -119,7 +119,7 @@ export default function FlightBoard({ setTicketScreen, setFlightId }) {
     if (flightDetails) {
         return (
             <div>
-                <button onClick={controlFlightDetails}>back</button>
+                <button className="back-button-flights" onClick={controlFlightDetails}>back</button>
                 <FlightDetailPage id={id} setTicketScreen={setTicketScreen} />
 
             </div>

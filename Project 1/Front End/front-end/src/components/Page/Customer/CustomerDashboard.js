@@ -49,24 +49,32 @@ export default function CustomerDashboard({ id, db_class, isLoggedIn }) {
 
     return (
 
-        <section className={db_class}>
+        <div className={db_class}>
+
             <div className="flight-board">
-                {renderFlightBoard()}
-            </div >
+                <div className="sub-flight-board">
+                    {renderFlightBoard()}
+                </div >
+            </div>
+
             <div className="check-in">
-                <div className="container">
-                    <CheckIn />
+                <div className="sub-check-in">
+                    <div className="container">
+                        <CheckIn />
+                    </div>
                 </div>
             </div>
             <div className="cancel-ticket">
-                <div className="container">
-                    <CancelTicket isLoggedIn={isLoggedIn} />
+                <div className="sub-cancel-ticket">
+                    <div className="container">
+                        <CancelTicket isLoggedIn={isLoggedIn} />
+                    </div>
                 </div>
             </div>
 
 
 
-        </section >
+        </div >
 
     );
 
