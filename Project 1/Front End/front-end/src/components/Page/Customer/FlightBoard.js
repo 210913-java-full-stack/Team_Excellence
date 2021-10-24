@@ -88,7 +88,7 @@ export default function FlightBoard({ setTicketScreen, setFlightId }) {
 
                                     <tr key={el.flightId}>
 
-                                        <td><button className="ticket-button" onClick={e => clickDetailButton(e.target.value)} value={el.flightId}>BCON{el.flightId}</button></td>
+                                        <td><button className="flight-button" onClick={e => clickDetailButton(e.target.value)} value={el.flightId}>BCON{el.flightId}</button></td>
                                         <td>{el.departLocation}</td>
                                         <td>{el.departDate}</td>
                                         <td>{el.departTime}</td>

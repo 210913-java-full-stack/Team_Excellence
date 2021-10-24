@@ -99,6 +99,23 @@
     background-color: magenta;
 }
 
+.flight-button {
+    background-color: blue;
+    color: white;
+    width: 120px;
+}
+
+.flight-button:hover {
+    background-color: yellow;
+    color: black;
+}
+
+.flight-button:active {
+    background-color: magenta;
+    color: white;
+}
+
+
 section {
     border: 5px black solid;
     background-color: white;
