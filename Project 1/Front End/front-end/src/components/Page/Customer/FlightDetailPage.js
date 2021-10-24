@@ -43,25 +43,27 @@ export default function FlightDetailPage({ id, setTicketScreen }) {
 
 
     return (
-        <div>
-
+        <section>
             <div>
-                <h1>Flight {id}</h1>
-                <h2>Departing</h2>
-                <h3>{departLocation}</h3>
-                <h3>{departDate}</h3>
-                <h3>{departTime}</h3>
-                <h2>Arrival</h2>
-                <h3>{arriveLocation}</h3>
-                <h3>{arriveDate}</h3>
-                <h3>{arriveTime}</h3>
+
+                <div>
+                    <h1>Flight {id}</h1>
+                    <h2>Departing</h2>
+                    <h3>{departLocation}</h3>
+                    <h3>{departDate}</h3>
+                    <h3>{departTime}</h3>
+                    <h2>Arrival</h2>
+                    <h3>{arriveLocation}</h3>
+                    <h3>{arriveDate}</h3>
+                    <h3>{arriveTime}</h3>
+
+                </div>
+                <div>
+                    <button onClick={clickBuyTicket}>Buy a ticket!</button>
+                </div>
 
             </div>
-            <div>
-                <button onClick={clickBuyTicket}>Buy a ticket!</button>
-            </div>
-
-        </div>
+        </section>
     );
 
 

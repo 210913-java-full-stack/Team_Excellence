@@ -90,29 +90,31 @@ function PurchaseTicket({ setTicketScreen, flightId, id, isLoggedIn }) {
 
 
     return (
-        <div className="buy-ticket">
-            <button className="back-button-flights" onClick={clickBackButton}>back</button>
-            <h3>{departDate}</h3>
+        <section>
+            <div className="buy-ticket">
+                <button className="back-button-flights" onClick={clickBackButton}>back</button>
+                <h3>{departDate}</h3>
 
-            <h1>Ticket Screen for flight BCON{flightId} from {departLocation} to {arriveLocation}</h1>
-            <h3>Ticket price is $150</h3>
-            <form method="post" action={`http://localhost:8080/api/ticket?userId=${id}&flightId=${flightId}&numOfTicket=${amountTickets}`}  >
-                <label >
-                    How many tickets do you want?
-                </label >
-                <input type="number" placeholder="1" min="1" max="4" onChange={e => setAmountTickets(e.target.value)}></input>
-                {renderPassengerInfo()}
-                {renderButton()}
-            </form>
-
-
-
-            <h3>Your Total is {amountTickets * 150}</h3>
+                <h1>Ticket Screen for flight BCON{flightId} from {departLocation} to {arriveLocation}</h1>
+                <h3>Ticket price is $150</h3>
+                <form method="post" action={`http://localhost:8080/api/ticket?userId=${id}&flightId=${flightId}&numOfTicket=${amountTickets}`}  >
+                    <label >
+                        How many tickets do you want?
+                    </label >
+                    <input type="number" placeholder="1" min="1" max="4" onChange={e => setAmountTickets(e.target.value)}></input>
+                    {renderPassengerInfo()}
+                    {renderButton()}
+                </form>
 
 
 
+                <h3>Your Total is {amountTickets * 150}</h3>
 
-        </div>
+
+
+
+            </div>
+        </section>
     );
 }
 

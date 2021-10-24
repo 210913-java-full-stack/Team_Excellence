@@ -69,9 +69,9 @@
 }
 
 .sub-cancel-ticket {
-    border: 5px red solid;
-   background-color: white;
-   color: black;
+    border: 5px black solid;
+   background-color: red;
+   color: white;
    
     padding-bottom: 75px;
     padding-left: 25px;
