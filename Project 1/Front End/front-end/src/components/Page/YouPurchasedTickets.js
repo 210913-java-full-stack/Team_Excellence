@@ -3,6 +3,9 @@ import "./YouPurchasedTicket.css";
 
 
 export default function YouPurchasedTickets() {
+
+    document.title = "Thanks from Gautier Airlines";
+
     return (
         <div className="bought-ticket">
             <div>

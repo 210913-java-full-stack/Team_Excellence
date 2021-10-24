@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import "./AdminDashboard.css";
+import AdminFlightDetail from './AdminFlightDetail';
 import AdminFlights from './AdminFlights';
 
 
@@ -26,6 +27,8 @@ export default function AdminDashboard() {
     }
 
     function renderFlights() {
+
+
         if (createPage && !flightPage) {
             return (
                 <div>
@@ -36,8 +39,14 @@ export default function AdminDashboard() {
         } else if (flightPage && !createPage) {
             return (
                 <div>
-                    <button className="admin-logout" onClick={controlFlightPage}>back</button>
-                    <h1 className="ticket-header">Flight Page for BCON{flightId}</h1>
+                    <button className="admin-back" onClick={controlFlightPage}>back</button>
+                    <div className="admin-dashboard">
+
+                        <div className="flights">
+
+                            <AdminFlightDetail flightId={flightId} />
+                        </div>
+                    </div>
                 </div>
             );
 

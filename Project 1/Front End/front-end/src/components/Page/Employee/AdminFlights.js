@@ -42,6 +42,7 @@ export default function AdminFlights({ controlCreatePage, controlFlightPage, set
         <section>
             <h1>Flight List</h1>
             <button className="createPage" onClick={clickCreatePage}>Create New Flight</button>
+
             <table>
                 <thead>
                     <tr>
@@ -57,7 +58,9 @@ export default function AdminFlights({ controlCreatePage, controlFlightPage, set
                         <th>Taken Off</th>
                     </tr>
                 </thead>
-                <tbody>
+
+                <tbody >
+
 
                     {
                         flights.map(el => {
@@ -81,12 +84,16 @@ export default function AdminFlights({ controlCreatePage, controlFlightPage, set
                         })
                     }
 
+
+
                 </tbody>
 
 
 
 
+
             </table>
+
         </section>
     );
 }
