@@ -55,16 +55,32 @@ public class FlightRepo {
         Transaction transaction = session.beginTransaction();
         session.delete(flight);
         transaction.commit();
-        list.remove(flight);
+        int index = list.lastIndexOf(flight);
+        list.remove(index);
+        session.flush();
     }
 
 
-    public static void updateFlight(Flight oldFlight, Flight newFlight) {
+    public static void updateFlight(Flight newFlight) {
         Transaction transaction = session.beginTransaction();
         session.merge(newFlight);
+
+
+
+            for (Flight flight : list){
+                if(flight.getFlightId().equals(newFlight.getFlightId())){
+                    flight.setArriveLocation(newFlight.getArriveLocation());
+                    flight.setArriveDate(newFlight.getArriveDate());
+                    flight.setArriveTime(newFlight.getArriveTime());
+                   flight.setDepartLocation(newFlight.getDepartLocation());
+                   flight.setDepartDate(newFlight.getDepartDate());
+                    flight.setDepartTime(newFlight.getDepartTime());
+                    flight.setTakeOff(newFlight.getTakeOff());
+                }
+
+        }
         transaction.commit();
-        list.remove(oldFlight);
-        list.add(newFlight);
+        session.flush();
 
     }
 

@@ -10,10 +10,7 @@ function PurchaseTicket({ setTicketScreen, flightId, id, isLoggedIn }) {
     const [arriveTime, setArriveTime] = useState()
     const [arriveDate, setArriveDate] = useState()
     const [amountTickets, setAmountTickets] = useState(1)
-    const [firstName, setFirstName] = useState();
-    const [lastName, setLastName] = useState();
-    const [age, setAge] = useState();
-    let passengers = [];
+
 
 
     useEffect(() => {
@@ -84,7 +81,7 @@ function PurchaseTicket({ setTicketScreen, flightId, id, isLoggedIn }) {
 
     function renderButton() {
         if (isLoggedIn) {
-            return <button type="submit">Purchse Tickets</button>;
+            return <button className="ticket-button" type="submit">Purchse Tickets</button>;
         } else {
             return <h3>You have to be logged in to buy a ticket</h3>
         }
@@ -93,29 +90,31 @@ function PurchaseTicket({ setTicketScreen, flightId, id, isLoggedIn }) {
 
 
     return (
-        <div className="buy-ticket">
-            <button onClick={clickBackButton}>back</button>
-            <h3>{departDate}</h3>
+        <section>
+            <div className="buy-ticket">
+                <button className="back-button-flights" onClick={clickBackButton}>back</button>
+                <h3>{departDate}</h3>
 
-            <h1>Ticket Screen for flight BCON{flightId} from {departLocation} to {arriveLocation}</h1>
-            <h3>Ticket price is $150</h3>
-            <form method="post" action={`http://localhost:8080/api/ticket?userId=${id}&flightId=${flightId}&numOfTicket=${amountTickets}`}  >
-                <label >
-                    How many tickets do you want?
-                </label >
-                <input type="number" placeholder="1" min="1" max="4" onChange={e => setAmountTickets(e.target.value)}></input>
-                {renderPassengerInfo()}
-                {renderButton()}
-            </form>
-
-
-
-            <h3>Your Total is {amountTickets * 150}</h3>
+                <h1>Ticket Screen for flight BCON{flightId} from {departLocation} to {arriveLocation}</h1>
+                <h3>Ticket price is $150</h3>
+                <form method="post" action={`http://localhost:8080/api/ticket?userId=${id}&flightId=${flightId}&numOfTicket=${amountTickets}`}  >
+                    <label >
+                        How many tickets do you want?
+                    </label >
+                    <input type="number" placeholder="1" min="1" max="4" onChange={e => setAmountTickets(e.target.value)}></input>
+                    {renderPassengerInfo()}
+                    {renderButton()}
+                </form>
 
 
 
+                <h3>Your Total is {amountTickets * 150}</h3>
 
-        </div>
+
+
+
+            </div>
+        </section>
     );
 }
 

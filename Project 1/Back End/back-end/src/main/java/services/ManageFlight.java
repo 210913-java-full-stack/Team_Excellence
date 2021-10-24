@@ -32,7 +32,7 @@ public class ManageFlight {
      * @param newFlight This method requires the updates to the current flight
      */
     public void updateFlight(Flight newFlight){
-        Flight oldFlight = FlightRepo.getFlightById(newFlight.getFlightId());
-        FlightRepo.updateFlight(oldFlight,newFlight);
+
+        FlightRepo.updateFlight(newFlight);
     }
 }

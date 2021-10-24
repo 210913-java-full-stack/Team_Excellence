@@ -19,6 +19,7 @@ public class DisplayFlightSchedule {
         if(flightList == null){
             return FlightRepo.getAllFlights();
         }
+        System.out.println("display admin List of flights");
         return flightList;
     }
 
@@ -26,6 +27,7 @@ public class DisplayFlightSchedule {
      * Filter flights based on availability. Used to display flights to the customer.
      */
     public List<Flight> displayFlightsCustomer(){
+        System.out.println("display Customer List of flights");
         List<Flight> listOfAvailableFlights = new ArrayList<>();
         List<Flight> flightList = FlightRepo.getList();
         if(flightList == null){

@@ -6,7 +6,7 @@
     bottom: 0px;
     display: grid;
     grid-template-columns: 75% 25%;
-    grid-template-rows: 75% 25%;
+    grid-template-rows: 60% 40%;
 
 }
 
@@ -17,7 +17,10 @@
 
 .flight-board{
     display: flex;
-    border: 5px limegreen solid;
+    margin-top: 20px;
+    justify-content: center;
+    
+   
     grid-row-start: 1;
     grid-row-end: 3;
 }
@@ -27,7 +30,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: yellow;
+  
     
 }
 
@@ -41,8 +44,87 @@
 .cancel-ticket {
 
     display: flex;
-    align-content: center;
+    
     justify-content: center;
-    background-color: red;
+  
+}
+
+.back-button-flights {
+    margin-top: 20px;
+    margin-left: 20px;
+    background-color: blue;
+    color:white;
+    width: 80px;
+    height: 25px;
+}
+
+.back-button-flights:hover {
+    background-color: yellow;
+    color: black;
+}
+
+.sub-check-in {
+    border: 5px black solid;
+    background-color: yellow;
+    border-radius: 25px;
+    padding: 25px;
+    height: 150px;
+    width: 250px;
+    
+}
+
+.sub-cancel-ticket {
+    border: 5px black solid;
+   background-color: red;
+   color: white;
+   
+    padding-bottom: 75px;
+    padding-left: 25px;
+    padding-right: 25px;
+    border-radius: 25px;
+    height: 150px;
+    width: 250px;
+}
+
+.ticket-button {
+    margin-top: 15px;
+    margin-left: 25px;
+    width: 120px;
+    height: 25px;
+    background-color: blue;
     color: white;
+}
+
+.ticket-button:hover {
+    background-color: magenta;
+}
+
+.flight-button {
+    background-color: blue;
+    color: white;
+    width: 120px;
+}
+
+.flight-button:hover {
+    background-color: yellow;
+    color: black;
+}
+
+.flight-button:active {
+    background-color: magenta;
+    color: white;
+}
+
+
+section {
+    border: 5px black solid;
+    background-color: white;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 50px;
+    
+}
+
+td {
+    margin: 25px;
 }

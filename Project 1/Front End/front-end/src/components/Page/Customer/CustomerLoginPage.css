@@ -14,7 +14,8 @@
 
     position: relative;
     display: flex;
-    top: 100px;
+    
+   
 
     justify-content: center;
 }
@@ -50,6 +51,21 @@ justify-content: center;
     width: 100%;
     top: 400px;
     justify-content: center;
+    margin-right: 10px;
+}
+.signup-button {
+    position: fixed;
+    display: flex;
+    width: 100%;
+    top: 450px;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.signup-submit{
+  
+    margin-top: 25px;
+    justify-content: center;
 }
 
 
@@ -64,8 +80,16 @@ input {
 }
 
 #login-btn {
-    background-color: magenta;
-    width:80px;
+    background-color: blue;
+    width:120px;
+    height: 25px;
+    color: white;
+    margin-bottom: 25px;
+}
+
+#login-btn:hover {
+    background-color: yellow;
+    color: black;
 }
 
 
@@ -84,9 +108,49 @@ flex-direction: flex-end;
 position: fixed;
 top: 5px;
 right: 5px;   
+background-color: blue;
+color: white;
  
-    width:80px;
+    width:100px;
+    height: 25px;
     
 
 
+}
+
+.back-to-home:hover {
+    background-color: yellow;
+    color: black;
+}
+
+#sign-up-but {
+  background-color: aqua;
+  width:120px;
+  height: 25px;
+}
+
+#sign-up-but:hover {
+    background-color: yellow;
+}
+
+.signup-form {
+    position: fixed;
+  display: inline-grid;
+  border: 5px black;
+  background-color: white;
+ 
+    width: 100%;
+    top: 200px;
+    justify-items: center;
+
+}
+
+
+
+
+.sub-login {
+    margin-top: 100px;
+    border: 5px black solid;
+    height: 400px;
+    background-color: white;
 }

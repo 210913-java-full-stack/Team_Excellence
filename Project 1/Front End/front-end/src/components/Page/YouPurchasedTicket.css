@@ -1,0 +1,21 @@
+.bought-ticket {
+
+    position: fixed;
+    display: grid;
+    left: 550px;
+    align-items: center;
+    color: white;
+}
+
+a {
+    color: white;
+    font-size: larger;
+}
+
+a:hover {
+    color: red;
+}
+
+a:active {
+    color: yellow;
+}

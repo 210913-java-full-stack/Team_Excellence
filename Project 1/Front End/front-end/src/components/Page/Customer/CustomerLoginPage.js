@@ -61,25 +61,30 @@ export default function CustomerLoginPage({ setId, setRealUsername, setFirstName
     function renderLoginScreen() {
         return (
             <div className="login-wrapper">
-                <h1>Please Log In</h1>
-                <form className="login-form" onSubmit={handleSubmit}>
-                    <div className="login-user">
-                        <label>
-                            <p>Username :</p>
-                            <input type="text" onChange={e => setUserName(e.target.value)} required />
-                        </label>
-                    </div>
-                    <div className="login-pword">
-                        <label>
-                            <p>Password :</p>
-                            <input type="password" onChange={e => setPassword(e.target.value)} required />
-                        </label>
-                    </div>
-                    <div className="login-submit">
-                        <button id="login-btn" type="submit">Login</button>
-                        <button id="sign-up-btn" type="button" onClick={clickSignUp}>SignUp</button>
-                    </div>
-                </form>
+                <div className="sub-login">
+                    <h1>Please Log In</h1>
+                    <form className="login-form" onSubmit={handleSubmit}>
+                        <div className="login-user">
+                            <label>
+                                <p>Username :</p>
+                                <input type="text" onChange={e => setUserName(e.target.value)} required />
+                            </label>
+                        </div>
+                        <div className="login-pword">
+                            <label>
+                                <p>Password :</p>
+                                <input type="password" onChange={e => setPassword(e.target.value)} required />
+                            </label>
+                        </div>
+                        <div className="login-submit">
+                            <button id="login-btn" type="submit">Login</button>
+
+                        </div>
+                        <div className="signup-button">
+                            <button id="sign-up-but" type="button" onClick={clickSignUp}>SignUp</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         );
     }

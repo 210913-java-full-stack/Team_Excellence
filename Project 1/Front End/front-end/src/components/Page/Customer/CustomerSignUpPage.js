@@ -42,32 +42,43 @@ function CustomerSignUpPage({ clickSignUp }) {
 
 
     return (
-        <div>
-            <h1>Sign up</h1>
-            <form className="login-form" onSubmit={handleSubmit}>
-                <label>
-                    <p>First Name:</p>
-                    <input type="text" onChange={e => setFirstName(e.target.value)} />
-                </label>
-                <label>
-                    <p>Last Name:</p>
-                    <input type="text" onChange={e => setLastName(e.target.value)} />
-                </label>
-                <label>
-                    <p>Email:</p>
-                    <input type="text" onChange={e => setEmail(e.target.value)} />
-                </label>
-                <label>
-                    <p>Username :</p>
-                    <input type="text" onChange={e => setUsername(e.target.value)} />
-                </label>
+        <div className="login-wrapper">
 
-                <label>
-                    <p>Password :</p>
-                    <input type="password" onChange={e => setPassword(e.target.value)} />
-                </label>
+            <form className="signup-form" onSubmit={handleSubmit}>
+                <h1>Sign up</h1>
+                <div>
+                    <label>
+                        <p>First Name:</p>
+                        <input type="text" onChange={e => setFirstName(e.target.value)} required />
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <p>Last Name:</p>
+                        <input type="text" onChange={e => setLastName(e.target.value)} required />
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <p>Email:</p>
+                        <input type="text" onChange={e => setEmail(e.target.value)} required />
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <p>Username :</p>
+                        <input type="text" onChange={e => setUsername(e.target.value)} required />
+                    </label>
+                </div>
+                <div>
 
-                <div className="login-submit">
+                    <label>
+                        <p>Password :</p>
+                        <input type="password" onChange={e => setPassword(e.target.value)} required />
+                    </label>
+                </div>
+
+                <div className="signup-submit">
                     <button id="login-btn" type="submit">SignUp</button>
                 </div>
             </form>

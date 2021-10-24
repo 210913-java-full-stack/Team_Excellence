@@ -1,29 +1,22 @@
 import React, { useState } from 'react';
 import './EmployeeLoginPage.css';
-import AdminHomePage from './AdminHomePage';
-import PilotHomePage from './PillotHomePage';
 
-function AdminLoginPage() {
+
+
+function AdminLoginPage({ setLoggedIn, setFirstName, setId, setRealUsername, setLastName }) {
     /*Create variables for username and password and initializing them with the useState hook. Provides the current 
     value of the variable you want to store in the state and gives you a function to set the new value.*/
-    const [username, setUserName] = useState ("");
-    const [password, setPassword] = useState ("");
-    const [realUsername, setRealUsername] = useState("");
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [isLoggedIn, setIsLoggedIn] = useState("");
-    const [id, setId] = useState("");
-    const showPassword = false;
+    const [username, setUserName] = useState("");
+    const [password, setPassword] = useState("");
+
+
 
     //Setting minimum and maximum username and password lengths. Does not check if the username and password match.
-    function validateForm() {
-        return username.length >= 3 && username.length <= 20 && password.length >= 6 && password.length <= 20;
-    }
 
     async function loginAdmin(credentials) {
 
 
-        return await fetch('http://localhost:8080/api/admin', {
+        return await fetch('http://localhost:8080/api/admin-login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -37,26 +30,25 @@ function AdminLoginPage() {
             setRealUsername(data["username"])
             setFirstName(data["firstName"])
             setLastName(data["lastName"])
-            setIsLoggedIn(true)
-        }).catch(error => console.log(error));
+            setLoggedIn(true)
+        }).catch(error => {
+            alert("invalid username or password");
+            console.log(error)
+        });
 
     }
-    
-        function renderAdminHomePage () {
-            if(isLoggedIn){
-                return(
-                    <AdminHomePage />
-                );
-            }
-        }
-        
 
-    async function handleSubmit(e) {
-        await loginAdmin({
+
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const result = await loginAdmin({
             username: username,
             password: password
         });
-        renderAdminHomePage();
+
+        console.log(result)
+
     }
 
     //Creating the header and the login form. Login button is disabled if an invalid username or password is entered.
@@ -67,12 +59,12 @@ function AdminLoginPage() {
                 <label>
                     <p>Username</p>
                     <input type="text" onChange={(e) => setUserName(e.target.value)} />
-                </label> 
-                <label>
-                <p>Password</p>
-                    <input type={showPassword ? "text" : "password"} onChange={(e) => setPassword(e.target.value)} />
                 </label>
-                <button type="submit" disabled={!validateForm()}>Login</button>            
+                <label>
+                    <p>Password</p>
+                    <input type="password" onChange={(e) => setPassword(e.target.value)} />
+                </label>
+                <button className="admin-logout" type="submit" >Login</button>
             </form>
         </div>
     );

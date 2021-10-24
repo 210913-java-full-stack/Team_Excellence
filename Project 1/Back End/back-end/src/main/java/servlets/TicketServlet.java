@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import model.Ticket;
 import repository.TicketRepo;
 import services.CheckIn;
+import services.PassengerList;
 import services.PurchaseTicket;
 
 import javax.servlet.http.HttpServlet;
@@ -12,9 +13,26 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 import java.util.Scanner;
 
 public class TicketServlet extends HttpServlet {
+
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response){
+        int flightId = Integer.parseInt(request.getParameter("flightId"));
+        PassengerList pl = new PassengerList();
+        List<Ticket> list = pl.passengersOnFlight(flightId);
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            response.getWriter().write(mapper.writeValueAsString(list));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp) {
         int flightId = Integer.parseInt(req.getParameter("flightId"));

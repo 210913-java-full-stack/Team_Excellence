@@ -1,0 +1,105 @@
+.admin-dashboard {
+    position: fixed;
+    top: 100px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    display: grid;
+    width: 100%;
+    grid-template-columns: 100%;
+    grid-template-rows: 100%;
+    
+   
+}
+
+.flights {
+ 
+    position: fixed;
+    right: 100px;
+    left: 100px;
+    margin-top: 25px;
+
+    grid-row-start: 1;
+    grid-row-end: 5;
+}
+
+.admin-logout {
+    float: right;
+    margin-right: 15px;
+    color: white;
+    background-color: blue;
+
+    z-index: 15;
+}
+
+.admin-logout:hover {
+    background-color: yellow;
+    color: black
+}
+
+.admin-logout:active {
+    background-color: magenta;
+    color: white;
+}
+
+.admin-back {
+    float: right;
+    margin-right: 15px;
+    color: white;
+    background-color: blue;
+    margin-bottom: 25px;
+
+}
+
+.admin-back:hover {
+    background-color: yellow;
+    color: black
+}
+
+.admin-back:active {
+    background-color: magenta;
+    color: white;
+}
+
+
+.createPage {
+    position:fixed;
+    right: 105px;
+    top: 100px;
+    float: right;
+    margin-top: 45px;
+    margin-right: 15px;
+    color: white;
+    background-color: blue;
+}
+
+.createPage:hover {
+    background-color: yellow;
+    color: black
+}
+
+.createPage:active {
+    background-color: magenta;
+    color: white;
+}
+
+.ticket-header {
+    color: white;
+}
+
+
+thead {
+    display: block;
+}
+
+tbody{
+    display: block;
+    overflow-y: scroll;
+
+    height: 650px;
+    
+}
+
+.manifest td {
+    margin-left:25px;
+}
