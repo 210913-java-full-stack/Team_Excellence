@@ -16,9 +16,6 @@ function AdminLoginPage({ setLoggedIn }) {
     const showPassword = false;
 
     //Setting minimum and maximum username and password lengths. Does not check if the username and password match.
-    function validateForm() {
-        return username.length >= 3 && username.length <= 20 && password.length >= 6 && password.length <= 20;
-    }
 
     async function loginAdmin(credentials) {
 
@@ -44,11 +41,14 @@ function AdminLoginPage({ setLoggedIn }) {
 
 
 
-    async function handleSubmit(e) {
-        await loginAdmin({
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const result = await loginAdmin({
             username: username,
             password: password
         });
+
+        console.log(result)
 
     }
 
@@ -63,9 +63,9 @@ function AdminLoginPage({ setLoggedIn }) {
                 </label>
                 <label>
                     <p>Password</p>
-                    <input type={showPassword ? "text" : "password"} onChange={(e) => setPassword(e.target.value)} />
+                    <input type="password" onChange={(e) => setPassword(e.target.value)} />
                 </label>
-                <button type="submit" disabled={!validateForm()}>Login</button>
+                <button type="submit" >Login</button>
             </form>
         </div>
     );

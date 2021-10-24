@@ -66,7 +66,7 @@ public class FlightRepo {
         session.merge(newFlight);
 
         if(list.contains(oldFlight)){
-       
+
             for (int i =0; i< list.size(); i++){
                 if(list.get(i).equals(oldFlight)){
                     list.get(i).setArriveLocation(newFlight.getArriveLocation());
