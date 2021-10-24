@@ -20,8 +20,11 @@ C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\model\Admin.java
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\servlets\TicketServlet.java
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\services\DisplayFlightSchedule.java
+C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\servlets\AdminLoginServlet.java
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\servlets\AdminServlet.java
+C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\services\Register.java
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\servlets\CustomerServlet.java
+C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\servlets\RegisterServlet.java
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\utils\FlightAvailability.java
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\repository\FlightRepo.java
 C:\Revature\Training\Repos\Team_Excellence\Project 1\Back End\back-end\src\main\java\utils\NumberOfTicketsAvailable.java

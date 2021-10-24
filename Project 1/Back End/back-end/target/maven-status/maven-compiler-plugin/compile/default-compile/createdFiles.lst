@@ -2,6 +2,7 @@ services\ManageFlight.class
 utils\FileLogger.class
 repository\AdminRepo.class
 utils\FlightAvailability.class
+servlets\RegisterServlet.class
 utils\availableFlightsCache.class
 servlets\SupportsPatch.class
 servlets\FlightDetailServlet.class
@@ -20,6 +21,7 @@ servlets\DependencyLoaderListener.class
 servlets\AdminServlet.class
 servlets\LoginServlet.class
 services\TakeOff.class
+servlets\AdminLoginServlet.class
 repository\CustomerRepo.class
 repository\FlightRepo.class
 services\CheckIn.class
@@ -28,6 +30,7 @@ servlets\TicketServlet.class
 model\Flight.class
 services\PurchaseTicket.class
 services\CancelTicket.class
+services\Register.class
 servlets\FlightServlet.class
 model\Admin.class
 services\DisplayFlightSchedule.class

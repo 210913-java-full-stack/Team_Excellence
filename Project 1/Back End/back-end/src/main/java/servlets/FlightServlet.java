@@ -2,25 +2,28 @@ package servlets;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import model.Flight;
-import repository.FlightRepo;
-
+import services.DisplayFlightSchedule;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
-import java.util.Scanner;
 
 public class FlightServlet extends HttpServlet {
     @Override
+
+    /**
+     * This servlet gets the list of flights that will be displayed on the customer and admin homepages
+     */
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
-
-
-        List<Flight> list = FlightRepo.getAllFlights();
-
-
+        boolean typeOfUser = Boolean.parseBoolean(req.getParameter("allFlights"));
+        DisplayFlightSchedule displayFlightSchedule = new DisplayFlightSchedule();
+        List<Flight> list;
+        if(typeOfUser){
+            list = displayFlightSchedule.displayFlightsAdmin();
+        } else{
+            list = displayFlightSchedule.displayFlightsCustomer();
+        }
         ObjectMapper mapper = new ObjectMapper();
         try {
             resp.getWriter().write(mapper.writeValueAsString(list));

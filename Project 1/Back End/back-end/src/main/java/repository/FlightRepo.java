@@ -63,9 +63,6 @@ public class FlightRepo {
         Transaction transaction = session.beginTransaction();
         session.merge(newFlight);
         transaction.commit();
-        if(list == null){
-            getAllFlights();
-        }
         list.remove(oldFlight);
         list.add(newFlight);
 

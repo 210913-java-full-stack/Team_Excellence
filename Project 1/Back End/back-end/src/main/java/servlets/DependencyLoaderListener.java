@@ -22,16 +22,10 @@ import java.util.List;
 public class DependencyLoaderListener  implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        DisplayFlightSchedule displayFlightSchedule = new DisplayFlightSchedule();
+        Session session = HibernateUtil.getSession();
+        HibernateUtil.setSession(session);
 
-        //Debug this method
-        List<Flight> customerFlightList = displayFlightSchedule.displayFlightsCustomer();
-        for (Flight flight: customerFlightList) {
-            System.out.println("Available Flight Id: " + flight.getFlightId());
-        }
-        Flight flightDetail = displayFlightSchedule.displayFlightDetails(4);
-        System.out.println("Arrive: " + flightDetail.getArriveLocation());
-
+        //Test service layer below this comment
 
     }
 

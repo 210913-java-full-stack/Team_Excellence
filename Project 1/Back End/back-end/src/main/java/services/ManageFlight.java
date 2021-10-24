@@ -19,11 +19,11 @@ public class ManageFlight {
     }
 
     /**
-     * Allows admin to cancel a flight using the flight ID.
+     * Allows admin to cancel a flight using the flight ID. Need to call getAllFlights at least once before
+     * using the cancel flight method
      * @param flight Requires the id associate with the selected flight
      */
     public void cancelFlight(Flight flight){
-        FlightRepo.getAllFlights();//Need to call this method for the FlightRepo.deleteFlight method to work
         FlightRepo.deleteFlight(FlightRepo.getFlightById(flight.getFlightId()));
     }
 
