@@ -5,13 +5,18 @@
     right: 0px;
     bottom: 0px;
     display: grid;
+    width: 100%;
     grid-template-columns: 100%;
     grid-template-rows: 100%;
+   
 }
 
 .flights {
-    display: flex;
-    border: 5px limegreen solid;
+ 
+    position: fixed;
+    right: 0px;
+    left: 0px;
+
     grid-row-start: 1;
     grid-row-end: 5;
 }
@@ -23,6 +28,17 @@
     background-color: blue;
 }
 
+.admin-logout:hover {
+    background-color: yellow;
+    color: black
+}
+
+.admin-logout:active {
+    background-color: magenta;
+    color: white;
+}
+
+
 .createPage {
     position:fixed;
     right: 5px;
@@ -31,4 +47,18 @@
     margin-right: 15px;
     color: white;
     background-color: blue;
+}
+
+.createPage:hover {
+    background-color: yellow;
+    color: black
+}
+
+.createPage:active {
+    background-color: magenta;
+    color: white;
+}
+
+.ticket-header {
+    color: white;
 }

@@ -30,26 +30,26 @@ export default function AdminDashboard() {
             return (
                 <div>
                     <button className="admin-logout" onClick={controlCreatePage}>back</button>
-                    <h1>Create a flight</h1>
+                    <h1 className="ticket-header">Create a flight</h1>
                 </div>
             );
         } else if (flightPage && !createPage) {
             return (
                 <div>
                     <button className="admin-logout" onClick={controlFlightPage}>back</button>
-                    <h1>Flight Page for BCON{flightId}</h1>
+                    <h1 className="ticket-header">Flight Page for BCON{flightId}</h1>
                 </div>
             );
 
 
         } else {
             return (
-                <section className="admin-dashboard">
+                <div className="admin-dashboard">
                     <div className="flights">
                         <AdminFlights controlCreatePage={controlCreatePage} controlFlightPage={controlFlightPage} setFlightId={setFlightId} />
 
                     </div >
-                </section >
+                </div >
             );
         }
     }

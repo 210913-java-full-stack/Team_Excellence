@@ -33,7 +33,7 @@ export default function AdminHomePage() {
             <div>
                 <button className="admin-logout" onClick={clickLogout}>logout</button>
 
-                <h1>{RealUsername} is logged into the Admin System.</h1>
+                <h1 className="ticket-header">{RealUsername} is logged into the Admin System.</h1>
                 <AdminDashboard />
             </div>
         );

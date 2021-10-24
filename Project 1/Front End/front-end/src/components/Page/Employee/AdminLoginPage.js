@@ -64,7 +64,7 @@ function AdminLoginPage({ setLoggedIn, setFirstName, setId, setRealUsername, set
                     <p>Password</p>
                     <input type="password" onChange={(e) => setPassword(e.target.value)} />
                 </label>
-                <button type="submit" >Login</button>
+                <button className="admin-logout" type="submit" >Login</button>
             </form>
         </div>
     );

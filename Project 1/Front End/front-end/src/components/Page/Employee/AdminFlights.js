@@ -65,7 +65,7 @@ export default function AdminFlights({ controlCreatePage, controlFlightPage, set
 
                                 <tr key={el.flightId}>
 
-                                    <td><button onClick={e => clickFlightButton(e.target.value)} value={el.flightId}>BCON  {el.flightId}</button></td>
+                                    <td><button className="admin-logout" onClick={e => clickFlightButton(e.target.value)} value={el.flightId}>BCON  {el.flightId}</button></td>
                                     <td>{el.departLocation}</td>
                                     <td>{el.departDate}</td>
                                     <td>{el.departTime}</td>
