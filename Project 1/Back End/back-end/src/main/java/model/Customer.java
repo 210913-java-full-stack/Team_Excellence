@@ -1,5 +1,7 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +31,8 @@ public class Customer {
     private String lastName;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-    private List<Ticket> ticketList = new ArrayList<>();
+    @JsonIgnore
+    private List<Ticket> ticketListByCustomerId = new ArrayList<>();
 
 
     public Customer() {
@@ -92,11 +95,11 @@ public class Customer {
         this.lastName = lastName;
     }
 
-    public List<Ticket> getTicketList() {
-        return ticketList;
+    public List<Ticket> getTicketListByCustomerId() {
+        return ticketListByCustomerId;
     }
 
-    public void setTicketList(List<Ticket> ticketList) {
-        this.ticketList = ticketList;
+    public void setTicketListByCustomerId(List<Ticket> ticketListByCustomerId) {
+        this.ticketListByCustomerId = ticketListByCustomerId;
     }
 }

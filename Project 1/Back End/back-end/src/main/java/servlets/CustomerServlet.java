@@ -1,8 +1,13 @@
 package servlets;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import model.Customer;
-import repository.CustomerRepo;
+import model.Flight;
+import model.Ticket;
+import services.DisplayFlightSchedule;
+import services.PassengerList;
 import services.Register;
 
 import javax.servlet.ServletException;
@@ -18,23 +23,33 @@ import java.util.Scanner;
 public class CustomerServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //As an administrator, I can view a flight manifest (flight details + passenger list)
-        List<Customer> customerList = CustomerRepo.getAllCustomers();
-        ObjectMapper mapper = new ObjectMapper();
-        resp.getWriter().write(mapper.writeValueAsString(customerList));
-        resp.setContentType("application/json");
-        resp.setStatus(200);
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
+        try{
+            int id = Integer.parseInt(req.getParameter("id"));
+
+            PassengerList passengerList = new PassengerList();
+            List<Ticket> list = passengerList.passengersOnFlight(id);
+            ObjectMapper mapper = new ObjectMapper();
+            resp.getWriter().write(mapper.writeValueAsString(list));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
-        InputStream requestBody = req.getInputStream();
-        Scanner sc = new Scanner(requestBody, StandardCharsets.UTF_8.name());
-        String jsonText = sc.useDelimiter("\\A").next();
-        ObjectMapper mapper = new ObjectMapper();
-        Customer customer = mapper.readValue(jsonText, Customer.class);
-        Register register = new Register();
-        register.registerForAccount(customer);
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp ) {
+        try {
+            InputStream requestBody = req.getInputStream();
+            Scanner sc = new Scanner(requestBody, StandardCharsets.UTF_8.name());
+            String jsonText = sc.useDelimiter("\\A").next();
+            ObjectMapper mapper = new ObjectMapper();
+            Customer customer = mapper.readValue(jsonText, Customer.class);
+            Register register = new Register();
+            register.registerForAccount(customer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -1,18 +1,8 @@
 package servlets;
 
-import model.Admin;
-import model.Customer;
-import model.Flight;
 import model.Ticket;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
-import repository.AdminRepo;
-import repository.CustomerRepo;
-import repository.FlightRepo;
-import repository.TicketRepo;
-import services.DisplayFlightSchedule;
-import services.Login;
-import services.Register;
+import services.PassengerList;
 import utils.HibernateUtil;
 
 import javax.servlet.ServletContextListener;
@@ -26,7 +16,6 @@ public class DependencyLoaderListener  implements ServletContextListener {
         HibernateUtil.setSession(session);
 
         //Test service layer below this comment
-
     }
 
 

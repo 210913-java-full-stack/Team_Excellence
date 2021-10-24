@@ -36,7 +36,7 @@ public class Flight {
 
     @OneToMany(mappedBy = "flight", cascade = CascadeType.ALL)
     @JsonIgnore
-    private List<Ticket> ticketList;
+    private List<Ticket> ticketListByFlightId;
 
     public Flight(){
 
@@ -129,12 +129,12 @@ public class Flight {
         this.takeOff = takeOff;
     }
 
-    public List<Ticket> getTicketList() {
-        return ticketList;
+    public List<Ticket> getTicketListByFlightId() {
+        return ticketListByFlightId;
     }
 
-    public void setTicketList(List<Ticket> ticketList) {
-        this.ticketList = ticketList;
+    public void setTicketListByFlightId(List<Ticket> ticketListByFlightId) {
+        this.ticketListByFlightId = ticketListByFlightId;
     }
 
 }
