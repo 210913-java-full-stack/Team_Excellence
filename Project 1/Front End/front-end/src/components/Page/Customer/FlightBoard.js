@@ -31,7 +31,7 @@ export default function FlightBoard({ setTicketScreen, setFlightId }) {
             })();
 
 
-        }, 2500);
+        }, 5000);
 
 
 

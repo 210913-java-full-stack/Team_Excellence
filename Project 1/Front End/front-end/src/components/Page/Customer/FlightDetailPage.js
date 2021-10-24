@@ -13,6 +13,9 @@ export default function FlightDetailPage({ id, setTicketScreen }) {
 
 
     useEffect(() => {
+
+
+
         async function getFlightDetails() {
             document.title = `Flight details for BCON${id}`;
             try {
