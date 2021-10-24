@@ -12,12 +12,8 @@ public class PurchaseTicket {
     public PurchaseTicket() {
     }
 
-    public void ticketPackage(List<Ticket> ticketPackage, int flightId, int customerId){
-
-    }
-
     //Allows the customer to purchase tickets.
-    public void ticketEach(Ticket ticket, int flightId, int customerId){
+    public void newTicket(Ticket ticket, int flightId, int customerId){
         //Create the flight and customer objects and associate the flight to the ticket
         Flight flight = FlightRepo.getFlightById(flightId);
         Customer customer = CustomerRepo.getCustomerById(customerId);

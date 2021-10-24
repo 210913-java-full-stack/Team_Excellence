@@ -1,99 +1,85 @@
 package servlets;
 
-import model.Customer;
-import model.Flight;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import model.Ticket;
-import repository.CustomerRepo;
-import repository.FlightRepo;
 import repository.TicketRepo;
+import services.PurchaseTicket;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Enumeration;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+import java.util.Scanner;
 
 public class TicketServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp) {
         int flightId = Integer.parseInt(req.getParameter("flightId"));
-        System.out.println(flightId);
-        Flight flight = FlightRepo.getFlightById(flightId);
-        int userId = Integer.parseInt(req.getParameter("userId"));
-        System.out.println(userId);
-        Customer customer = CustomerRepo.getCustomerById(userId);
+        int customerId = Integer.parseInt(req.getParameter("userId"));
+        Ticket firstTicket = new Ticket();
+        Ticket secondTicket = new Ticket();
+        Ticket thirdTicket = new Ticket();
+        Ticket fourthTicket = new Ticket();
+        PurchaseTicket purchaseTicket = new PurchaseTicket();
+
 
         int numOfTickets = Integer.parseInt(req.getParameter("numOfTicket"));
-        if(numOfTickets==1){
-            String fnameOne = req.getParameter("1_fname");
-            System.out.println(fnameOne);
-            String lnameOne = req.getParameter("1_lname");
-            System.out.println(lnameOne);
-            Integer ageOne = Integer.parseInt(req.getParameter("1_age"));
-            System.out.println(ageOne);
-            Ticket one = new Ticket(FlightRepo.getFlightById(flightId),CustomerRepo.getCustomerById(userId),fnameOne,lnameOne,ageOne, true);
-            TicketRepo.saveNewTicket(one);
+        if (numOfTickets == 1) {
 
-        }else if(numOfTickets==2){
-            String fnameOne = req.getParameter("1_fname");
-            System.out.println(fnameOne);
-            String lnameOne = req.getParameter("1_lname");
-            System.out.println(lnameOne);
-            Integer ageOne = Integer.parseInt(req.getParameter("1_age"));
-            System.out.println(ageOne);
+            firstTicket.setPassengerFirstName(req.getParameter("1_fname"));
+            firstTicket.setPassengerLastName(req.getParameter("1_lname"));
+            firstTicket.setPassengerAge(Integer.parseInt(req.getParameter("1_age")));
+            purchaseTicket.newTicket(firstTicket,flightId,customerId);
 
-            String fnameTwo = req.getParameter("2_fname");
-            String lnameTwo = req.getParameter("2_lname");
+        } else if (numOfTickets == 2) {
+            firstTicket.setPassengerFirstName(req.getParameter("1_fname"));
+            firstTicket.setPassengerLastName(req.getParameter("1_lname"));
+            firstTicket.setPassengerAge(Integer.parseInt(req.getParameter("1_age")));
+            purchaseTicket.newTicket(firstTicket,flightId,customerId);
 
+            secondTicket.setPassengerFirstName(req.getParameter("2_fname"));
+            secondTicket.setPassengerLastName(req.getParameter("2_lname"));
+            secondTicket.setPassengerAge(Integer.parseInt(req.getParameter("2_age")));
+            purchaseTicket.newTicket(secondTicket,flightId,customerId);
 
-            Integer ageTwo = Integer.parseInt(req.getParameter("2_age"));
+        } else if (numOfTickets == 3) {
+            firstTicket.setPassengerFirstName(req.getParameter("1_fname"));
+            firstTicket.setPassengerLastName(req.getParameter("1_lname"));
+            firstTicket.setPassengerAge(Integer.parseInt(req.getParameter("1_age")));
+            purchaseTicket.newTicket(firstTicket,flightId,customerId);
 
-            System.out.println(fnameTwo);
-            System.out.println(lnameTwo);
-            System.out.println(ageTwo);
-            Ticket two = new Ticket(flight, customer,fnameTwo,lnameTwo,ageTwo,true);
-            TicketRepo.saveNewTicket(two);
-            Ticket one = new Ticket(flight,customer,fnameOne,lnameOne,ageOne, true);
-            TicketRepo.saveNewTicket(one);
+            secondTicket.setPassengerFirstName(req.getParameter("2_fname"));
+            secondTicket.setPassengerLastName(req.getParameter("2_lname"));
+            secondTicket.setPassengerAge(Integer.parseInt(req.getParameter("2_age")));
+            purchaseTicket.newTicket(secondTicket,flightId,customerId);
 
-        }else if(numOfTickets==3){
-            String fnameOne = req.getParameter("1_fname");
-            String lnameOne = req.getParameter("1_lname");
-            Integer ageOne = Integer.parseInt(req.getParameter("1_age"));
-            Ticket one = new Ticket(flight,customer,fnameOne,lnameOne,ageOne, true);
-            TicketRepo.saveNewTicket(one);
-            String fnameTwo = req.getParameter("2_fname");
-            String lnameTwo = req.getParameter("2_lname");
-            Integer ageTwo = Integer.parseInt(req.getParameter("2_age"));
-            Ticket two = new Ticket(flight,customer,fnameTwo,lnameTwo,ageTwo, true);
-            TicketRepo.saveNewTicket(two);
-            String fnameThree = req.getParameter("3_fname");
-            String lnameThree = req.getParameter("3_lname");
-            Integer ageThree = Integer.parseInt(req.getParameter("3_age"));
-            Ticket three = new Ticket(flight,customer,fnameThree,lnameThree,ageThree, true);
-            TicketRepo.saveNewTicket(three);
-        }else if(numOfTickets==4){
-            String fnameOne = req.getParameter("1_fname");
-            String lnameOne = req.getParameter("1_lname");
-            Integer ageOne = Integer.parseInt(req.getParameter("1_age"));
-            Ticket one = new Ticket(flight,customer,fnameOne,lnameOne,ageOne, true);
-            TicketRepo.saveNewTicket(one);
-            String fnameTwo = req.getParameter("2_fname");
-            String lnameTwo = req.getParameter("2_lname");
-            Integer ageTwo = Integer.parseInt(req.getParameter("2_age"));
-            Ticket two = new Ticket(flight,customer,fnameTwo,lnameTwo,ageTwo, true);
-            TicketRepo.saveNewTicket(two);
-            String fnameThree = req.getParameter("3_fname");
-            String lnameThree = req.getParameter("3_lname");
-            Integer ageThree = Integer.parseInt(req.getParameter("3_age"));
-            Ticket three = new Ticket(flight,customer,fnameThree,lnameThree,ageThree, true);
-            TicketRepo.saveNewTicket(three);
-            String fnameFour = req.getParameter("4_fname");
-            String lnameFour = req.getParameter("4_lname");
-            Integer ageFour = Integer.parseInt(req.getParameter("4_age"));
-            Ticket four = new Ticket(flight,customer,fnameFour,lnameFour,ageFour, true);
-            TicketRepo.saveNewTicket(four);
+            thirdTicket.setPassengerFirstName(req.getParameter("3_fname"));
+            thirdTicket.setPassengerLastName(req.getParameter("3_lname"));
+            thirdTicket.setPassengerAge(Integer.parseInt(req.getParameter("3_age")));
+            purchaseTicket.newTicket(thirdTicket,flightId,customerId);
+
+        } else if (numOfTickets == 4) {
+            firstTicket.setPassengerFirstName(req.getParameter("1_fname"));
+            firstTicket.setPassengerLastName(req.getParameter("1_lname"));
+            firstTicket.setPassengerAge(Integer.parseInt(req.getParameter("1_age")));
+            purchaseTicket.newTicket(firstTicket,flightId,customerId);
+
+            secondTicket.setPassengerFirstName(req.getParameter("2_fname"));
+            secondTicket.setPassengerLastName(req.getParameter("2_lname"));
+            secondTicket.setPassengerAge(Integer.parseInt(req.getParameter("2_age")));
+            purchaseTicket.newTicket(secondTicket,flightId,customerId);
+
+            thirdTicket.setPassengerFirstName(req.getParameter("3_fname"));
+            thirdTicket.setPassengerLastName(req.getParameter("3_lname"));
+            thirdTicket.setPassengerAge(Integer.parseInt(req.getParameter("3_age")));
+            purchaseTicket.newTicket(thirdTicket,flightId,customerId);
+
+            fourthTicket.setPassengerFirstName(req.getParameter("4_fname"));
+            fourthTicket.setPassengerLastName(req.getParameter("4_lname"));
+            fourthTicket.setPassengerAge(Integer.parseInt(req.getParameter("4_age")));
+            purchaseTicket.newTicket(fourthTicket,flightId,customerId);
         }
 
         try {
@@ -103,9 +89,35 @@ public class TicketServlet extends HttpServlet {
         }
     }
 
+    @Override
+    public void doPut(HttpServletRequest req, HttpServletResponse resp) {
+        try {
+            InputStream input = req.getInputStream();
+            Scanner sc = new Scanner(input, StandardCharsets.UTF_8.name());
+            String jsonText = sc.useDelimiter("\\A").next();
+            ObjectMapper mapper = new ObjectMapper();
+            Ticket ticket = mapper.readValue(jsonText, Ticket.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //Add call to the CheckIn service class
+
+    }
 
     @Override
-    public void doGet(HttpServletRequest req, HttpServletResponse resp){
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) {
+        try {
+            InputStream input = req.getInputStream();
+            Scanner sc = new Scanner(input, StandardCharsets.UTF_8.name());
+            String jsonText = sc.useDelimiter("\\A").next();
+            ObjectMapper mapper = new ObjectMapper();
+            Ticket ticket = mapper.readValue(jsonText, Ticket.class);
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //Add call to the cancel ticket service class
 
     }
 }

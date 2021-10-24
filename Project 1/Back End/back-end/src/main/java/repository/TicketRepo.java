@@ -15,36 +15,26 @@ import java.util.List;
 public class TicketRepo {
     private static Session session = HibernateUtil.getSession();
     private static Transaction transaction;
-    private static List<Ticket> list;
 
     public static Ticket getTicketById(int id){
         return session.get(Ticket.class, id);
     }
 
     public static List<Ticket> getAllTickets(){
-        if(list == null){
-            CriteriaBuilder builder = session.getCriteriaBuilder();
-            CriteriaQuery<Ticket> query = builder.createQuery(Ticket.class);
-            Root<Ticket> root = query.from(Ticket.class);
-            query.select(root);
-            list = session.createQuery(query).getResultList();
-        } else{
-            session.flush();
-        }
-
-        return list;
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<Ticket> query = builder.createQuery(Ticket.class);
+        Root<Ticket> root = query.from(Ticket.class);
+        query.select(root);
+        return session.createQuery(query).getResultList();
     }
 
     //This method inserts a new row into the ticket
     public static void saveNewTicket(Ticket ticket){
-        if (list == null){
-            TicketRepo.getAllTickets();
-        }
-        list.add(ticket);
+        transaction = session.beginTransaction();
 
+        session.save(ticket);
 
-
-        session.flush();
+        transaction.commit();//Has database update the available column to match the above change
     }
 
     //This method updates the ticket table

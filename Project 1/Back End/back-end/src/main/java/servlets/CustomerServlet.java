@@ -3,6 +3,7 @@ package servlets;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import model.Customer;
 import repository.CustomerRepo;
+import services.Register;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -18,7 +19,7 @@ public class CustomerServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //Need to remove this from servlet and put it in the service layer
+        //As an administrator, I can view a flight manifest (flight details + passenger list)
         List<Customer> customerList = CustomerRepo.getAllCustomers();
         ObjectMapper mapper = new ObjectMapper();
         resp.getWriter().write(mapper.writeValueAsString(customerList));
@@ -32,8 +33,8 @@ public class CustomerServlet extends HttpServlet {
         Scanner sc = new Scanner(requestBody, StandardCharsets.UTF_8.name());
         String jsonText = sc.useDelimiter("\\A").next();
         ObjectMapper mapper = new ObjectMapper();
-        Customer payload = mapper.readValue(jsonText, Customer.class);
-        //Need to replace this with register class
-        CustomerRepo.saveNewCustomer(payload);
+        Customer customer = mapper.readValue(jsonText, Customer.class);
+        Register register = new Register();
+        register.registerForAccount(customer);
     }
 }
