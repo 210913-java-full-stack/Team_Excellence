@@ -1,19 +1,15 @@
 import React, { useState } from 'react';
 import './EmployeeLoginPage.css';
-import AdminHomePage from './AdminHomePage';
-import PilotHomePage from './PillotHomePage';
 
-function AdminLoginPage({ setLoggedIn }) {
+
+
+function AdminLoginPage({ setLoggedIn, setFirstName, setId, setRealUsername, setLastName }) {
     /*Create variables for username and password and initializing them with the useState hook. Provides the current 
     value of the variable you want to store in the state and gives you a function to set the new value.*/
     const [username, setUserName] = useState("");
     const [password, setPassword] = useState("");
-    const [realUsername, setRealUsername] = useState("");
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [isLoggedIn, setIsLoggedIn] = useState("");
-    const [id, setId] = useState("");
-    const showPassword = false;
+
+
 
     //Setting minimum and maximum username and password lengths. Does not check if the username and password match.
 
@@ -35,7 +31,10 @@ function AdminLoginPage({ setLoggedIn }) {
             setFirstName(data["firstName"])
             setLastName(data["lastName"])
             setLoggedIn(true)
-        }).catch(error => console.log(error));
+        }).catch(error => {
+            alert("invalid username or password");
+            console.log(error)
+        });
 
     }
 

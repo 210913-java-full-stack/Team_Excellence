@@ -1,0 +1,17 @@
+.admin-dashboard {
+    position: fixed;
+    top: 85px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    display: grid;
+    grid-template-columns: 80% 20%;
+    grid-template-rows: 100%;
+}
+
+.flights {
+    display: flex;
+    border: 5px limegreen solid;
+    grid-row-start: 1;
+    grid-row-end: 5;
+}

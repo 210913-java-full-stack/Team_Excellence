@@ -8,7 +8,7 @@ function CancelTicket({ isLoggedIn }) {
 
     function renderButton() {
         if (isLoggedIn) {
-            return <button>Cancel Ticket</button>
+            return <button>Cancel Ticket {ticketId}</button>
         } else {
             return (<h3>Must be logged in to cancel ticket</h3>)
         }

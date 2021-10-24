@@ -10,10 +10,7 @@ function PurchaseTicket({ setTicketScreen, flightId, id, isLoggedIn }) {
     const [arriveTime, setArriveTime] = useState()
     const [arriveDate, setArriveDate] = useState()
     const [amountTickets, setAmountTickets] = useState(1)
-    const [firstName, setFirstName] = useState();
-    const [lastName, setLastName] = useState();
-    const [age, setAge] = useState();
-    let passengers = [];
+
 
 
     useEffect(() => {
