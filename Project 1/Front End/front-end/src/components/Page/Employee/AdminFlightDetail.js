@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-export default function AdminFlightDetail({ flightId }) {
+export default function AdminFlightDetail({ flightId, controlFlightPage }) {
 
     const [departLocation, setDepartLocation] = useState()
     const [departTime, setDepartTime] = useState()
@@ -55,23 +55,28 @@ export default function AdminFlightDetail({ flightId }) {
 
 
     async function deleteFlight() {
+        let a = {
+            flightId: flightId,
+            departLocation: departLocation,
+            departDate: departDate,
+            departTime: departTime,
+            arriveTime: arriveTime,
+            arriveLocation: arriveLocation,
+            arriveDate: arriveDate,
+            takeOff: takeOff
+        }
         try {
+
+
             fetch("http://localhost:8080/api/flight", {
                 method: "DELETE",
-                body: {
-                    flightId: flightId,
-                    departLocation: departLocation,
-                    departDate: departDate,
-                    departTime: departTime,
-                    arriveTime: arriveTime,
-                    arriveLocation: arriveLocation,
-                    arriveDate: arriveDate,
-                    takeOff: takeOff
-                }
+                body: JSON.stringify(a)
             }).catch(err => console.log(err))
         } catch (error) {
             console.log(error)
         }
+
+        controlFlightPage();
     }
 
 
@@ -85,12 +90,42 @@ export default function AdminFlightDetail({ flightId }) {
     }
 
 
+
+
+
+    async function clickTakeOff() {
+        setTakeOff(p => p = !p)
+        let a = {
+            flightId: flightId,
+            departLocation: departLocation,
+            departDate: departDate,
+            departTime: departTime,
+            arriveTime: arriveTime,
+            arriveLocation: arriveLocation,
+            arriveDate: arriveDate,
+            takeOff: takeOff
+        }
+
+        try {
+            await fetch("http://localhost:8080/api/flight", {
+                method: "PATCH",
+                body: JSON.stringify(a)
+            })
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+
     return (
         <section>
             <div >
                 <h1>{departDate} BCON{flightId} </h1>
                 <h2 >Leaving {departLocation} at {departTime}</h2>
                 <h2>Arriving {arriveLocation} at {arriveTime}</h2>
+                <h3>has taken off: {checked(takeOff)}</h3>
+                <button onClick={clickTakeOff}>take off</button>
                 <button onClick={deleteFlight}>delete flight</button>
             </div>
             <div className="manifest">

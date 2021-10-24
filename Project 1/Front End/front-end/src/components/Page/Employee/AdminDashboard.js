@@ -44,7 +44,7 @@ export default function AdminDashboard() {
 
                         <div className="flights">
 
-                            <AdminFlightDetail flightId={flightId} />
+                            <AdminFlightDetail flightId={flightId} controlFlightPage={controlFlightPage} />
                         </div>
                     </div>
                 </div>

@@ -7,6 +7,7 @@ export default function AdminFlights({ controlCreatePage, controlFlightPage, set
 
     useEffect(() => {
 
+
         async function getFlights() {
             try {
                 const res = await axios.get("http://localhost:8080/api/flights?allFlights=true");
@@ -18,6 +19,26 @@ export default function AdminFlights({ controlCreatePage, controlFlightPage, set
         getFlights();
 
     }, []);
+
+    useEffect(() => {
+
+        setTimeout(() => {
+            (async function getFlights() {
+                try {
+                    const res = await axios.get("http://localhost:8080/api/flights?allFlights=true");
+                    setFlights(res.data);
+                } catch (err) {
+                    console.log(err)
+                }
+            })();
+
+        }, 5000)
+
+    });
+
+
+
+
 
     function departed(bool) {
         if (bool) {
@@ -68,7 +89,7 @@ export default function AdminFlights({ controlCreatePage, controlFlightPage, set
 
                                 <tr key={el.flightId}>
 
-                                    <td><button className="admin-logout" onClick={e => clickFlightButton(e.target.value)} value={el.flightId}>BCON  {el.flightId}</button></td>
+                                    <td><button className="flight-button" onClick={e => clickFlightButton(e.target.value)} value={el.flightId}>BCON  {el.flightId}</button></td>
                                     <td>{el.departLocation}</td>
                                     <td>{el.departDate}</td>
                                     <td>{el.departTime}</td>
