@@ -1,16 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-export default function AdminFlights() {
-
-
-
-
+export default function AdminFlights({ controlCreatePage, controlFlightPage, setFlightId }) {
 
     const [flights, setFlights] = useState([]);
-
-
-
 
     useEffect(() => {
 
@@ -26,12 +19,6 @@ export default function AdminFlights() {
 
     }, []);
 
-
-
-
-
-
-
     function departed(bool) {
         if (bool) {
             return <td>True</td>
@@ -40,12 +27,21 @@ export default function AdminFlights() {
         }
     }
 
+    function clickCreatePage() {
+        controlCreatePage();
+    }
+    function clickFlightButton(id) {
+        setFlightId(id)
+        controlFlightPage();
+
+    }
 
 
 
     return (
         <section>
-            <h1>Checkout our Flights</h1>
+            <h1>Flight List</h1>
+            <button className="createPage" onClick={clickCreatePage}>Create New Flight</button>
             <table>
                 <thead>
                     <tr>
@@ -69,7 +65,7 @@ export default function AdminFlights() {
 
                                 <tr key={el.flightId}>
 
-                                    <td><button value={el.flightId}>BCON{el.flightId}</button></td>
+                                    <td><button onClick={e => clickFlightButton(e.target.value)} value={el.flightId}>BCON  {el.flightId}</button></td>
                                     <td>{el.departLocation}</td>
                                     <td>{el.departDate}</td>
                                     <td>{el.departTime}</td>
