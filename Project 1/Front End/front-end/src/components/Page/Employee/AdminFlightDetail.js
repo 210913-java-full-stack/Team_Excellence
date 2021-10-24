@@ -45,10 +45,11 @@ export default function AdminFlightDetail({ flightId, controlFlightPage }) {
             }
 
         }
-
         getTicketList();
-
         getFlightDetails();
+
+
+
     }, [])
 
 
@@ -68,7 +69,7 @@ export default function AdminFlightDetail({ flightId, controlFlightPage }) {
         try {
 
 
-            fetch("http://localhost:8080/api/flight", {
+            await fetch("http://localhost:8080/api/flight", {
                 method: "DELETE",
                 body: JSON.stringify(a)
             }).catch(err => console.log(err))
@@ -78,6 +79,14 @@ export default function AdminFlightDetail({ flightId, controlFlightPage }) {
 
         controlFlightPage();
     }
+
+
+
+
+
+
+
+
 
 
 
@@ -93,8 +102,18 @@ export default function AdminFlightDetail({ flightId, controlFlightPage }) {
 
 
 
+
+
+    function handleClickTakeOff() {
+        setTakeOff(p => p = !p);
+        clickTakeOff();
+    }
+
+
     async function clickTakeOff() {
-        setTakeOff(p => p = !p)
+
+
+
         let a = {
             flightId: flightId,
             departLocation: departLocation,
@@ -103,18 +122,19 @@ export default function AdminFlightDetail({ flightId, controlFlightPage }) {
             arriveTime: arriveTime,
             arriveLocation: arriveLocation,
             arriveDate: arriveDate,
-            takeOff: takeOff
+            takeOff: !takeOff,
+
         }
 
-        try {
-            await fetch("http://localhost:8080/api/flight", {
-                method: "PATCH",
-                body: JSON.stringify(a)
-            })
 
-        } catch (error) {
-            console.log(error)
-        }
+        await fetch("http://localhost:8080/api/flight", {
+            method: "PATCH",
+            body: JSON.stringify(a)
+        }).catch(err => console.log(err));
+
+
+
+        controlFlightPage();
     }
 
 
@@ -124,8 +144,8 @@ export default function AdminFlightDetail({ flightId, controlFlightPage }) {
                 <h1>{departDate} BCON{flightId} </h1>
                 <h2 >Leaving {departLocation} at {departTime}</h2>
                 <h2>Arriving {arriveLocation} at {arriveTime}</h2>
-                <h3>has taken off: {checked(takeOff)}</h3>
-                <button onClick={clickTakeOff}>take off</button>
+                <h3>has not taken off: {checked(takeOff)}</h3>
+                <button onClick={handleClickTakeOff}>take off</button>
                 <button onClick={deleteFlight}>delete flight</button>
             </div>
             <div className="manifest">

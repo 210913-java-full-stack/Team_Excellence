@@ -61,23 +61,23 @@ public class FlightRepo {
     }
 
 
-    public static void updateFlight(Flight oldFlight, Flight newFlight) {
+    public static void updateFlight(Flight newFlight) {
         Transaction transaction = session.beginTransaction();
         session.merge(newFlight);
 
-        if(list.contains(oldFlight)){
 
-            for (int i =0; i< list.size(); i++){
-                if(list.get(i).equals(oldFlight)){
-                    list.get(i).setArriveLocation(newFlight.getArriveLocation());
-                    list.get(i).setArriveDate(newFlight.getArriveDate());
-                    list.get(i).setArriveTime(newFlight.getArriveTime());
-                    list.get(i).setDepartLocation(newFlight.getDepartLocation());
-                    list.get(i).setDepartDate(newFlight.getDepartDate());
-                    list.get(i).setDepartTime(newFlight.getDepartTime());
-                    list.get(i).setTakeOff(newFlight.getTakeOff());
+
+            for (Flight flight : list){
+                if(flight.getFlightId().equals(newFlight.getFlightId())){
+                    flight.setArriveLocation(newFlight.getArriveLocation());
+                    flight.setArriveDate(newFlight.getArriveDate());
+                    flight.setArriveTime(newFlight.getArriveTime());
+                   flight.setDepartLocation(newFlight.getDepartLocation());
+                   flight.setDepartDate(newFlight.getDepartDate());
+                    flight.setDepartTime(newFlight.getDepartTime());
+                    flight.setTakeOff(newFlight.getTakeOff());
                 }
-            }
+
         }
         transaction.commit();
         session.flush();

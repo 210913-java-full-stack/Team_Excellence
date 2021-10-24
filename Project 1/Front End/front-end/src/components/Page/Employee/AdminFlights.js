@@ -20,21 +20,21 @@ export default function AdminFlights({ controlCreatePage, controlFlightPage, set
 
     }, []);
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        setTimeout(() => {
-            (async function getFlights() {
-                try {
-                    const res = await axios.get("http://localhost:8080/api/flights?allFlights=true");
-                    setFlights(res.data);
-                } catch (err) {
-                    console.log(err)
-                }
-            })();
+    //     setTimeout(() => {
+    //         (async function getFlights() {
+    //             try {
+    //                 const res = await axios.get("http://localhost:8080/api/flights?allFlights=true");
+    //                 setFlights(res.data);
+    //             } catch (err) {
+    //                 console.log(err)
+    //             }
+    //         })();
 
-        }, 5000)
+    //     }, 5000)
 
-    });
+    // });
 
 
 
