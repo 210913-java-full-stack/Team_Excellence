@@ -26,7 +26,7 @@ public class CustomerServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
         try{
             int id = Integer.parseInt(req.getParameter("id"));
-            //Gets the passenger list for the flight manifest 
+            //Gets the passenger list for the flight manifest
             PassengerList passengerList = new PassengerList();
             List<Ticket> list = passengerList.passengersOnFlight(id);
             ObjectMapper mapper = new ObjectMapper();

@@ -3,6 +3,7 @@ package servlets;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import model.Ticket;
 import repository.TicketRepo;
+import services.CheckIn;
 import services.PurchaseTicket;
 
 import javax.servlet.http.HttpServlet;
@@ -97,11 +98,12 @@ public class TicketServlet extends HttpServlet {
             String jsonText = sc.useDelimiter("\\A").next();
             ObjectMapper mapper = new ObjectMapper();
             Ticket ticket = mapper.readValue(jsonText, Ticket.class);
+            CheckIn checkIn = new CheckIn();
+            checkIn.checkInForFlight(ticket.getTicketId());
+
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //Add call to the CheckIn service class
-
     }
 
     @Override
