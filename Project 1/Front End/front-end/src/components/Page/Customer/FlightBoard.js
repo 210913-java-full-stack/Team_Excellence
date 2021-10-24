@@ -17,6 +17,7 @@ export default function FlightBoard({ setTicketScreen, setFlightId }) {
     const [flightDetails, setFlightDetails] = useState(false);
 
     useEffect(() => {
+        document.title = "Gautier Airlines";
         async function getFlights() {
             try {
                 const res = await axios.get("http://localhost:8080/api/flights?allFlights=false");
@@ -87,7 +88,7 @@ export default function FlightBoard({ setTicketScreen, setFlightId }) {
 
                                     <tr key={el.flightId}>
 
-                                        <td><button onClick={e => clickDetailButton(e.target.value)} value={el.flightId}>BCON{el.flightId}</button></td>
+                                        <td><button className="ticket-button" onClick={e => clickDetailButton(e.target.value)} value={el.flightId}>BCON{el.flightId}</button></td>
                                         <td>{el.departLocation}</td>
                                         <td>{el.departDate}</td>
                                         <td>{el.departTime}</td>

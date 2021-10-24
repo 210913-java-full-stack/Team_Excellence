@@ -58,6 +58,11 @@
     height: 25px;
 }
 
+.back-button-flights:hover {
+    background-color: yellow;
+    color: black;
+}
+
 .sub-check-in {
     border: 5px black solid;
     background-color: yellow;
@@ -88,6 +93,10 @@
     height: 25px;
     background-color: blue;
     color: white;
+}
+
+.ticket-button:hover {
+    background-color: magenta;
 }
 
 section {

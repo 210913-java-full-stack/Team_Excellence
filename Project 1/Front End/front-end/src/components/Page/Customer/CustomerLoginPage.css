@@ -87,6 +87,11 @@ input {
     margin-bottom: 25px;
 }
 
+#login-btn:hover {
+    background-color: yellow;
+    color: black;
+}
+
 
 #login-render {
 top: 0px;
@@ -113,10 +118,19 @@ color: white;
 
 }
 
+.back-to-home:hover {
+    background-color: yellow;
+    color: black;
+}
+
 #sign-up-but {
   background-color: aqua;
   width:120px;
   height: 25px;
+}
+
+#sign-up-but:hover {
+    background-color: yellow;
 }
 
 .signup-form {

@@ -11,8 +11,11 @@ export default function AdminHomePage() {
     const [firstName, setFirstName] = useState()
     const [lastName, setLastName] = useState()
 
-
-
+    if (loggedIn) {
+        document.title = `${RealUsername} in Admin`;
+    } else {
+        document.title = "Admin";
+    }
     function clickLogout() {
         setId(null)
         setFirstName(null)

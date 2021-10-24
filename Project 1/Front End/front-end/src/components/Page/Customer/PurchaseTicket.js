@@ -81,7 +81,7 @@ function PurchaseTicket({ setTicketScreen, flightId, id, isLoggedIn }) {
 
     function renderButton() {
         if (isLoggedIn) {
-            return <button type="submit">Purchse Tickets</button>;
+            return <button className="ticket-button" type="submit">Purchse Tickets</button>;
         } else {
             return <h3>You have to be logged in to buy a ticket</h3>
         }

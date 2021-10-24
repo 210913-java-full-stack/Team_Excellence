@@ -59,7 +59,7 @@ export default function FlightDetailPage({ id, setTicketScreen }) {
 
                 </div>
                 <div>
-                    <button onClick={clickBuyTicket}>Buy a ticket!</button>
+                    <button className="ticket-button" onClick={clickBuyTicket}>Buy a ticket!</button>
                 </div>
 
             </div>

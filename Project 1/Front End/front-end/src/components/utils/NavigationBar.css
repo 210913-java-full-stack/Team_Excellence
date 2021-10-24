@@ -106,3 +106,8 @@ span {
     background-color: blue;
     color: white;
 }
+
+.login-button:hover {
+    background-color: yellow;
+    color: black;
+}
