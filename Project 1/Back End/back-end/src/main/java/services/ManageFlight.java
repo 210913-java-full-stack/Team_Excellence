@@ -15,6 +15,7 @@ public class ManageFlight {
      */
     public void createFlight(Flight flight){
         //Save the new flight to the database
+        FlightRepo.setList(FlightRepo.getAllFlights());
         FlightRepo.saveFlight(flight);
     }
 
@@ -24,6 +25,7 @@ public class ManageFlight {
      * @param flight Requires the id associate with the selected flight
      */
     public void cancelFlight(Flight flight){
+        FlightRepo.setList(FlightRepo.getAllFlights());
         FlightRepo.deleteFlight(FlightRepo.getFlightById(flight.getFlightId()));
     }
 
@@ -32,7 +34,7 @@ public class ManageFlight {
      * @param newFlight This method requires the updates to the current flight
      */
     public void updateFlight(Flight newFlight){
-
+        FlightRepo.setList(FlightRepo.getAllFlights());
         FlightRepo.updateFlight(newFlight);
     }
 }

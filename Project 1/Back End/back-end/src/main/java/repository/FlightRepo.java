@@ -19,6 +19,9 @@ public class FlightRepo {
 
 
     public static Flight getFlightById(int id) {
+        Transaction transaction = session.beginTransaction();
+        session.flush();
+        transaction.commit();
         return session.get(Flight.class, id);
     }
 
@@ -31,57 +34,48 @@ public class FlightRepo {
             query.select(root);
             list = session.createQuery(query).getResultList();
         } else {
-         session.flush();
+            Transaction transaction = session.beginTransaction();
+            session.flush();
+            transaction.commit();
         }
         return list;
 
     }
 
-    static int n = 0;
-
     public static void saveFlight(Flight flight){
         Transaction transaction = session.beginTransaction();
         session.save(flight);
         transaction.commit();
-        if(list == null){
-            getAllFlights();
-        } else{
-            list.add(flight);
-        }
-        n++;
+        list = getList();
+        list.add(flight);
     }
 
     public static void deleteFlight(Flight flight) {
         Transaction transaction = session.beginTransaction();
         session.delete(flight);
         transaction.commit();
+        list = getList();
         int index = list.lastIndexOf(flight);
         list.remove(index);
-        session.flush();
     }
 
 
     public static void updateFlight(Flight newFlight) {
         Transaction transaction = session.beginTransaction();
         session.merge(newFlight);
-
-
-
-            for (Flight flight : list){
-                if(flight.getFlightId().equals(newFlight.getFlightId())){
-                    flight.setArriveLocation(newFlight.getArriveLocation());
-                    flight.setArriveDate(newFlight.getArriveDate());
-                    flight.setArriveTime(newFlight.getArriveTime());
-                   flight.setDepartLocation(newFlight.getDepartLocation());
-                   flight.setDepartDate(newFlight.getDepartDate());
-                    flight.setDepartTime(newFlight.getDepartTime());
-                    flight.setTakeOff(newFlight.getTakeOff());
-                }
-
+        list = getList();
+        for (Flight flight : list){
+            if(flight.getFlightId().equals(newFlight.getFlightId())){
+                flight.setArriveLocation(newFlight.getArriveLocation());
+                flight.setArriveDate(newFlight.getArriveDate());
+                flight.setArriveTime(newFlight.getArriveTime());
+               flight.setDepartLocation(newFlight.getDepartLocation());
+               flight.setDepartDate(newFlight.getDepartDate());
+                flight.setDepartTime(newFlight.getDepartTime());
+                flight.setTakeOff(newFlight.getTakeOff());
+            }
         }
         transaction.commit();
-        session.flush();
-
     }
 
     public static List<Flight> getList() {

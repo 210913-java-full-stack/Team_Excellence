@@ -20,7 +20,7 @@ public class TicketRepo {
         return session.get(Ticket.class, id);
     }
 
-    public static List<Ticket> getAllTickets(){
+    public static List<Ticket> getAllTickets(int flightId){
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Ticket> query = builder.createQuery(Ticket.class);
         Root<Ticket> root = query.from(Ticket.class);

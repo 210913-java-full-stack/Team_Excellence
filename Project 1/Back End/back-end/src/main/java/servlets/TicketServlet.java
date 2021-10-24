@@ -43,10 +43,8 @@ public class TicketServlet extends HttpServlet {
         Ticket fourthTicket = new Ticket();
         PurchaseTicket purchaseTicket = new PurchaseTicket();
 
-
         int numOfTickets = Integer.parseInt(req.getParameter("numOfTicket"));
         if (numOfTickets == 1) {
-
             firstTicket.setPassengerFirstName(req.getParameter("1_fname"));
             firstTicket.setPassengerLastName(req.getParameter("1_lname"));
             firstTicket.setPassengerAge(Integer.parseInt(req.getParameter("1_age")));

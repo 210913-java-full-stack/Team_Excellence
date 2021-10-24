@@ -17,7 +17,9 @@ public class DisplayFlightSchedule {
     public List<Flight> displayFlightsAdmin(){
         List<Flight> flightList = FlightRepo.getList();
         if(flightList == null){
+            FlightRepo.setList(FlightRepo.getAllFlights());
             return FlightRepo.getAllFlights();
+
         }
         System.out.println("display admin List of flights");
         return flightList;
@@ -27,11 +29,11 @@ public class DisplayFlightSchedule {
      * Filter flights based on availability. Used to display flights to the customer.
      */
     public List<Flight> displayFlightsCustomer(){
-        System.out.println("display Customer List of flights");
         List<Flight> listOfAvailableFlights = new ArrayList<>();
         List<Flight> flightList = FlightRepo.getList();
         if(flightList == null){
             flightList = FlightRepo.getAllFlights();
+            FlightRepo.setList(FlightRepo.getAllFlights());
         }
         for(int i = 0; i < flightList.size();i++){
             if(!flightList.get(i).getTakeOff()){
@@ -47,6 +49,7 @@ public class DisplayFlightSchedule {
      * @return Returns the flight information
      */
     public Flight displayFlightDetails(int flightId){
+        FlightRepo.setList(FlightRepo.getAllFlights());
         return FlightRepo.getFlightById(flightId);
     }
 
