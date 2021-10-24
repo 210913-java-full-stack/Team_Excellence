@@ -11,8 +11,7 @@ export default function AdminHomePage() {
     const [firstName, setFirstName] = useState()
     const [lastName, setLastName] = useState()
 
-    //page State
-    const [page, setPage] = useState()
+
 
     function clickLogout() {
         setId(null)
@@ -32,7 +31,7 @@ export default function AdminHomePage() {
                 <button className="admin-logout" onClick={clickLogout}>logout</button>
 
                 <h1>{RealUsername} is logged into the Admin System.</h1>
-                <AdminDashboard setPage={setPage} />
+                <AdminDashboard />
             </div>
         );
     } else {
