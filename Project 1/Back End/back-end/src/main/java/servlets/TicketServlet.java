@@ -3,6 +3,7 @@ package servlets;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import model.Ticket;
 import repository.TicketRepo;
+import services.CancelTicket;
 import services.CheckIn;
 import services.PassengerList;
 import services.PurchaseTicket;
@@ -116,18 +117,47 @@ public class TicketServlet extends HttpServlet {
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) {
-        try {
-            InputStream input = req.getInputStream();
-            Scanner sc = new Scanner(input, StandardCharsets.UTF_8.name());
-            String jsonText = sc.useDelimiter("\\A").next();
-            ObjectMapper mapper = new ObjectMapper();
-            Ticket ticket = mapper.readValue(jsonText, Ticket.class);
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
+        Integer customerId;
+        int ticketId = Integer.parseInt(req.getParameter("ticketId"));
+        if(req.getParameter("customerId") != null) {
+            customerId = Integer.parseInt(req.getParameter("customerId"));
+        } else {
+            customerId = null;
         }
-        //Add call to the cancel ticket service class
+
+        System.out.println("customer id: " + customerId);
+
+        CancelTicket cancelTicket = new CancelTicket();
+
+        if(customerId == null){
+            cancelTicket.adminCancelTicket(ticketId);
+        } else {
+            try {
+                int userId = customerId;
+                Ticket ticket = cancelTicket.customerCancelTicket(ticketId,userId);
+                System.out.println("ticket: " + ticket);
+                ObjectMapper mapper = new ObjectMapper();
+                String json = mapper.writeValueAsString(ticket);
+
+                resp.setStatus(200);
+                resp.setContentType("application/json");
+                resp.setCharacterEncoding("UTF-8");
+                System.out.println(json);
+                resp.getWriter().write(json);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+
+
+
+
+
+
+
+
 
     }
 }
