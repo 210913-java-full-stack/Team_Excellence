@@ -16,31 +16,31 @@ export default function FlightBoard({ setTicketScreen, setFlightId }) {
     const [flights, setFlights] = useState([]);
     const [flightDetails, setFlightDetails] = useState(false);
 
-    useEffect(() => {
-        document.title = "Gautier Airlines";
-        async function getFlights() {
-            try {
-                const res = await axios.get("http://localhost:8080/api/flights?allFlights=false");
-                setFlights(res.data);
-            } catch (err) {
-                console.log(err)
-            }
-        }
-        getFlights();
-    }, []);
+    // useEffect(() => {
+    //     document.title = "Gautier Airlines";
+    //     async function getFlights() {
+    //         try {
+    //             const res = await axios.get("http://localhost:8080/api/flights?allFlights=false");
+    //             setFlights(res.data);
+    //         } catch (err) {
+    //             console.log(err)
+    //         }
+    //     }
+    //     getFlights();
+    // }, []);
 
-    useEffect(() => {
-        setTimeout(() => {
-            (async function getFlights() {
-                try {
-                    const res = await axios.get("http://localhost:8080/api/flights?allFlights=false");
-                    setFlights(res.data);
-                } catch (err) {
-                    console.log(err)
-                }
-            })();
-        }, 5000);
-    });
+    // useEffect(() => {
+    //     setTimeout(() => {
+    //         (async function getFlights() {
+    //             try {
+    //                 const res = await axios.get("http://localhost:8080/api/flights?allFlights=false");
+    //                 setFlights(res.data);
+    //             } catch (err) {
+    //                 console.log(err)
+    //             }
+    //         })();
+    //     }, 5000);
+    // });
 
 
 
