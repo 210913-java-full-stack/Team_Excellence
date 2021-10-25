@@ -1,8 +1,6 @@
 services\ManageFlight.class
 utils\FileLogger.class
 repository\AdminRepo.class
-utils\availableFlightsCache.class
-servlets\SupportsPatch.class
 servlets\FlightDetailServlet.class
 services\Login.class
 utils\HibernateUtil.class
@@ -10,10 +8,8 @@ model\Ticket.class
 model\Customer.class
 servlets\CustomerServlet.class
 servlets\CORSFilter.class
-model\TestEntity.class
 repository\TicketRepo.class
 servlets\DependencyLoaderListener.class
-servlets\AdminServlet.class
 servlets\LoginServlet.class
 servlets\AdminLoginServlet.class
 repository\CustomerRepo.class
