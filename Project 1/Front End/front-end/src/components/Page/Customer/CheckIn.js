@@ -9,7 +9,7 @@ function CheckIn() {
 
     async function handleSubmit() {
         fetch(`http:localhost:8080/api/ticket?ticketId=${ticketId}`, {
-            method: "GET"
+            method: "PUT"
         }).then((response) => {
             if (response.ok) {
                 alert("You have checked In!")
