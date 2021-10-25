@@ -13,5 +13,6 @@ public class CheckIn {
      */
     public void checkInForFlight(int ticketId){
         TicketRepo.updateCheckIn(ticketId,true);
+        System.out.println(ticketId);
     }
 }

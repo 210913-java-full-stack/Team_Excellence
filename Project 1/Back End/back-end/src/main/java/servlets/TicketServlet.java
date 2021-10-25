@@ -108,18 +108,10 @@ public class TicketServlet extends HttpServlet {
 
     @Override
     public void doPut(HttpServletRequest req, HttpServletResponse resp) {
-        try {
-            InputStream input = req.getInputStream();
-            Scanner sc = new Scanner(input, StandardCharsets.UTF_8.name());
-            String jsonText = sc.useDelimiter("\\A").next();
-            ObjectMapper mapper = new ObjectMapper();
-            Ticket ticket = mapper.readValue(jsonText, Ticket.class);
-            CheckIn checkIn = new CheckIn();
-            checkIn.checkInForFlight(ticket.getTicketId());
+        int ticketId = Integer.parseInt(req.getParameter("ticketId"));
+        CheckIn checkIn = new CheckIn();
+        checkIn.checkInForFlight(ticketId);
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
