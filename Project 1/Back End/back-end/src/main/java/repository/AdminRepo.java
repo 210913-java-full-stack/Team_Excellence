@@ -41,14 +41,14 @@ public class AdminRepo {
         Session session = HibernateUtil.getSession();
         Transaction transaction = session.beginTransaction();
         session.save(admin);
-        transaction.commit();//Has database update the available column to match the above change
+        transaction.commit();
     }
 
     public static void deleteAdmin(Admin admin) {
         Session session = HibernateUtil.getSession();
         Transaction transaction = session.beginTransaction();
         session.delete(admin);
-        transaction.commit();//Has database update the available column to match the above change
+        transaction.commit();
 
     }
 }

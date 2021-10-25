@@ -45,7 +45,7 @@ public class CustomerRepo {
 
         session.save(customer);
 
-        transaction.commit();//Has database update the available column to match the above change
+        transaction.commit();
     }
 
     public static void deleteCustomer(Customer customer) {
@@ -53,7 +53,7 @@ public class CustomerRepo {
 
         session.delete(customer);
 
-        transaction.commit();//Has database update the available column to match the above change
+        transaction.commit();
     }
 
 }

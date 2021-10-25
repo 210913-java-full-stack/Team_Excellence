@@ -34,7 +34,7 @@ public class TicketRepo {
 
         session.save(ticket);
 
-        transaction.commit();//Has database update the available column to match the above change
+        transaction.commit();
     }
 
     //This method updates the ticket table
@@ -45,7 +45,7 @@ public class TicketRepo {
         //Update the checkIn column
         ticket.setCheckedIn(checkIn); //Updates just the ticket column
         System.out.println("I can get here");
-        transaction.commit();//Has database update the take_off column to match the above change
+        transaction.commit();//Has database update the check-in column to match the above change
     }
 
     public static void deleteTicket(Ticket ticket){
