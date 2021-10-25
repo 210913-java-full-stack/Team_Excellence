@@ -8,7 +8,7 @@ function CheckIn() {
 
 
     async function handleSubmit() {
-        fetch(`http:localhost:8080/api/ticket?ticketId=${ticketId}`, {
+        fetch(`http://localhost:8080/api/ticket?ticketId=${ticketId}`, {
             method: "PUT"
         }).then((response) => {
             if (response.ok) {
