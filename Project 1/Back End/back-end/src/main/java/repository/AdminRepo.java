@@ -12,19 +12,12 @@ import java.util.List;
 
 public class AdminRepo {
 
-    //****** session.get does not require starting and committing a transaction *****
-
     public static Admin getAdminById(int id) {
         Session session = HibernateUtil.getSession();
         //Get data from database using the admin id
         return session.get(Admin.class,id);
     }
 
-    /**
-     * This method
-     * @param username
-     * @return
-     */
     public static Admin getByUsername(String username) {
         Session session = HibernateUtil.getSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();

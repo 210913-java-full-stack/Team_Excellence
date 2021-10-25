@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import model.Customer;
 import services.Login;
+import utils.FileLogger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
@@ -31,7 +32,7 @@ public class LoginServlet extends HttpServlet {
             System.out.println(json);
             resp.getWriter().write(json);
         } catch (IOException e) {
-            e.printStackTrace();
+            FileLogger.getFileLogger().writeLog(2);
         }
     }
 }

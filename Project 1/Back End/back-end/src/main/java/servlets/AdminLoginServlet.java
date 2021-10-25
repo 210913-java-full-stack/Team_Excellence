@@ -3,6 +3,7 @@ package servlets;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import model.Admin;
 import services.Login;
+import utils.FileLogger;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -28,7 +29,7 @@ public class AdminLoginServlet extends HttpServlet {
             System.out.println(json);
             resp.getWriter().write(json);
         } catch (IOException e) {
-            e.printStackTrace();
+            FileLogger.getFileLogger().writeLog(2);
         }
     }
 }

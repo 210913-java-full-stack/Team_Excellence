@@ -6,7 +6,7 @@ import repository.FlightRepo;
 
 import services.DisplayFlightSchedule;
 import services.ManageFlight;
-
+import utils.FileLogger;
 
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,7 +26,7 @@ public class FlightDetailServlet extends MyServlet {
         try {
             resp.getWriter().write(mapper.writeValueAsString(flight));
         } catch (IOException e) {
-            e.printStackTrace();
+            FileLogger.getFileLogger().writeLog(2);
         }
 
     }
@@ -44,7 +44,7 @@ public class FlightDetailServlet extends MyServlet {
             manageFlight.updateFlight(flight);
 
         }catch(Exception e){
-            e.printStackTrace();
+            FileLogger.getFileLogger().writeLog(2);
         }
     }
 
@@ -61,7 +61,7 @@ public class FlightDetailServlet extends MyServlet {
             manageFlight.createFlight(flight);
 
         }catch(Exception e){
-            e.printStackTrace();
+            FileLogger.getFileLogger().writeLog(2);
         }
     }
 
@@ -80,7 +80,7 @@ public class FlightDetailServlet extends MyServlet {
             manageFlight.cancelFlight(flight);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            FileLogger.getFileLogger().writeLog(2);
         }
     }
 

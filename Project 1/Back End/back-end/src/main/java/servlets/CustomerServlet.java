@@ -9,6 +9,7 @@ import model.Ticket;
 import services.DisplayFlightSchedule;
 import services.PassengerList;
 import services.Register;
+import utils.FileLogger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -33,7 +34,7 @@ public class CustomerServlet extends HttpServlet {
             resp.getWriter().write(mapper.writeValueAsString(list));
 
         } catch (IOException e) {
-            e.printStackTrace();
+            FileLogger.getFileLogger().writeLog(2);
         }
 
     }
@@ -47,9 +48,17 @@ public class CustomerServlet extends HttpServlet {
             ObjectMapper mapper = new ObjectMapper();
             Customer customer = mapper.readValue(jsonText, Customer.class);
             Register register = new Register();
-            register.registerForAccount(customer);
+            Customer user = register.registerForAccount(customer);
+
+            String json = mapper.writeValueAsString(user);
+
+            resp.setStatus(200);
+            resp.setContentType("application/json");
+            resp.setCharacterEncoding("UTF-8");
+            System.out.println(json);
+            resp.getWriter().write(json);
         } catch (IOException e) {
-            e.printStackTrace();
+            FileLogger.getFileLogger().writeLog(2);
         }
     }
 }

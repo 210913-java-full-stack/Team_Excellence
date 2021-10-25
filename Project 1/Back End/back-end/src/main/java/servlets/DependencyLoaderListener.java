@@ -3,6 +3,7 @@ package servlets;
 import model.Ticket;
 import org.hibernate.Session;
 import services.PassengerList;
+import utils.FileLogger;
 import utils.HibernateUtil;
 
 import javax.servlet.ServletContextListener;
@@ -14,8 +15,6 @@ public class DependencyLoaderListener  implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sce) {
         Session session = HibernateUtil.getSession();
         HibernateUtil.setSession(session);
-
-        //Test service layer below this comment
     }
 
 
@@ -25,7 +24,7 @@ public class DependencyLoaderListener  implements ServletContextListener {
         try {
             HibernateUtil.closeSession();
         } catch (Exception e) {
-            e.printStackTrace();
+            FileLogger.getFileLogger().writeLog(4);
         }
     }
 }

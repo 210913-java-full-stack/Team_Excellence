@@ -3,6 +3,8 @@ package servlets;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import model.Flight;
 import services.DisplayFlightSchedule;
+import utils.FileLogger;
+
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,7 +30,7 @@ public class FlightServlet extends HttpServlet {
         try {
             resp.getWriter().write(mapper.writeValueAsString(list));
         } catch (IOException e) {
-            e.printStackTrace();
+            FileLogger.getFileLogger().writeLog(2);
         }
 
 

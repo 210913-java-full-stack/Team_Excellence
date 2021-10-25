@@ -7,6 +7,7 @@ import services.CancelTicket;
 import services.CheckIn;
 import services.PassengerList;
 import services.PurchaseTicket;
+import utils.FileLogger;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -28,7 +29,7 @@ public class TicketServlet extends HttpServlet {
         try {
             response.getWriter().write(mapper.writeValueAsString(list));
         } catch (IOException e) {
-            e.printStackTrace();
+            FileLogger.getFileLogger().writeLog(2);
         }
     }
 
@@ -103,7 +104,7 @@ public class TicketServlet extends HttpServlet {
         try {
             resp.sendRedirect("http://localhost:3000/ticket");
         } catch (IOException e) {
-            e.printStackTrace();
+            FileLogger.getFileLogger().writeLog(2);
         }
     }
 
@@ -145,7 +146,7 @@ public class TicketServlet extends HttpServlet {
                 System.out.println(json);
                 resp.getWriter().write(json);
             } catch (IOException e) {
-                e.printStackTrace();
+                FileLogger.getFileLogger().writeLog(2);
             }
 
         }
