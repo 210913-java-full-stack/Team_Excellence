@@ -1,11 +1,7 @@
 package repository;
 
-import model.Flight;
-import org.hibernate.Criteria;
 import org.hibernate.Session;
 import model.Customer;
-import org.hibernate.SessionFactory;
-import servlets.DependencyLoaderListener;
 import utils.HibernateUtil;
 import org.hibernate.Transaction;
 

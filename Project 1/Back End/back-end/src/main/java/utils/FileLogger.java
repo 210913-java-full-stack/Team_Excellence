@@ -12,7 +12,8 @@ public class FileLogger {
     public static FileLogger getFileLogger(){
         if(fileLogger == null){
             fileLogger = new FileLogger();
-            File file = new File("C:/Revature/Training/Repos/Team_Excellence/logs/" + getLogFileName());
+            File file = new File("C:/Revature/Training/Repos/Team_Excellence/Project 1/Back End/logs/"
+                    + getLogFileName());
             OutputStream outputStream;
             try {
                 outputStream = new FileOutputStream(file);

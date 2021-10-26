@@ -1,14 +1,10 @@
 package servlets;
 
-import model.Ticket;
 import org.hibernate.Session;
-import services.PassengerList;
 import utils.FileLogger;
 import utils.HibernateUtil;
-
 import javax.servlet.ServletContextListener;
 import javax.servlet.ServletContextEvent;
-import java.util.List;
 
 public class DependencyLoaderListener  implements ServletContextListener {
     @Override

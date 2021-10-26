@@ -1,12 +1,9 @@
 package repository;
 
-import model.Flight;
 import org.hibernate.Session;
 import model.Ticket;
 import org.hibernate.Transaction;
 import utils.HibernateUtil;
-
-import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
