@@ -35,9 +35,9 @@ public class DisplayFlightSchedule {
             flightList = FlightRepo.getAllFlights();
             FlightRepo.setList(FlightRepo.getAllFlights());
         }
-        for(int i = 0; i < flightList.size();i++){
-            if(!flightList.get(i).getTakeOff()){
-                listOfAvailableFlights.add(flightList.get(i));
+        for(Flight flight : flightList){
+            if(!flight.getTakeOff()){
+                listOfAvailableFlights.add(flight);
             }
         }
         return listOfAvailableFlights;

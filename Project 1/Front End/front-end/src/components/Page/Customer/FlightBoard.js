@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import FlightDetailPage from "./FlightDetailPage";
+import "../Employee/AdminDashboard.css";
 
 
 
@@ -66,49 +67,53 @@ export default function FlightBoard({ setTicketScreen, setFlightId }) {
         return (
             <section>
                 <h1>Checkout our Flights</h1>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>
-                                Flight Id
-                            </th>
-                            <th>Departure</th>
-                            <th>Departur Date</th>
-                            <th>Departure Time</th>
-                            <th>Arrival</th>
-                            <th>Arrival Date</th>
-                            <th>Arrival Time</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                <div className="table-wrapper">
+                    <div className="table-scroll">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Flight Id
+                                    </th>
+                                    <th>Departure</th>
+                                    <th>Departur Date</th>
+                                    <th>Departure Time</th>
+                                    <th>Arrival</th>
+                                    <th>Arrival Date</th>
+                                    <th>Arrival Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
 
-                        {
-                            flights.map(el => {
-                                return (
+                                {
+                                    flights.map(el => {
+                                        return (
 
-                                    <tr key={el.flightId}>
+                                            <tr key={el.flightId}>
 
-                                        <td><button className="flight-button" onClick={e => clickDetailButton(e.target.value)} value={el.flightId}>BCON{el.flightId}</button></td>
-                                        <td>{el.departLocation}</td>
-                                        <td>{el.departDate}</td>
-                                        <td>{el.departTime}</td>
-                                        <td>{el.arriveLocation}</td>
-                                        <td>{el.arriveDate}</td>
-                                        <td>{el.arriveTime}</td>
-
-
-                                    </tr>
-
-                                )
-                            })
-                        }
-
-                    </tbody>
+                                                <td><button className="flight-button" onClick={e => clickDetailButton(e.target.value)} value={el.flightId}>BCON{el.flightId}</button></td>
+                                                <td>{el.departLocation}</td>
+                                                <td>{el.departDate}</td>
+                                                <td>{el.departTime}</td>
+                                                <td>{el.arriveLocation}</td>
+                                                <td>{el.arriveDate}</td>
+                                                <td>{el.arriveTime}</td>
 
 
+                                            </tr>
+
+                                        )
+                                    })
+                                }
+
+                            </tbody>
 
 
-                </table>
+
+
+                        </table>
+                    </div>
+                </div>
             </section>
         );
     }

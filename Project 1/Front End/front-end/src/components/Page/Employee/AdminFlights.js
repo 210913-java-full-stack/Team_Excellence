@@ -64,8 +64,8 @@ export default function AdminFlights({ controlCreatePage, controlFlightPage, set
             <h1>Flight List</h1>
             <button className="createPage" onClick={clickCreatePage}>Create New Flight</button>
 
-            <div id="table-wrapper">
-                <div id="table-scroll">
+            <div className="table-wrapper">
+                <div className="table-scroll">
                     <table>
                         <thead>
                             <tr>

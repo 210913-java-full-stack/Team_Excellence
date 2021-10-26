@@ -67,7 +67,7 @@ export default function CustomerDashboard({ id, db_class, isLoggedIn }) {
             <div className="cancel-ticket">
                 <div className="sub-cancel-ticket">
                     <div className="container">
-                        <CancelTicket isLoggedIn={isLoggedIn} />
+                        <CancelTicket isLoggedIn={isLoggedIn} id={id} />
                     </div>
                 </div>
             </div>

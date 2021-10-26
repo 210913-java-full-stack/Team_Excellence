@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 
 
-function CreateFlight({ controlCreatePage }) {
+export default function CreateFlight({ controlCreatePage }) {
     const [depart, setDepart] = useState()
     const [departDate, setDepartDate] = useState()
     const [departTime, setDepartTime] = useState()
@@ -19,22 +19,27 @@ function CreateFlight({ controlCreatePage }) {
             departTime: departTime,
             arriveLocation: arrive,
             arriveDate: arriveDate,
-            arriveTime: arriveTime
+            arriveTime: arriveTime,
+            takeOff: false
         }
         await fetch("http://localhost:8080/api/flight", {
             method: "POST",
             body: JSON.stringify(json)
-        }).catch(error => alert(`There was an error adding your flight.\nSee below error:\n${error}`));
+        }).then(response => {
+            if (response.ok) {
+                alert("You've created the flight.")
+            }
+        }).catch(error => console.log(error));
+
 
         controlCreatePage();
-
 
     }
 
     return (
         <section>
             <h1>Create a Flight</h1>
-            <form onSubmit={handleSubmit}>
+            <form >
                 <lable>Departure City</lable>
                 <input type="text" onChange={e => setDepart(e.target.value)} required />
                 <lable>Departure Date</lable>
@@ -47,7 +52,7 @@ function CreateFlight({ controlCreatePage }) {
                 <input type="text" onChange={e => setArriveDate(e.target.value)} required />
                 <lable>Arrival Time</lable>
                 <input type="text" onChange={e => setArriveTime(e.target.value)} required />
-                <button type="submit" >Submit</button>
+                <button type="button" onClick={handleSubmit} >Submit</button>
 
             </form>
         </section>
@@ -55,4 +60,3 @@ function CreateFlight({ controlCreatePage }) {
     )
 }
 
-export default CreateFlight();

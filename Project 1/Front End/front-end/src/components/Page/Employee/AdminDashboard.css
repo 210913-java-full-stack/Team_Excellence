@@ -88,23 +88,23 @@
 }
 
 
-#table-wrapper {
+.table-wrapper {
     position:relative;
   }
-  #table-scroll {
+  .table-scroll {
     height:550px;
     overflow:auto;  
     margin-top:20px;
   }
-  #table-wrapper table {
+  .table-wrapper table {
     width:100%;
   
   }
-  #table-wrapper table * {
+ .table-wrapper table * {
     
  
   }
-  #table-wrapper table thead th .text {
+  .table-wrapper table thead th .text {
     position:absolute;   
     top:-20px;
     z-index:2;
