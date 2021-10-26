@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import "./AdminDashboard.css";
 import AdminFlightDetail from './AdminFlightDetail';
 import AdminFlights from './AdminFlights';
+import CreateFlight from './CreateFlight';
 
 
 
@@ -33,7 +34,7 @@ export default function AdminDashboard() {
             return (
                 <div>
                     <button className="admin-logout" onClick={controlCreatePage}>back</button>
-                    <h1 className="ticket-header">Create a flight</h1>
+                    <CreateFlight controlCreatePage={controlCreatePage} />
                 </div>
             );
         } else if (flightPage && !createPage) {
