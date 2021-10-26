@@ -28,7 +28,7 @@ public class FlightServlet extends HttpServlet {
         try {
             resp.getWriter().write(mapper.writeValueAsString(list));
         } catch (IOException e) {
-            FileLogger.getFileLogger().writeLog(2);
+            FileLogger.getFileLogger().writeLog("Exception in the doGet method within the FlightServlet class.", 2);
         }
 
 

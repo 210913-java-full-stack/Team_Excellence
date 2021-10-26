@@ -29,7 +29,7 @@ public class LoginServlet extends HttpServlet {
             System.out.println(json);
             resp.getWriter().write(json);
         } catch (IOException e) {
-            FileLogger.getFileLogger().writeLog(2);
+            FileLogger.getFileLogger().writeLog("Exception in the doPost method within the LoginServlet class.", 2);
         }
     }
 }

@@ -26,7 +26,7 @@ public class TicketServlet extends HttpServlet {
         try {
             response.getWriter().write(mapper.writeValueAsString(list));
         } catch (IOException e) {
-            FileLogger.getFileLogger().writeLog(2);
+            FileLogger.getFileLogger().writeLog("Exception in the doGet method within the TicketServlet class.", 2);
         }
     }
 
@@ -100,7 +100,7 @@ public class TicketServlet extends HttpServlet {
         try {
             resp.sendRedirect("http://localhost:3000/ticket");
         } catch (IOException e) {
-            FileLogger.getFileLogger().writeLog(2);
+            FileLogger.getFileLogger().writeLog("Exception in the doPost method within the TicketServlet class.", 2);
         }
     }
 
@@ -149,7 +149,7 @@ public class TicketServlet extends HttpServlet {
                 System.out.println(json);
                 resp.getWriter().write(json);
             } catch (IOException e) {
-                FileLogger.getFileLogger().writeLog(2);
+                FileLogger.getFileLogger().writeLog("Exception in the doDelete method within the TicketServlet class.", 2);
             }
 
         }

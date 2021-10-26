@@ -29,7 +29,7 @@ public class CustomerServlet extends HttpServlet {
             resp.getWriter().write(mapper.writeValueAsString(list));
 
         } catch (IOException e) {
-            FileLogger.getFileLogger().writeLog(2);
+            FileLogger.getFileLogger().writeLog("Exception in the goGet method within the CustomerServlet class.", 2);
         }
 
     }
@@ -54,7 +54,7 @@ public class CustomerServlet extends HttpServlet {
             System.out.println(json);
             resp.getWriter().write(json);
         } catch (IOException e) {
-            FileLogger.getFileLogger().writeLog(2);
+            FileLogger.getFileLogger().writeLog("Exception in the doPost method within the CustomerServlet class.", 2);
         }
     }
 }

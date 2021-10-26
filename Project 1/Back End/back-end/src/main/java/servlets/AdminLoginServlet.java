@@ -31,7 +31,7 @@ public class AdminLoginServlet extends HttpServlet {
             System.out.println(json);
             resp.getWriter().write(json);
         } catch (IOException e) {
-            FileLogger.getFileLogger().writeLog(2);
+            FileLogger.getFileLogger().writeLog("Exception in the doPost method within the AdminLoginServlet class.", 2);
         }
     }
 }

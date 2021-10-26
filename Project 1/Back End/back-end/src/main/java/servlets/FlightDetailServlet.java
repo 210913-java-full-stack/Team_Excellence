@@ -25,7 +25,7 @@ public class FlightDetailServlet extends MyServlet {
         try {
             resp.getWriter().write(mapper.writeValueAsString(flight));
         } catch (IOException e) {
-            FileLogger.getFileLogger().writeLog(2);
+            FileLogger.getFileLogger().writeLog("Exception in the doGet method within the FlightDetailServlet Class.", 2);
         }
 
     }
@@ -43,7 +43,7 @@ public class FlightDetailServlet extends MyServlet {
             manageFlight.updateFlight(flight);
 
         }catch(Exception e){
-            FileLogger.getFileLogger().writeLog(2);
+            FileLogger.getFileLogger().writeLog("Exception in the doPatch method within the FlightDetailServlet Class.", 2);
         }
     }
 
@@ -61,7 +61,7 @@ public class FlightDetailServlet extends MyServlet {
             manageFlight.createFlight(flight);
 
         }catch(Exception e){
-            FileLogger.getFileLogger().writeLog(2);
+            FileLogger.getFileLogger().writeLog("Exception in the doPost method within the FlightDetailServlet Class.", 2);
         }
     }
 
@@ -79,7 +79,7 @@ public class FlightDetailServlet extends MyServlet {
             manageFlight.cancelFlight(flight);
 
         } catch (Exception e) {
-            FileLogger.getFileLogger().writeLog(2);
+            FileLogger.getFileLogger().writeLog("Exception in the doDelete method within the FlightDetailServlet Class.", 2);
         }
     }
 

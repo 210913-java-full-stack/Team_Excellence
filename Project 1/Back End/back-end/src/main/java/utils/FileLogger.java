@@ -8,40 +8,42 @@ import java.time.format.DateTimeFormatter;
 public class FileLogger {
 
     private static FileLogger fileLogger;
+    private static int threshold;
+    private static boolean printToConsole;
+    private static boolean printToConsoleTemp;
+
+    private FileLogger() {
+        printToConsole = false;
+        printToConsoleTemp = false;
+        threshold = 3;
+    }
 
     //Gets the file logger and sets up the file path
     public static FileLogger getFileLogger(){
-        if(fileLogger == null){
+        if(fileLogger == null) {
             fileLogger = new FileLogger();
-            File file = new File("C:/Revature/Training/Repos/Team_Excellence/Project 1/Back End/logs/"
-                    + getLogFileName());
-            OutputStream outputStream;
-            try {
-                outputStream = new FileOutputStream(file);
-                outputStream.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
         return fileLogger;
     }
 
     //Adds the exception data to the log file
-    public void writeLog(int level) {
+    public void writeLog(String message, int level) {
 
-        try(FileWriter fileWriter = new FileWriter(getLogFileName(), true)){
-
+        try{
+            FileWriter fileWriter = new FileWriter(getLogFileName(), true);
             String logEntry;
-            if(level == 1) {
-                logEntry = formatLogEntry("Info: ");
+
+            logEntry = formatLogEntry(message);
+            if(level >= threshold){
                 fileWriter.write(logEntry);
-            } else if(level == 2){
-                logEntry = formatLogEntry("Warn: ");
-            } else if(level == 3){
-                logEntry = formatLogEntry("Moderate: ");
-            } else if(level == 4){
-                logEntry = formatLogEntry("Severe: ");
             }
+
+            if(printToConsole || printToConsoleTemp) {
+                System.out.println(logEntry);
+                printToConsoleTemp = false;
+            }
+            fileWriter.flush();
+            fileWriter.close();
         } catch (IOException e){
             e.printStackTrace();
         }
@@ -59,5 +61,31 @@ public class FileLogger {
         String stackInfo = stackTraceElements[3].toString();
         String timestamp = LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
         return String.format("%s [%s] %s", timestamp, stackInfo, message);
+    }
+
+    public FileLogger console() {
+        printToConsoleTemp = true;
+        return fileLogger;
+    }
+
+    public FileLogger threshold(int th) {
+        threshold = th;
+        return fileLogger;
+    }
+
+    public static boolean isPrintToConsole() {
+        return printToConsole;
+    }
+
+    public static void setPrintToConsole(boolean printToConsole) {
+        FileLogger.printToConsole = printToConsole;
+    }
+
+    public static int getThreshold() {
+        return threshold;
+    }
+
+    public static void setThreshold(int threshold) {
+        FileLogger.threshold = threshold;
     }
 }
