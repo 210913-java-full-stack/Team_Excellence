@@ -17,7 +17,6 @@ public class CancelTicket {
      * @param userId Requires the id of the customer that is currently logged in
      */
     public Ticket customerCancelTicket(int ticketId, int userId){
-        System.out.println("I can get here");
         //Get the ticket from the database using the ticketId
         Ticket ticket = TicketRepo.getTicketById(ticketId);
         //Get the customer associated with that ticket
@@ -25,14 +24,8 @@ public class CancelTicket {
         int customerId = customer.getId();
 
         if(userId == customerId){
-            //Get the flight info associated with that ticket
-            Flight flight = ticket.getFlight();
-            //Get the ticket list so that the ticket can be removed from it
-            List<Ticket> ticketList = flight.getTicketListByFlightId();
             //Delete the ticket from the database
             TicketRepo.deleteTicket(ticket);
-            //Remove the ticket from the ticket list
-            ticketList.remove(ticket);
             return ticket;
         } else {
             return null;
@@ -46,13 +39,8 @@ public class CancelTicket {
     public void adminCancelTicket(int ticketId){
         //Get the ticket from the database using the ticketId
         Ticket ticket = TicketRepo.getTicketById(ticketId);
-        //Get the flight info associated with that ticket
-        Flight flight = ticket.getFlight();
-        //Get the ticket list so that the ticket can be removed from it
-        List<Ticket> ticketList = flight.getTicketListByFlightId();
+
         //Delete the ticket from the database
         TicketRepo.deleteTicket(ticket);
-        //Remove the ticket from the ticket list
-        ticketList.remove(ticket);
     }
 }

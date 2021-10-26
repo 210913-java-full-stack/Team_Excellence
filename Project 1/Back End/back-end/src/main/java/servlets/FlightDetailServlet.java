@@ -36,7 +36,6 @@ public class FlightDetailServlet extends MyServlet {
             InputStream input = request.getInputStream();
             Scanner sc = new Scanner(input, StandardCharsets.UTF_8.name());
             String jsonText = sc.useDelimiter("\\A").next();
-            System.out.println(jsonText);
 
             ObjectMapper mapper = new ObjectMapper();
             Flight flight = mapper.readValue(jsonText, Flight.class);
@@ -71,9 +70,7 @@ public class FlightDetailServlet extends MyServlet {
             InputStream input = request.getInputStream();
             Scanner sc = new Scanner(input, StandardCharsets.UTF_8.name());
             String jsonText = sc.useDelimiter("\\A").next();
-            System.out.println(jsonText);
 
-            System.out.println(jsonText);
             ObjectMapper mapper = new ObjectMapper();
             Flight flight = mapper.readValue(jsonText, Flight.class);
             ManageFlight manageFlight = new ManageFlight();
