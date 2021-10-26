@@ -15,7 +15,6 @@ public class AdminRepo {
     //Gets data from the admin table using the admin id
     public static Admin getAdminById(int id) {
         Session session = HibernateUtil.getSession();
-        //Get data from database using the admin id
         return session.get(Admin.class,id);
     }
     //Gets data from the admin table using the admin's username
@@ -28,6 +27,7 @@ public class AdminRepo {
         return session.createQuery(criteria).getSingleResult();
     }
 
+    //Gets all data in the admin table
     public static List<Admin> getAllAdmins() {
         Session session = HibernateUtil.getSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
@@ -38,6 +38,7 @@ public class AdminRepo {
         return session.createQuery(query).getResultList();
     }
 
+    //Saves admin info to the database
     public static void saveAdmin(Admin admin) {
         Session session = HibernateUtil.getSession();
         Transaction transaction = session.beginTransaction();
@@ -45,6 +46,7 @@ public class AdminRepo {
         transaction.commit();
     }
 
+    //Deletes a row in the admin table
     public static void deleteAdmin(Admin admin) {
         Session session = HibernateUtil.getSession();
         Transaction transaction = session.beginTransaction();

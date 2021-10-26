@@ -13,27 +13,28 @@ public class DisplayFlightSchedule {
 
     /**
      * Displays all flights regardless of availability. Used to display flights to the admin.
+     * @return Returns a list of all flights
      */
     public List<Flight> displayFlightsAdmin(){
-        List<Flight> flightList = FlightRepo.getList();
+        List<Flight> flightList = FlightRepo.getFlightList();
         if(flightList == null){
-            FlightRepo.setList(FlightRepo.getAllFlights());
+            FlightRepo.setFlightList(FlightRepo.getAllFlights());
             return FlightRepo.getAllFlights();
 
         }
-        System.out.println("display admin List of flights");
         return flightList;
     }
 
     /**
      * Filter flights based on availability. Used to display flights to the customer.
+     * @return Returns a list containing all available flights
      */
     public List<Flight> displayFlightsCustomer(){
         List<Flight> listOfAvailableFlights = new ArrayList<>();
-        List<Flight> flightList = FlightRepo.getList();
+        List<Flight> flightList = FlightRepo.getFlightList();
         if(flightList == null){
             flightList = FlightRepo.getAllFlights();
-            FlightRepo.setList(FlightRepo.getAllFlights());
+            FlightRepo.setFlightList(FlightRepo.getAllFlights());
         }
         for(Flight flight : flightList){
             if(!flight.getTakeOff()){
@@ -49,7 +50,7 @@ public class DisplayFlightSchedule {
      * @return Returns the flight information
      */
     public Flight displayFlightDetails(int flightId){
-        FlightRepo.setList(FlightRepo.getAllFlights());
+        FlightRepo.setFlightList(FlightRepo.getAllFlights());
         return FlightRepo.getFlightById(flightId);
     }
 

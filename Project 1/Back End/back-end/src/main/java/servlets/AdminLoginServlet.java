@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.stream.Collectors;
 
 public class AdminLoginServlet extends HttpServlet {
+    //Takes the admin login information from the front end, unmarshalls it, and passes it to the login service class
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
 
@@ -23,6 +24,7 @@ public class AdminLoginServlet extends HttpServlet {
             Admin user = login.adminLogin(admin);
             String json = mapper.writeValueAsString(user);
 
+            //Returns the 200 status as well as the user data
             resp.setStatus(200);
             resp.setContentType("application/json");
             resp.setCharacterEncoding("UTF-8");

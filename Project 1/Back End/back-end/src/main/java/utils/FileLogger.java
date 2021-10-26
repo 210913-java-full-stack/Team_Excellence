@@ -9,6 +9,7 @@ public class FileLogger {
 
     private static FileLogger fileLogger;
 
+    //Gets the file logger and sets up the file path
     public static FileLogger getFileLogger(){
         if(fileLogger == null){
             fileLogger = new FileLogger();
@@ -25,6 +26,7 @@ public class FileLogger {
         return fileLogger;
     }
 
+    //Adds the exception data to the log file
     public void writeLog(int level) {
 
         try(FileWriter fileWriter = new FileWriter(getLogFileName(), true)){
@@ -45,11 +47,13 @@ public class FileLogger {
         }
     }
 
+    //Gets the log file name
     private static String getLogFileName() {
         String today = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         return today + ".log";
     }
 
+    //Formats the entries that are saved to the log file
     private  String formatLogEntry(String message){
         StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
         String stackInfo = stackTraceElements[3].toString();

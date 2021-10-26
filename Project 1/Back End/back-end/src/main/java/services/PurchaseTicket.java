@@ -5,9 +5,6 @@ import model.Flight;
 import model.Ticket;
 import repository.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class PurchaseTicket {
 
     public PurchaseTicket() {

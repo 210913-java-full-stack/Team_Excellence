@@ -11,11 +11,10 @@ public class ManageFlight {
     /**
      * Allows the admin to create new flights
      * @param flight This method requires the flight information (minus the flight id) from the UI
-     * TODO: Create a method or class that checks if the pilot Id exists.
      */
     public void createFlight(Flight flight){
         //Save the new flight to the database
-        FlightRepo.setList(FlightRepo.getAllFlights());
+        FlightRepo.setFlightList(FlightRepo.getAllFlights());
         FlightRepo.saveFlight(flight);
     }
 
@@ -25,7 +24,7 @@ public class ManageFlight {
      * @param flight Requires the id associate with the selected flight
      */
     public void cancelFlight(Flight flight){
-        FlightRepo.setList(FlightRepo.getAllFlights());
+        FlightRepo.setFlightList(FlightRepo.getAllFlights());
         FlightRepo.deleteFlight(FlightRepo.getFlightById(flight.getFlightId()));
     }
 
@@ -34,7 +33,7 @@ public class ManageFlight {
      * @param newFlight This method requires the updates to the current flight
      */
     public void updateFlight(Flight newFlight){
-        FlightRepo.setList(FlightRepo.getAllFlights());
+        FlightRepo.setFlightList(FlightRepo.getAllFlights());
         FlightRepo.updateFlight(newFlight);
     }
 }

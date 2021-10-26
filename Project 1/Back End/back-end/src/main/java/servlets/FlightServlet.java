@@ -12,11 +12,9 @@ import java.io.IOException;
 import java.util.List;
 
 public class FlightServlet extends HttpServlet {
-    @Override
 
-    /**
-     * This servlet gets the list of flights that will be displayed on the customer and admin homepages
-     */
+    //This servlet gets the list of flights that will be displayed on the customer and admin homepages
+    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
         boolean typeOfUser = Boolean.parseBoolean(req.getParameter("allFlights"));
         DisplayFlightSchedule displayFlightSchedule = new DisplayFlightSchedule();
