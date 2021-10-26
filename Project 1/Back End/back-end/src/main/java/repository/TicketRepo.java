@@ -1,12 +1,9 @@
 package repository;
 
-import model.Flight;
 import org.hibernate.Session;
 import model.Ticket;
 import org.hibernate.Transaction;
 import utils.HibernateUtil;
-
-import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -16,10 +13,12 @@ public class TicketRepo {
     private static Session session = HibernateUtil.getSession();
     private static Transaction transaction;
 
+    //Gets a ticket using the ticket id
     public static Ticket getTicketById(int id){
         return session.get(Ticket.class, id);
     }
 
+    //Gets all tickets in the ticket table
     public static List<Ticket> getAllTickets(int flightId){
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Ticket> query = builder.createQuery(Ticket.class);
@@ -28,7 +27,7 @@ public class TicketRepo {
         return session.createQuery(query).getResultList();
     }
 
-    //This method inserts a new row into the ticket
+    //This method inserts a new row into the ticket table
     public static void saveNewTicket(Ticket ticket){
         transaction = session.beginTransaction();
 
@@ -48,6 +47,7 @@ public class TicketRepo {
         transaction.commit();//Has database update the check-in column to match the above change
     }
 
+    //This method removes a ticket from the database
     public static void deleteTicket(Ticket ticket){
         transaction = session.beginTransaction();
 

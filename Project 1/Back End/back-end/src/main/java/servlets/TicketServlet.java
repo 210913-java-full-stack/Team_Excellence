@@ -2,7 +2,6 @@ package servlets;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import model.Ticket;
-import repository.TicketRepo;
 import services.CancelTicket;
 import services.CheckIn;
 import services.PassengerList;
@@ -13,13 +12,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
-import java.util.Scanner;
 
 public class TicketServlet extends HttpServlet {
 
+    //Gets the passenger list for the flight manifest
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response){
         int flightId = Integer.parseInt(request.getParameter("flightId"));
@@ -33,8 +30,7 @@ public class TicketServlet extends HttpServlet {
         }
     }
 
-
-
+    //Adds ticket(s)
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp) {
         int flightId = Integer.parseInt(req.getParameter("flightId"));
@@ -108,6 +104,7 @@ public class TicketServlet extends HttpServlet {
         }
     }
 
+    //Updates the check in status of the ticket
     @Override
     public void doPut(HttpServletRequest req, HttpServletResponse resp) {
         int ticketId = Integer.parseInt(req.getParameter("ticketId"));
@@ -116,6 +113,7 @@ public class TicketServlet extends HttpServlet {
 
     }
 
+    //Cancels a ticket
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) {
         Integer customerId;

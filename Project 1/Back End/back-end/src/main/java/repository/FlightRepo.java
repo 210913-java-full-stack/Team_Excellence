@@ -8,63 +8,62 @@ import utils.HibernateUtil;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import java.util.Arrays;
 import java.util.List;
 
 public class FlightRepo {
 
     private static Session session = HibernateUtil.getSession();
 
-    private static List<Flight> list;
+    private static List<Flight> flightList;
 
-
+    //Gets a flight using the flight id
     public static Flight getFlightById(int id) {
-//        Transaction transaction = session.beginTransaction();
-//        session.flush();
-//        transaction.commit();
         return session.get(Flight.class, id);
     }
 
-
+    //Gets a list of all flights
     public static List<Flight> getAllFlights() {
-        if (list == null) {
+        if (flightList == null) {
             CriteriaBuilder builder = session.getCriteriaBuilder();
             CriteriaQuery<Flight> query = builder.createQuery(Flight.class);
             Root<Flight> root = query.from(Flight.class);
             query.select(root);
-            list = session.createQuery(query).getResultList();
+            flightList = session.createQuery(query).getResultList();
         } else {
+            //Updates the flight list
             Transaction transaction = session.beginTransaction();
             session.flush();
             transaction.commit();
         }
-        return list;
+        return flightList;
 
     }
 
+    //Adds a flight to the database and the flight list
     public static void saveFlight(Flight flight){
         Transaction transaction = session.beginTransaction();
         session.save(flight);
         transaction.commit();
-        list = getList();
-        list.add(flight);
+        flightList = getFlightList();
+        flightList.add(flight);
     }
 
+    //Removes a flight from the database and the flight list
     public static void deleteFlight(Flight flight) {
         Transaction transaction = session.beginTransaction();
         session.delete(flight);
         transaction.commit();
-        list = getList();
-        int index = list.lastIndexOf(flight);
-        list.remove(index);
+        flightList = getFlightList();
+        int index = flightList.lastIndexOf(flight);
+        flightList.remove(index);
     }
 
-
+    //Updates the flight list and the database
     public static void updateFlight(Flight newFlight) {
         Transaction transaction = session.beginTransaction();
 
-        list = getList();
-        for (Flight flight : list){
+        flightList = getFlightList();
+        for (Flight flight : flightList){
             if(flight.getFlightId().equals(newFlight.getFlightId())){
                 flight.setArriveLocation(newFlight.getArriveLocation());
                 flight.setArriveDate(newFlight.getArriveDate());
@@ -79,11 +78,11 @@ public class FlightRepo {
         transaction.commit();
     }
 
-    public static List<Flight> getList() {
-        return list;
+    public static List<Flight> getFlightList() {
+        return flightList;
     }
 
-    public static void setList(List<Flight> list) {
-        FlightRepo.list = list;
+    public static void setFlightList(List<Flight> list) {
+        FlightRepo.flightList = list;
     }
 }

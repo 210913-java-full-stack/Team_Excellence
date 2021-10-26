@@ -8,6 +8,7 @@ import java.io.IOException;
 
 public abstract class MyServlet extends HttpServlet {
 
+    //Allows the use of the doPatch method
     public void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if (req.getMethod().equalsIgnoreCase("PATCH")){
             doPatch(req, resp);

@@ -1,17 +1,11 @@
 package servlets;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import model.Customer;
-import model.Flight;
 import model.Ticket;
-import services.DisplayFlightSchedule;
 import services.PassengerList;
 import services.Register;
 import utils.FileLogger;
-
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,11 +17,12 @@ import java.util.Scanner;
 
 public class CustomerServlet extends HttpServlet {
 
+    //Gets the passenger list for the flight manifest
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
         try{
             int id = Integer.parseInt(req.getParameter("id"));
-            //Gets the passenger list for the flight manifest
+
             PassengerList passengerList = new PassengerList();
             List<Ticket> list = passengerList.passengersOnFlight(id);
             ObjectMapper mapper = new ObjectMapper();
@@ -39,6 +34,7 @@ public class CustomerServlet extends HttpServlet {
 
     }
 
+    //Takes the customer data from the front end, unmarshalls it, and passes the data to the register service class
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp ) {
         try {

@@ -2,8 +2,6 @@ package servlets;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import model.Flight;
-import repository.FlightRepo;
-
 import services.DisplayFlightSchedule;
 import services.ManageFlight;
 import utils.FileLogger;
@@ -17,6 +15,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 public class FlightDetailServlet extends MyServlet {
+    //Gets the details for a flight using the flight id
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp)  {
         int id = Integer.parseInt(req.getParameter("id"));
@@ -31,6 +30,7 @@ public class FlightDetailServlet extends MyServlet {
 
     }
 
+    //Updates the flight information
     public void doPatch(HttpServletRequest request, HttpServletResponse response) {
         try {
             InputStream input = request.getInputStream();
@@ -47,6 +47,7 @@ public class FlightDetailServlet extends MyServlet {
         }
     }
 
+    //Adds a new flight
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp) {
         try {
@@ -64,6 +65,7 @@ public class FlightDetailServlet extends MyServlet {
         }
     }
 
+    //Cancels a flight
     @Override
     public void doDelete(HttpServletRequest request, HttpServletResponse response) {
         try{

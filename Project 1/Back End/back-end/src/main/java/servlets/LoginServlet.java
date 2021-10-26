@@ -1,13 +1,9 @@
 package servlets;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import model.Customer;
 import services.Login;
 import utils.FileLogger;
-
-import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import java.io.*;
 import java.util.stream.Collectors;
@@ -15,6 +11,7 @@ import java.util.stream.Collectors;
 public class LoginServlet extends HttpServlet {
 
 
+    //Takes the customer login information from the front end, unmarshalls it, and passes it to the login service class
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
 
