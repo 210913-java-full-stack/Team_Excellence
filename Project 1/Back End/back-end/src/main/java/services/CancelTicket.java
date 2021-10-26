@@ -23,7 +23,7 @@ public class CancelTicket {
 
         List<Ticket> list = ticket.getFlight().getTicketListByFlightId();
         list.remove(ticket);
-        
+
 
         Customer customer = ticket.getCustomer();
         int customerId = customer.getId();
