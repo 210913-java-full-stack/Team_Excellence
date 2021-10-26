@@ -112,7 +112,6 @@ public class TicketServlet extends HttpServlet {
     public void doPut(HttpServletRequest req, HttpServletResponse resp) {
         int ticketId = Integer.parseInt(req.getParameter("ticketId"));
         CheckIn checkIn = new CheckIn();
-        System.out.println();
         checkIn.checkInForFlight(ticketId);
 
     }

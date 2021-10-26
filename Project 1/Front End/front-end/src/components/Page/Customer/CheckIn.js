@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import "./CheckIn.css";
 
@@ -8,6 +7,8 @@ function CheckIn() {
 
 
     async function handleSubmit() {
+        console.log("ticket ID: ", ticketId);
+        
         fetch(`http://localhost:8080/api/ticket?ticketId=${ticketId}`, {
             method: "PUT"
         }).then((response) => {
