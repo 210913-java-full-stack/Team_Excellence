@@ -2,13 +2,29 @@ import React, { useState } from "react";
 import "./CancelTicket.css";
 
 
-function CancelTicket({ isLoggedIn }) {
+function CancelTicket({ isLoggedIn, id }) {
     const [ticketId, setTicketId] = useState()
 
 
+
+    async function handleClick() {
+
+
+        await fetch(`http://localhost:8080/api/ticket?ticketId=${ticketId}&customerId=${id}`, {
+            method: "DELETE",
+
+        }).then(response => {
+            if (response.ok) {
+                alert("You have deleted your ticket.!")
+            }
+        }).catch(err => console.log(err))
+
+
+    }
+
     function renderButton() {
         if (isLoggedIn) {
-            return <button className="ticket-button">Cancel Ticket {ticketId}</button>
+            return <button className="ticket-button" onClick={handleClick}>Cancel Ticket {ticketId}</button>
         } else {
             return (<h3>Must be logged in to cancel ticket</h3>)
         }

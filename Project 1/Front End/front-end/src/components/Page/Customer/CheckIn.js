@@ -25,14 +25,14 @@ function CheckIn() {
             <h1>Check In Here!</h1>
 
             <div className="enter-ticket">
-                <form onSubmit={handleSubmit}>
+                <form >
                     <div>
                         <label>Enter your ticket number:</label>
                     </div>
                     <div>
                         <input type="text" onChange={e => setTicketId(e.target.value)} required ></input>
                     </div>
-                    <button className="ticket-button" type="submit">Check In</button>
+                    <button className="ticket-button" onClick={handleSubmit}>Check In</button>
                 </form>
 
             </div>

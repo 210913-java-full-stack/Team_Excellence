@@ -18,9 +18,9 @@ public class FlightRepo {
 
 
     public static Flight getFlightById(int id) {
-        Transaction transaction = session.beginTransaction();
-        session.flush();
-        transaction.commit();
+//        Transaction transaction = session.beginTransaction();
+//        session.flush();
+//        transaction.commit();
         return session.get(Flight.class, id);
     }
 
@@ -61,7 +61,7 @@ public class FlightRepo {
 
     public static void updateFlight(Flight newFlight) {
         Transaction transaction = session.beginTransaction();
-        session.merge(newFlight);
+
         list = getList();
         for (Flight flight : list){
             if(flight.getFlightId().equals(newFlight.getFlightId())){
@@ -72,6 +72,7 @@ public class FlightRepo {
                flight.setDepartDate(newFlight.getDepartDate());
                 flight.setDepartTime(newFlight.getDepartTime());
                 flight.setTakeOff(newFlight.getTakeOff());
+                session.merge(flight);
             }
         }
         transaction.commit();
