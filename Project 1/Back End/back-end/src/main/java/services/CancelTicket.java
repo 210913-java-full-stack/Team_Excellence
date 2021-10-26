@@ -16,14 +16,7 @@ public class CancelTicket {
         //Get the ticket from the database using the ticketId
         Ticket ticket = TicketRepo.getTicketById(ticketId);
         //Get the customer associated with that ticket
-<<<<<<< HEAD
 
-        List<Ticket> list = ticket.getFlight().getTicketListByFlightId();
-        list.remove(ticket);
-
-
-=======
->>>>>>> 2955a168bc81dbebba2475d6ea648e51301c0132
         Customer customer = ticket.getCustomer();
         int customerId = customer.getId();
 

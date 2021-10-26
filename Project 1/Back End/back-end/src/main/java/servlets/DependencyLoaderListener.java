@@ -12,6 +12,8 @@ public class DependencyLoaderListener  implements ServletContextListener {
         //Initializes the session and sets the session
         Session session = HibernateUtil.getSession();
         HibernateUtil.setSession(session);
+
+        FileLogger.getFileLogger().writeLog(4);
     }
 
 
