@@ -138,7 +138,12 @@ public class TicketServlet extends HttpServlet {
                 ObjectMapper mapper = new ObjectMapper();
                 String json = mapper.writeValueAsString(ticket);
 
-                resp.setStatus(200);
+                if(ticket != null) {
+                    resp.setStatus(200);
+                } else {
+                    resp.setStatus(401);
+                }
+
                 resp.setContentType("application/json");
                 resp.setCharacterEncoding("UTF-8");
                 System.out.println(json);

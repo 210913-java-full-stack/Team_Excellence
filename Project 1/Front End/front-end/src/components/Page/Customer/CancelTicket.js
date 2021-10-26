@@ -16,6 +16,8 @@ function CancelTicket({ isLoggedIn, id }) {
         }).then(response => {
             if (response.ok) {
                 alert("You have deleted your ticket.!")
+            } else {
+                alert("Invalid ticket number! That is not your ticket!")
             }
         }).catch(err => console.log(err))
 
