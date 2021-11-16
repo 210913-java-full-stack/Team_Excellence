@@ -1,4 +1,5 @@
-Project 1 -Airline Ticketing Kiosk App
+Project 1 -Airline Ticketing Kiosk App: 
+
 Description:
 /* Project description */
 
