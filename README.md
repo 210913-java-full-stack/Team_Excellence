@@ -1,7 +1,7 @@
-Project 1 -Airline Ticketing Kiosk App: 
+Project 1 -Airline Ticketing Kiosk App: Gautier Airlines
 
 Description:
-/* Project description */
+Gautier Airlines is a flight booking service that allows users to book a flight to their dream destination. Book with us and we will fly you straight to your destination city with no pesky multi-stop flights! Not only that, be you will be supporting your local airports, reducing your impact on the environment! 
 
 
 Minimum Requirements:
